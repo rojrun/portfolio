@@ -3,11 +3,11 @@
 
 <head>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-MDFCMJS');</script>
+  })(window,document,'script','dataLayer','GTM-MDFCMJS');</script> -->
   <!-- End Google Tag Manager -->
 
   <meta charset="utf-8">
@@ -17,7 +17,7 @@
   <link rel="icon" type="image/x-icon" href="img/lowercase_r.ico">
 
   <meta name="author" content="Roj Rungsisullatanont">
-  <meta name="description" content="Need a website design or other web development services for your business? Check out my portfolio. I'll be happy to meet you in person near Orange County, California.">
+  <meta name="description" content="Need a full website, wireframing prototype, eCommerce, landing page, on-page SEO, or mobile responsiveness to your website? Check out my portfolio.">
   <meta name="keywords" content="website development, web design, mobile friendly, HTML, ecommerce">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.rojrun.com">
@@ -42,8 +42,6 @@
       "@id": "https://www.rojrun.com",
       "@type": "LocalBusiness",
       "name": "Roj Rungsisullatanont",
-      "telephone": "714-713-7511",
-      "email": "runroj@gmail.com",
       "image": "https://www.rojrun.com/img/profile.png",
       "knowsAbout": {
         "@type": "SoftwareSourceCode",
@@ -58,7 +56,7 @@
         "postalCode": "90620"
       },
       "openingHours": "Mo-Fr 8:00-16:00",
-      "priceRange": "$$$",
+      "priceRange": "$$",
       "url": "https://www.rojrun.com"
     }
   </script>
@@ -67,8 +65,8 @@
 
 <body id="page-top">
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDFCMJS"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDFCMJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
   <!-- End Google Tag Manager (noscript) -->
   
   <!-- Navigation -->
@@ -91,7 +89,23 @@
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a>
+            <script type="text/javascript">
+              let a_tag = document.createElement("a");
+              a_tag.className = "nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger";
+              a_tag.href = "#contact";
+              a_tag.textContent = "Contact";
+              setInterval(function(){
+                a_tag.classList.toggle("blink");
+              }, 800);
+              document.querySelector("li:last-child").appendChild(a_tag);
+              // console.log("window location", window);
+              // window.onscroll = function() {
+
+              // };
+              // if (a_tag.href == window.location.href) {
+              //   a_tag.classList.remove("blink");
+              // }       
+            </script>
           </li>
         </ul>
       </div>
@@ -99,40 +113,47 @@
   </nav>
 
   <!-- Header -->
-  <header class="masthead bg-primary text-center">
+  <header class="masthead bg-primary text-center border-bottom border-white">
     <div class="container">
       <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="web developer">
       <h1 class="text-uppercase mb-0" style="color:#000000">Roj</h1>
       <h1 class="text-uppercase mb-0" style="color:#000000">Rungsisullatanont</h1>
       <hr class="star-light">
-      <h2 class="font-weight-light mb-0" style="color:#000000">Full Stack Developer - Portrait Artist - BSEE - MBA</h2>
+      <h2 class="font-weight-light mb-0" style="color:#000000">Full Stack Web Developer <span style="color:#d5d5d7">|</span> BSEE <span style="color:#d5d5d7">|</span> MBA</h2>
     </div>
   </header>
 
 
   
   <!-- About Section -->
-  <section class="bg-primary mb-0 border-top border-bottom border-white" id="about">
+  <section class="bg-primary mb-0 border-bottom border-white" id="about">
     <div class="container">
       <h2 class="text-center text-uppercase" style="color:#d5d5d7">About</h2>
       <hr class="star-light mb-5">
       <div class="col-lg-12 ml-auto">
-        <p class="lead" style="color:#d5d5d7" align="justify">Being born and raised in Southern California, I grew up with a passion for sketching and entering art contests.  For my senior year in high school, I wanted a challenging course, so I enrolled in the Pascal programming class.  After high school, I got involved in a deejay crew. For 5 years, I learned about event promotion, event planning, and event production.  With a Bachelor’s in Electronics Engineering, I gained experience repairing several types of electronic products.  With a growing passion for learning, I achieved a goal of obtaining a Master’s in Business Administration degree.  My most recent career was as a Logistics Manager, in the pro audio and lighting industry.  In this role, I helped improved day-to-day operations and the company’s CRM.</p>
+        <p class="lead" style="color:#d5d5d7">Being born and raised in Southern California, I grew up with a passion for sketching and entering art contests, which later evolved to drawing portraits. For my senior year in high school, I wanted a challenging course, 
+                                                so I enrolled in the Pascal programming class. After high school, I got involved in event production, those were fun times. For 5 years, I learned about event promotion, event planning, event production, decorating, and social networking. 
+                                                With a Bachelor of Science in Electronics Engineering, I gained experience repairing several types of products, for 7 years. With a growing passion for learning, I achieved a goal of obtaining a 
+                                                Master of Business Administration degree. That lead me to an 8-year logistics management career, in the pro audio and lighting industry. In this role, I helped improved day-to-day operations and the company’s CRM.</p>
       </div>
       <div class="col-lg-12 mr-auto">
-        <p class="lead" style="color:#d5d5d7" align="justify">It took me a year of considering a search for a new career.  With my experience of researching topics, through the MBA program, web development peaked my interest.  After researching several bootcamps in the area,  LearningFuze’s alumni reviews of the instructors and experiences helped me understand this was the right place to be. LearningFuze has helped me with team development and confidence in my coding abilities.</p>
+        <p class="lead" style="color:#d5d5d7">It was time for another career change, the software industry. With my experience of researching topics, through the MBA program, web development peaked my interest.
+                                                I attended LearningFuze, a coding bootcamp, which has helped me with team development and confidence in my coding abilities.</p>
       </div>
       <div class="col-lg-12 mr-auto">
-        <p class="lead" style="color:#d5d5d7" align="justify">To sum everything about me: I’m a thinker, I’m a doer, I'm a weightlifter, I’m a snowboarder, I’m a portrait artist, I’m an entrepreneur, I’m a foodie, I’m an event promoter and producer, I’m a reveller, and I’m a developer.</p>
+        <p class="lead" style="color:#d5d5d7">To sum everything about me: I’m a thinker, I’m a doer, I'm a weightlifter, I’m a snowboarder, I’m a portrait artist, I’m an entrepreneur, I’m a foodie, I’m an event promoter and producer, I’m a reveller, and I’m a developer.</p>
       </div>
       <div class="col-lg-12 mr-auto">
-        <p class="lead" style="color:#d5d5d7" align="justify"><span style="background-color: #000000">What can I build for you?</span></p>
+        <p class="lead" style="color: #d5d5d7">So, I decided to freelance as a new career, which led you to me.</p>
+      </div>
+      <div class="col-lg-12 mr-auto">
+        <p class="lead" style="color:#d5d5d7"><span style="background-color: #000000">What can I build for you?</span></p>
       </div>      
     </div>
   </section>
 
   <!-- Skills Section -->
-  <section id="skills">
+  <section class="bg-primary mb-0 border-bottom border-white" id="skills">
     <div class="container">
       <h2 class="text-center text-uppercase text-secondary mb-0">Skills</h2>
       <hr class="star-light mb-5">
@@ -154,7 +175,7 @@
       </div>
       <div class="row justify-content-center">
         <h3 style="color:#000000">Material Design:</h3>
-        <h3 class="text-secondary text-center">&nbsp; Bootstrap, CSS3, Materialize, Mobile Responsive, UI/UX</h3>
+        <h3 class="text-secondary text-center">&nbsp; Bootstrap, CSS3, Materialize, Mobile Responsiveness, UI/UX</h3>
       </div>
       <div class="row justify-content-center"> 
         <h3 style="color:#000000">Platform:</h3>
@@ -162,8 +183,8 @@
       </div>
       <div class="row justify-content-center">
         <h3 style="color:#000000">Tools:</h3>
-        <h3 class="text-secondary text-center">&nbsp; Chrome DevTools, Figma, GIMP, MAMP,</h3>
-        <h3 class="text-secondary text-center">Postman, Slack, Trello, Visual Studio Code</h3>
+        <h3 class="text-secondary text-center">&nbsp; Chrome DevTools, Figma, GIMP, Keyword Planner, MAMP, PageSpeed Insights, Postman, Slack, Trello, Visual Studio Code</h3>
+        <!-- <h3 class="text-secondary text-center">Postman, Slack, Trello, Visual Studio Code</h3> -->
       </div>
       <div class="row justify-content-center">
         <h3 style="color:#000000">Version Control:</h3>
@@ -173,7 +194,7 @@
   </section>  
 
   <!-- Portfolio Grid Section -->
-  <section class="portfolio mb-0 border-top border-bottom border-white" id="portfolio">
+  <section class="portfolio mb-0 border-bottom border-white" id="portfolio">
     <div class="container">
       <h2 class="text-center text-uppercase text-secondary mb-0">Portfolio</h2>
       <hr class="star-light mb-5">
