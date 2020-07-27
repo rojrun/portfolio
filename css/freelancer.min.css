@@ -57,6 +57,9 @@
  svg:hover path{
     fill: #000000;
   }
-.blink{
+a.blink{
   color: #ac0404!important;
+}
+a.active.blink{
+  
 }
