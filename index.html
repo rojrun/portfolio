@@ -72,7 +72,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Roj Rungsisullatanont</a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Roj</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -83,6 +83,9 @@
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-tirgger" href="#services">Services</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#skills">Skills</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
@@ -90,21 +93,43 @@
           </li>
           <li class="nav-item mx-0 mx-lg-1">
             <script type="text/javascript">
-              let a_tag = document.createElement("a");
+              var a_tag = document.createElement("a");
               a_tag.className = "nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger";
               a_tag.href = "#contact";
               a_tag.textContent = "Contact";
-              setInterval(function(){
-                a_tag.classList.toggle("blink");
-              }, 800);
+              a_tag.addEventListener("click", function(){console.log("click");});
               document.querySelector("li:last-child").appendChild(a_tag);
-              // console.log("window location", window);
-              // window.onscroll = function() {
+              var a_tag_blink = function() {
+                setInterval(function(){
+                  a_tag.classList.toggle("blink");
+                }, 800);
+              }  
 
-              // };
-              // if (a_tag.href == window.location.href) {
+              a_tag_blink();
+
+              var remove_a_tag_blink = function(){
+                console.log("click");
+                clearInterval(a_tag_blink);
+                a_tag.classList.remove("blink");
+              }
+              
+              // if (a_tag.classList.contains("active")) {
+              //   clearInterval(a_tag_blink);
               //   a_tag.classList.remove("blink");
-              // }       
+              // }    
+
+              // if (!a_tag.classList.contains("active")) {
+              //   a_tag_blink();
+              // } else {
+              //   clearInterval(a_tag_blink);
+              //   a_tag.classList.remove("blink");
+              // }
+
+              // a_tag_blink();  
+              // if (a_tag.classList.contains("active")) {
+              //   clearInterval(a_tag_blink);
+              //   a_tag.classList.remove("blink");
+              // }  
             </script>
           </li>
         </ul>
@@ -119,7 +144,7 @@
       <h1 class="text-uppercase mb-0" style="color:#000000">Roj</h1>
       <h1 class="text-uppercase mb-0" style="color:#000000">Rungsisullatanont</h1>
       <hr class="star-light">
-      <h2 class="font-weight-light mb-0" style="color:#000000">Full Stack Web Developer <span style="color:#d5d5d7">|</span> BSEE <span style="color:#d5d5d7">|</span> MBA</h2>
+      <h2 class="mb-0" style="color:#000000">Full Stack Web Developer <span style="color:#d5d5d7">|</span> MBA</h2>
     </div>
   </header>
 
@@ -152,43 +177,68 @@
     </div>
   </section>
 
+  <!-- Services Section -->
+  <section class="bg-primary mb-0 border-bottom border-white" id="services">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-secondary mb-0">Services</h2>
+      <hr class="star-light mb-5">
+      <ul style="font-size: 1.9rem; color: #000000; font-weight: 700;">
+        <li>
+          <h3 class="text-secondary">A full stack website with database.</h3>
+        </li>
+        <li>
+          <h3 class="text-secondary">An attractive landing page/one-page site.</h3>
+        </li>
+        <li>
+          <h3 class="text-secondary">An eCommerce platform like Shopify or WordPress.</h3>
+        </li>
+        <li>
+          <h3 class="text-secondary">On-page SEO using organic keywords and JSON-LD Schema.</h3>
+        </li>
+        <li>
+          <h3 class="text-secondary">UI/UX design with mobile responsiveness.</h3>
+        </li>
+      </ul>     
+    </div>
+  </section>
+
   <!-- Skills Section -->
   <section class="bg-primary mb-0 border-bottom border-white" id="skills">
     <div class="container">
       <h2 class="text-center text-uppercase text-secondary mb-0">Skills</h2>
       <hr class="star-light mb-5">
-      <div class="row justify-content-center">
-        <h3 style="color:#000000">Front-end:</h3>
-        <h3 class="text-secondary text-center">&nbsp; HTML5, JavaScript, jQuery, ReactJS</h3>
+      <!-- <div class="row justify-content-center"></div> -->
+      <div class="row">
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right" style="color:#000000">Front-end:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">HTML5, JavaScript, jQuery, ReactJS</h3>
       </div>  
-      <div class="row justify-content-center">
-        <h3 style="color:#000000">Back-end:</h3>
-        <h3 class="text-secondary text-center">&nbsp; ExpressJS, NodeJS, NPM, PHP, Redux</h3>     
+      <div class="row">
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right" style="color:#000000">Back-end:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">ExpressJS, NodeJS, NPM, PHP, Redux</h3>     
       </div>
-      <div class="row justify-content-center">
-        <h3 style="color:#000000">Database:</h3>
-        <h3 class="text-secondary text-center">&nbsp; Firebase, GraphQL, MySQL</h3>
+      <div class="row">
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right" style="color:#000000">Database:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">Firebase, GraphQL, MySQL</h3>
       </div>
-      <div class="row justify-content-center"> 
-        <h3 style="color:#000000">Marketing:</h3>
-        <h3 class="text-secondary text-center">&nbsp; JSON-LD Schema, SEO</h3>
+      <div class="row"> 
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right" style="color:#000000">Marketing:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">JSON-LD Schema, SEO</h3>
       </div>
-      <div class="row justify-content-center">
-        <h3 style="color:#000000">Material Design:</h3>
-        <h3 class="text-secondary text-center">&nbsp; Bootstrap, CSS3, Materialize, Mobile Responsiveness, UI/UX</h3>
+      <div class="row">
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right" style="color:#000000">Material Design:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">Bootstrap, CSS3, Materialize, Mobile Responsive, SASS, UI/UX</h3>
       </div>
-      <div class="row justify-content-center"> 
-        <h3 style="color:#000000">Platform:</h3>
-        <h3 class="text-secondary text-center">&nbsp; AWS, Shopify, WordPress</h3>
+      <div class="row"> 
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right" style="color:#000000">Platform:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">AWS, Shopify, WordPress</h3>
       </div>
-      <div class="row justify-content-center">
-        <h3 style="color:#000000">Tools:</h3>
-        <h3 class="text-secondary text-center">&nbsp; Chrome DevTools, Figma, GIMP, Keyword Planner, MAMP, PageSpeed Insights, Postman, Slack, Trello, Visual Studio Code</h3>
-        <!-- <h3 class="text-secondary text-center">Postman, Slack, Trello, Visual Studio Code</h3> -->
+      <div class="row">
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right" style="color:#000000">Tools:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">Chrome DevTools, Figma, GIMP, Keyword Planner, MAMP, PageSpeed Insights, Postman, Slack, Trello, Visual Studio Code</h3>
       </div>
-      <div class="row justify-content-center">
-        <h3 style="color:#000000">Version Control:</h3>
-        <h3 class="text-secondary text-center">&nbsp; Git, GitHub</h3>
+      <div class="row">
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right" style="color:#000000">Version Control:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">Git, GitHub</h3>
       </div>
     </div>
   </section>  

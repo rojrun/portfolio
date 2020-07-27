@@ -36,6 +36,11 @@
     offset: 80
   });
 
+  // $('body').scrollspy({
+  //   target: '#mainNav .navbar-nav > li.nav-item:last-child > a.nav-link.active:focus',
+  //   offset: 80
+  // }).removeClass('blink');
+
   // Collapse Navbar
   var navbarCollapse = function() {
     if ($("#mainNav").offset().top > 100) {
