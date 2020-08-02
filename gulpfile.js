@@ -31,7 +31,9 @@ function browserSync(done) {
     server: {
       baseDir: "./"
     },
-    port: 3000
+    port: 3000,
+    ghostMode: false,
+    notify: false
   });
   done();
 }
@@ -39,6 +41,7 @@ function browserSync(done) {
 // BrowserSync reload
 function browserSyncReload(done) {
   browsersync.reload();
+  // browsersync.stream({once: true});
   done();
 }
 
@@ -111,7 +114,7 @@ function js() {
       suffix: '.min'
     }))
     .pipe(gulp.dest('./js'))
-    .pipe(browsersync.stream());
+    .pipe(browsersync.stream({once: true}));
 }
 
 // Watch files
