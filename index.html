@@ -2,14 +2,26 @@
 <html lang="en">
 
 <head>
-
+   <!-- Google Tag Manager -->
+  <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MDFCMJS');</script> -->
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="portfolio">
   <meta name="author" content="Roj Rungsisullatanont">
   
-  <title>Roj Rungsisullatanont</title>
-  <link rel="icon" type="image/x-icon" sizes="16x16" href="img/red-r.png">
+  <title>Roj | Your Freelance Web Developer in Orange County, CA</title>
+  <link rel="icon" type="image/x-icon" href="img/lowercase_r.ico">
+
+  <meta name="author" content="Roj Rungsisullatanont">
+  <meta name="description" content="Need a full website, wireframing prototype, eCommerce, landing page, on-page SEO, or mobile responsiveness to your website? Check out my portfolio.">
+  <meta name="keywords" content="website development, web design, mobile friendly, HTML, ecommerce">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.rojrun.com">
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,14 +36,43 @@
 
   <!-- Custom styles for this template -->
   <link href="css/freelancer.min.css" rel="stylesheet">
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@id": "https://www.rojrun.com",
+      "@type": "LocalBusiness",
+      "name": "Roj Rungsisullatanont",
+      "image": "https://www.rojrun.com/img/profile.png",
+      "knowsAbout": {
+        "@type": "SoftwareSourceCode",
+        "codeRepository": "https://www.github.com/rojrun",
+        "programmingLanguage": ["HTML5", "JavaScript", "jQuery", "ReactJS", "ExpressJS", "NodeJS", "PHP", "CSS3", "JSON-LD", "Redux"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "USA",
+        "addressLocality": "Buena Park",
+        "addressRegion": "CA",
+        "postalCode": "90620"
+      },
+      "openingHours": "Mo-Fr 8:00-16:00",
+      "priceRange": "$$",
+      "url": "https://www.rojrun.com"
+    }
+  </script>
 </head>
 
 <body id="page-top">
+   <!-- Google Tag Manager (noscript) -->
+  <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDFCMJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Roj Rungsisullatanont</a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Roj</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -39,10 +80,16 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-tirgger" href="#services">Services</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#skills">Skills</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a>
@@ -53,20 +100,105 @@
   </nav>
 
   <!-- Header -->
-  <header class="masthead bg-primary text-white text-center">
+  <header class="masthead bg-primary text-center border-bottom border-white">
     <div class="container">
-      <img class="img-fluid mb-5 d-block mx-auto" src="img/roj.png" alt="Roj">
-      <h1 class="text-uppercase mb-0">Roj Rungsisullatanont</h1>
+      <img class="img-fluid mb-5 d-block mx-auto" src="img/roj.png" alt="web developer">
+      <h1 class="text-uppercase mb-1">Roj</h1>
+      <h1 class="text-uppercase mb-0">Rungsisullatanont</h1>
       <hr class="star-light">
-      <h2 class="font-weight-light mb-0">Web Developer - Portrait Artist - MBA</h2>
+      <h2 class="mb-0">Full Stack Web Developer <span style="color:#d5d5d7">|</span> MBA</h2>
     </div>
   </header>
 
-  <!-- Portfolio Grid Section -->
-  <section class="portfolio" id="portfolio">
+  <!-- About Section -->
+  <section class="bg-primary mb-0 border-bottom border-white" id="about">
+    <div class="container">
+      <h2 class="text-center text-uppercase">About</h2>
+      <hr class="star-light mb-5">
+      <div class="mx-auto">
+        <p class="lead">Being born and raised in Southern California, I grew up with a passion for sketching and entering art contests, which later evolved to drawing portraits. For my senior year in high school, I wanted a challenging course, 
+                        so I enrolled in the Pascal programming class. After high school, I got involved in event production, those were fun times. For 5 years, I learned about event promotion, event planning, event production, decorating, and social networking. 
+                        With a Bachelor of Science in Electronics Engineering, I gained experience repairing several types of products, for 7 years. With a growing passion for learning, I achieved a goal of obtaining a 
+                        Master of Business Administration degree. That lead me to an 8-year logistics management career, in the pro audio and lighting industry. In this role, I helped improved day-to-day operations and the company’s CRM.</p>
+        <p class="lead" >It was time for another career change, the software industry. With my experience of researching topics, through the MBA program, web development peaked my interest.
+                        I attended LearningFuze, a coding bootcamp, which has helped me with team development and confidence in my coding abilities.</p>
+        <p class="lead">To sum everything about me: I’m a thinker, I’m a doer, I'm a weightlifter, I’m a snowboarder, I’m a portrait artist, I’m an entrepreneur, I’m a foodie, I’m an event promoter and producer, I’m a reveller, and I’m a developer.</p>
+        <p class="lead">So, I decided to freelance as a new career, which led you to me.</p>
+        <p class="lead"><span style="background-color: #000000">What can I build for you?</span></p>
+      </div>      
+    </div>
+  </section>
+
+   <!-- Services Section -->
+   <section class="bg-primary mb-0 border-bottom border-white" id="services">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-secondary mb-0">Services</h2>
+      <hr class="star-light mb-5">
+      <ul style="font-size: 1.9rem; color: #000000; font-weight: 700;">
+        <li>
+          <h3 class="text-secondary">A full stack website with database.</h3>
+        </li>
+        <li>
+          <h3 class="text-secondary">An attractive landing page/one-page site.</h3>
+        </li>
+        <li>
+          <h3 class="text-secondary">An eCommerce platform like Shopify or WordPress.</h3>
+        </li>
+        <li>
+          <h3 class="text-secondary">On-page SEO using organic keywords and JSON-LD Schema.</h3>
+        </li>
+        <li>
+          <h3 class="text-secondary">UI/UX design with mobile responsiveness.</h3>
+        </li>
+      </ul>     
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="bg-primary mb-0 border-bottom border-white" id="skills">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-secondary mb-0">Skills</h2>
+      <hr class="star-light mb-5">
+      <div class="row">
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right">Front-end:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">HTML5, JavaScript, jQuery, ReactJS</h3>
+      </div>  
+      <div class="row">
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right">Back-end:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">ExpressJS, NodeJS, NPM, PHP, Redux</h3>     
+      </div>
+      <div class="row">
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right">Database:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">Firebase, GraphQL, MySQL</h3>
+      </div>
+      <div class="row"> 
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right">Marketing:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">JSON-LD Schema, SEO</h3>
+      </div>
+      <div class="row">
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right">Material Design:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">Bootstrap, CSS3, Materialize, Mobile Responsive, Sass, UI/UX</h3>
+      </div>
+      <div class="row"> 
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right">Platform:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">AWS, Shopify, WordPress</h3>
+      </div>
+      <div class="row">
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right">Tools:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">Chrome DevTools, Figma, GIMP, Keyword Planner, MAMP, PageSpeed Insights, Postman, Slack, Trello, Visual Studio Code</h3>
+      </div>
+      <div class="row">
+        <h3 class="col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right">Version Control:</h3>
+        <h3 class="text-secondary col-sm-12 col-md-7 col-lg-8 col-xl-9">Git, GitHub</h3>
+      </div>
+    </div>
+  </section>  
+
+   <!-- Portfolio Grid Section -->
+   <section class="portfolio mb-0 border-bottom border-white" id="portfolio">
     <div class="container">
       <h2 class="text-center text-uppercase text-secondary mb-0">Portfolio</h2>
-      <hr class="star-dark mb-5">
+      <hr class="star-light mb-5">
       <div class="row">
         <div class="col-md-6 col-lg-4">
           <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
@@ -75,7 +207,7 @@
                 <i class="fas fa-search-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/cabin.png" alt="">
+            <img class="img-fluid" src="img/portfolio/leaf_devices.jpg" alt="leaf devices">
           </a>
         </div>
         <div class="col-md-6 col-lg-4">
@@ -115,7 +247,7 @@
                 <i class="fas fa-search-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/safe.png" alt="">
+            <img class="img-fluid" src="img/portfolio/happyhour.jpg" alt="happy hour">
           </a>
         </div>
         <div class="col-md-6 col-lg-4">
@@ -129,26 +261,6 @@
           </a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="bg-primary text-white mb-0" id="about">
-    <div class="container">
-      <h2 class="text-center text-uppercase text-white">About</h2>
-      <hr class="star-light mb-5">
-      <div class="col-lg-12 ml-auto">
-        <p class="lead">Being born and raised in Southern California, I grew up with a passion of sketching and entering art contests.  For my senior year in high school, I wanted a challenging course, so I enrolled in the Pascal programming class.  With a Bachelor’s in Electronics Engineering, I gained experience repairing several types of electronic products.  With a growing passion for learning, I achieved a goal of obtaining a Master’s in Business Administration degree.  My most recent career was as a Logistics Manager, in the pro audio and lighting industry.  In this role, I helped improved day-to-day operations and the company’s CRM.</p>
-      </div>
-      <div class="col-lg-12 mr-auto">
-        <p class="lead">It took me a year of considering a search for a new career.  With my experience of researching topics, through the MBA program, web development peaked my interest.  After researching several bootcamps in the area,  LearningFuze’s alumni reviews of the instructors and experiences helped me understand this was the right place to be.</p>
-      </div>
-      <div class="col-lg-12 mr-auto">
-        <p class="lead">During my time at LearningFuze, I have been coding 12 hours a day.  LearningFuze has helped me with team development and confidence in my coding abilities.  I learned HTML, CSS, Bootstrap, jQuery, React, JavaScript, Ajax.  I developed several apps such as Guessing Game and Memory Match Game.  For the team hackathons, we collaborated on an Astrology Word Search Game.  I see myself working at a company, where I can learn and improve my creativity.</p>
-      </div>
-      <div class="col-lg-12 mr-auto">
-        <p class="lead">To sum everything about me: I’m a thinker, I’m a doer, I’m a snowboarder, I’m a portrait artist, I’m an entrepreneur, I’m a foodie, I’m an event promoter and producer, I’m a nightlife socialite, and I’m a developer.</p>
-      </div>      
     </div>
   </section>
 
@@ -179,7 +291,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Phone Number</label>
-                <input class="form-control" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number.">
+                <input class="form-control" id="phone" type="tel" placeholder="Phone Number" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
@@ -202,15 +314,15 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer text-center">
+  <footer class="footer text-center py-4">
     <div class="container">
       <div class="row">
         <div class="col-md-6 mb-5 mb-lg-0">
-          <h4 class="text-uppercase mb-4">Location</h4>
-          <p class="lead mb-0">Buena Park, CA 90620</p>
+          <h4 class="text-uppercase mb-4" style="color:#000000">Location</h4>
+          <h4 class="text-secondary mb-0" style="color:#d5d5d7">Buena Park, CA</h4>
         </div>
         <div class="col-md-6 mb-5 mb-lg-0">
-          <h4 class="text-uppercase mb-4">Around the Web</h4>
+          <h4 class="text-uppercase mb-4" style="color:#000000">Around the Web</h4>
           <ul class="list-inline mb-0">
             <li class="list-inline-item">
               <a class="btn btn-outline-light btn-social text-center rounded-circle" target="_blank" href="https://www.github.com/rojrun">
@@ -228,7 +340,7 @@
     </div>
   </footer>
 
-  <div class="copyright py-4 text-center text-white">
+  <div class="copyright py-4 text-center">
     <div class="container">
       <small>Copyright &copy; Roj Rungsisullatanont 2019</small>
     </div>
@@ -243,19 +355,32 @@
 
   <!-- Portfolio Modals -->
 
-  <!-- Portfolio Modal 1 -->
-  <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
-    <div class="portfolio-modal-dialog bg-white">
+   <!-- Portfolio Modal 1 -->
+   <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
+    <div class="portfolio-modal-dialog">
       <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
         <i class="fa fa-3x fa-times"></i>
       </a>
       <div class="container text-center">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
-            <hr class="star-dark mb-5">
-            <img class="img-fluid mb-5" src="img/portfolio/cabin.png" alt="">
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+            <h2 class="text-secondary text-uppercase mb-0">Leaf Devices</h2>
+            <hr class="star-light mb-5">
+            <a href="https://leafdevices.rojrun.com" target="_blank">
+              <img class="img-fluid mb-5" src="img/portfolio/leaf_devices.jpg" alt="leaf devices">
+            </a>
+            <p class="mb-3">An e-commerce site selling cannabis related products. 
+              Used ReactJS, HTML5, Materialize, CSS3 to make app mobile responsive.
+              A component carousel is used to display the products, with class of “carousel-item”.
+              Setup NodeJS and Redux as backend to utilize MySQL database.
+            </p>
+            <h5 class="mb-3">Repository:
+              <a href="https://github.com/rojrun/leaf_devices" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="2.5em" height="2.5em">
+                  <path fill="#d5d5d7" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+                </svg>
+              </a>
+            </h5>
             <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
               <i class="fa fa-close"></i>
               Close Project</a>
@@ -267,7 +392,7 @@
 
   <!-- Portfolio Modal 2 -->
   <div class="portfolio-modal mfp-hide" id="portfolio-modal-2">
-    <div class="portfolio-modal-dialog bg-white">
+    <div class="portfolio-modal-dialog">
       <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
         <i class="fa fa-3x fa-times"></i>
       </a>
@@ -275,9 +400,11 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2 class="text-secondary text-uppercase mb-0">Resume</h2>
-            <hr class="star-dark mb-5">
-            <img class="img-fluid mb-5" src="img/portfolio/resume.jpg" alt="resume">
-            <!-- <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p> -->
+            <hr class="star-light mb-5">
+            <a href="img/Roj_Rungsisullatanont_Resume.pdf" target="_blank">
+              <img class="img-fluid mb-5" src="img/portfolio/resume.jpg" alt="Roj Rungsisullatnont resume">
+            </a>
+              <p class="mb-5">A PDF file.</p>
             <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
               <i class="fa fa-close"></i>
               Close Project</a>
@@ -289,7 +416,7 @@
 
   <!-- Portfolio Modal 3 -->
   <div class="portfolio-modal mfp-hide" id="portfolio-modal-3">
-    <div class="portfolio-modal-dialog bg-white">
+    <div class="portfolio-modal-dialog">
       <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
         <i class="fa fa-3x fa-times"></i>
       </a>
@@ -297,9 +424,18 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2 class="text-secondary text-uppercase mb-0">Morty Smith is a moron!</h2>
-            <hr class="star-dark mb-5">
-            <img class="img-fluid mb-5" src="img/portfolio/mortygameboard.jpg" alt="memory_match">
-            <p class="mb-5">The user plays as Morty Smith, grandson to the smartest human in the universe, Rick Sanchez. Rick has given Morty a memory match game to test his intellect. Utilized HTML5 and CSS3 to create framework and responsive design. Used jQuery make app more dynamic.</p>
+            <hr class="star-light mb-5">
+            <a href="/morty" target="_blank">
+              <img class="img-fluid mb-5" src="img/portfolio/mortygameboard.jpg" alt="Morty Smith">
+            </a>  
+            <p class="mb-3">The user plays as Morty Smith, grandson to the smartest human in the universe, Rick Sanchez. Rick has given Morty a memory match game to test his intellect. Utilized HTML5 and CSS3 to create framework and responsive design. Used jQuery make app more dynamic.</p>
+            <h5 class="mb-3">Repository:
+              <a href="https://github.com/rojrun/morty" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="2.5em" height="2.5em">
+                  <path fill="#d5d5d7" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+                </svg>
+              </a>
+            </h5>
             <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
               <i class="fa fa-close"></i>
               Close Project</a>
@@ -311,7 +447,7 @@
 
   <!-- Portfolio Modal 4 -->
   <div class="portfolio-modal mfp-hide" id="portfolio-modal-4">
-    <div class="portfolio-modal-dialog bg-white">
+    <div class="portfolio-modal-dialog">
       <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
         <i class="fa fa-3x fa-times"></i>
       </a>
@@ -319,8 +455,8 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2 class="text-secondary text-uppercase mb-0">Sketch of me at 16</h2>
-            <hr class="star-dark mb-5">
-            <img class="img-fluid mb-5" src="img/portfolio/sixteen.jpg" alt="sixteen">
+            <hr class="star-light mb-5">
+            <img class="img-fluid mb-5" src="img/portfolio/sixteen.jpg" alt="Roj at sixteen">
             <p class="mb-5">This a black and white pencil sketch of me at age 16.</p>
             <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
               <i class="fa fa-close"></i>
@@ -333,17 +469,30 @@
 
   <!-- Portfolio Modal 5 -->
   <div class="portfolio-modal mfp-hide" id="portfolio-modal-5">
-    <div class="portfolio-modal-dialog bg-white">
+    <div class="portfolio-modal-dialog">
       <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
         <i class="fa fa-3x fa-times"></i>
       </a>
       <div class="container text-center">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
-            <hr class="star-dark mb-5">
-            <img class="img-fluid mb-5" src="img/portfolio/safe.png" alt="">
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+            <h2 class="text-secondary text-uppercase mb-0">Happy Hour</h2>
+            <hr class="star-light mb-5">
+            <a href="/happyhour" target="_blank">
+              <img class="img-fluid mb-5" src="img/portfolio/happyhour.jpg" alt="happy hour">
+            </a>
+            <p class="mb-3">The user is given a random beer and food pairing.
+              As part of team project, made with Ajax calls to BreweryDB, Recipe Puppy, Google Maps, YouTube APIs to gather information returned in JSON.
+              Created app using HTML5 and CSS3 for DOM creation and styling.
+              Used object-oriented programming in JavaScript to give app functionality.
+            </p>
+            <h5 class="mb-3">Repository:
+              <a href="https://github.com/rojrun/happy_hour" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="2.5em" height="2.5em">
+                  <path fill="#d5d5d7" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+                </svg>
+              </a>
+            </h5>
             <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
               <i class="fa fa-close"></i>
               Close Project</a>
@@ -355,15 +504,15 @@
 
   <!-- Portfolio Modal 6 -->
   <div class="portfolio-modal mfp-hide" id="portfolio-modal-6">
-    <div class="portfolio-modal-dialog bg-white">
+    <div class="portfolio-modal-dialog">
       <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
         <i class="fa fa-3x fa-times"></i>
       </a>
       <div class="container text-center">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
-            <hr class="star-dark mb-5">
+            <h2 class="text-secondary text-uppercase mb-0">Portrait Sketch</h2>
+            <hr class="star-light mb-5">
             <img class="img-fluid mb-5" src="img/portfolio/another_sketch.jpg" alt="sketch of woman">
             <p class="mb-5">Sample of another black and white pencil sketch.</p>
             <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
