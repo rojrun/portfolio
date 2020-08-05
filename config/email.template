@@ -1,2 +1,4 @@
-$secret_email = '';
-$secret_password = '';
+<?php
+    $secret_email = '';
+    $secret_password = '';
+?>
