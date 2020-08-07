@@ -15,9 +15,32 @@ $(function() {
       formData.append("name", $("input#name").val());
       formData.append("email", $("input#email").val());
       formData.append("phone", $("input#phone").val());
-      // formData.append("uploaded_file", "file", $("input#uploaded_file").val().slice(12));
-      formData.append("uploaded_file", $("input#uploaded_file")[0].files[0]);
       formData.append("message", $("textarea#message").val());
+     
+      // var file = $("input#uploaded_file")[0].files;
+      // console.log("filecount", fileCount);
+      // for(var index= 0; index < fileCount; index++) {
+        // formData.append("uploaded_file[]", $("input#uploaded_file")[0].files[index]);
+        // console.log("file:", $("input#uploaded_file")[0].files[index].name);
+      // if ($("input#uploaded_file")[0].files.length > 0) {
+      //   console.log("input fired");
+      // $("document").on("change", "input:file", function(e){console.log(e);});  
+      // var fileNames = "";
+      //   for(var index= 0; index < $("input#uploaded_file")[0].files.length; index++) {
+      //     fileNames =   $("<li>").text($("input#uploaded_file")[0].files[index].name + ", " + $("input#uploaded_file")[0].files[index].size + " bytes");
+      //     console.log("filenames", fileNames);
+      //     $("#file_names").append(fileNames);
+      //     var uploaded = "uploaded_file["+ index +"]";
+      //     // $("#file_name").append($("input#uploaded_file")[0].files[index].name);
+      //     // formData.append("uploaded_file[]", $("input#uploaded_file")[0].files[index]);
+      //     formData.append(uploaded, $("input#uploaded_file")[0].files[index]);
+      //   }  
+      //   // $("#uploaded_files").html("<ul>" + fileNames + "</ul>");  
+      //   // }
+      // }
+      formData.append("uploaded_file", $("input#uploaded_file")[0].files[0]);
+      // console.log("files:", $("input#uploaded_file")[0].files[0]);
+      
     //   for (var value in formData.values()) {
     //     console.log(value); 
     //  }
@@ -90,7 +113,7 @@ $('#name').focus(function() {
   $('#success').html('');
 });
 
-/* This script is based on the javascript code of Roman Feldblum (web.developer@programmer.net)
+/* This script is for AUTO FORMATING PHONE NUMBER WHILE TYPING, based on the javascript code of Roman Feldblum (web.developer@programmer.net)
   Original script : http://javascript.internet.com/forms/format-phone-number.html
   Original script is revised by Eralper Yilmaz (http://www.eralper.com)
   Revised script : http://www.kodyaz.com */
