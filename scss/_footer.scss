@@ -3,6 +3,10 @@
   padding-bottom: 5rem;
   background-color: $primary;
   color: $secondary;
+  h4 {
+    @include body-font;
+    font-size: 1.2rem;
+  }
 }
 
 .copyright {

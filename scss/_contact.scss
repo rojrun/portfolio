@@ -4,7 +4,7 @@
   border-bottom: 1px solid $white;
   input,
   textarea {
-    font-size: 1.5em;
+    font-size: 1.2em;
     position: relative;
     z-index: 1;
     padding-right: 0;
@@ -14,10 +14,23 @@
     border-radius: 0;
     background: none;
     box-shadow: none !important;
-    color: $white;
+    color: $white;   
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: $secondary;
+    font-weight: bold; 
+  }
+  input[type="file"] {
+    border-radius: 0.25rem;
+    font-size: 1em;
+  }
+  input:focus, textarea:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: $secondary;
   }
   label {
-    font-size: 0.85em;
+    font-size: 1em;
     line-height: 1.764705882em;
     position: relative;
     z-index: 0;
@@ -28,16 +41,16 @@
     -moz-transition: top 0.3s ease, opacity 0.3s ease;
     -ms-transition: top 0.3s ease, opacity 0.3s ease;
     transition: top 0.3s ease, opacity 0.3s ease;
-    vertical-align: middle;
-    vertical-align: baseline;
+    // vertical-align: middle;
+    // vertical-align: baseline;
     opacity: 0;
   }
   &:not(:first-child) {
     padding-left: 14px;
     border-left: 1px solid $white;
   }
-  ::-webkit-input-placeholder, :-ms-input-placeholder, ::placeholder {
-    color: $secondary;
+  .text-danger {
+    color: #ffc107 !important;
   }
 }
 
@@ -45,6 +58,7 @@
   label {
     top: 0;
     opacity: 1;
+    color: $secondary;
   }
 }
 

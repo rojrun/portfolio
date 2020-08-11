@@ -48,8 +48,17 @@ hr.star-light:after {
 section {
   padding: 6rem 0;
   h2 {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     line-height: 2rem;
+  }
+  h3 {
+    @include body-font;
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+  .lead {
+    font-size: 1.1em;
+    font-weight: 400;
   }
   @media (min-width: 992px) {
     h2 {
@@ -58,11 +67,28 @@ section {
     }
   }
 }
-
+section#services {
+  ul {
+    color: $secondary;
+    font-size: 1.4rem;
+  }
+}
+section#skills {
+  h3:first-child {
+    font-weight: 700;
+    margin-bottom: .1rem;
+  }
+  h3:last-child {
+    margin-bottom: .9rem;
+  }
+}
 // Custom Button Size
 .btn-xl {
   padding: 1rem 1.75rem;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+}
+.btn-lg {
+  font-size: 1.2rem;
 }
 
 // Custom Rounded Social Button

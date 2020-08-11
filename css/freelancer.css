@@ -55,8 +55,19 @@ section {
 }
 
 section h2 {
-  font-size: 2.25rem;
+  font-size: 2.5rem;
   line-height: 2rem;
+}
+
+section h3 {
+  font-family: 'Lato';
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+section .lead {
+  font-size: 1.1em;
+  font-weight: 400;
 }
 
 @media (min-width: 992px) {
@@ -66,9 +77,27 @@ section h2 {
   }
 }
 
+section#services ul {
+  color: #000000;
+  font-size: 1.4rem;
+}
+
+section#skills h3:first-child {
+  font-weight: 700;
+  margin-bottom: .1rem;
+}
+
+section#skills h3:last-child {
+  margin-bottom: .9rem;
+}
+
 .btn-xl {
   padding: 1rem 1.75rem;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+}
+
+.btn-lg {
+  font-size: 1.2rem;
 }
 
 .btn-social {
@@ -162,18 +191,23 @@ section h2 {
 }
 
 header.masthead {
-  padding-top: calc(6rem + 72px);
+  padding-top: calc(6rem + 56px);
   padding-bottom: 6rem;
 }
 
 header.masthead h1 {
-  font-size: 3rem;
-  line-height: 3rem;
+  font-size: 2.5rem;
+  line-height: 1.7rem;
+}
+
+header.masthead h1:nth-child(3) {
+  font-size: 1.4rem;
 }
 
 header.masthead h2 {
+  font-weight: 700;
+  font-family: 'Montserrat';
   font-size: 1.3rem;
-  font-family: 'Lato';
 }
 
 @media (min-width: 992px) {
@@ -246,7 +280,15 @@ header.masthead h2 {
 }
 
 .portfolio-modal .portfolio-modal-dialog h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+}
+
+.portfolio-modal .portfolio-modal-dialog p {
+  text-align: left;
+}
+
+.portfolio-modal .portfolio-modal-dialog .rounded-pill {
+  border-radius: 0.25rem !important;
 }
 
 @media (min-width: 768px) {
@@ -267,7 +309,7 @@ header.masthead h2 {
 
 .floating-label-form-group input,
 .floating-label-form-group textarea {
-  font-size: 1.5em;
+  font-size: 1.2em;
   position: relative;
   z-index: 1;
   padding-right: 0;
@@ -281,8 +323,42 @@ header.masthead h2 {
   color: #fff;
 }
 
+.floating-label-form-group input::-webkit-input-placeholder,
+.floating-label-form-group textarea::-webkit-input-placeholder {
+  color: #000000;
+  font-weight: bold;
+}
+
+.floating-label-form-group input:-ms-input-placeholder,
+.floating-label-form-group textarea:-ms-input-placeholder {
+  color: #000000;
+  font-weight: bold;
+}
+
+.floating-label-form-group input::-ms-input-placeholder,
+.floating-label-form-group textarea::-ms-input-placeholder {
+  color: #000000;
+  font-weight: bold;
+}
+
+.floating-label-form-group input::placeholder,
+.floating-label-form-group textarea::placeholder {
+  color: #000000;
+  font-weight: bold;
+}
+
+.floating-label-form-group input[type="file"] {
+  border-radius: 0.25rem;
+  font-size: 1em;
+}
+
+.floating-label-form-group input:focus, .floating-label-form-group textarea:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #000000;
+}
+
 .floating-label-form-group label {
-  font-size: 0.85em;
+  font-size: 1em;
   line-height: 1.764705882em;
   position: relative;
   z-index: 0;
@@ -291,8 +367,6 @@ header.masthead h2 {
   margin: 0;
   -webkit-transition: top 0.3s ease, opacity 0.3s ease;
   transition: top 0.3s ease, opacity 0.3s ease;
-  vertical-align: middle;
-  vertical-align: baseline;
   opacity: 0;
 }
 
@@ -301,17 +375,14 @@ header.masthead h2 {
   border-left: 1px solid #fff;
 }
 
-.floating-label-form-group ::-webkit-input-placeholder, .floating-label-form-group :-ms-input-placeholder, .floating-label-form-group ::-webkit-input-placeholder {
-  color: #000000;
-}
-
-.floating-label-form-group ::-webkit-input-placeholder, .floating-label-form-group :-ms-input-placeholder, .floating-label-form-group ::placeholder {
-  color: #000000;
+.floating-label-form-group .text-danger {
+  color: #ffc107 !important;
 }
 
 .floating-label-form-group-with-value label {
   top: 0;
   opacity: 1;
+  color: #000000;
 }
 
 .floating-label-form-group-with-focus label {
@@ -327,6 +398,11 @@ form .row:first-child .floating-label-form-group {
   padding-bottom: 5rem;
   background-color: #6e0202;
   color: #000000;
+}
+
+.footer h4 {
+  font-family: 'Lato';
+  font-size: 1.2rem;
 }
 
 .copyright {
@@ -369,8 +445,8 @@ a:focus, a:hover, a:active {
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background-color: #3c0101;
-  border-color: #3c0101;
+  background-color: #3c0101 !important;
+  border-color: #3c0101 !important;
 }
 
 .btn-secondary {
