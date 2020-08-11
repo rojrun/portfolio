@@ -35,8 +35,8 @@ a {
   &:hover,
   &:focus,
   &:active {
-    background-color: darken($primary, 10%);
-    border-color: darken($primary, 10%);
+    background-color: darken($primary, 10%) !important;
+    border-color: darken($primary, 10%) !important;
   }
 }
 
