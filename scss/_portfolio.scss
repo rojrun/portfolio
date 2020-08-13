@@ -47,10 +47,15 @@
       }
     }
     h2 {
-      font-size: 2.5rem;
+      $map: (280: 34, 576: 50, 768: 65, 992: 80, 1200: 90, 1900: 120);
+      $font-size: least-squares-fit($map);
+      font-size: $font-size;
+      line-height: strip-unit($font-size);
     }
     p {
       text-align: left;
+      $map: (280:16, 576: 18, 768: 19, 992: 20, 1200: 21);
+      font-size: least-squares-fit($map);
     }
     .rounded-pill {
       border-radius: .25rem!important;
@@ -61,9 +66,6 @@
       min-height: 100vh;
       padding: 5rem;
       margin: 3rem calc(3rem - 8px);
-      h2 {
-        font-size: 3rem;
-      }
     }
   }
 }

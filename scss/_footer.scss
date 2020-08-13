@@ -1,11 +1,14 @@
 .footer {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
   background-color: $primary;
   color: $secondary;
   h4 {
+    $map: (280:16, 576: 18, 768: 19, 992: 20, 1200: 21);
+    font-size: least-squares-fit($map);
+  }
+  h4:nth-child(2) {
     @include body-font;
-    font-size: 1.2rem;
   }
 }
 

@@ -1,28 +1,28 @@
 header.masthead {
   padding-top: calc(6rem + 56px);
   padding-bottom: 6rem;
-  h1 {
-    font-size: 2.5rem;
-    line-height: 1.7rem;
-    &:nth-child(3) {
-      font-size: 1.4rem;
-    }
+  h1:nth-child(2) {
+    $map: (280: 34, 576: 50, 768: 65, 992: 80, 1200: 90, 1900: 120);
+    $font-size: least-squares-fit($map);
+    font-size: $font-size;
+    line-height: strip-unit($font-size);
   }
+  h1:nth-child(3) {
+    $map: (280: 15, 576: 35, 768: 50, 992: 60, 1200: 70, 1900: 86);
+    $font-size: least-squares-fit($map);
+    font-size: $font-size;
+    line-height: strip-unit($font-size);
+  } 
   h2 {
     @include heading-font;
-    font-size: 1.3rem;
+    $map: (576: 25, 768: 30, 992: 35, 1200: 40, 1900: 50);
+    font-size: least-squares-fit($map);
   }
 }
+
 @media (min-width: 992px) {
   header.masthead {
     padding-top: calc(6rem + 106px);
     padding-bottom: 6rem;
-    h1 {
-      font-size: 4.75em;
-      line-height: 4rem;
-    }
-    h2 {
-      font-size: 2em;
-    }
   }
 }

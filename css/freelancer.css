@@ -55,31 +55,43 @@ section {
 }
 
 section h2 {
-  font-size: 2.5rem;
-  line-height: 2rem;
+  font-size: calc(5.37443vw + 21.96627px);
+  line-height: calc(5.37443vw + 21.96627px);
 }
 
-section h3 {
-  font-family: 'Lato';
-  font-size: 1.2rem;
-  font-weight: 400;
-}
-
+section h3,
 section .lead {
-  font-size: 1.1em;
+  font-family: 'Lato';
+  font-size: calc(0.53532vw + 14.71443px);
   font-weight: 400;
 }
 
-@media (min-width: 992px) {
-  section h2 {
-    font-size: 3rem;
-    line-height: 2.5rem;
-  }
+section#about a.lead {
+  border: 3px solid #000000;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+
+section#about a.lead:hover {
+  color: #000000 !important;
+}
+
+section#about a.lead:active, section#about a.lead:focus {
+  color: #000000 !important;
+}
+
+section#about a.lead.active {
+  color: #000000 !important;
 }
 
 section#services ul {
   color: #000000;
+  display: inline-block;
   font-size: 1.4rem;
+}
+
+section#services li {
+  text-align: left;
 }
 
 section#skills h3:first-child {
@@ -166,12 +178,15 @@ section#skills h3:last-child {
     transition: padding-top 0.3s, padding-bottom 0.3s;
   }
   #mainNav .navbar-brand {
-    font-size: 2em;
+    font-size: 1.5em;
     -webkit-transition: font-size 0.3s;
     transition: font-size 0.3s;
   }
   #mainNav .navbar-nav {
     margin-top: 0;
+  }
+  #mainNav .navbar-nav > li.nav-item > a.nav-link {
+    font-size: 1.13em;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
     color: #fff;
@@ -190,37 +205,40 @@ section#skills h3:last-child {
   }
 }
 
+@media (min-width: 1900px) {
+  #mainNav .navbar-brand {
+    font-size: 1.9em;
+  }
+  #mainNav .navbar-nav > li.nav-item > a.nav-link {
+    font-size: 1.3em;
+  }
+}
+
 header.masthead {
   padding-top: calc(6rem + 56px);
   padding-bottom: 6rem;
 }
 
-header.masthead h1 {
-  font-size: 2.5rem;
-  line-height: 1.7rem;
+header.masthead h1:nth-child(2) {
+  font-size: calc(5.37443vw + 21.96627px);
+  line-height: calc(5.37443vw + 21.96627px);
 }
 
 header.masthead h1:nth-child(3) {
-  font-size: 1.4rem;
+  font-size: calc(4.32056vw + 11.50613px);
+  line-height: calc(4.32056vw + 11.50613px);
 }
 
 header.masthead h2 {
   font-weight: 700;
   font-family: 'Montserrat';
-  font-size: 1.3rem;
+  font-size: calc(1.86144vw + 15.76248px);
 }
 
 @media (min-width: 992px) {
   header.masthead {
     padding-top: calc(6rem + 106px);
     padding-bottom: 6rem;
-  }
-  header.masthead h1 {
-    font-size: 4.75em;
-    line-height: 4rem;
-  }
-  header.masthead h2 {
-    font-size: 2em;
   }
 }
 
@@ -280,11 +298,13 @@ header.masthead h2 {
 }
 
 .portfolio-modal .portfolio-modal-dialog h2 {
-  font-size: 2.5rem;
+  font-size: calc(5.37443vw + 21.96627px);
+  line-height: calc(5.37443vw + 21.96627px);
 }
 
 .portfolio-modal .portfolio-modal-dialog p {
   text-align: left;
+  font-size: calc(0.53532vw + 14.71443px);
 }
 
 .portfolio-modal .portfolio-modal-dialog .rounded-pill {
@@ -296,9 +316,6 @@ header.masthead h2 {
     min-height: 100vh;
     padding: 5rem;
     margin: 3rem calc(3rem - 8px);
-  }
-  .portfolio-modal .portfolio-modal-dialog h2 {
-    font-size: 3rem;
   }
 }
 
@@ -353,7 +370,7 @@ header.masthead h2 {
 }
 
 .floating-label-form-group input:focus, .floating-label-form-group textarea:focus {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0);
   color: #000000;
 }
 
@@ -394,15 +411,18 @@ form .row:first-child .floating-label-form-group {
 }
 
 .footer {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
   background-color: #6e0202;
   color: #000000;
 }
 
 .footer h4 {
+  font-size: calc(0.53532vw + 14.71443px);
+}
+
+.footer h4:nth-child(2) {
   font-family: 'Lato';
-  font-size: 1.2rem;
 }
 
 .copyright {
