@@ -48,29 +48,44 @@ hr.star-light:after {
 section {
   padding: 6rem 0;
   h2 {
-    font-size: 2.5rem;
-    line-height: 2rem;
+    $map: (280: 34, 576: 50, 768: 65, 992: 80, 1200: 90, 1900: 120);
+    $font-size: least-squares-fit($map);
+    font-size: $font-size;
+    line-height: strip-unit($font-size);
   }
-  h3 {
-    @include body-font;
-    font-size: 1.2rem;
-    font-weight: 400;
-  }
+  h3,
   .lead {
-    font-size: 1.1em;
+    @include body-font;
+    $map: (280:16, 576: 18, 768: 19, 992: 20, 1200: 21);
+    font-size: least-squares-fit($map);
     font-weight: 400;
   }
-  @media (min-width: 992px) {
-    h2 {
-      font-size: 3rem;
-      line-height: 2.5rem;
+}
+section#about {
+  a.lead {
+    border: 3px solid $secondary;
+    border-radius: 0.25rem;
+    padding: 0.5rem; 
+    &:hover {
+      color: $secondary !important;
     }
-  }
+    &:active,
+    &:focus {
+      color: $secondary !important;
+    }
+    &.active {
+      color: $secondary !important;
+    }
+  }  
 }
 section#services {
   ul {
     color: $secondary;
+    display: inline-block;
     font-size: 1.4rem;
+  }
+  li {
+    text-align: left;
   }
 }
 section#skills {
