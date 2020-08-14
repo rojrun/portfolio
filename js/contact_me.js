@@ -7,24 +7,10 @@ $(function() {
     },
     submitSuccess: function($form, event) {
       event.preventDefault(); // prevent default submit behaviour
-      var formData = new FormData($("form")[0]);
-    //   for (var value in formData.values()) {
-    //     console.log(value); 
-    //  }
-      // get values from FORM
-      formData.append("name", $("input#name").val());
-      formData.append("email", $("input#email").val());
-      formData.append("phone", $("input#phone").val());
-      formData.append("message", $("textarea#message").val());
-     
-      // var file = $("input#uploaded_file")[0].files;
-      // console.log("filecount", fileCount);
-      // for(var index= 0; index < fileCount; index++) {
-        // formData.append("uploaded_file[]", $("input#uploaded_file")[0].files[index]);
-        // console.log("file:", $("input#uploaded_file")[0].files[index].name);
-      // if ($("input#uploaded_file")[0].files.length > 0) {
-      //   console.log("input fired");
-      // $("document").on("change", "input:file", function(e){console.log(e);});  
+      var formData = new FormData(event.target);
+      for(var pair of formData.entries()) {
+        console.log(pair[0]+ ': '+ pair[1]); 
+     } 
       // var fileNames = "";
       //   for(var index= 0; index < $("input#uploaded_file")[0].files.length; index++) {
       //     fileNames =   $("<li>").text($("input#uploaded_file")[0].files[index].name + ", " + $("input#uploaded_file")[0].files[index].size + " bytes");
@@ -38,35 +24,21 @@ $(function() {
       //   // $("#uploaded_files").html("<ul>" + fileNames + "</ul>");  
       //   // }
       // }
-      formData.append("uploaded_file", $("input#uploaded_file")[0].files[0]);
-      // console.log("files:", $("input#uploaded_file")[0].files[0]);
-      
-    //   for (var value in formData.values()) {
-    //     console.log(value); 
-    //  }
-    // new Response(formData).text().then(console.log);
-      // var name = $("input#name").val();
-      // var email = $("input#email").val();
-      // var phone = $("input#phone").val();
-      // var message = $("textarea#message").val();
-      // var firstName = formData.name; // For Success/Failure Message
+
+      // For Success/Failure Message
       // Check for white space in name for Success/Fail message
-      // if (firstName.indexOf(' ') >= 0) {
-      //   firstName = formData.name.split(' ').slice(0, -1).join(' ');
-      // }
+      var firstName = formData.get("name");
+      if (firstName.indexOf(' ') >= 0) {
+        firstName = firstName.split(' ').slice(0, -1).join(' ');
+      }
       
       $this = $("#sendMessageButton");
       $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
       $.ajax({
         url: "././mail/contact_me.php",
         type: "POST",
-        // data: {
-        //   name: name,
-        //   phone: phone,
-        //   email: email,
-        //   message: message
-        // },
         data: formData,
+        dataType: "json",
         processData: false,
         contentType: false,
         cache: false,
