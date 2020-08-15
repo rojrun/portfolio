@@ -19,7 +19,7 @@ h6 {
 }
 
 hr.star-light {
-  max-width: 15rem;
+  max-width: 50%;
   padding: 0;
   text-align: center;
   border: none;
@@ -55,8 +55,8 @@ section {
 }
 
 section h2 {
-  font-size: calc(5.37443vw + 21.96627px);
-  line-height: calc(5.37443vw + 21.96627px);
+  font-size: calc(4.42903vw + 26.6942px);
+  line-height: calc(4.42903vw + 26.6942px);
 }
 
 section h3,
@@ -220,19 +220,19 @@ header.masthead {
 }
 
 header.masthead h1:nth-child(2) {
-  font-size: calc(5.37443vw + 21.96627px);
-  line-height: calc(5.37443vw + 21.96627px);
+  font-size: calc(4.42903vw + 26.6942px);
+  line-height: calc(4.42903vw + 26.6942px);
 }
 
 header.masthead h1:nth-child(3) {
-  font-size: calc(4.32056vw + 11.50613px);
-  line-height: calc(4.32056vw + 11.50613px);
+  font-size: calc(3.96562vw + 10.91911px);
+  line-height: calc(3.96562vw + 10.91911px);
 }
 
 header.masthead h2 {
   font-weight: 700;
   font-family: 'Montserrat';
-  font-size: calc(1.86144vw + 15.76248px);
+  font-size: calc(2.07813vw + 12.30622px);
 }
 
 @media (min-width: 992px) {

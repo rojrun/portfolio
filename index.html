@@ -273,7 +273,7 @@
       <hr class="star-light mb-5">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <form name="sentMessage" id="contactForm" novalidate="novalidate" enctype="multipart/form-data; boundary=----WebKitFormBoundary0BPm0koKA">
+          <form name="sentMessage" id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label for="name">Name</label>
@@ -298,7 +298,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label for="uploaded_file">Attached Files</label>
-                <input type="file" name="uploaded_file" class="form-control-file" id="uploaded_file" accept=".doc, .docx, .pdf, .jpeg, .jpg, .png, .txt" multiple="multiple">
+                <input type="file" name="uploaded_file[]" class="form-control-file" id="uploaded_file" multiple="multiple">
                 <ul id="file_names"></ul>
               </div>
             </div>

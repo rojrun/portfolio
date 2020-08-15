@@ -38,7 +38,6 @@ $(function() {
         url: "././mail/contact_me.php",
         type: "POST",
         data: formData,
-        dataType: "json",
         processData: false,
         contentType: false,
         cache: false,
