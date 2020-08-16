@@ -7,24 +7,14 @@ $(function() {
     },
     submitSuccess: function($form, event) {
       event.preventDefault(); // prevent default submit behaviour
-      var formData = new FormData($("form")[0]);
-    //   for (var value in formData.values()) {
-    //     console.log(value); 
-    //  }
-      // get values from FORM
-      formData.append("name", $("input#name").val());
-      formData.append("email", $("input#email").val());
-      formData.append("phone", $("input#phone").val());
-      formData.append("message", $("textarea#message").val());
+      var formData = new FormData(event.target);
+      if (formData.get('uploaded_file[]').size === 0) {
+        formData.delete('uploaded_file[]');
+      } else {
+        console.log("files:", formData.getAll("uploaded_file[]"));
+      }
+      
      
-      // var file = $("input#uploaded_file")[0].files;
-      // console.log("filecount", fileCount);
-      // for(var index= 0; index < fileCount; index++) {
-        // formData.append("uploaded_file[]", $("input#uploaded_file")[0].files[index]);
-        // console.log("file:", $("input#uploaded_file")[0].files[index].name);
-      // if ($("input#uploaded_file")[0].files.length > 0) {
-      //   console.log("input fired");
-      // $("document").on("change", "input:file", function(e){console.log(e);});  
       // var fileNames = "";
       //   for(var index= 0; index < $("input#uploaded_file")[0].files.length; index++) {
       //     fileNames =   $("<li>").text($("input#uploaded_file")[0].files[index].name + ", " + $("input#uploaded_file")[0].files[index].size + " bytes");
@@ -38,50 +28,32 @@ $(function() {
       //   // $("#uploaded_files").html("<ul>" + fileNames + "</ul>");  
       //   // }
       // }
-      formData.append("uploaded_file", $("input#uploaded_file")[0].files[0]);
-      // console.log("files:", $("input#uploaded_file")[0].files[0]);
-      
-    //   for (var value in formData.values()) {
-    //     console.log(value); 
-    //  }
-    // new Response(formData).text().then(console.log);
-      // var name = $("input#name").val();
-      // var email = $("input#email").val();
-      // var phone = $("input#phone").val();
-      // var message = $("textarea#message").val();
-      // var firstName = formData.name; // For Success/Failure Message
+
       // Check for white space in name for Success/Fail message
-      // if (firstName.indexOf(' ') >= 0) {
-      //   firstName = formData.name.split(' ').slice(0, -1).join(' ');
-      // }
+      var firstName = formData.get("name");
+      if (firstName.indexOf(' ') >= 0) {
+        firstName = firstName.split(' ').slice(0, -1).join(' ');
+      }
       
       $this = $("#sendMessageButton");
       $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
       $.ajax({
         url: "././mail/contact_me.php",
         type: "POST",
-        // data: {
-        //   name: name,
-        //   phone: phone,
-        //   email: email,
-        //   message: message
-        // },
         data: formData,
         processData: false,
         contentType: false,
         cache: false,
-        success: function(response) {
-          console.log("success:", response);
+        success: function() {
           // Success message
           $('#success').html("<div class='alert alert-success'>");
           $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
-          $('#success > .alert-success').append("<strong>Your message has been sent. </strong>");
+          $('#success > .alert-success').append($("<strong>").text("Thank you " + firstName + "! Your message has been sent!"));
           $('#success > .alert-success').append('</div>');
           //clear all fields
           $('#contactForm').trigger("reset");
         },
-        error: function(response) {
-          console.error("error:", response);
+        error: function() {
           // Fail message
           $('#success').html("<div class='alert alert-danger'>");
           $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");

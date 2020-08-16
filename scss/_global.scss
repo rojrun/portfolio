@@ -14,7 +14,7 @@ h6 {
 
 // Custom Horizontal Rule with Star Icon
 hr.star-light {
-  max-width: 15rem;
+  max-width: 50%;
   padding: 0;
   text-align: center;
   border: none;
@@ -48,7 +48,7 @@ hr.star-light:after {
 section {
   padding: 6rem 0;
   h2 {
-    $map: (280: 34, 576: 50, 768: 65, 992: 80, 1200: 90, 1900: 120);
+    $map: (250: 32, 576: 50, 768: 65, 992: 75, 1200: 85, 1900: 105);
     $font-size: least-squares-fit($map);
     font-size: $font-size;
     line-height: strip-unit($font-size);
