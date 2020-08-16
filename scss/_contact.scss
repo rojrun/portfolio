@@ -68,3 +68,8 @@
 form .row:first-child .floating-label-form-group {
   border-top: 1px solid $gray-200;
 }
+
+#sendMessageButton:disabled {
+  background-color: $white;
+  border-color: $white;
+}

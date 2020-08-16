@@ -8,9 +8,13 @@ $(function() {
     submitSuccess: function($form, event) {
       event.preventDefault(); // prevent default submit behaviour
       var formData = new FormData(event.target);
-      for(var pair of formData.entries()) {
-        console.log(pair[0]+ ': '+ pair[1]); 
-     } 
+      if (formData.get('uploaded_file[]').size === 0) {
+        formData.delete('uploaded_file[]');
+      } else {
+        console.log("files:", formData.getAll("uploaded_file[]"));
+      }
+      
+     
       // var fileNames = "";
       //   for(var index= 0; index < $("input#uploaded_file")[0].files.length; index++) {
       //     fileNames =   $("<li>").text($("input#uploaded_file")[0].files[index].name + ", " + $("input#uploaded_file")[0].files[index].size + " bytes");
@@ -25,7 +29,6 @@ $(function() {
       //   // }
       // }
 
-      // For Success/Failure Message
       // Check for white space in name for Success/Fail message
       var firstName = formData.get("name");
       if (firstName.indexOf(' ') >= 0) {
@@ -41,18 +44,16 @@ $(function() {
         processData: false,
         contentType: false,
         cache: false,
-        success: function(response) {
-          console.log("success:", response);
+        success: function() {
           // Success message
           $('#success').html("<div class='alert alert-success'>");
           $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
-          $('#success > .alert-success').append("<strong>Your message has been sent. </strong>");
+          $('#success > .alert-success').append($("<strong>").text("Thank you " + firstName + "! Your message has been sent!"));
           $('#success > .alert-success').append('</div>');
           //clear all fields
           $('#contactForm').trigger("reset");
         },
-        error: function(response) {
-          console.error("error:", response);
+        error: function() {
           // Fail message
           $('#success').html("<div class='alert alert-danger'>");
           $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");

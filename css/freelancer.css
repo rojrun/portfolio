@@ -410,6 +410,11 @@ form .row:first-child .floating-label-form-group {
   border-top: 1px solid #e9ecef;
 }
 
+#sendMessageButton:disabled {
+  background-color: #fff;
+  border-color: #fff;
+}
+
 .footer {
   padding-top: 6rem;
   padding-bottom: 6rem;
