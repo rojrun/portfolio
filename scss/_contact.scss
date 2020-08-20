@@ -21,12 +21,28 @@
     color: $secondary;
     font-weight: bold; 
   }
-  input[type="file"] {
+  #get_file {
+    border: 2px solid $secondary;
     border-radius: 0.25rem;
-    font-size: 1em;
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.2);
   }
+  input[type="file"] {
+    display: none;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  ul li::before { 
+    content: "\2022";
+    color: $secondary;
+    font-weight: bolder;
+    padding-left: 1.14rem;
+    padding-right: 0.8rem;
+  }  
   input:focus, textarea:focus {
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.219);
     color: $secondary;
   }
   label {

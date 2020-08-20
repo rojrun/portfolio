@@ -137,7 +137,7 @@
       <div class="text-center">
         <ul>
           <li>
-            <h3 class="text-primary">A full stack website with database.</h3>
+            <h3 class="text-primary">A website with database.</h3>
           </li>
           <li>
             <h3 class="text-primary">An attractive landing page/one-page site.</h3>
@@ -163,11 +163,11 @@
       <hr class="star-light mb-5">
       <div class="row">
         <h3 class="text-secondary col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right">Front-end:</h3>
-        <h3 class="text-primary col-sm-12 col-md-7 col-lg-8 col-xl-9">HTML5, JavaScript, jQuery, ReactJS</h3>
+        <h3 class="text-primary col-sm-12 col-md-7 col-lg-8 col-xl-9">HTML5, JavaScript, jQuery, React</h3>
       </div>  
       <div class="row">
         <h3 class="text-secondary col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right">Back-end:</h3>
-        <h3 class="text-primary col-sm-12 col-md-7 col-lg-8 col-xl-9">ExpressJS, NodeJS, NPM, PHP, Redux</h3>     
+        <h3 class="text-primary col-sm-12 col-md-7 col-lg-8 col-xl-9">ExpressJS, Node, NPM, PHP, Redux</h3>     
       </div>
       <div class="row">
         <h3 class="text-secondary col-sm-12 col-md-5 col-lg-4 col-xl-3 text-md-right text-lg-right">Database:</h3>
@@ -297,10 +297,9 @@
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label for="uploaded_file">Attached Files</label>
-                <input type="file" name="uploaded_file[]" class="form-control-file" id="uploaded_file" multiple="multiple">
-                <!-- <ul id="file_names"></ul> -->
-                <p class="filelist"></p>
+                <input type="button" id="get_file" class="text-secondary mt-4 px-2" value="Choose File(s)">
+                <input type="file" name="uploaded_file[]" id="uploaded_file" multiple="multiple">
+                <ul id="file_list"></ul>
               </div>
             </div>
             <div class="control-group">

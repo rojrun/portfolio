@@ -73,7 +73,6 @@ try {
       $uniquename = tempnam(sys_get_temp_dir(), hash('sha256', $_FILES['uploaded_file']['name'][$ct]));
       $filename = $_FILES['uploaded_file']['name'][$ct];
       if (move_uploaded_file($tempfilename, $uniquename)) {
-        echo 'File uploaded';
         $mail->addAttachment($uniquename, $filename);         
       } else {
           echo 'Failed to move file to ' . $uniquename;
