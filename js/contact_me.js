@@ -1,4 +1,35 @@
 $(function() {
+  var fileArray;
+  
+  //Displays list of files before #sendMessageButton is clicked
+  $("#get_file").click(function() {
+    $("#uploaded_file").click();
+  }); 
+  $("input[type=file]").change(function(e) {   
+    var fileList = $(e.target)[0].files;
+    fileArray = $.makeArray(fileList);  /* turn list to array */
+    
+    $.each(fileArray, function(index, value) {  /*loops through fileArray and appends li element to #file_list */
+      var $this = $("<li>");
+      $("#file_list").append(
+        $this.addClass("text-primary")
+          .text(value.name + ", " + value.size + " bytes")
+            .append(
+              $("<button type='button' aria-hidden='Close'>")
+                .addClass("close")
+                .html("&times;")
+                .attr("data-filename", value.name)
+                .css({"color": "#fff", "text-shadow": "0px 5px 0 #000"})
+                .on("click", function() {  /*deletes name from DOM and in fileArray */
+                  if (value.name === this.dataset.filename) {
+                    fileArray.splice(index, 1);
+                    $this.remove();
+                  }
+                })
+            )
+      )      
+    });   
+  });              
 
   $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
     preventSubmit: true,
@@ -7,28 +38,16 @@ $(function() {
     },
     submitSuccess: function($form, event) {
       event.preventDefault(); // prevent default submit behaviour
-      var formData = new FormData(event.target);
-      if (formData.get('uploaded_file[]').size === 0) {
+      var formData = new FormData(event.target);    
+      if (formData.get('uploaded_file[]').size === 0) {   
         formData.delete('uploaded_file[]');
       } else {
-        console.log("files:", formData.getAll("uploaded_file[]"));
+        formData.delete('uploaded_file[]');
+        $.each(fileArray, function(index, value) {   /*Loops through fileArray */
+          formData.append('uploaded_file[]', value, value.name);   
+        });
       }
       
-     
-      // var fileNames = "";
-      //   for(var index= 0; index < $("input#uploaded_file")[0].files.length; index++) {
-      //     fileNames =   $("<li>").text($("input#uploaded_file")[0].files[index].name + ", " + $("input#uploaded_file")[0].files[index].size + " bytes");
-      //     console.log("filenames", fileNames);
-      //     $("#file_names").append(fileNames);
-      //     var uploaded = "uploaded_file["+ index +"]";
-      //     // $("#file_name").append($("input#uploaded_file")[0].files[index].name);
-      //     // formData.append("uploaded_file[]", $("input#uploaded_file")[0].files[index]);
-      //     formData.append(uploaded, $("input#uploaded_file")[0].files[index]);
-      //   }  
-      //   // $("#uploaded_files").html("<ul>" + fileNames + "</ul>");  
-      //   // }
-      // }
-
       // Check for white space in name for Success/Fail message
       var firstName = formData.get("name");
       if (firstName.indexOf(' ') >= 0) {
