@@ -375,12 +375,12 @@ header.masthead h2 {
   display: none;
 }
 
-.floating-label-form-group ul {
+.floating-label-form-group ul#file_list {
   list-style: none;
   padding-left: 0;
 }
 
-.floating-label-form-group ul li::before {
+.floating-label-form-group ul#file_list li::before {
   content: "\2022";
   color: #000000;
   font-weight: bolder;

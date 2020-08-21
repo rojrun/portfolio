@@ -5,29 +5,35 @@ $(function() {
   $("#get_file").click(function() {
     $("#uploaded_file").click();
   }); 
-  $("input[type=file]").change(function(e) {   
+  $("input[type=file]").change(function(e) {  
+    $(":file ~ p.help-block.text-danger > ul").remove(); 
     var fileList = $(e.target)[0].files;
     fileArray = $.makeArray(fileList);  /* turn list to array */
     
     $.each(fileArray, function(index, value) {  /*loops through fileArray and appends li element to #file_list */
-      var $this = $("<li>");
-      $("#file_list").append(
-        $this.addClass("text-primary")
-          .text(value.name + ", " + value.size + " bytes")
-            .append(
-              $("<button type='button' aria-hidden='Close'>")
-                .addClass("close")
-                .html("&times;")
-                .attr("data-filename", value.name)
-                .css({"color": "#fff", "text-shadow": "0px 5px 0 #000"})
-                .on("click", function() {  /*deletes name from DOM and in fileArray */
-                  if (value.name === this.dataset.filename) {
-                    fileArray.splice(index, 1);
-                    $this.remove();
-                  }
-                })
-            )
-      )      
+      var allowedExtension = ["jpeg", "jpg", "gif", "pdf", "png", "doc", "docx", "txt", "xls", "psd"];  
+      if ($.inArray(value.name.split(".").pop().toLowerCase(), allowedExtension) === -1) {
+        $(":file ~ p.help-block.text-danger").html("<ul role=\"alert\"><li>Only " + allowedExtension.join(', ') + " formats are allowed.</li></ul>");
+      } else {
+        var $this = $("<li>");
+        $("#file_list").append(
+          $this.addClass("text-primary")
+            .text(value.name + ", " + value.size + " bytes")
+              .append(
+                $("<button type='button' aria-hidden='Close'>")
+                  .addClass("close")
+                  .html("&times;")
+                  .attr("data-filename", value.name)
+                  .css({"color": "#fff", "text-shadow": "0px 5px 0 #000"})
+                  .on("click", function() {  /*deletes name from DOM and in fileArray */
+                    if (value.name === this.dataset.filename) {
+                      fileArray.splice(index, 1);
+                      $this.remove();
+                    }
+                  })
+              )
+        )      
+      }
     });   
   });              
 
