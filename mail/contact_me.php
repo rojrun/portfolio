@@ -57,16 +57,6 @@ try {
         default:
           throw new RuntimeException('Unknown errors occured.');
       }
-      
-      // if ($_FILES['uploaded_file']['size'][$ct] > 1000000) {
-      //   throw new RuntimeException('Exceeded filesize limit.');
-      // }
-     
-      // $file_type = $_FILES['uploaded_file']['type'][$ct];
-      // $allowed = array("image/jpeg", "image/gif", "application/pdf", "image/png", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-      // if(!in_array($file_type, $allowed)) {
-      //   echo 'Only jpg, gif, pdf, and MSWord files are allowed.';
-      // }
 
       $tempfilename = $_FILES['uploaded_file']['tmp_name'][$ct];
       $uniquename = tempnam(sys_get_temp_dir(), hash('sha256', $_FILES['uploaded_file']['name'][$ct]));
