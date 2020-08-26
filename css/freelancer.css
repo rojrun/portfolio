@@ -73,15 +73,15 @@ section#about a.lead {
 }
 
 section#about a.lead:hover {
-  color: #000000 !important;
+  background-color: #6e0202;
+  color: #fff !important;
+  font-weight: 900;
+  text-decoration: none;
 }
 
 section#about a.lead:active, section#about a.lead:focus {
-  color: #000000 !important;
-}
-
-section#about a.lead.active {
-  color: #000000 !important;
+  background-color: #6e0202;
+  color: #fff !important;
 }
 
 section#services ul {

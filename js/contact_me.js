@@ -1,10 +1,25 @@
 $(function() {
+  // Checks for first and last names on input
+  $("input#name").on("change", function() {
+    $("#sendMessageButton").prop("disabled", true); 
+    var fullName = $("input#name").val().split(" ");
+    if ((fullName.length >= 2) && (!fullName.some(name => name === ""))) {
+      if ($("input#name ~ p.help-block.text-danger:last-child > ul").children().length > 0) {
+        $("input#name ~ p.help-block.text-danger:last-child > ul").remove(); 
+      } 
+      $("#sendMessageButton").prop("disabled", false);
+    } else {
+      $("input#name ~ p.help-block.text-danger:last-child").html("<ul role=\"alert\"><li>" + $("input#name").attr("data-validation-required-message") + "</li></ul>");
+      $("input#name ~ p.help-block.text-danger:last-child > ul").append("<li>Names cannot have empty spaces.</li>");
+      $("#sendMessageButton").prop("disabled", true);
+    }
+  });
+
+  // Displays list of files before #sendMessageButton is clicked
   var fileArray = [];
   var totalFilesArray = [];
   var uploadFileLimit = 1000000;
   var fileSizeTotal = 0;
-  
-  // Displays list of files before #sendMessageButton is clicked
   $("#get_file").click(function() {
     $("#uploaded_file").click();
   }); 
@@ -18,7 +33,6 @@ $(function() {
     } 
     var fileList = $(e.target)[0].files;
     fileArray = $.makeArray(fileList);  /* turn fileList to array */
-
     $.each(fileArray, function(index, value) {  /* Loops through fileArray and appends li element to #file_list */       
       try {
         var allowedExtension = ["jpeg", "jpg", "gif", "pdf", "png", "doc", "docx", "txt", "xls", "psd"];
@@ -98,6 +112,15 @@ $(function() {
       } 
       return;
     } 
+
+    // Clears out the file attachments when reset clicked
+    $(":reset").click(function() {
+      fileArray = [];
+      totalFilesArray = [];
+      fileSizeTotal = 0;
+      $("#file_list, .total").empty();
+      $(":file ~ p.help-block.text-danger:last-child > ul").remove();
+    });
   });              
 
   $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
