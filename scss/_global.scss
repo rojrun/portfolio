@@ -67,14 +67,15 @@ section#about {
     border-radius: 0.25rem;
     padding: 0.5rem; 
     &:hover {
-      color: $secondary !important;
+      background-color: $primary;
+      color: $white !important;
+      font-weight: 900;
+      text-decoration: none;
     }
     &:active,
     &:focus {
-      color: $secondary !important;
-    }
-    &.active {
-      color: $secondary !important;
+      background-color: $primary;
+      color: $white !important;
     }
   }  
 }
