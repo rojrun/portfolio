@@ -1,7 +1,7 @@
 $(function() {
   var fileArray = [];
   var totalFilesArray = [];
-  var uploadFileLimit = 100000;
+  var uploadFileLimit = 1000000;
   var fileSizeTotal = 0;
   
   // Displays list of files before #sendMessageButton is clicked
@@ -17,33 +17,19 @@ $(function() {
       $(":file ~ p.help-block.text-danger:last-child > ul").remove(); 
     } 
     var fileList = $(e.target)[0].files;
-    fileArray = $.makeArray(fileList);  /* turn list to array */
-    console.log("group of files in array: ", fileArray);
+    fileArray = $.makeArray(fileList);  /* turn fileList to array */
 
     $.each(fileArray, function(index, value) {  /* Loops through fileArray and appends li element to #file_list */       
       try {
-        console.log("file: ", value);
-        console.log('index: ', index);
         var allowedExtension = ["jpeg", "jpg", "gif", "pdf", "png", "doc", "docx", "txt", "xls", "psd"];
-        var fileext = $.inArray(value.name.split(".").pop().toLowerCase(), allowedExtension);
-        console.log("fileext: ", fileext);
-        if (fileext === -1) {   /* Checks if files are allowed */
-          
-          console.log("file not allowed. fileArray: ", fileArray);
-          console.log("file not allowed: ", value.name);
-          
+        if ($.inArray(value.name.split(".").pop().toLowerCase(), allowedExtension) === -1) {   /* Checks if files are allowed */
           fileArray.splice(fileArray.indexOf(value.name), 1);
-          console.log("file not allowed. fileArray after splice file: ", fileArray);
-          
           $(":file ~ p.help-block.text-danger:last-child").html("<ul role=\"alert\"><li>Only " + allowedExtension.join(', ') + " formats are allowed.</li></ul>");   /* Copied structure from jqBootstrapValidation */
-          setTimeout(function() {
-            $(":file ~ p.help-block.text-danger:last-child > ul").remove();    
-          }, 4000);  
+          $(":file ~ p.help-block.text-danger:last-child > ul").append("<li>Please select again.</li>");
+          clearUlElement();
         } else {
-          var dupli = $.inArray(value.name, totalFilesArray);
-          console.log("dupli: ", dupli);
-          if (dupli === -1) {
-          fileSizeTotal += value.size;
+          if (!totalFilesArray.some(file => file.name === value.name)) {  /* File doesn't exists */
+            fileSizeTotal += value.size;
             var $this = $("<li>");  
             $("#file_list").append(   /* Creates li with delete button onto DOM */
               $this.addClass("text-primary")
@@ -52,62 +38,33 @@ $(function() {
                   $("<button type='button' aria-hidden='Close'>")
                     .addClass("close")
                     .html("&times;")
-                    // .attr("data-filename", value.name)
                     .css({"color": "#fff", "text-shadow": "0px 5px 0 #000"})
-                    .click(function() {  /*deletes name from DOM and in totalFilesArray */
-                      console.log("file value: ", value.name);
-                      console.log("file size: ", value.size);
-                      // console.log("file dataset: ", this.dataset.filename);
-                      // if (value.name === this.dataset.filename) {
-                        console.log("totalFilesArray before splice: ", totalFilesArray);
-                        
-                        // totalFilesArray.splice(index, 1);
-                        fileSizeTotal -= value.size;
-                        totalFilesArray.splice(totalFilesArray.indexOf(value.name), 1);
-                        $this.remove();
-                        console.log("totalFilesArray after splice: ", totalFilesArray);
-                        console.log("fileSizeTotal: ", fileSizeTotal);
-        
-                        // if (totalFilesArray.length <= 1) {
-                        //   $(".total").empty();
-                        // } else {
-                          $(".total").html("<span style=\"color:black; font-weight:bold;\">Total: </span>" + "&nbsp;&nbsp;&nbsp;" + totalFilesArray.length + " files " + "&nbsp;&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;&nbsp;" + (fileSizeTotal.toLocaleString("en")) + " out of " + (uploadFileLimit.toLocaleString("en")) + " bytes");
-                        // }
-                        if (fileSizeTotal < uploadFileLimit) {
-                          $(":file ~ p.help-block.text-danger:last-child > ul").remove();
-                          $("#sendMessageButton").prop("disabled", false); 
-                        }
-                      // }
+                    .click(function() {  /* Deletes name from DOM and from totalFilesArray */
+                      fileSizeTotal -= value.size;
+                      totalFilesArray.splice(totalFilesArray.indexOf(value.name), 1);
+                      $this.remove();
+                      totalFilesArrayLengthConditional();
+                      if (fileSizeTotal < uploadFileLimit) {
+                        $(":file ~ p.help-block.text-danger:last-child > ul").remove();
+                        $("#sendMessageButton").prop("disabled", false); 
+                      }
                     })
                 )
             )   
-            totalFilesArray.push(value);   
-            console.log("totalFilesArray: ", totalFilesArray);
-          } else {
-            console.log(value.name + " is a duplicate");
-          } 
-          
+            totalFilesArray.push(value);
+          } else {   /* File already exists */
+            pElementConditional("<li>" + value.name + " already exists.</li>");
+            clearUlElement();
+            fileArray.splice(fileArray.indexOf(value.name), 1);
+          }
         }
-
       } catch(e) {
-        console.error("file value error: ", e);
-        console.log("fileArray: ", fileArray);
         fileArray.splice(fileArray.indexOf(e), 1);
-        console.log("file not allowed. fileArray: ", fileArray);
-        
-        $(":file ~ p.help-block.text-danger:last-child").html("<ul role=\"alert\"><li>There is something wrong with that file. Please select again.");
-        setTimeout(function() {
-          $(":file ~ p.help-block.text-danger:last-child > ul").remove(); 
-        }, 4000);  
+        pElementConditional("<li>There is an error with that file.</li>");
+        clearUlElement();
       }  
     });
-    console.log("totalFilesArray length: ", totalFilesArray.length);
-
-    
-    // if (totalFilesArray.length > 1) {
-      $(".total").html("<span style=\"color:black; font-weight:bold;\">Total: </span>" + "&nbsp;&nbsp;&nbsp;" + totalFilesArray.length + " files " + "&nbsp;&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;&nbsp;" + (fileSizeTotal.toLocaleString("en")) + " out of " + (uploadFileLimit.toLocaleString("en")) + " bytes");
-    // }
-    console.log("totalFilesArray: ", totalFilesArray);
+    totalFilesArrayLengthConditional();
     if (fileSizeTotal > uploadFileLimit) {
       $(":file ~ p.help-block.text-danger:last-child").html("<ul role=\"alert\"><li>You have exceeded the upload limit.</li></ul>");
       $(":file ~ p.help-block.text-danger:last-child > ul").append("<li>Please edit your list.</li>");
@@ -116,6 +73,31 @@ $(function() {
       $("#sendMessageButton").prop("disabled", false);
     }
 
+    function pElementConditional(str) {
+      if ($(":file ~ p.help-block.text-danger:last-child").children().length === 0) {
+        $(":file ~ p.help-block.text-danger:last-child").html("<ul role=\"alert\"><li>Please select again.");
+        $(":file ~ p.help-block.text-danger:last-child > ul").append(str);
+      } else {
+        $(":file ~ p.help-block.text-danger:last-child > ul").append(str);
+      }
+      return;
+    }
+
+    function clearUlElement() {
+      setTimeout(function() {
+        $(":file ~ p.help-block.text-danger:last-child > ul").remove();
+      }, 5000);
+      return;
+    }
+
+    function totalFilesArrayLengthConditional() {
+      if (totalFilesArray.length > 1) {
+        $(".total").html("<span style=\"color:black; font-weight:bold;\">Total: </span>" + "&nbsp;&nbsp;&nbsp;" + totalFilesArray.length + " files " + "&nbsp;&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;&nbsp;" + (fileSizeTotal.toLocaleString("en")) + " out of " + (uploadFileLimit.toLocaleString("en")) + " bytes");
+      } else {
+        $(".total").empty();
+      } 
+      return;
+    } 
   });              
 
   $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
@@ -141,7 +123,6 @@ $(function() {
         firstName = firstName.split(' ').slice(0, -1).join(' ');
       }
       
-      // $this = $("#sendMessageButton");
       $("#sendMessageButton").prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
       $.ajax({
         url: "././mail/contact_me.php",
