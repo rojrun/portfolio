@@ -4,7 +4,8 @@
   border-bottom: 1px solid $white;
   input,
   textarea {
-    font-size: 1.2em;
+    $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+    @include poly-fluid-sizing("font-size", $map);
     position: relative;
     z-index: 1;
     padding-right: 0;
@@ -26,6 +27,8 @@
     border-radius: 0.25rem;
     font-weight: 700;
     background-color: rgba(255, 255, 255, 0.2);
+    $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+    @include poly-fluid-sizing("font-size", $map);
   }
   input[type="file"] {
     display: none;
@@ -46,7 +49,8 @@
     color: $secondary;
   }
   label {
-    font-size: 1em;
+    $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+    @include poly-fluid-sizing("font-size", $map);
     line-height: 1.764705882em;
     position: relative;
     z-index: 0;

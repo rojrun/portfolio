@@ -1,5 +1,6 @@
 // Typography
 body {
+  height: 100%;
   @include body-font;
 }
 
@@ -48,16 +49,14 @@ hr.star-light:after {
 section {
   padding: 6rem 0;
   h2 {
-    $map: (250: 32, 576: 50, 768: 65, 992: 75, 1200: 85, 1900: 105);
-    $font-size: least-squares-fit($map);
-    font-size: $font-size;
-    line-height: strip-unit($font-size);
+    $map: (320px: 40px, 481px: 50px, 769px: 60px, 1025px: 70px, 1201px: 80px);
+    @include poly-fluid-sizing("font-size", $map);
   }
   h3,
   .lead {
     @include body-font;
-    $map: (280:16, 576: 18, 768: 19, 992: 20, 1200: 21);
-    font-size: least-squares-fit($map);
+    $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+    @include poly-fluid-sizing("font-size", $map);
     font-weight: 400;
   }
 }
@@ -101,10 +100,10 @@ section#skills {
 // Custom Button Size
 .btn-xl {
   padding: 1rem 1.75rem;
-  font-size: 1.2rem;
 }
-.btn-lg {
-  font-size: 1.2rem;
+.btn-xl, .btn-lg {
+  $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+  @include poly-fluid-sizing("font-size", $map);
 }
 
 // Custom Rounded Social Button

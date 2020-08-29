@@ -4,8 +4,8 @@
   background-color: $primary;
   color: $secondary;
   h4 {
-    $map: (280:16, 576: 18, 768: 19, 992: 20, 1200: 21);
-    font-size: least-squares-fit($map);
+    $map: (320px: 22px, 481px: 27px, 769px: 32px, 1025px: 37px, 1201px: 42px);
+    @include poly-fluid-sizing("font-size", $map);
   }
   h4:nth-child(2) {
     @include body-font;

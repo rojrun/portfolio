@@ -47,18 +47,22 @@
       }
     }
     h2 {
-      $map: (280: 34, 576: 50, 768: 65, 992: 80, 1200: 90, 1900: 120);
-      $font-size: least-squares-fit($map);
-      font-size: $font-size;
-      line-height: strip-unit($font-size);
+      $map: (320px: 40px, 481px: 50px, 769px: 60px, 1025px: 70px, 1201px: 80px);
+      @include poly-fluid-sizing("font-size", $map);
     }
     p {
       text-align: left;
-      $map: (280:16, 576: 18, 768: 19, 992: 20, 1200: 21);
-      font-size: least-squares-fit($map);
+      $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+      @include poly-fluid-sizing("font-size", $map);
+    }
+    h5 {
+      $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+      @include poly-fluid-sizing("font-size", $map);
     }
     .rounded-pill {
-      border-radius: .25rem!important;
+      border-radius: .25rem !important;
+      $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+      @include poly-fluid-sizing("font-size", $map);
     }
   }
   @media(min-width: 768px) {
