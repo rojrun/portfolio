@@ -590,6 +590,11 @@ header.masthead h2:last-child {
   }
 }
 
+.portfolio-modal .portfolio-modal-dialog p a {
+  color: #fff;
+  text-decoration: underline;
+}
+
 .portfolio-modal .portfolio-modal-dialog h5 {
   font-size: 14px;
 }
@@ -748,40 +753,40 @@ header.masthead h2:last-child {
 }
 
 .floating-label-form-group #get_file {
-  border: 2px solid #000000;
-  border-radius: 0.25rem;
+  background-color: transparent;
+  border: none;
+  padding: 0 !important;
   font-weight: 700;
-  background-color: rgba(255, 255, 255, 0.2);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 @media (min-width: 320px) {
   .floating-label-form-group #get_file {
-    font-size: calc(1.24224vw + 10.02484px);
+    font-size: calc(1.24224vw + 12.02484px);
   }
 }
 
 @media (min-width: 481px) {
   .floating-label-form-group #get_file {
-    font-size: calc(0.69444vw + 12.65972px);
+    font-size: calc(1.04167vw + 12.98958px);
   }
 }
 
 @media (min-width: 769px) {
   .floating-label-form-group #get_file {
-    font-size: calc(0.78125vw + 11.99219px);
+    font-size: calc(1.5625vw + 8.98438px);
   }
 }
 
 @media (min-width: 1025px) {
   .floating-label-form-group #get_file {
-    font-size: calc(1.13636vw + 8.35227px);
+    font-size: calc(2.84091vw - 4.11932px);
   }
 }
 
 @media (min-width: 1201px) {
   .floating-label-form-group #get_file {
-    font-size: 22px;
+    font-size: 30px;
   }
 }
 

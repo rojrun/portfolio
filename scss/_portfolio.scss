@@ -54,6 +54,10 @@
       text-align: left;
       $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
       @include poly-fluid-sizing("font-size", $map);
+      a {
+        color: $white;
+        text-decoration: underline;
+      }
     }
     h5 {
       $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
