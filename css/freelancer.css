@@ -807,6 +807,95 @@ header.masthead h2:last-child {
   padding-right: 0.8rem;
 }
 
+.floating-label-form-group ul#file_list li {
+  font-size: 16px;
+}
+
+@media (min-width: 320px) {
+  .floating-label-form-group ul#file_list li {
+    font-size: calc(1.24224vw + 12.02484px);
+  }
+}
+
+@media (min-width: 481px) {
+  .floating-label-form-group ul#file_list li {
+    font-size: calc(1.04167vw + 12.98958px);
+  }
+}
+
+@media (min-width: 769px) {
+  .floating-label-form-group ul#file_list li {
+    font-size: calc(1.5625vw + 8.98438px);
+  }
+}
+
+@media (min-width: 1025px) {
+  .floating-label-form-group ul#file_list li {
+    font-size: calc(2.84091vw - 4.11932px);
+  }
+}
+
+@media (min-width: 1201px) {
+  .floating-label-form-group ul#file_list li {
+    font-size: 30px;
+  }
+}
+
+.floating-label-form-group ul#file_list li p {
+  margin-bottom: 0;
+}
+
+.floating-label-form-group ul#file_list li p:first-child {
+  display: inline-block;
+}
+
+.floating-label-form-group ul#file_list li p:last-child {
+  padding-left: 2.6rem;
+  padding-right: 2.5rem;
+}
+
+.floating-label-form-group ul#file_list li button.close {
+  color: #fff;
+  font-size: 2rem;
+  margin-top: -.2rem;
+  opacity: .7;
+  text-shadow: 0px 5px 0 #000000;
+}
+
+.floating-label-form-group .total {
+  font-size: 14px;
+}
+
+@media (min-width: 320px) {
+  .floating-label-form-group .total {
+    font-size: calc(1.24224vw + 10.02484px);
+  }
+}
+
+@media (min-width: 481px) {
+  .floating-label-form-group .total {
+    font-size: calc(0.69444vw + 12.65972px);
+  }
+}
+
+@media (min-width: 769px) {
+  .floating-label-form-group .total {
+    font-size: calc(0.78125vw + 11.99219px);
+  }
+}
+
+@media (min-width: 1025px) {
+  .floating-label-form-group .total {
+    font-size: calc(1.13636vw + 8.35227px);
+  }
+}
+
+@media (min-width: 1201px) {
+  .floating-label-form-group .total {
+    font-size: 22px;
+  }
+}
+
 .floating-label-form-group input:focus, .floating-label-form-group textarea:focus {
   background-color: rgba(255, 255, 255, 0.219);
   color: #000000;

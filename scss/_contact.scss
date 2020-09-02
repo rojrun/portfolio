@@ -36,14 +36,44 @@
   ul#file_list {
     list-style: none;
     padding-left: 0;
+    li::before { 
+      content: "\2022";
+      color: $secondary;
+      font-weight: bolder;
+      padding-left: 1.14rem;
+      padding-right: 0.8rem;
+    }  
+    li {
+      $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+      @include poly-fluid-sizing("font-size", $map);
+      // display: flex;
+      // flex-flow: row wrap;
+      p {
+        margin-bottom: 0;
+      }
+      p:first-child {
+        // flex: none;
+        display: inline-block;
+      }
+      p:last-child {
+        // flex: 1 0 100vw;
+        padding-left: 2.6rem;
+        padding-right: 2.5rem;
+        //display: inline;
+      }
+      button.close {
+        color: $white;
+        font-size: 2rem;
+        margin-top: -.2rem;
+        opacity: .7;
+        text-shadow: 0px 5px 0 $secondary;
+      }
+    }
   }
-  ul#file_list li::before { 
-    content: "\2022";
-    color: $secondary;
-    font-weight: bolder;
-    padding-left: 1.14rem;
-    padding-right: 0.8rem;
-  }  
+  .total {
+    $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+    @include poly-fluid-sizing("font-size", $map);
+  }
   input:focus, textarea:focus {
     background-color: rgba(255, 255, 255, 0.219);
     color: $secondary;
@@ -69,6 +99,16 @@
   }
   .text-danger {
     color: #ffc107 !important;
+  }
+}
+@media (min-width:576px) {
+  ul#file_list {
+    li {
+      p:last-child {
+        // flex: 1 0 1vw !important;
+        // padding-left: 0 !important;
+      }
+    }
   }
 }
 

@@ -47,24 +47,36 @@ $(function() {
             var $this = $("<li>");  
             $("#file_list").append(   /* Creates li with delete button onto DOM */
               $this.addClass("text-primary")
-                .html(value.name + "&nbsp;&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;&nbsp;" + (value.size.toLocaleString("en")) + " bytes")
                 .append(
-                  $("<button type='button' aria-hidden='Close'>")
-                    .addClass("close")
-                    .html("&times;")
-                    .css({"color": "#fff", "text-shadow": "0px 5px 0 #000"})
-                    .click(function() {  /* Deletes name from DOM and from totalFilesArray */
-                      fileSizeTotal -= value.size;
-                      totalFilesArray.splice(totalFilesArray.indexOf(value.name), 1);
-                      $this.remove();
-                      totalFilesArrayLengthConditional();
-                      if (fileSizeTotal < uploadFileLimit) {
-                        $(":file ~ p.help-block.text-danger:last-child > ul").remove();
-                        $("#sendMessageButton").prop("disabled", false); 
-                      }
-                    })
-                )
+                  $("<p>").html(value.name + "&nbsp;&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;&nbsp;")
+                  ,
+                  $("<p>").html((value.size.toLocaleString("en")) + " bytes")
+                    .append(
+                      $("<button type='button' aria-hidden='true' aria-label='Close'>")
+                        .addClass("close")
+                        .html("&times;")              
+                        .click(function() {  /* Deletes name from DOM and from totalFilesArray */
+                          fileSizeTotal -= value.size;
+                          totalFilesArray.splice(totalFilesArray.indexOf(value.name), 1);
+                          $this.remove();
+                          totalFilesArrayLengthConditional();
+                          if (fileSizeTotal < uploadFileLimit) {
+                            $(":file ~ p.help-block.text-danger:last-child > ul").remove();
+                            $("#sendMessageButton").prop("disabled", false); 
+                          }
+                        })
+                    )                    
+                )  
             )   
+            // var pFirstChild = ($("#file_list li p:first-child").width()) + $("#file_list li::before").width();
+            var pFirstChild = $("#file_list li::before").width();
+            console.log("pFirstChild: ", pFirstChild);
+            var liParent = (($("#file_list li").width())/2);     
+            console.log("liParent: ", liParent);       
+            if ( pFirstChild <  liParent) {
+              $("#file_list li p:last-child").css({"display":"inline", "padding-left":"0"});
+              console.log("child is smaller");
+            }
             totalFilesArray.push(value);
           } else {   /* File already exists */
             pElementConditional("<li>" + value.name + " already exists.</li>");
@@ -106,7 +118,7 @@ $(function() {
 
     function totalFilesArrayLengthConditional() {
       if (totalFilesArray.length > 1) {
-        $(".total").html("<span style=\"color:black; font-weight:bold;\">Total: </span>" + "&nbsp;&nbsp;&nbsp;" + totalFilesArray.length + " files " + "&nbsp;&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;&nbsp;" + (fileSizeTotal.toLocaleString("en")) + " out of " + (uploadFileLimit.toLocaleString("en")) + " bytes");
+        $(".total").html("<span style=\"color:black; font-weight:bold;\">Uploading: </span>" + "&nbsp;&nbsp;&nbsp;" + totalFilesArray.length + " files " + "&nbsp;&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;&nbsp;" + (fileSizeTotal.toLocaleString("en")) + " out of " + (uploadFileLimit.toLocaleString("en")) + " bytes");
       } else {
         $(".total").empty();
       } 
