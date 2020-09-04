@@ -803,12 +803,17 @@ header.masthead h2:last-child {
   content: "\2022";
   color: #000000;
   font-weight: bolder;
-  padding-left: 1.14rem;
-  padding-right: 0.8rem;
+  padding-left: 0;
+  padding-right: 1rem;
 }
 
 .floating-label-form-group ul#file_list li {
   font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 @media (min-width: 320px) {
@@ -845,55 +850,140 @@ header.masthead h2:last-child {
   margin-bottom: 0;
 }
 
-.floating-label-form-group ul#file_list li p:first-child {
-  display: inline-block;
+.floating-label-form-group ul#file_list li div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
-.floating-label-form-group ul#file_list li p:last-child {
-  padding-left: 2.6rem;
-  padding-right: 2.5rem;
+.floating-label-form-group ul#file_list li div p {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
-.floating-label-form-group ul#file_list li button.close {
+.floating-label-form-group ul#file_list li div button.close {
   color: #fff;
-  font-size: 2rem;
-  margin-top: -.2rem;
+  font-size: 24px;
   opacity: .7;
   text-shadow: 0px 5px 0 #000000;
-}
-
-.floating-label-form-group .total {
-  font-size: 14px;
+  margin-top: 0;
 }
 
 @media (min-width: 320px) {
-  .floating-label-form-group .total {
+  .floating-label-form-group ul#file_list li div button.close {
+    font-size: calc(3.72671vw + 12.07453px);
+  }
+}
+
+@media (min-width: 481px) {
+  .floating-label-form-group ul#file_list li div button.close {
+    font-size: calc(1.04167vw + 24.98958px);
+  }
+}
+
+@media (min-width: 769px) {
+  .floating-label-form-group ul#file_list li div button.close {
+    font-size: calc(2.34375vw + 14.97656px);
+  }
+}
+
+@media (min-width: 1025px) {
+  .floating-label-form-group ul#file_list li div button.close {
+    font-size: calc(4.54545vw - 7.59091px);
+  }
+}
+
+@media (min-width: 1201px) {
+  .floating-label-form-group ul#file_list li div button.close {
+    font-size: 47px;
+  }
+}
+
+@media (min-width: 320px) {
+  .floating-label-form-group ul#file_list li div button.close {
+    margin-top: calc(-1.30435vw + 4.17391px);
+  }
+}
+
+@media (min-width: 481px) {
+  .floating-label-form-group ul#file_list li div button.close {
+    margin-top: calc(0vw - 2.1px);
+  }
+}
+
+@media (min-width: 769px) {
+  .floating-label-form-group ul#file_list li div button.close {
+    margin-top: calc(0vw - 2.1px);
+  }
+}
+
+@media (min-width: 1025px) {
+  .floating-label-form-group ul#file_list li div button.close {
+    margin-top: calc(0vw - 2.1px);
+  }
+}
+
+@media (min-width: 1201px) {
+  .floating-label-form-group ul#file_list li div button.close {
+    margin-top: -2.1px;
+  }
+}
+
+.floating-label-form-group .uploading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.floating-label-form-group .uploading p {
+  font-size: 14px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+@media (min-width: 320px) {
+  .floating-label-form-group .uploading p {
     font-size: calc(1.24224vw + 10.02484px);
   }
 }
 
 @media (min-width: 481px) {
-  .floating-label-form-group .total {
+  .floating-label-form-group .uploading p {
     font-size: calc(0.69444vw + 12.65972px);
   }
 }
 
 @media (min-width: 769px) {
-  .floating-label-form-group .total {
+  .floating-label-form-group .uploading p {
     font-size: calc(0.78125vw + 11.99219px);
   }
 }
 
 @media (min-width: 1025px) {
-  .floating-label-form-group .total {
+  .floating-label-form-group .uploading p {
     font-size: calc(1.13636vw + 8.35227px);
   }
 }
 
 @media (min-width: 1201px) {
-  .floating-label-form-group .total {
+  .floating-label-form-group .uploading p {
     font-size: 22px;
   }
+}
+
+.floating-label-form-group .uploading p:last-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 .floating-label-form-group input:focus, .floating-label-form-group textarea:focus {
