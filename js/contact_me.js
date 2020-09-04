@@ -45,25 +45,28 @@ $(function() {
           if (!totalFilesArray.some(file => file.name === value.name)) {  /* File doesn't exists */
             fileSizeTotal += value.size;
             var $this = $("<li>");  
-            $("#file_list").append(   /* Creates li with delete button onto DOM */
-              $this.addClass("text-primary")
-                .html(value.name + "&nbsp;&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;&nbsp;" + (value.size.toLocaleString("en")) + " bytes")
-                .append(
-                  $("<button type='button' aria-hidden='Close'>")
+            $("#file_list").append(  /* Creates li with delete button onto DOM */
+              $this.addClass("text-primary").append(        
+                $("<p>").html(value.name + "&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;")
+                ,
+                $("<div>").append(
+                  $("<p>").html((value.size.toLocaleString("en")) + " bytes")
+                  ,
+                  $("<button type='button' aria-hidden='true' aria-label='Close'>")
                     .addClass("close")
-                    .html("&times;")
-                    .css({"color": "#fff", "text-shadow": "0px 5px 0 #000"})
+                    .html("&times;")              
                     .click(function() {  /* Deletes name from DOM and from totalFilesArray */
                       fileSizeTotal -= value.size;
                       totalFilesArray.splice(totalFilesArray.indexOf(value.name), 1);
                       $this.remove();
-                      totalFilesArrayLengthConditional();
+                      totalFilesArrayLengthConditional(totalFilesArray, fileSizeTotal);
                       if (fileSizeTotal < uploadFileLimit) {
                         $(":file ~ p.help-block.text-danger:last-child > ul").remove();
                         $("#sendMessageButton").prop("disabled", false); 
                       }
                     })
                 )
+              )                                      
             )   
             totalFilesArray.push(value);
           } else {   /* File already exists */
@@ -76,9 +79,9 @@ $(function() {
         fileArray.splice(fileArray.indexOf(e), 1);
         pElementConditional("<li>There is an error with that file.</li>");
         clearUlElement();
-      }  
+      } 
     });
-    totalFilesArrayLengthConditional();
+    totalFilesArrayLengthConditional(totalFilesArray, fileSizeTotal);
     if (fileSizeTotal > uploadFileLimit) {
       $(":file ~ p.help-block.text-danger:last-child").html("<ul role=\"alert\"><li>You have exceeded the upload limit.</li></ul>");
       $(":file ~ p.help-block.text-danger:last-child > ul").append("<li>Please edit your list.</li>");
@@ -104,11 +107,20 @@ $(function() {
       return;
     }
 
-    function totalFilesArrayLengthConditional() {
+    function totalFilesArrayLengthConditional(totalFilesArray, fileSizeTotal) {
+      var filePlural = " file ";
       if (totalFilesArray.length > 1) {
-        $(".total").html("<span style=\"color:black; font-weight:bold;\">Total: </span>" + "&nbsp;&nbsp;&nbsp;" + totalFilesArray.length + " files " + "&nbsp;&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;&nbsp;" + (fileSizeTotal.toLocaleString("en")) + " out of " + (uploadFileLimit.toLocaleString("en")) + " bytes");
+        filePlural = " files ";
+      }
+      if ($(".uploading").children().length === 0) {
+        $(".uploading").append(
+          $("<p>").html("<span style=\"color:black; font-weight:bold;\">Uploading: </span>" + "&nbsp;&nbsp;&nbsp;" + totalFilesArray.length + filePlural + "&nbsp;&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;&nbsp;")
+          ,  
+          $("<p>").html(fileSizeTotal.toLocaleString("en") + " out of " + uploadFileLimit.toLocaleString("en") + " bytes")
+        );     
       } else {
-        $(".total").empty();
+        $(".uploading p:first-child").html("<span style=\"color:black; font-weight:bold;\">Uploading: </span>" + "&nbsp;&nbsp;&nbsp;" + totalFilesArray.length + filePlural + "&nbsp;&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;&nbsp;");
+        $(".uploading p:last-child").html(fileSizeTotal.toLocaleString("en") + " out of " + uploadFileLimit.toLocaleString("en") + " bytes");
       } 
       return;
     } 

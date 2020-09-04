@@ -36,14 +36,54 @@
   ul#file_list {
     list-style: none;
     padding-left: 0;
+    li::before { 
+      content: "\2022";
+      color: $secondary;
+      font-weight: bolder;
+      padding-left: 0;
+      padding-right: 1rem;
+    }  
+    li {
+      $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+      @include poly-fluid-sizing("font-size", $map);
+      display: flex;
+      flex-wrap: wrap;
+      p {
+        margin-bottom: 0;
+      }
+      div {
+        display: flex;
+        flex-grow: 1;
+        p {
+          flex-grow: 1;
+        }
+        button.close {
+          color: $white;
+          $fontSizeMap: (320px: 24px, 481px: 30px, 769px: 33px, 1025px: 39px, 1201px: 47px);
+          @include poly-fluid-sizing("font-size", $fontSizeMap);
+          opacity: .7;
+          text-shadow: 0px 5px 0 $secondary;
+          $marginTopMap: (320px: 0, 481px: -2.1px, 769px: -2.1px, 1025px: -2.1px, 1201px: -2.1px);
+          @include poly-fluid-sizing("margin-top", $marginTopMap);
+        }
+      }
+   
+    }
   }
-  ul#file_list li::before { 
-    content: "\2022";
-    color: $secondary;
-    font-weight: bolder;
-    padding-left: 1.14rem;
-    padding-right: 0.8rem;
-  }  
+  .uploading {
+    display: flex;
+    flex-wrap: wrap;
+    p {
+      $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+      @include poly-fluid-sizing("font-size", $map);
+      margin-bottom: 0;
+      text-align: center;
+    }
+    p:last-child {
+      display: flex;
+      flex-grow: 1;
+    }  
+  }
   input:focus, textarea:focus {
     background-color: rgba(255, 255, 255, 0.219);
     color: $secondary;
