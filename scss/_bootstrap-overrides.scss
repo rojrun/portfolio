@@ -13,7 +13,7 @@ a {
 }
 
 .bg-primary {
-  background-color: $primary !important;
+  background-image: url("../img/smooth-red-texture.jpg");
 }
 
 .bg-secondary {
@@ -21,7 +21,7 @@ a {
 }
 
 .text-primary {
-  color: $primary !important;
+  color: $white !important;
 }
 
 .text-secondary {
@@ -34,8 +34,8 @@ a {
   &:hover,
   &:focus,
   &:active {
-    background-color: darken($primary, 10%);
-    border-color: darken($primary, 10%);
+    background-color: darken($primary, 10%) !important;
+    border-color: darken($primary, 10%) !important;
   }
 }
 
@@ -47,5 +47,14 @@ a {
   &:active {
     background-color: darken($secondary, 10%);
     border-color: darken($secondary, 10%);
+  }
+}
+
+.btn-outline-secondary {
+  color: $white;
+  border-color: $secondary;
+  &:hover {
+    background-color: $gray-600;
+    border-color: $gray-600;
   }
 }

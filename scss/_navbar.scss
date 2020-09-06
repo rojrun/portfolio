@@ -5,6 +5,8 @@
   @include heading-font;
   .navbar-brand {
     color: $white;
+    $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+    @include poly-fluid-sizing("font-size", $map);
   }
   .navbar-nav {
     margin-top: 1rem;
@@ -12,6 +14,8 @@
     li.nav-item {
       a.nav-link {
         color: $white;
+        $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+        @include poly-fluid-sizing("font-size", $map);
         &:hover {
           color: $primary;
         }
@@ -26,10 +30,12 @@
     }
   }
   .navbar-toggler {
-    font-size: 80%;
-    padding: 0.8rem;
+    $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+    @include poly-fluid-sizing("font-size", $map);
+    padding: 0.5rem;
   }
 }
+
 @media(min-width:992px) {
   #mainNav {
     padding-top: 1.5rem;
@@ -37,12 +43,6 @@
     -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
     -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
     transition: padding-top 0.3s, padding-bottom 0.3s;
-    .navbar-brand {
-      font-size: 2em;
-      -webkit-transition: font-size 0.3s;
-      -moz-transition: font-size 0.3s;
-      transition: font-size 0.3s;
-    }
     .navbar-nav {
       margin-top: 0;
     }
@@ -60,8 +60,5 @@
   #mainNav.navbar-shrink {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    .navbar-brand {
-      font-size: 1.5em;
-    }
   }
 }

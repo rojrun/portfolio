@@ -1,10 +1,11 @@
 // Styling for the contact section
 .floating-label-form-group {
   position: relative;
-  border-bottom: 1px solid $gray-200;
+  border-bottom: 1px solid $white;
   input,
   textarea {
-    font-size: 1.5em;
+    $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+    @include poly-fluid-sizing("font-size", $map);
     position: relative;
     z-index: 1;
     padding-right: 0;
@@ -14,9 +15,82 @@
     border-radius: 0;
     background: none;
     box-shadow: none !important;
+    color: $white;   
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: $secondary;
+    font-weight: bold; 
+  }
+  #get_file {
+    background-color: transparent;
+    border: none;
+    padding: 0 !important;
+    font-weight: 700;
+    $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+    @include poly-fluid-sizing("font-size", $map);
+  }
+  input[type="file"] {
+    display: none;
+  }
+  ul#file_list {
+    list-style: none;
+    padding-left: 0;
+    li::before { 
+      content: "\2022";
+      color: $secondary;
+      font-weight: bolder;
+      padding-left: 0;
+      padding-right: 1rem;
+    }  
+    li {
+      $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+      @include poly-fluid-sizing("font-size", $map);
+      display: flex;
+      flex-wrap: wrap;
+      p {
+        margin-bottom: 0;
+      }
+      div {
+        display: flex;
+        flex-grow: 1;
+        p {
+          flex-grow: 1;
+        }
+        button.close {
+          color: $white;
+          $fontSizeMap: (320px: 24px, 481px: 30px, 769px: 33px, 1025px: 39px, 1201px: 47px);
+          @include poly-fluid-sizing("font-size", $fontSizeMap);
+          opacity: .7;
+          text-shadow: 0px 5px 0 $secondary;
+          $marginTopMap: (320px: 0, 481px: -2.1px, 769px: -2.1px, 1025px: -2.1px, 1201px: -2.1px);
+          @include poly-fluid-sizing("margin-top", $marginTopMap);
+        }
+      }
+   
+    }
+  }
+  .uploading {
+    display: flex;
+    flex-wrap: wrap;
+    p {
+      $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+      @include poly-fluid-sizing("font-size", $map);
+      margin-bottom: 0;
+      text-align: center;
+    }
+    p:last-child {
+      display: flex;
+      flex-grow: 1;
+    }  
+  }
+  input:focus, textarea:focus {
+    background-color: rgba(255, 255, 255, 0.219);
+    color: $secondary;
   }
   label {
-    font-size: 0.85em;
+    $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+    @include poly-fluid-sizing("font-size", $map);
     line-height: 1.764705882em;
     position: relative;
     z-index: 0;
@@ -27,13 +101,14 @@
     -moz-transition: top 0.3s ease, opacity 0.3s ease;
     -ms-transition: top 0.3s ease, opacity 0.3s ease;
     transition: top 0.3s ease, opacity 0.3s ease;
-    vertical-align: middle;
-    vertical-align: baseline;
     opacity: 0;
   }
   &:not(:first-child) {
     padding-left: 14px;
-    border-left: 1px solid $gray-200;
+    border-left: 1px solid $white;
+  }
+  .text-danger {
+    color: #ffc107 !important;
   }
 }
 
@@ -41,14 +116,20 @@
   label {
     top: 0;
     opacity: 1;
+    color: $secondary;
   }
 }
 
 .floating-label-form-group-with-focus {
   label {
-    color: $primary;
+    color: $secondary;
   }
 }
 form .row:first-child .floating-label-form-group {
   border-top: 1px solid $gray-200;
+}
+
+#sendMessageButton:disabled {
+  background-color: $white;
+  border-color: $white;
 }

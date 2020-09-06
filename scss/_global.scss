@@ -1,5 +1,6 @@
 // Typography
 body {
+  height: 100%;
   @include body-font;
 }
 
@@ -13,9 +14,8 @@ h6 {
 }
 
 // Custom Horizontal Rule with Star Icon
-hr.star-light,
-hr.star-dark {
-  max-width: 15rem;
+hr.star-light {
+  max-width: 50%;
   padding: 0;
   text-align: center;
   border: none;
@@ -26,8 +26,7 @@ hr.star-dark {
   margin-right: auto;
 }
 
-hr.star-light:after,
-hr.star-dark:after {
+hr.star-light:after {
   position: relative;
   top: -.8em;
   display: inline-block;
@@ -46,33 +45,67 @@ hr.star-light:after {
   background-color: $primary;
 }
 
-hr.star-dark {
-  border-color: $secondary;
-}
-hr.star-dark:after {
-  color: $secondary;
-  background-color: white;
-}
-
 // Section Padding Settings
 section {
   padding: 6rem 0;
   h2 {
-    font-size: 2.25rem;
-    line-height: 2rem;
+    $map: (320px: 40px, 481px: 50px, 769px: 60px, 1025px: 70px, 1201px: 80px);
+    @include poly-fluid-sizing("font-size", $map);
   }
-  @media (min-width: 992px) {
-    h2 {
-      font-size: 3rem;
-      line-height: 2.5rem;
-    }
+  h3,
+  .lead {
+    @include body-font;
+    $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+    @include poly-fluid-sizing("font-size", $map);
+    font-weight: 400;
   }
 }
-
+section#about {
+  a.lead {
+    border: 3px solid $secondary;
+    border-radius: 0.25rem;
+    padding: 0.5rem; 
+    &:hover {
+      background-color: $primary;
+      color: $white !important;
+      font-weight: 900;
+      text-decoration: none;
+    }
+    &:active,
+    &:focus {
+      background-color: $primary;
+      color: $white !important;
+    }
+  }  
+}
+section#services {
+  ul {
+    color: $secondary;
+    display: inline-block;
+    $map: (320px: 22px, 481px: 24px, 769px: 26px, 1025px: 32px, 1201px: 38px);
+    @include poly-fluid-sizing("font-size", $map);
+  }
+  li {
+    line-height: 1;
+    text-align: left;
+  }
+}
+section#skills {
+  h3:first-child {
+    font-weight: 700;
+    margin-bottom: .1rem;
+  }
+  h3:last-child {
+    margin-bottom: .9rem;
+  }
+}
 // Custom Button Size
 .btn-xl {
   padding: 1rem 1.75rem;
-  font-size: 1.25rem;
+}
+.btn-xl, .btn-lg {
+  $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+  @include poly-fluid-sizing("font-size", $map);
 }
 
 // Custom Rounded Social Button

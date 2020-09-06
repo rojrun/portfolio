@@ -11,7 +11,8 @@ const merge = require("merge-stream");
 const plumber = require("gulp-plumber");
 const rename = require("gulp-rename");
 const sass = require("gulp-sass");
-const uglify = require("gulp-uglify");
+// const uglify = require("gulp-uglify");
+const uglify = require("gulp-uglify-es").default;
 
 // Load package.json for banner
 const pkg = require('./package.json');
@@ -31,7 +32,9 @@ function browserSync(done) {
     server: {
       baseDir: "./"
     },
-    port: 3000
+    port: 3000,
+    ghostMode: false,
+    notify: false
   });
   done();
 }
@@ -39,6 +42,7 @@ function browserSync(done) {
 // BrowserSync reload
 function browserSyncReload(done) {
   browsersync.reload();
+  // browsersync.stream({once: true});
   done();
 }
 
@@ -111,7 +115,7 @@ function js() {
       suffix: '.min'
     }))
     .pipe(gulp.dest('./js'))
-    .pipe(browsersync.stream());
+    .pipe(browsersync.stream({once: true}));
 }
 
 // Watch files
