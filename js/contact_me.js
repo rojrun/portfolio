@@ -20,6 +20,7 @@ $(function() {
   var totalFilesArray = [];
   var uploadFileLimit = 1000000;
   var fileSizeTotal = 0;
+  var allowedExtension = ["jpeg", "jpg", "gif", "pdf", "png", "doc", "docx", "txt", "xls", "psd"];
   $("#get_file").click(function() {
     $("#uploaded_file").click();
   }); 
@@ -35,7 +36,6 @@ $(function() {
     fileArray = $.makeArray(fileList);  /* turn fileList to array */
     $.each(fileArray, function(index, value) {  /* Loops through fileArray and appends li element to #file_list */       
       try {
-        var allowedExtension = ["jpeg", "jpg", "gif", "pdf", "png", "doc", "docx", "txt", "xls", "psd"];
         if ($.inArray(value.name.split(".").pop().toLowerCase(), allowedExtension) === -1) {   /* Checks if files are allowed */
           fileArray.splice(fileArray.indexOf(value.name), 1);
           $(":file ~ p.help-block.text-danger:last-child").html("<ul role=\"alert\"><li>Only " + allowedExtension.join(', ') + " formats are allowed.</li></ul>");   /* Copied structure from jqBootstrapValidation */
@@ -109,7 +109,7 @@ $(function() {
 
     function totalFilesArrayLengthConditional(totalFilesArray, fileSizeTotal) {
       var filePlural = " file ";
-      if (totalFilesArray.length > 1) {
+      if (totalFilesArray.length != 1) {
         filePlural = " files ";
       }
       if ($(".uploading").children().length === 0) {
@@ -122,6 +122,9 @@ $(function() {
         $(".uploading p:first-child").html("<span style=\"color:black; font-weight:bold;\">Uploading: </span>" + "&nbsp;&nbsp;&nbsp;" + totalFilesArray.length + filePlural + "&nbsp;&nbsp;&nbsp;" + "<span style=\"color:black; font-weight:bold;\"> | </span>" + "&nbsp;&nbsp;&nbsp;");
         $(".uploading p:last-child").html(fileSizeTotal.toLocaleString("en") + " out of " + uploadFileLimit.toLocaleString("en") + " bytes");
       } 
+      if (totalFilesArray.length === 0) {
+        $(".uploading").empty();
+      }
       return;
     } 
 

@@ -48,7 +48,7 @@ hr.star-light {
 
 hr.star-light:after {
   color: #fff;
-  background-color: #6e0202;
+  background-color: #5b0202;
 }
 
 section {
@@ -138,24 +138,55 @@ section#about a.lead {
 }
 
 section#about a.lead:hover {
-  background-color: #6e0202;
+  background-color: #5b0202;
   color: #fff !important;
   font-weight: 900;
   text-decoration: none;
 }
 
 section#about a.lead:active, section#about a.lead:focus {
-  background-color: #6e0202;
+  background-color: #5b0202;
   color: #fff !important;
 }
 
 section#services ul {
   color: #000000;
   display: inline-block;
-  font-weight: bold;
+  font-size: 22px;
+}
+
+@media (min-width: 320px) {
+  section#services ul {
+    font-size: calc(1.24224vw + 18.02484px);
+  }
+}
+
+@media (min-width: 481px) {
+  section#services ul {
+    font-size: calc(0.69444vw + 20.65972px);
+  }
+}
+
+@media (min-width: 769px) {
+  section#services ul {
+    font-size: calc(2.34375vw + 7.97656px);
+  }
+}
+
+@media (min-width: 1025px) {
+  section#services ul {
+    font-size: calc(3.40909vw - 2.94318px);
+  }
+}
+
+@media (min-width: 1201px) {
+  section#services ul {
+    font-size: 38px;
+  }
 }
 
 section#services li {
+  line-height: 1;
   text-align: left;
 }
 
@@ -310,7 +341,7 @@ section#skills h3:last-child {
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link:hover {
-  color: #6e0202;
+  color: #5b0202;
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
@@ -318,7 +349,7 @@ section#skills h3:last-child {
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link.active {
-  color: #6e0202;
+  color: #5b0202;
 }
 
 #mainNav .navbar-toggler {
@@ -368,11 +399,11 @@ section#skills h3:last-child {
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
     color: #fff;
-    background: #6e0202;
+    background: #5b0202;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
     color: #fff;
-    background: #6e0202;
+    background: #5b0202;
   }
   #mainNav.navbar-shrink {
     padding-top: 0.5rem;
@@ -457,6 +488,37 @@ header.masthead h1:nth-child(3) {
 header.masthead h2:last-child {
   font-weight: 700;
   font-family: 'Montserrat';
+  font-size: 22px;
+}
+
+@media (min-width: 320px) {
+  header.masthead h2:last-child {
+    font-size: calc(3.10559vw + 12.06211px);
+  }
+}
+
+@media (min-width: 481px) {
+  header.masthead h2:last-child {
+    font-size: calc(1.73611vw + 18.64931px);
+  }
+}
+
+@media (min-width: 769px) {
+  header.masthead h2:last-child {
+    font-size: calc(1.95313vw + 16.98047px);
+  }
+}
+
+@media (min-width: 1025px) {
+  header.masthead h2:last-child {
+    font-size: calc(2.84091vw + 7.88068px);
+  }
+}
+
+@media (min-width: 1201px) {
+  header.masthead h2:last-child {
+    font-size: 42px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -481,7 +543,7 @@ header.masthead h2:last-child {
   -webkit-transition: all ease 0.5s;
   transition: all ease 0.5s;
   opacity: 0;
-  background-color: rgba(110, 2, 2, 0.9);
+  background-color: rgba(91, 2, 2, 0.9);
 }
 
 .portfolio .portfolio-item .portfolio-item-caption:hover {
@@ -1065,7 +1127,7 @@ form .row:first-child .floating-label-form-group {
 .footer {
   padding-top: 6rem;
   padding-bottom: 6rem;
-  background-color: #6e0202;
+  background-color: #5b0202;
   color: #000000;
 }
 
@@ -1113,11 +1175,11 @@ form .row:first-child .floating-label-form-group {
 }
 
 a {
-  color: #6e0202;
+  color: #5b0202;
 }
 
 a:focus, a:hover, a:active {
-  color: #3c0101;
+  color: #290101;
 }
 
 .btn {
@@ -1125,8 +1187,7 @@ a:focus, a:hover, a:active {
 }
 
 .bg-primary {
-  background-color: #6e0202 !important;
-  background-image: url("../img/leather.png");
+  background-image: url("../img/smooth-red-texture.jpg");
 }
 
 .bg-secondary {
@@ -1142,13 +1203,13 @@ a:focus, a:hover, a:active {
 }
 
 .btn-primary {
-  background-color: #6e0202;
-  border-color: #6e0202;
+  background-color: #5b0202;
+  border-color: #5b0202;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background-color: #3c0101 !important;
-  border-color: #3c0101 !important;
+  background-color: #290101 !important;
+  border-color: #290101 !important;
 }
 
 .btn-secondary {
