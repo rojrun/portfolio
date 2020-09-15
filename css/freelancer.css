@@ -5,6 +5,10 @@
  */
 
 body {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #950303), color-stop(22.5%, #bb0404), color-stop(40%, #ce0505), color-stop(60%, #ce0505), color-stop(77.5%, #bb0404), color-stop(95%, #950303), to(#000));
+  background: linear-gradient(90deg, #000 0, #950303 5%, #bb0404 22.5%, #ce0505 40%, #ce0505 60%, #bb0404 77.5%, #950303 95%, #000 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   height: 100%;
   font-family: 'Lato';
 }
@@ -563,6 +567,13 @@ header.masthead h2:last-child {
   }
 }
 
+.portfolio-modal {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #950303), color-stop(22.5%, #bb0404), color-stop(40%, #ce0505), color-stop(60%, #ce0505), color-stop(77.5%, #bb0404), color-stop(95%, #950303), to(#000));
+  background: linear-gradient(90deg, #000 0, #950303 5%, #bb0404 22.5%, #ce0505 40%, #ce0505 60%, #bb0404 77.5%, #950303 95%, #000 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .portfolio-modal .portfolio-modal-dialog {
   padding: 3rem 1rem;
   min-height: calc(100vh - 2rem);
@@ -819,6 +830,7 @@ header.masthead h2:last-child {
   border: none;
   padding: 0 !important;
   font-weight: 700;
+  margin-top: 2.5rem;
   font-size: 16px;
 }
 
@@ -1127,7 +1139,6 @@ form .row:first-child .floating-label-form-group {
 .footer {
   padding-top: 6rem;
   padding-bottom: 6rem;
-  background-color: #5b0202;
   color: #000000;
 }
 
@@ -1184,10 +1195,6 @@ a:focus, a:hover, a:active {
 
 .btn {
   border-width: 2px;
-}
-
-.bg-primary {
-  background-image: url("../img/smooth-red-texture.jpg");
 }
 
 .bg-secondary {

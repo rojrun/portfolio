@@ -1,5 +1,6 @@
 // Typography
 body {
+  @include background;
   height: 100%;
   @include body-font;
 }
