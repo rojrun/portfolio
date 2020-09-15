@@ -29,6 +29,7 @@
 }
 
 .portfolio-modal {
+  @include background;
   .portfolio-modal-dialog {
     padding: 3rem 1rem;
     min-height: calc(100vh - 2rem);

@@ -27,6 +27,7 @@
     border: none;
     padding: 0 !important;
     font-weight: 700;
+    margin-top: 2.5rem;
     $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
     @include poly-fluid-sizing("font-size", $map);
   }
