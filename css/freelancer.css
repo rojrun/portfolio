@@ -13,6 +13,20 @@ body {
   font-family: 'Lato';
 }
 
+@media (min-width: 1340px) {
+  body {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #950303), color-stop(25%, #bb0404), color-stop(45%, #ce0505), color-stop(55%, #ce0505), color-stop(75%, #bb0404), color-stop(90%, #950303), to(#000));
+    background: linear-gradient(90deg, #000 0, #950303 10%, #bb0404 25%, #ce0505 45%, #ce0505 55%, #bb0404 75%, #950303 90%, #000 100%);
+  }
+}
+
+@media (min-width: 1600px) {
+  body {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #950303), color-stop(35%, #bb0404), color-stop(50%, #ce0505), color-stop(65%, #bb0404), color-stop(80%, #950303), to(#000));
+    background: linear-gradient(90deg, #000 0, #950303 20%, #bb0404 35%, #ce0505 50%, #bb0404 65%, #950303 80%, #000 100%);
+  }
+}
+
 h1,
 h2,
 h3,
@@ -742,6 +756,20 @@ header.masthead h2:last-child {
     min-height: 100vh;
     padding: 5rem;
     margin: 3rem calc(3rem - 8px);
+  }
+}
+
+@media (min-width: 1340px) {
+  .portfolio-modal {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #950303), color-stop(25%, #bb0404), color-stop(45%, #ce0505), color-stop(55%, #ce0505), color-stop(75%, #bb0404), color-stop(90%, #950303), to(#000));
+    background: linear-gradient(90deg, #000 0, #950303 10%, #bb0404 25%, #ce0505 45%, #ce0505 55%, #bb0404 75%, #950303 90%, #000 100%);
+  }
+}
+
+@media (min-width: 1600px) {
+  .portfolio-modal {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #950303), color-stop(35%, #bb0404), color-stop(50%, #ce0505), color-stop(65%, #bb0404), color-stop(80%, #950303), to(#000));
+    background: linear-gradient(90deg, #000 0, #950303 20%, #bb0404 35%, #ce0505 50%, #bb0404 65%, #950303 80%, #000 100%);
   }
 }
 

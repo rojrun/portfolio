@@ -29,7 +29,9 @@
 }
 
 .portfolio-modal {
-  @include background;
+  background: linear-gradient(90deg,#000 0, #950303 5%, #bb0404 22.5%, #ce0505 40%, #ce0505 60%, #bb0404 77.5%, #950303 95%, #000 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   .portfolio-modal-dialog {
     padding: 3rem 1rem;
     min-height: calc(100vh - 2rem);
@@ -78,3 +80,16 @@
     }
   }
 }
+
+@media (min-width: 1340px) {
+  .portfolio-modal {
+    background: linear-gradient(90deg,#000 0,#950303 10%,#bb0404 25%,#ce0505 45%,#ce0505 55%,#bb0404 75%,#950303 90%,#000 100%);
+  }  
+}
+
+@media (min-width: 1600px) {
+  .portfolio-modal {
+    background: linear-gradient(90deg,#000 0,#950303 20%,#bb0404 35%,#ce0505 50%,#bb0404 65%,#950303 80%,#000 100%);
+  }
+}
+
