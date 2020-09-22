@@ -1,0 +1,28 @@
+/* width */
+body::-webkit-scrollbar {
+	background: $secondary;
+	width: 20px;
+}
+  
+/* Track */
+body::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey; 
+	border-radius: 10px;
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+	background: #bb0404; 
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+	background: #950303; 
+}
+
+/* The emerging W3C standard that is currently Firefox-only */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #bb0404 $secondary;
+}
