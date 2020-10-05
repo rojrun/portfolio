@@ -285,6 +285,7 @@ section#skills h3:last-child {
 
 #mainNav .navbar-brand {
   color: #fff;
+  font-style: normal;
   font-size: 16px;
 }
 
@@ -325,6 +326,7 @@ section#skills h3:last-child {
 
 #mainNav .navbar-nav li.nav-item a.nav-link {
   color: #fff;
+  font-style: normal;
   font-size: 14px;
 }
 
@@ -678,8 +680,15 @@ header.masthead h2:last-child {
 }
 
 .portfolio-modal .portfolio-modal-dialog p a {
-  color: #fff;
-  text-decoration: underline;
+  color: #000000;
+  font-style: italic;
+  font-weight: 900;
+}
+
+.portfolio-modal .portfolio-modal-dialog p a:focus, .portfolio-modal .portfolio-modal-dialog p a:hover, .portfolio-modal .portfolio-modal-dialog p a:active {
+  color: #290101;
+  -webkit-text-decoration-color: #fff;
+  text-decoration-color: #fff;
 }
 
 .portfolio-modal .portfolio-modal-dialog h5 {
@@ -1244,11 +1253,15 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 a {
-  color: #5b0202;
+  color: #000000;
+  font-style: italic;
+  font-weight: 900;
 }
 
 a:focus, a:hover, a:active {
   color: #290101;
+  -webkit-text-decoration-color: #fff;
+  text-decoration-color: #fff;
 }
 
 .btn {

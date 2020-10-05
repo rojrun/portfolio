@@ -1,10 +1,13 @@
 // Bootstrap overrides for this template
 a {
-  color: $primary;
+  color: $secondary;
+  font-style: italic;
+  font-weight: 900;
   &:focus,
   &:hover,
   &:active {
     color: darken($primary, 10%);
+    text-decoration-color: $white;
   }
 }
 
