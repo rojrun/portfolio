@@ -149,22 +149,81 @@ section .lead {
   }
 }
 
-section#about a.lead {
-  border: 3px solid #000000;
-  border-radius: 0.25rem;
-  padding: 0.5rem;
-}
-
-section#about a.lead:hover {
-  background-color: #5b0202;
-  color: #fff !important;
+section#services h3 {
   font-weight: 900;
-  text-decoration: none;
 }
 
-section#about a.lead:active, section#about a.lead:focus {
-  background-color: #5b0202;
-  color: #fff !important;
+section#services h4, section#services h5 {
+  font-family: 'Lato';
+}
+
+section#services h4 {
+  font-size: 20px;
+}
+
+@media (min-width: 320px) {
+  section#services h4 {
+    font-size: calc(3.10559vw + 10.06211px);
+  }
+}
+
+@media (min-width: 481px) {
+  section#services h4 {
+    font-size: calc(1.73611vw + 16.64931px);
+  }
+}
+
+@media (min-width: 769px) {
+  section#services h4 {
+    font-size: calc(1.95313vw + 14.98047px);
+  }
+}
+
+@media (min-width: 1025px) {
+  section#services h4 {
+    font-size: calc(2.84091vw + 5.88068px);
+  }
+}
+
+@media (min-width: 1201px) {
+  section#services h4 {
+    font-size: 40px;
+  }
+}
+
+section#services h5 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+@media (min-width: 320px) {
+  section#services h5 {
+    font-size: calc(1.24224vw + 12.02484px);
+  }
+}
+
+@media (min-width: 481px) {
+  section#services h5 {
+    font-size: calc(1.04167vw + 12.98958px);
+  }
+}
+
+@media (min-width: 769px) {
+  section#services h5 {
+    font-size: calc(1.5625vw + 8.98438px);
+  }
+}
+
+@media (min-width: 1025px) {
+  section#services h5 {
+    font-size: calc(2.84091vw - 4.11932px);
+  }
+}
+
+@media (min-width: 1201px) {
+  section#services h5 {
+    font-size: 30px;
+  }
 }
 
 section#services ul {
@@ -204,7 +263,7 @@ section#services ul {
 }
 
 section#services li {
-  line-height: 1;
+  line-height: 1.2;
   text-align: left;
 }
 
@@ -285,6 +344,7 @@ section#skills h3:last-child {
 
 #mainNav .navbar-brand {
   color: #fff;
+  font-style: normal;
   font-size: 16px;
 }
 
@@ -325,6 +385,7 @@ section#skills h3:last-child {
 
 #mainNav .navbar-nav li.nav-item a.nav-link {
   color: #fff;
+  font-style: normal;
   font-size: 14px;
 }
 
@@ -678,8 +739,15 @@ header.masthead h2:last-child {
 }
 
 .portfolio-modal .portfolio-modal-dialog p a {
-  color: #fff;
-  text-decoration: underline;
+  color: #000000;
+  font-style: italic;
+  font-weight: 900;
+}
+
+.portfolio-modal .portfolio-modal-dialog p a:focus, .portfolio-modal .portfolio-modal-dialog p a:hover, .portfolio-modal .portfolio-modal-dialog p a:active {
+  color: #290101;
+  -webkit-text-decoration-color: #fff;
+  text-decoration-color: #fff;
 }
 
 .portfolio-modal .portfolio-modal-dialog h5 {
@@ -1244,11 +1312,15 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 a {
-  color: #5b0202;
+  color: #000000;
+  font-style: italic;
+  font-weight: 900;
 }
 
 a:focus, a:hover, a:active {
   color: #290101;
+  -webkit-text-decoration-color: #fff;
+  text-decoration-color: #fff;
 }
 
 .btn {

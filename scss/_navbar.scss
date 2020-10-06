@@ -5,6 +5,7 @@
   @include heading-font;
   .navbar-brand {
     color: $white;
+    font-style: normal;
     $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
     @include poly-fluid-sizing("font-size", $map);
   }
@@ -14,6 +15,7 @@
     li.nav-item {
       a.nav-link {
         color: $white;
+        font-style: normal;
         $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
         @include poly-fluid-sizing("font-size", $map);
         &:hover {
