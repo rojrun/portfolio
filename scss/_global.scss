@@ -75,25 +75,22 @@ section {
     font-weight: 400;
   }
 }
-section#about {
-  a.lead {
-    border: 3px solid $secondary;
-    border-radius: 0.25rem;
-    padding: 0.5rem; 
-    &:hover {
-      background-color: $primary;
-      color: $white !important;
-      font-weight: 900;
-      text-decoration: none;
-    }
-    &:active,
-    &:focus {
-      background-color: $primary;
-      color: $white !important;
-    }
-  }  
-}
 section#services {
+  h3 {
+    font-weight: 900;
+  }
+  h4, h5 {
+    @include body-font;
+  }
+  h4 {
+    $map: (320px: 20px, 481px: 25px, 769px: 30px, 1025px: 35px, 1201px: 40px);
+    @include poly-fluid-sizing("font-size", $map);
+  }
+  h5 {
+    $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+    @include poly-fluid-sizing("font-size", $map);
+    font-weight: 400;
+  }
   ul {
     color: $secondary;
     display: inline-block;
@@ -101,7 +98,7 @@ section#services {
     @include poly-fluid-sizing("font-size", $map);
   }
   li {
-    line-height: 1;
+    line-height: 1.2;
     text-align: left;
   }
 }
