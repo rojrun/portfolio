@@ -61,6 +61,20 @@
     $.magnificPopup.close();
   });
 
+  // Email modal popup
+  // $('#navbarResponsive > ul.navbar-nav > li:last-child > a.nav-link').hasClass('active').then(function() {
+  //   console.log("contact link");
+  // });
+  $(window).scroll(function() {
+    if ($('ul.navbar-nav > li:last-child > a.nav-link').hasClass('active')) {
+      setTimeout(function() {
+        console.log("contact link");
+      }, 1500);
+    }
+  });
+  
+  
+  
   // Floating label headings for the contact form
   $(function() {
     $("body").on("input propertychange", ".floating-label-form-group", function(e) {
