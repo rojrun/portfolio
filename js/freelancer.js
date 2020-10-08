@@ -61,19 +61,32 @@
     $.magnificPopup.close();
   });
 
-  // Email modal popup
-  // $('#navbarResponsive > ul.navbar-nav > li:last-child > a.nav-link').hasClass('active').then(function() {
-  //   console.log("contact link");
+  // Email modal
+  // $.fn.isInViewport = function() {
+  //   var elementTop = $(this).offset().top;
+  //   var elementBottom = elementTop + $(this).outerHeight();
+  //   var viewportTop = $(window).scrollTop();
+  //   var viewportBottom = viewportTop + $(window).height();
+  //   console.log("elementTop: ", elementTop);
+  //   console.log("elementOuterHeight: ", $(this).outerHeight());
+  //   console.log("elementBottom: ", elementBottom);
+  //   console.log("viewportTop: ", viewportTop);
+  //   console.log("windowHeight: ", $(window).height());
+  //   console.log("viewportBottom: ", viewportBottom);
+  //   return elementBottom > viewportTop && elementTop < viewportBottom;
+  // }
+  // $(window).on("resize scroll", function() {
+  //   if ($("button[type=submit]").isInViewport()) {
+  //     console.log(true);
+  //     setTimeout(function() {
+  //       $("body").toggleClass("noscroll");
+  //       $(".overlay").attr("aria-hidden", false);
+  //     }, 1100);      
+  //   } else {
+  //     console.log(false);
+  //   }
+    
   // });
-  $(window).scroll(function() {
-    if ($('ul.navbar-nav > li:last-child > a.nav-link').hasClass('active')) {
-      setTimeout(function() {
-        console.log("contact link");
-      }, 1500);
-    }
-  });
-  
-  
   
   // Floating label headings for the contact form
   $(function() {
