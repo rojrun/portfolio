@@ -1,8 +1,6 @@
 // Typography
 body {
   background: linear-gradient(90deg,#000 0, #950303 5%, #bb0404 22.5%, #ce0505 40%, #ce0505 60%, #bb0404 77.5%, #950303 95%, #000 100%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   height: 100%;
   @include body-font;
 }
