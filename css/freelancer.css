@@ -1309,6 +1309,10 @@ form .row:first-child .floating-label-form-group {
   scrollbar-color: #bb0404 #000000;
 }
 
+#email-modal form .control-group:first-child > .floating-label-form-group {
+  border-top: 1px solid #fff;
+}
+
 #email-modal form p {
   font-size: 16px;
   font-weight: 900;

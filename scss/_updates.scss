@@ -1,13 +1,16 @@
 $transitionSpeed: 200ms;
 #email-modal {
 	form {
+		.control-group:first-child > .floating-label-form-group {
+			border-top: 1px solid $white;
+		}
 		p {
 			$map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
 			@include poly-fluid-sizing("font-size", $map);
 			font-weight: 900;
 		}
 		.form-check {
-				input[type="checkbox"] {
+			input[type="checkbox"] {
 				display: none;
 				+ label {
 					position: relative;

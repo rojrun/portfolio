@@ -21,7 +21,7 @@ try {
   // Create the email and send the message
   $to = $secret_email; // Add your email address inbetween the "" replacing yourname@yourdomain.com - This is where the form will send a message to.
   $subject = "Website Contact Form: $name";
-  $body = "<h2>You have received a new message from your website contact form.</h2><br><h3>Here are the details:</h3><br><h3>Name: $name</h3><br><h3>Email: $email</h3><br><h3>Phone: $phone</h3><br><h3>Message: $message</h3>";
+  $body = "<h2>You have received a new message from your website contact form.</h2><br><h3 style='color: red;'>Here are the details:</h3><br><h3 style='margin-top: 0; margin-bottom:0;'>Name: $name</h3><br><h3 style='margin-top: 0; margin-bottom:0;'>Email: $email</h3><br><h3 style=' margin-top: 0; margin-bottom:0;'>Phone: $phone</h3><br><h3 style='margin-top: 0; margin-bottom:0;'>Message: $message</h3>";
   $header = "From: noreply@yourdomain.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
   $header .= "Reply-To: $email";	
 
