@@ -1309,50 +1309,50 @@ form .row:first-child .floating-label-form-group {
   scrollbar-color: #bb0404 #000000;
 }
 
-#email-modal form .control-group:first-child > .floating-label-form-group {
+#updates-modal form .control-group:first-child > .floating-label-form-group {
   border-top: 1px solid #fff;
 }
 
-#email-modal form p {
+#updates-modal form p {
   font-size: 16px;
   font-weight: 900;
 }
 
 @media (min-width: 320px) {
-  #email-modal form p {
+  #updates-modal form p {
     font-size: calc(1.24224vw + 12.02484px);
   }
 }
 
 @media (min-width: 481px) {
-  #email-modal form p {
+  #updates-modal form p {
     font-size: calc(1.04167vw + 12.98958px);
   }
 }
 
 @media (min-width: 769px) {
-  #email-modal form p {
+  #updates-modal form p {
     font-size: calc(1.5625vw + 8.98438px);
   }
 }
 
 @media (min-width: 1025px) {
-  #email-modal form p {
+  #updates-modal form p {
     font-size: calc(2.84091vw - 4.11932px);
   }
 }
 
 @media (min-width: 1201px) {
-  #email-modal form p {
+  #updates-modal form p {
     font-size: 30px;
   }
 }
 
-#email-modal form .form-check input[type="checkbox"] {
+#updates-modal form .form-check input[type="checkbox"] {
   display: none;
 }
 
-#email-modal form .form-check input[type="checkbox"] + label {
+#updates-modal form .form-check input[type="checkbox"] + label {
   position: relative;
   text-indent: 2em;
   font-size: 16px;
@@ -1361,36 +1361,36 @@ form .row:first-child .floating-label-form-group {
 }
 
 @media (min-width: 320px) {
-  #email-modal form .form-check input[type="checkbox"] + label {
+  #updates-modal form .form-check input[type="checkbox"] + label {
     font-size: calc(1.24224vw + 12.02484px);
   }
 }
 
 @media (min-width: 481px) {
-  #email-modal form .form-check input[type="checkbox"] + label {
+  #updates-modal form .form-check input[type="checkbox"] + label {
     font-size: calc(1.04167vw + 12.98958px);
   }
 }
 
 @media (min-width: 769px) {
-  #email-modal form .form-check input[type="checkbox"] + label {
+  #updates-modal form .form-check input[type="checkbox"] + label {
     font-size: calc(1.5625vw + 8.98438px);
   }
 }
 
 @media (min-width: 1025px) {
-  #email-modal form .form-check input[type="checkbox"] + label {
+  #updates-modal form .form-check input[type="checkbox"] + label {
     font-size: calc(2.84091vw - 4.11932px);
   }
 }
 
 @media (min-width: 1201px) {
-  #email-modal form .form-check input[type="checkbox"] + label {
+  #updates-modal form .form-check input[type="checkbox"] + label {
     font-size: 30px;
   }
 }
 
-#email-modal form .form-check input[type="checkbox"] + label:before {
+#updates-modal form .form-check input[type="checkbox"] + label:before {
   content: "";
   position: absolute;
   width: 1em;
@@ -1405,7 +1405,7 @@ form .row:first-child .floating-label-form-group {
   transition: all ease-out 200ms;
 }
 
-#email-modal form .form-check input[type="checkbox"] + label:after {
+#updates-modal form .form-check input[type="checkbox"] + label:after {
   content: "";
   position: absolute;
   width: 0;
@@ -1423,14 +1423,23 @@ form .row:first-child .floating-label-form-group {
   transition: all ease-out 200ms;
 }
 
-#email-modal form .form-check input[type="checkbox"]:checked + label:before {
+#updates-modal form .form-check input[type="checkbox"]:checked + label:before {
   border: 0.1em solid #000000;
   opacity: 1;
 }
 
-#email-modal form .form-check input[type="checkbox"]:checked + label:after {
+#updates-modal form .form-check input[type="checkbox"]:checked + label:after {
   opacity: 1;
   width: 1.3em;
+}
+
+#updates-modal form #updatesSuccess > div {
+  margin-top: 1rem;
+}
+
+#updatesButton:disabled {
+  background-color: #fff;
+  border-color: #fff;
 }
 
 a {

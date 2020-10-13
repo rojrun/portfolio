@@ -36,7 +36,7 @@ try {
   $mail->Password = $secret_password;
   $mail->CharSet = PHPMailer::CHARSET_UTF8;
   $mail->setFrom($email, $name);
-  $mail->addAddress($to, 'Roj Rungsisullatanont');
+  $mail->addAddress($to, $email_to);
   $mail->Subject = $subject;
   $mail->addReplyTo($email, $name);
 

@@ -1,5 +1,5 @@
 $transitionSpeed: 200ms;
-#email-modal {
+#updates-modal {
 	form {
 		.control-group:first-child > .floating-label-form-group {
 			border-top: 1px solid $white;
@@ -60,5 +60,15 @@ $transitionSpeed: 200ms;
 				}				
 			}
 		}
+		#updatesSuccess {
+			> div {
+				margin-top: 1rem;
+			}
+		}
 	}
+}
+
+#updatesButton:disabled {
+  background-color: $white;
+  border-color: $white;
 }

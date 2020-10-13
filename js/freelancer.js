@@ -2,7 +2,7 @@
   "use strict"; // Start of use strict
 
   // Smooth scrolling using jQuery easing
-  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').on('click', function() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
       var target = $(this.hash);
       target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -16,7 +16,7 @@
   });
 
   // Scroll to top button appear
-  $(document).scroll(function() {
+  $(document).on('scroll', function() {
     var scrollDistance = $(this).scrollTop();
     if (scrollDistance > 100) {
       $('.scroll-to-top').fadeIn();
@@ -26,7 +26,7 @@
   });
 
   // Closes responsive menu when a scroll trigger link is clicked
-  $('.js-scroll-trigger').click(function() {
+  $('.js-scroll-trigger').on('click', function() {
     $('.navbar-collapse').collapse('hide');
   });
 
@@ -61,32 +61,34 @@
     $.magnificPopup.close();
   });
 
-  // Email modal
-  // $.fn.isInViewport = function() {
-  //   var elementTop = $(this).offset().top;
-  //   var elementBottom = elementTop + $(this).outerHeight();
-  //   var viewportTop = $(window).scrollTop();
-  //   var viewportBottom = viewportTop + $(window).height();
-  //   console.log("elementTop: ", elementTop);
-  //   console.log("elementOuterHeight: ", $(this).outerHeight());
-  //   console.log("elementBottom: ", elementBottom);
-  //   console.log("viewportTop: ", viewportTop);
-  //   console.log("windowHeight: ", $(window).height());
-  //   console.log("viewportBottom: ", viewportBottom);
-  //   return elementBottom > viewportTop && elementTop < viewportBottom;
-  // }
-  // $(window).on("resize scroll", function() {
-  //   if ($("button[type=submit]").isInViewport()) {
-  //     console.log(true);
-  //     setTimeout(function() {
-  //       $("body").toggleClass("noscroll");
-  //       $(".overlay").attr("aria-hidden", false);
-  //     }, 1100);      
-  //   } else {
-  //     console.log(false);
-  //   }
-    
-  // });
+  // Updates modal popup
+  $.fn.isInViewport = function() {
+    var elementTop = $(this).offset().top;
+    var elementBottom = elementTop + $(this).outerHeight();
+    var viewportTop = $(window).scrollTop();
+    var viewportBottom = viewportTop + $(window).height();
+    console.log("elementTop: ", elementTop);
+    console.log("elementOuterHeight: ", $(this).outerHeight());
+    console.log("elementBottom: ", elementBottom);
+    console.log("viewportTop: ", viewportTop);
+    console.log("windowHeight: ", $(window).height());
+    console.log("viewportBottom: ", viewportBottom);
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+  }
+  $(window).on("scroll", function() {
+    if ($("#sendMessageButton").isInViewport() ) {
+      setTimeout(function() {
+        $.magnificPopup.open({
+          items: {
+            src: "#updates-modal",
+            type: "inline"
+          },
+          preloader: false,
+          modal: true
+        });
+      }, 1000);      
+    }   
+  });
   
   // Floating label headings for the contact form
   $(function() {

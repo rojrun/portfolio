@@ -21,10 +21,10 @@ $(function() {
   var uploadFileLimit = 1000000;
   var fileSizeTotal = 0;
   var allowedExtension = ["jpeg", "jpg", "gif", "pdf", "png", "doc", "docx", "txt", "xls", "psd"];
-  $("#get_file").click(function() {
-    $("#uploaded_file").click();
+  $("#get_file").on("click", function() {
+    $("#uploaded_file").on("click");
   }); 
-  $("input[type=file]").change(function(e) {  
+  $("input[type=file]").on("change", function(e) {  
     $("#sendMessageButton").prop("disabled", true);  /* Disables submit button to ensure size limit */
     if ($(":file ~ p.help-block.text-danger:last-child").children().length > 0) {
       $(":file ~ p.help-block.text-danger:last-child").empty();
@@ -129,7 +129,7 @@ $(function() {
     } 
 
     // Clears out the file attachments when reset clicked
-    $(":reset").click(function() {
+    $(":reset").on("click", function() {
       fileArray = [];
       totalFilesArray = [];
       fileSizeTotal = 0;
@@ -206,7 +206,7 @@ $(function() {
 });
 
 /*When clicking on Full hide fail/success boxes */
-$('#name').focus(function() {
+$('#name').on("focus", function() {
   $('#success').html('');
 });
 
