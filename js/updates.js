@@ -72,12 +72,12 @@ $(function() {
           setTimeout(function() {
             $("#updatesButton").prop("disabled", false); // Re-enable submit button when AJAX call is complete
           }, 700);
-          setTimeout(function() {
-            $("input[type='text'], input[type='email']").val("");
-            $("input[type='checkbox']").prop("checked", false);
-            $('#updatesSuccess').empty();
-            $.magnificPopup.close();
-          }, 2500);
+          $("input[type='text'], input[type='email']").val("");
+          $("input[type='checkbox']").prop("checked", false);
+          
+          $('#updatesSuccess').empty();
+          $.magnificPopup.close();
+          $(".updatesModalPopupButton").fadeIn();
         }
       });
     },
@@ -92,5 +92,5 @@ $(function() {
 });
 /*When clicking on Full hide fail/success boxes */
 $('#name').on("focus", function() {
-  $('#success').html('');
+  $('#updatesSuccess').html('');
 });

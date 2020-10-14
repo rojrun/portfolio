@@ -61,22 +61,36 @@
     $.magnificPopup.close();
   });
 
+  // Updates Modal Popup Button click event
+  $(".updatesModalPopupButton").on("click", function() {
+    $.magnificPopup.open({
+      items: {
+        src: "#updates-modal",
+        type: "inline"
+      },
+      preloader: false,
+      modal: true,
+      removalDelay: 1600,
+      mainClass: "mfp-fade"
+    });
+  });
+
   // Updates modal popup
   $.fn.isInViewport = function() {
     var elementTop = $(this).offset().top;
     var elementBottom = elementTop + $(this).outerHeight();
     var viewportTop = $(window).scrollTop();
     var viewportBottom = viewportTop + $(window).height();
-    console.log("elementTop: ", elementTop);
-    console.log("elementOuterHeight: ", $(this).outerHeight());
-    console.log("elementBottom: ", elementBottom);
-    console.log("viewportTop: ", viewportTop);
-    console.log("windowHeight: ", $(window).height());
-    console.log("viewportBottom: ", viewportBottom);
+    // console.log("elementTop: ", elementTop);
+    // console.log("elementOuterHeight: ", $(this).outerHeight());
+    // console.log("elementBottom: ", elementBottom);
+    // console.log("viewportTop: ", viewportTop);
+    // console.log("windowHeight: ", $(window).height());
+    // console.log("viewportBottom: ", viewportBottom);
     return elementBottom > viewportTop && elementTop < viewportBottom;
   }
   $(window).on("scroll", function() {
-    if ($("#sendMessageButton").isInViewport() ) {
+    if ($("#sendMessageButton").isInViewport() && $(".updatesModalPopupButton").is(":hidden")) {
       setTimeout(function() {
         $.magnificPopup.open({
           items: {
@@ -84,10 +98,17 @@
             type: "inline"
           },
           preloader: false,
-          modal: true
+          modal: true,
+          removalDelay: 1600,
+          mainClass: "mfp-fade"
         });
       }, 1000);      
     }   
+  });
+
+  // Updates modal icon appears when No thanks link is clicked
+  $(".showModalIcon").on("click", function() {
+    $(".updatesModalPopupButton").fadeIn();
   });
   
   // Floating label headings for the contact form

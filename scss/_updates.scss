@@ -9,6 +9,19 @@ $transitionSpeed: 200ms;
 			@include poly-fluid-sizing("font-size", $map);
 			font-weight: 900;
 		}
+		input:focus {
+			background-color: rgba(255, 255, 255, 0.1);
+      color: $white;
+		}
+		input:-webkit-autofill,
+		input:-webkit-autofill:hover, 
+		input:-webkit-autofill:focus,
+		textarea:-webkit-autofill,
+		textarea:-webkit-autofill:hover,
+		textarea:-webkit-autofill:focus {
+			-webkit-text-fill-color: $white;
+			transition: background-color 5000s ease-in-out 0s;
+		}
 		.form-check {
 			input[type="checkbox"] {
 				display: none;
@@ -71,4 +84,35 @@ $transitionSpeed: 200ms;
 #updatesButton:disabled {
   background-color: $white;
   border-color: $white;
+}
+
+/* overlay at start */
+.mfp-fade.mfp-bg {
+  opacity: 0;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+/* overlay animate in */
+.mfp-fade.mfp-bg.mfp-ready {
+  opacity: 0.8;
+}
+/* overlay animate out */
+.mfp-fade.mfp-bg.mfp-removing {
+  opacity: 0;
+}
+/* content at start */
+.mfp-fade.mfp-wrap .mfp-content {
+  opacity: 0;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+/* content animate it */
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+  opacity: 1;
+}
+/* content animate out */
+.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+  opacity: 0;
 }

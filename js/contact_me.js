@@ -22,7 +22,7 @@ $(function() {
   var fileSizeTotal = 0;
   var allowedExtension = ["jpeg", "jpg", "gif", "pdf", "png", "doc", "docx", "txt", "xls", "psd"];
   $("#get_file").on("click", function() {
-    $("#uploaded_file").on("click");
+    $("#uploaded_file").trigger("click");
   }); 
   $("input[type=file]").on("change", function(e) {  
     $("#sendMessageButton").prop("disabled", true);  /* Disables submit button to ensure size limit */
@@ -129,12 +129,14 @@ $(function() {
     } 
 
     // Clears out the file attachments when reset clicked
-    $(":reset").on("click", function() {
+    $("button[type='reset']").on("click", function() {
       fileArray = [];
       totalFilesArray = [];
       fileSizeTotal = 0;
-      $("#file_list, .total").empty();
+      $("#file_list, .uploading").empty();
       $(":file ~ p.help-block.text-danger:last-child > ul").remove();
+      $(".floating-label-form-group").removeClass("floating-label-form-group-with-value");
+      console.log("reset");
     });
   });              
 
