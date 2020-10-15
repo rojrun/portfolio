@@ -44,7 +44,7 @@ hr.star-light:after {
   top: -.8em;
   display: inline-block;
   padding: 0 0.25em;
-  content: '\f005';
+  content: '\f530';
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 2em;
@@ -127,20 +127,8 @@ section#skills {
 }
 
 // Updates Modal Button
-.updatesModalPopupButton {
-  z-index: 1042;
-  right: 1rem;
-  bottom: 6rem;
-  display: none;
-  a {
-    width: 3.5rem;
-    height: 3.5rem;
-    background-color: fade-out($gray-900, 0.5);
-    line-height: 3.1rem;
-  }
-}
-
 // Scroll to Top Button
+.updatesModalPopupButton,
 .scroll-to-top {
   z-index: 1042;
   right: 1rem;
@@ -152,4 +140,7 @@ section#skills {
     background-color: fade-out($gray-900, 0.5);
     line-height: 3.1rem;
   }
+}
+.updatesModalPopupButton {
+  left: 1rem;
 }

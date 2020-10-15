@@ -81,16 +81,10 @@
     var elementBottom = elementTop + $(this).outerHeight();
     var viewportTop = $(window).scrollTop();
     var viewportBottom = viewportTop + $(window).height();
-    // console.log("elementTop: ", elementTop);
-    // console.log("elementOuterHeight: ", $(this).outerHeight());
-    // console.log("elementBottom: ", elementBottom);
-    // console.log("viewportTop: ", viewportTop);
-    // console.log("windowHeight: ", $(window).height());
-    // console.log("viewportBottom: ", viewportBottom);
     return elementBottom > viewportTop && elementTop < viewportBottom;
   }
   $(window).on("scroll", function() {
-    if ($("#sendMessageButton").isInViewport() && $(".updatesModalPopupButton").is(":hidden")) {
+    if ($("#portfolio .container .row > div:last-child").isInViewport() && $(".updatesModalPopupButton").is(":hidden")) {
       setTimeout(function() {
         $.magnificPopup.open({
           items: {
@@ -99,15 +93,14 @@
           },
           preloader: false,
           modal: true,
-          removalDelay: 1600,
           mainClass: "mfp-fade"
         });
       }, 1000);      
     }   
   });
 
-  // Updates modal icon appears when No thanks link is clicked
-  $(".showModalIcon").on("click", function() {
+  // Updates modal icon appears when No Thanks link and close-button is clicked
+  $(".showModalIcon, .close-button").on("click", function() {
     $(".updatesModalPopupButton").fadeIn();
   });
   

@@ -71,13 +71,13 @@ $(function() {
         complete: function() {
           setTimeout(function() {
             $("#updatesButton").prop("disabled", false); // Re-enable submit button when AJAX call is complete
-          }, 700);
-          $("input[type='text'], input[type='email']").val("");
-          $("input[type='checkbox']").prop("checked", false);
-          
-          $('#updatesSuccess').empty();
-          $.magnificPopup.close();
-          $(".updatesModalPopupButton").fadeIn();
+            $("input[type='text'], input[type='email']").val("");
+            $("input[type='checkbox']").prop("checked", false);
+            $(".floating-label-form-group").removeClass("floating-label-form-group-with-value");
+            $('#updatesSuccess').empty();
+            $.magnificPopup.close();
+            $(".updatesModalPopupButton").fadeIn();
+          }, 2500);  
         }
       });
     },

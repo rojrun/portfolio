@@ -129,16 +129,20 @@ $(function() {
     } 
 
     // Clears out the file attachments when reset clicked
-    $("button[type='reset']").on("click", function() {
-      fileArray = [];
-      totalFilesArray = [];
-      fileSizeTotal = 0;
-      $("#file_list, .uploading").empty();
-      $(":file ~ p.help-block.text-danger:last-child > ul").remove();
-      $(".floating-label-form-group").removeClass("floating-label-form-group-with-value");
-      console.log("reset");
-    });
-  });              
+    $("button[type='reset']").on("click", formReset);
+  });   
+  
+  // Resets form
+  function formReset() {
+    fileArray = [];
+    totalFilesArray = [];
+    fileSizeTotal = 0;
+    $("#contactForm").find(":input:not([type=button]):not([type=submit])").val("");
+    $("#file_list, .uploading, #success").empty();
+    $(":file ~ p.help-block.text-danger:last-child > ul").remove();
+    $(".floating-label-form-group").removeClass("floating-label-form-group-with-value");
+    return;
+  }
 
   $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
     preventSubmit: true,
@@ -192,7 +196,8 @@ $(function() {
         complete: function() {
           setTimeout(function() {
             $("#sendMessageButton").prop("disabled", false); // Re-enable submit button when AJAX call is complete
-          }, 1000);
+            formReset();
+          }, 4000);
         }
       });
     },

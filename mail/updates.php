@@ -18,29 +18,28 @@ try {
   $interests = implode(', ', $_POST['interest']);
   
   // Create the email and send the message
-  $to = $secret_email; // Add your email address inbetween the "" replacing yourname@yourdomain.com - This is where the form will send a message to.
   $subject = "Website Updates Form: $name";
-  $body = "<h2>You have received a new interest from your website updates form.</h2><br><h3 style='color: blue;'>Here are the details:</h3><br><h3 style='margin-top: 0; margin-bottom:0;'>Name: $name</h3><br><h3 style='margin-top: 0; margin-bottom:0;'>Email: $email</h3><br><h3 style='margin-top: 0; margin-bottom:0;'>Interests: $interests</h3>";
-  $header = "From: noreply@yourdomain.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
-  $header .= "Reply-To: $email";
+  $body = "<h2  style='color: blue;'>You have received a new interest from your website updates form.</h2><br><h3>Here are the details:</h3><br><h3 style='margin-top: 0; margin-bottom:0;'>Name: $name</h3><br><h3 style='margin-top: 0; margin-bottom:0;'>Email: $email</h3><br><h3 style='margin-top: 0; margin-bottom:0;'>Interests: $interests</h3>";
   
-  $mail->isSMTP();
+  $mail->IsSMTP();
   $mail->SMTPSecure = 'ssl';
   $mail->SMTPDebug = SMTP::DEBUG_SERVER;
   $mail->Host = 'smtp.gmail.com';
   $mail->Port = 465;
   $mail->SMTPAuth = true;
-  $mail->isHTML(true);
+  $mail->IsHTML(true);
   $mail->Username = $secret_email;
   $mail->Password = $secret_password;
   $mail->CharSet = PHPMailer::CHARSET_UTF8;
-  $mail->setFrom($email, $name);
-  $mail->addAddress($to, $email_to);
+  $mail->SetFrom($email, $name);
+  $mail->AddAddress($secret_email, $email_to);
+  $mail->From = $email;
+  $mail->FromName = $name;
   $mail->Subject = $subject;
-  $mail->addReplyTo($email, $name);
+  $mail->AddReplyTo($email, $name);
   $mail->Body = $body;
   $mail->AltBody = "You have received a new interest from your website updates form.\r\n"."Here are the details:\r\nName: $name\r\nInterests: $interests";
-  if($mail->send()) {
+  if($mail->Send()) {
     echo 'message sent';
     exit();
   } else {
