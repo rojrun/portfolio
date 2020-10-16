@@ -5,23 +5,23 @@
  */
 
 body {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #950303), color-stop(22.5%, #bb0404), color-stop(40%, #ce0505), color-stop(60%, #ce0505), color-stop(77.5%, #bb0404), color-stop(95%, #950303), to(#000));
-  background: linear-gradient(90deg, #000 0, #950303 5%, #bb0404 22.5%, #ce0505 40%, #ce0505 60%, #bb0404 77.5%, #950303 95%, #000 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #480202), color-stop(35%, #a80404), color-stop(50%, #f50505), color-stop(65%, #a80404), color-stop(80%, #480202), to(#000));
+  background: linear-gradient(90deg, #000 0, #480202 20%, #a80404 35%, #f50505 50%, #a80404 65%, #480202 80%, #000 100%);
   height: 100%;
   font-family: 'Lato';
 }
 
 @media (min-width: 1340px) {
   body {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #950303), color-stop(25%, #bb0404), color-stop(45%, #ce0505), color-stop(55%, #ce0505), color-stop(75%, #bb0404), color-stop(90%, #950303), to(#000));
-    background: linear-gradient(90deg, #000 0, #950303 10%, #bb0404 25%, #ce0505 45%, #ce0505 55%, #bb0404 75%, #950303 90%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #480202), color-stop(25%, #a80404), color-stop(45%, #f50505), color-stop(55%, #f50505), color-stop(75%, #a80404), color-stop(90%, #480202), to(#000));
+    background: linear-gradient(90deg, #000 0, #480202 10%, #a80404 25%, #f50505 45%, #f50505 55%, #a80404 75%, #480202 90%, #000 100%);
   }
 }
 
 @media (min-width: 1600px) {
   body {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #950303), color-stop(35%, #bb0404), color-stop(50%, #ce0505), color-stop(65%, #bb0404), color-stop(80%, #950303), to(#000));
-    background: linear-gradient(90deg, #000 0, #950303 20%, #bb0404 35%, #ce0505 50%, #bb0404 65%, #950303 80%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #480202), color-stop(35%, #a80404), color-stop(50%, #f50505), color-stop(65%, #a80404), color-stop(80%, #480202), to(#000));
+    background: linear-gradient(90deg, #000 0, #480202 20%, #a80404 35%, #f50505 50%, #a80404 65%, #480202 80%, #000 100%);
   }
 }
 
@@ -647,8 +647,8 @@ header.masthead h2:last-child {
 }
 
 .portfolio-modal {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #950303), color-stop(22.5%, #bb0404), color-stop(40%, #ce0505), color-stop(60%, #ce0505), color-stop(77.5%, #bb0404), color-stop(95%, #950303), to(#000));
-  background: linear-gradient(90deg, #000 0, #950303 5%, #bb0404 22.5%, #ce0505 40%, #ce0505 60%, #bb0404 77.5%, #950303 95%, #000 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #480202), color-stop(22.5%, #a80404), color-stop(40%, #f50505), color-stop(60%, #f50505), color-stop(77.5%, #a80404), color-stop(95%, #480202), to(#000));
+  background: linear-gradient(90deg, #000 0, #480202 5%, #a80404 22.5%, #f50505 40%, #f50505 60%, #a80404 77.5%, #480202 95%, #000 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -833,15 +833,15 @@ header.masthead h2:last-child {
 
 @media (min-width: 1340px) {
   .portfolio-modal {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #950303), color-stop(25%, #bb0404), color-stop(45%, #ce0505), color-stop(55%, #ce0505), color-stop(75%, #bb0404), color-stop(90%, #950303), to(#000));
-    background: linear-gradient(90deg, #000 0, #950303 10%, #bb0404 25%, #ce0505 45%, #ce0505 55%, #bb0404 75%, #950303 90%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #480202), color-stop(25%, #a80404), color-stop(45%, #f50505), color-stop(55%, #f50505), color-stop(75%, #a80404), color-stop(90%, #480202), to(#000));
+    background: linear-gradient(90deg, #000 0, #480202 10%, #a80404 25%, #f50505 45%, #f50505 55%, #a80404 75%, #480202 90%, #000 100%);
   }
 }
 
 @media (min-width: 1600px) {
   .portfolio-modal {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #950303), color-stop(35%, #bb0404), color-stop(50%, #ce0505), color-stop(65%, #bb0404), color-stop(80%, #950303), to(#000));
-    background: linear-gradient(90deg, #000 0, #950303 20%, #bb0404 35%, #ce0505 50%, #bb0404 65%, #950303 80%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #480202), color-stop(35%, #a80404), color-stop(50%, #f50505), color-stop(65%, #a80404), color-stop(80%, #480202), to(#000));
+    background: linear-gradient(90deg, #000 0, #480202 20%, #a80404 35%, #f50505 50%, #a80404 65%, #480202 80%, #000 100%);
   }
 }
 
@@ -1466,6 +1466,40 @@ form .row:first-child .floating-label-form-group {
 
 #updates-modal form #updatesSuccess > div {
   margin-top: 1rem;
+}
+
+#updates-modal form .showModalIcon {
+  font-size: 14px;
+}
+
+@media (min-width: 320px) {
+  #updates-modal form .showModalIcon {
+    font-size: calc(1.24224vw + 10.02484px);
+  }
+}
+
+@media (min-width: 481px) {
+  #updates-modal form .showModalIcon {
+    font-size: calc(0.69444vw + 12.65972px);
+  }
+}
+
+@media (min-width: 769px) {
+  #updates-modal form .showModalIcon {
+    font-size: calc(0.78125vw + 11.99219px);
+  }
+}
+
+@media (min-width: 1025px) {
+  #updates-modal form .showModalIcon {
+    font-size: calc(1.13636vw + 8.35227px);
+  }
+}
+
+@media (min-width: 1201px) {
+  #updates-modal form .showModalIcon {
+    font-size: 22px;
+  }
 }
 
 #updatesButton:disabled {

@@ -100,7 +100,7 @@
   });
 
   // Updates modal icon appears when No Thanks link and close-button is clicked
-  $(".showModalIcon, .close-button").on("click", function() {
+  $(".showModalIcon").on("click", function() {
     $(".updatesModalPopupButton").fadeIn();
   });
   

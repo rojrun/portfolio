@@ -75,6 +75,10 @@ $transitionSpeed: 200ms;
 				margin-top: 1rem;
 			}
 		}
+		.showModalIcon {
+			$map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+  		@include poly-fluid-sizing("font-size", $map);
+		}
 	}
 }
 
