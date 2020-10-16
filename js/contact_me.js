@@ -21,10 +21,10 @@ $(function() {
   var uploadFileLimit = 1000000;
   var fileSizeTotal = 0;
   var allowedExtension = ["jpeg", "jpg", "gif", "pdf", "png", "doc", "docx", "txt", "xls", "psd"];
-  $("#get_file").click(function() {
-    $("#uploaded_file").click();
+  $("#get_file").on("click", function() {
+    $("#uploaded_file").trigger("click");
   }); 
-  $("input[type=file]").change(function(e) {  
+  $("input[type=file]").on("change", function(e) {  
     $("#sendMessageButton").prop("disabled", true);  /* Disables submit button to ensure size limit */
     if ($(":file ~ p.help-block.text-danger:last-child").children().length > 0) {
       $(":file ~ p.help-block.text-danger:last-child").empty();
@@ -129,14 +129,20 @@ $(function() {
     } 
 
     // Clears out the file attachments when reset clicked
-    $(":reset").click(function() {
-      fileArray = [];
-      totalFilesArray = [];
-      fileSizeTotal = 0;
-      $("#file_list, .total").empty();
-      $(":file ~ p.help-block.text-danger:last-child > ul").remove();
-    });
-  });              
+    $("button[type='reset']").on("click", formReset);
+  });   
+  
+  // Resets form
+  function formReset() {
+    fileArray = [];
+    totalFilesArray = [];
+    fileSizeTotal = 0;
+    $("#contactForm").find(":input:not([type=button]):not([type=submit])").val("");
+    $("#file_list, .uploading, #success").empty();
+    $(":file ~ p.help-block.text-danger:last-child > ul").remove();
+    $(".floating-label-form-group").removeClass("floating-label-form-group-with-value");
+    return;
+  }
 
   $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
     preventSubmit: true,
@@ -190,13 +196,14 @@ $(function() {
         complete: function() {
           setTimeout(function() {
             $("#sendMessageButton").prop("disabled", false); // Re-enable submit button when AJAX call is complete
-          }, 1000);
+            formReset();
+          }, 4000);
         }
       });
     },
     filter: function() {
       return $(this).is(":visible");
-    },
+    }
   });
 
   $("a[data-toggle=\"tab\"]").click(function(e) {
@@ -206,7 +213,7 @@ $(function() {
 });
 
 /*When clicking on Full hide fail/success boxes */
-$('#name').focus(function() {
+$('#name').on("focus", function() {
   $('#success').html('');
 });
 

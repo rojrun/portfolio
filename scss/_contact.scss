@@ -15,7 +15,20 @@
     border-radius: 0;
     background: none;
     box-shadow: none !important;
-    color: $white;   
+    color: $white; 
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: $white;
+    }  
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: $white;
+    transition: background-color 5000s ease-in-out 0s;
   }
   input::placeholder,
   textarea::placeholder {
@@ -68,7 +81,6 @@
           @include poly-fluid-sizing("margin-top", $marginTopMap);
         }
       }
-   
     }
   }
   .uploading {
@@ -84,10 +96,6 @@
       display: flex;
       flex-grow: 1;
     }  
-  }
-  input:focus, textarea:focus {
-    background-color: rgba(255, 255, 255, 0.219);
-    color: $secondary;
   }
   label {
     $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
