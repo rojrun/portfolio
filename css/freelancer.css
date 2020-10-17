@@ -5,23 +5,23 @@
  */
 
 body {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #480202), color-stop(35%, #a80404), color-stop(50%, #f50505), color-stop(65%, #a80404), color-stop(80%, #480202), to(#000));
-  background: linear-gradient(90deg, #000 0, #480202 20%, #a80404 35%, #f50505 50%, #a80404 65%, #480202 80%, #000 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #a80404), color-stop(50%, #e10505), color-stop(95%, #a80404), to(#000));
+  background: linear-gradient(90deg, #000 0, #a80404 5%, #e10505 50%, #a80404 95%, #000 100%);
   height: 100%;
   font-family: 'Lato';
 }
 
-@media (min-width: 1340px) {
+@media (min-width: 1325px) {
   body {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #480202), color-stop(25%, #a80404), color-stop(45%, #f50505), color-stop(55%, #f50505), color-stop(75%, #a80404), color-stop(90%, #480202), to(#000));
-    background: linear-gradient(90deg, #000 0, #480202 10%, #a80404 25%, #f50505 45%, #f50505 55%, #a80404 75%, #480202 90%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #a80404), color-stop(50%, #e10505), color-stop(90%, #a80404), to(#000));
+    background: linear-gradient(90deg, #000 0, #a80404 10%, #e10505 50%, #a80404 90%, #000 100%);
   }
 }
 
 @media (min-width: 1600px) {
   body {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #480202), color-stop(35%, #a80404), color-stop(50%, #f50505), color-stop(65%, #a80404), color-stop(80%, #480202), to(#000));
-    background: linear-gradient(90deg, #000 0, #480202 20%, #a80404 35%, #f50505 50%, #a80404 65%, #480202 80%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #a80404), color-stop(50%, #e10505), color-stop(80%, #a80404), to(#000));
+    background: linear-gradient(90deg, #000 0, #a80404 20%, #e10505 50%, #a80404 80%, #000 100%);
   }
 }
 
@@ -310,6 +310,11 @@ section#skills h3:last-child {
   .btn-xl, .btn-lg {
     font-size: 22px;
   }
+}
+
+.btn-primary:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
 }
 
 .btn-social {
@@ -620,6 +625,52 @@ header.masthead h2:last-child {
   display: block;
   max-width: 25rem;
   margin-bottom: 15px;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-animation: pulse-black 2s infinite;
+  animation: pulse-black 2s infinite;
+}
+
+@-webkit-keyframes pulse-black {
+  0% {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+  70% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes pulse-black {
+  0% {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+  70% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
 }
 
 .portfolio .portfolio-item .portfolio-item-caption {
@@ -647,10 +698,8 @@ header.masthead h2:last-child {
 }
 
 .portfolio-modal {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #480202), color-stop(22.5%, #a80404), color-stop(40%, #f50505), color-stop(60%, #f50505), color-stop(77.5%, #a80404), color-stop(95%, #480202), to(#000));
-  background: linear-gradient(90deg, #000 0, #480202 5%, #a80404 22.5%, #f50505 40%, #f50505 60%, #a80404 77.5%, #480202 95%, #000 100%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #a80404), color-stop(50%, #e10505), color-stop(95%, #a80404), to(#000));
+  background: linear-gradient(90deg, #000 0, #a80404 5%, #e10505 50%, #a80404 95%, #000 100%);
 }
 
 .portfolio-modal .portfolio-modal-dialog {
@@ -831,17 +880,17 @@ header.masthead h2:last-child {
   }
 }
 
-@media (min-width: 1340px) {
+@media (min-width: 1325px) {
   .portfolio-modal {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #480202), color-stop(25%, #a80404), color-stop(45%, #f50505), color-stop(55%, #f50505), color-stop(75%, #a80404), color-stop(90%, #480202), to(#000));
-    background: linear-gradient(90deg, #000 0, #480202 10%, #a80404 25%, #f50505 45%, #f50505 55%, #a80404 75%, #480202 90%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #a80404), color-stop(50%, #e10505), color-stop(90%, #a80404), to(#000));
+    background: linear-gradient(90deg, #000 0, #a80404 10%, #e10505 50%, #a80404 90%, #000 100%);
   }
 }
 
 @media (min-width: 1600px) {
   .portfolio-modal {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #480202), color-stop(35%, #a80404), color-stop(50%, #f50505), color-stop(65%, #a80404), color-stop(80%, #480202), to(#000));
-    background: linear-gradient(90deg, #000 0, #480202 20%, #a80404 35%, #f50505 50%, #a80404 65%, #480202 80%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #a80404), color-stop(50%, #e10505), color-stop(80%, #a80404), to(#000));
+    background: linear-gradient(90deg, #000 0, #a80404 20%, #e10505 50%, #a80404 80%, #000 100%);
   }
 }
 
@@ -1505,40 +1554,6 @@ form .row:first-child .floating-label-form-group {
 #updatesButton:disabled {
   background-color: #fff;
   border-color: #fff;
-}
-
-/* overlay at start */
-.mfp-fade.mfp-bg {
-  opacity: 0;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-
-/* overlay animate in */
-.mfp-fade.mfp-bg.mfp-ready {
-  opacity: 0.8;
-}
-
-/* overlay animate out */
-.mfp-fade.mfp-bg.mfp-removing {
-  opacity: 0;
-}
-
-/* content at start */
-.mfp-fade.mfp-wrap .mfp-content {
-  opacity: 0;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-
-/* content animate it */
-.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
-  opacity: 1;
-}
-
-/* content animate out */
-.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
-  opacity: 0;
 }
 
 a {

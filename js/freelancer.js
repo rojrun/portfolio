@@ -49,13 +49,44 @@
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
 
-  // Modal popup$(function () {
+  // Modal popup function
   $('.portfolio-item').magnificPopup({
     type: 'inline',
     preloader: false,
     focus: '#username',
-    modal: true
+    modal: true,
+    removalDelay: 500,
+    callbacks: {
+      beforeOpen: function() {
+        // this.st.mainClass = this.st.el.attr('data-effect');
+        // console.log('this: ', this);
+        // $('.portfolio-modal-dialog').fadeIn('slow');
+        console.log('beforeOpen: Start of popup initialization');
+      },
+      open: function() {
+        // $('.portfolio-modal-dialog').fadeIn('slow');
+        console.log('open: Popup is opended');
+      },
+      beforeClose: function() {
+        console.log('beforeClose: Popup close has been initiated');
+      },
+      close: function() {
+        console.log('close: Popup removal initiated (after removalDelay timer finished)');
+      },
+      afterClose: function() {
+        console.log('afterClose: Popup is completely closed');
+      }
+    },
+    midClick: true
   });
+
+  // Modal popup$(function () {
+  // $('.portfolio-item').magnificPopup({
+  //   type: 'inline',
+  //   preloader: false,
+  //   focus: '#username',
+  //   modal: true
+  // });
   $(document).on('click', '.portfolio-modal-dismiss', function(e) {
     e.preventDefault();
     $.magnificPopup.close();

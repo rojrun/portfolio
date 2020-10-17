@@ -6,6 +6,24 @@
     display: block;
     max-width: 25rem;
     margin-bottom: 15px;
+    transform: scale(1);
+    animation: pulse-black 2s infinite;
+    @keyframes pulse-black {
+      0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+      }
+      
+      70% {
+          transform: scale(1);
+          box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+      }
+      
+      100% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }
     .portfolio-item-caption {
       -webkit-transition: all ease 0.5s;
       -moz-transition: all ease 0.5s;
@@ -29,9 +47,7 @@
 }
 
 .portfolio-modal {
-  background: linear-gradient(90deg, $bgEdge 0, $bgThreeQuarters 5%, $bgQuarter 22.5%, $bgMiddle 40%, $bgMiddle 60%, $bgQuarter 77.5%, $bgThreeQuarters 95%, $bgEdge 100%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: linear-gradient(90deg, $bgEdge 0, $bgSecond 5%, $bgMiddle 50%, $bgSecond 95%, $bgEdge 100%);
   .portfolio-modal-dialog {
     padding: 3rem 1rem;
     min-height: calc(100vh - 2rem);
@@ -88,15 +104,13 @@
   }
 }
 
-@media (min-width: 1340px) {
+@media (min-width: 1325px) {
   .portfolio-modal {
-    background: linear-gradient(90deg, $bgEdge 0, $bgThreeQuarters 10%, $bgQuarter 25%, $bgMiddle 45%, $bgMiddle 55%, $bgQuarter 75%, $bgThreeQuarters 90%, $bgEdge 100%);
-  }  
-}
-
-@media (min-width: 1600px) {
-  .portfolio-modal {
-    background: linear-gradient(90deg, $bgEdge 0, $bgThreeQuarters 20%, $bgQuarter 35%, $bgMiddle 50%, $bgQuarter 65%, $bgThreeQuarters 80%, $bgEdge 100%);
+    background: linear-gradient(90deg, $bgEdge 0, $bgSecond 10%, $bgMiddle 50%, $bgSecond 90%, $bgEdge 100%);
   }
 }
-
+@media (min-width: 1600px) {
+  .portfolio-modal {
+    background: linear-gradient(90deg, $bgEdge 0, $bgSecond 20%, $bgMiddle 50%, $bgSecond 80%, $bgEdge 100%);
+  }
+}
