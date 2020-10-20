@@ -49,13 +49,25 @@
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
 
-  // Modal popup$(function () {
+  // Loop through .portfolio-item to add pulse effect class
+  var $photoLinks = $('#portfolio .container .row > div').children('a');
+  (function _loop(index) {
+    $photoLinks.removeClass('pulse').eq(index).addClass('pulse');
+    setTimeout(function() {
+      _loop((index + 1) % $photoLinks.length);
+    }, 3200);
+  }(0));
+  
+  // Modal popup function
   $('.portfolio-item').magnificPopup({
     type: 'inline',
     preloader: false,
     focus: '#username',
-    modal: true
+    modal: true,
+    removalDelay: 500,
+    midClick: true
   });
+
   $(document).on('click', '.portfolio-modal-dismiss', function(e) {
     e.preventDefault();
     $.magnificPopup.close();
@@ -100,7 +112,7 @@
   });
 
   // Updates modal icon appears when No Thanks link and close-button is clicked
-  $(".showModalIcon, .close-button").on("click", function() {
+  $(".showModalIcon").on("click", function() {
     $(".updatesModalPopupButton").fadeIn();
   });
   

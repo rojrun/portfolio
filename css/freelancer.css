@@ -5,23 +5,23 @@
  */
 
 body {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #950303), color-stop(22.5%, #bb0404), color-stop(40%, #ce0505), color-stop(60%, #ce0505), color-stop(77.5%, #bb0404), color-stop(95%, #950303), to(#000));
-  background: linear-gradient(90deg, #000 0, #950303 5%, #bb0404 22.5%, #ce0505 40%, #ce0505 60%, #bb0404 77.5%, #950303 95%, #000 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #a80404), color-stop(50%, #e10505), color-stop(95%, #a80404), to(#000));
+  background: linear-gradient(90deg, #000 0, #a80404 5%, #e10505 50%, #a80404 95%, #000 100%);
   height: 100%;
   font-family: 'Lato';
 }
 
-@media (min-width: 1340px) {
+@media (min-width: 1325px) {
   body {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #950303), color-stop(25%, #bb0404), color-stop(45%, #ce0505), color-stop(55%, #ce0505), color-stop(75%, #bb0404), color-stop(90%, #950303), to(#000));
-    background: linear-gradient(90deg, #000 0, #950303 10%, #bb0404 25%, #ce0505 45%, #ce0505 55%, #bb0404 75%, #950303 90%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #a80404), color-stop(50%, #e10505), color-stop(90%, #a80404), to(#000));
+    background: linear-gradient(90deg, #000 0, #a80404 10%, #e10505 50%, #a80404 90%, #000 100%);
   }
 }
 
 @media (min-width: 1600px) {
   body {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #950303), color-stop(35%, #bb0404), color-stop(50%, #ce0505), color-stop(65%, #bb0404), color-stop(80%, #950303), to(#000));
-    background: linear-gradient(90deg, #000 0, #950303 20%, #bb0404 35%, #ce0505 50%, #bb0404 65%, #950303 80%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #a80404), color-stop(50%, #e10505), color-stop(80%, #a80404), to(#000));
+    background: linear-gradient(90deg, #000 0, #a80404 20%, #e10505 50%, #a80404 80%, #000 100%);
   }
 }
 
@@ -310,6 +310,11 @@ section#skills h3:last-child {
   .btn-xl, .btn-lg {
     font-size: 22px;
   }
+}
+
+.btn-primary:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
 }
 
 .btn-social {
@@ -637,6 +642,55 @@ header.masthead h2:last-child {
   font-size: 1.5rem;
 }
 
+.portfolio .pulse {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-animation: pulse-black 1s infinite;
+  animation: pulse-black 1s infinite;
+}
+
+@-webkit-keyframes pulse-black {
+  0% {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+  70% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes pulse-black {
+  0% {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+  70% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
 @media (min-width: 576px) {
   .portfolio {
     margin-bottom: -30px;
@@ -647,10 +701,8 @@ header.masthead h2:last-child {
 }
 
 .portfolio-modal {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #950303), color-stop(22.5%, #bb0404), color-stop(40%, #ce0505), color-stop(60%, #ce0505), color-stop(77.5%, #bb0404), color-stop(95%, #950303), to(#000));
-  background: linear-gradient(90deg, #000 0, #950303 5%, #bb0404 22.5%, #ce0505 40%, #ce0505 60%, #bb0404 77.5%, #950303 95%, #000 100%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #a80404), color-stop(50%, #e10505), color-stop(95%, #a80404), to(#000));
+  background: linear-gradient(90deg, #000 0, #a80404 5%, #e10505 50%, #a80404 95%, #000 100%);
 }
 
 .portfolio-modal .portfolio-modal-dialog {
@@ -831,17 +883,17 @@ header.masthead h2:last-child {
   }
 }
 
-@media (min-width: 1340px) {
+@media (min-width: 1325px) {
   .portfolio-modal {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #950303), color-stop(25%, #bb0404), color-stop(45%, #ce0505), color-stop(55%, #ce0505), color-stop(75%, #bb0404), color-stop(90%, #950303), to(#000));
-    background: linear-gradient(90deg, #000 0, #950303 10%, #bb0404 25%, #ce0505 45%, #ce0505 55%, #bb0404 75%, #950303 90%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #a80404), color-stop(50%, #e10505), color-stop(90%, #a80404), to(#000));
+    background: linear-gradient(90deg, #000 0, #a80404 10%, #e10505 50%, #a80404 90%, #000 100%);
   }
 }
 
 @media (min-width: 1600px) {
   .portfolio-modal {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #950303), color-stop(35%, #bb0404), color-stop(50%, #ce0505), color-stop(65%, #bb0404), color-stop(80%, #950303), to(#000));
-    background: linear-gradient(90deg, #000 0, #950303 20%, #bb0404 35%, #ce0505 50%, #bb0404 65%, #950303 80%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #a80404), color-stop(50%, #e10505), color-stop(80%, #a80404), to(#000));
+    background: linear-gradient(90deg, #000 0, #a80404 20%, #e10505 50%, #a80404 80%, #000 100%);
   }
 }
 
@@ -1468,43 +1520,43 @@ form .row:first-child .floating-label-form-group {
   margin-top: 1rem;
 }
 
+#updates-modal form .showModalIcon {
+  font-size: 14px;
+}
+
+@media (min-width: 320px) {
+  #updates-modal form .showModalIcon {
+    font-size: calc(1.24224vw + 10.02484px);
+  }
+}
+
+@media (min-width: 481px) {
+  #updates-modal form .showModalIcon {
+    font-size: calc(0.69444vw + 12.65972px);
+  }
+}
+
+@media (min-width: 769px) {
+  #updates-modal form .showModalIcon {
+    font-size: calc(0.78125vw + 11.99219px);
+  }
+}
+
+@media (min-width: 1025px) {
+  #updates-modal form .showModalIcon {
+    font-size: calc(1.13636vw + 8.35227px);
+  }
+}
+
+@media (min-width: 1201px) {
+  #updates-modal form .showModalIcon {
+    font-size: 22px;
+  }
+}
+
 #updatesButton:disabled {
   background-color: #fff;
   border-color: #fff;
-}
-
-/* overlay at start */
-.mfp-fade.mfp-bg {
-  opacity: 0;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-
-/* overlay animate in */
-.mfp-fade.mfp-bg.mfp-ready {
-  opacity: 0.8;
-}
-
-/* overlay animate out */
-.mfp-fade.mfp-bg.mfp-removing {
-  opacity: 0;
-}
-
-/* content at start */
-.mfp-fade.mfp-wrap .mfp-content {
-  opacity: 0;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-
-/* content animate it */
-.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
-  opacity: 1;
-}
-
-/* content animate out */
-.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
-  opacity: 0;
 }
 
 a {
