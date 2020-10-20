@@ -625,6 +625,9 @@ header.masthead h2:last-child {
   display: block;
   max-width: 25rem;
   margin-bottom: 15px;
+}
+
+.portfolio .portfolio-item .pulse {
   -webkit-transform: scale(1);
   transform: scale(1);
   -webkit-animation: pulse-black 2s infinite;

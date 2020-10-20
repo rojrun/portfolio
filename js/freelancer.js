@@ -49,6 +49,25 @@
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
 
+  // Loop through .portfolio-item to add pulse effect class
+  $(document).ready(function() {
+    // window.setInterval(function() {
+    //   $('.portfolio-item').each(function() {
+    //     setTimeout(function() {
+    //       $('.portfolio-item').addClass('pulse');
+    //     }, 1500);
+    //     $('.portfolio-item').removeClass('pulse');
+    //   });
+    // }, 3000);
+    $('.portfolio-item').each(function() {
+      setTimeout(function() {
+        $('.portfolio-item').addClass('pulse');
+      }, 1500);
+      $('.portfolio-item').removeClass('pulse');
+    });
+  });
+  
+
   // Modal popup function
   $('.portfolio-item').magnificPopup({
     type: 'inline',
@@ -58,13 +77,11 @@
     removalDelay: 500,
     callbacks: {
       beforeOpen: function() {
-        // this.st.mainClass = this.st.el.attr('data-effect');
-        // console.log('this: ', this);
-        // $('.portfolio-modal-dialog').fadeIn('slow');
+        
         console.log('beforeOpen: Start of popup initialization');
       },
       open: function() {
-        // $('.portfolio-modal-dialog').fadeIn('slow');
+  
         console.log('open: Popup is opended');
       },
       beforeClose: function() {
@@ -80,13 +97,6 @@
     midClick: true
   });
 
-  // Modal popup$(function () {
-  // $('.portfolio-item').magnificPopup({
-  //   type: 'inline',
-  //   preloader: false,
-  //   focus: '#username',
-  //   modal: true
-  // });
   $(document).on('click', '.portfolio-modal-dismiss', function(e) {
     e.preventDefault();
     $.magnificPopup.close();
