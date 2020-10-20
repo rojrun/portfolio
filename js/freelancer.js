@@ -50,24 +50,14 @@
   $(window).scroll(navbarCollapse);
 
   // Loop through .portfolio-item to add pulse effect class
-  $(document).ready(function() {
-    // window.setInterval(function() {
-    //   $('.portfolio-item').each(function() {
-    //     setTimeout(function() {
-    //       $('.portfolio-item').addClass('pulse');
-    //     }, 1500);
-    //     $('.portfolio-item').removeClass('pulse');
-    //   });
-    // }, 3000);
-    $('.portfolio-item').each(function() {
-      setTimeout(function() {
-        $('.portfolio-item').addClass('pulse');
-      }, 1500);
-      $('.portfolio-item').removeClass('pulse');
-    });
-  });
+  var $photoLinks = $('#portfolio .container .row > div').children('a');
+  (function _loop(index) {
+    $photoLinks.removeClass('pulse').eq(index).addClass('pulse');
+    setTimeout(function() {
+      _loop((index + 1) % $photoLinks.length);
+    }, 3200);
+  }(0));
   
-
   // Modal popup function
   $('.portfolio-item').magnificPopup({
     type: 'inline',
@@ -75,25 +65,6 @@
     focus: '#username',
     modal: true,
     removalDelay: 500,
-    callbacks: {
-      beforeOpen: function() {
-        
-        console.log('beforeOpen: Start of popup initialization');
-      },
-      open: function() {
-  
-        console.log('open: Popup is opended');
-      },
-      beforeClose: function() {
-        console.log('beforeClose: Popup close has been initiated');
-      },
-      close: function() {
-        console.log('close: Popup removal initiated (after removalDelay timer finished)');
-      },
-      afterClose: function() {
-        console.log('afterClose: Popup is completely closed');
-      }
-    },
     midClick: true
   });
 
