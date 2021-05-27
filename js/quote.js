@@ -95,10 +95,11 @@ $(function() {
 
     $("input[name=serviceType]").on("click", function() {
       const serviceType = $("input[name=serviceType]:checked").val();
-      if ((serviceType === "redesign") || (serviceType === "repair")) {
-        console.log("service type: ", serviceType);
-      } else {
-        const appTypes = [
+      quote.serviceType = serviceType;
+      console.log("quote: ", quote);
+
+      if (serviceType === "build") {
+        const websiteTypes = [
           {
             id: "authority",
             text: "Authority website: this is the place potential customers can go to see what work your company has done and how to get in contact with someone about your services"
@@ -117,33 +118,36 @@ $(function() {
           }
         ];
 
-        const appTypeGroup = $("<div>").addClass("control-group border-bottom");
-        $(quoteForm).append(appTypeGroup);
-        const appTypeQuestion = $("<p>").text("What type of website is your project?");
-        $(appTypeGroup).append(appTypeQuestion);
+        const websiteTypeGroup = $("<div>").addClass("control-group border-bottom");
+        $(quoteForm).append(websiteTypeGroup);
+        const websiteTypeQuestion = $("<p>").text("What type of website is your project?");
+        $(websiteTypeGroup).append(websiteTypeQuestion);
 
-        for (let appIndex = 0; appIndex < appTypes.length; appIndex++) {
-          const appDiv = $("<div>").addClass("custom-control custom-radio");
-          $(appTypeGroup).append(appDiv);
+        for (let websiteIndex = 0; websiteIndex < websiteTypes.length; websiteIndex++) {
+          const websiteDiv = $("<div>").addClass("custom-control custom-radio");
+          $(websiteTypeGroup).append(websiteDiv);
 
-          const appInput = $("<input>").attr({
+          const websiteInput = $("<input>").attr({
             type: "radio",
-            id: appTypes[appIndex].id,
-            value: appTypes[appIndex].id,
-            name: "appType",
+            id: websiteTypes[websiteIndex].id,
+            value: websiteTypes[websiteIndex].id,
+            name: "websiteType",
             class: "custom-control-input"
           });
-          $(appDiv).append(appInput);
+          $(websiteDiv).append(websiteInput);
 
-          const appLabel = $("<label>").attr({
+          const websiteLabel = $("<label>").attr({
             class: "custom-control-label",
             style: "opacity: 1",
-            for:  appTypes[appIndex].id
-          }).text( appTypes[appIndex].text);
-          $(appDiv).append(appLabel);
+            for:  websiteTypes[websiteIndex].id
+          }).text(websiteTypes[websiteIndex].text);
+          $(websiteDiv).append(websiteLabel);
         }
 
-        $("input[name=appType]").on("click", function() {
+        $("input[name=websiteType]").on("click", function() {
+          quote.websiteType = $("input[name=websiteType]:checked").val();
+          console.log("quote: ", quote);
+
           const pageTypes = [
             {
               id: "aboutPage",
@@ -215,7 +219,6 @@ $(function() {
             }
           ];
 
-          console.log("app type: ", $("input[name=appType]:checked").val());
           const pageContentGroup = $("<div>").addClass("control-group border-bottom");
           $(quoteForm).append(pageContentGroup);
           const pageContentQuestion = $("<p>").text("What pages do you want to display? Select all that apply:");
@@ -231,6 +234,12 @@ $(function() {
               value: pageTypes[pageIndex].id,
               name: "pages",
               class: "form-check-input"
+            }).on("click", function() {
+              const pages = $("input:checkbox:checked").map(function() {
+                return this.value;
+              }).toArray();
+              quote.pages = pages;
+              console.log('quote: ', quote);
             });
             $(pageDiv).append(pageInput);
 
@@ -253,6 +262,16 @@ $(function() {
               value: ""
             }).on("change", function() {
               console.log("other: ", $("input#otherPageInput").val());
+              console.log('quote pages: ', quote.pages);
+              quote.pages.map(function(value, index) {
+                console.log("index: ", index);
+                console.log("value: ", value);
+                if (value === "otherPage") {
+                  return value.replaceWith($("input#otherPageInput").val());
+                }  
+
+              });
+              console.log("quote pages: ", quote.pages);
             }).blur(function() {
               const addAnotherInputButton = $("<input>").text("Add another page").attr({
                 id: "addAnotherInput",
@@ -261,15 +280,14 @@ $(function() {
               }).on("click", function() {
                 console.log("add button clicked");
               });
-              $("label#otherPage").append(addAnotherInputButton);
+              $(pageDiv).append(addAnotherInputButton);
             });
             $(pageDiv).append(otherPageInput);
           });
-
-          $("input[name=pages]").on("click", function() {
-            // get values of clicked checkbox
-          });
         });
+      } else {
+        quote.serviceType = serviceType;
+        console.log("quote: ", quote);
       }
     });
   });
