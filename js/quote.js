@@ -64,7 +64,6 @@ $(function() {
     ];
 
     quote.projectName = $("input#projectName").val();
-    console.log("quote: ", quote);
 
     const serviceTypeControlGroup = $("<div>").addClass("control-group border-bottom");
     $(quoteForm).append(serviceTypeControlGroup);
@@ -96,8 +95,7 @@ $(function() {
     $("input[name=serviceType]").on("click", function() {
       const serviceType = $("input[name=serviceType]:checked").val();
       quote.serviceType = serviceType;
-      console.log("quote: ", quote);
-
+      
       if (serviceType === "build") {
         const websiteTypes = [
           {
@@ -146,8 +144,7 @@ $(function() {
 
         $("input[name=websiteType]").on("click", function() {
           quote.websiteType = $("input[name=websiteType]:checked").val();
-          console.log("quote: ", quote);
-
+          
           const pageTypes = [
             {
               id: "aboutPage",
@@ -221,7 +218,7 @@ $(function() {
 
           const pageContentGroup = $("<div>").addClass("control-group border-bottom");
           $(quoteForm).append(pageContentGroup);
-          const pageContentQuestion = $("<p>").text("What pages do you want to display? Select all that apply:");
+          const pageContentQuestion = $("<p>").text("What pages do you want to display in your website? Select all that apply:");
           $(pageContentGroup).append(pageContentQuestion);
 
           for (let pageIndex = 0; pageIndex < pageTypes.length; pageIndex++) {
@@ -239,7 +236,8 @@ $(function() {
                 return this.value;
               }).toArray();
               quote.pages = pages;
-              console.log('quote: ', quote);
+            }).one("click", function() {
+              console.log("comment section");
             });
             $(pageDiv).append(pageInput);
 
@@ -261,15 +259,10 @@ $(function() {
               placeholder: "Add page",
               value: ""
             }).on("change", function() {
-              console.log("other: ", $("input#otherPageInput").val());
-              console.log('quote pages: ', quote.pages);
               quote.pages.map(function(value, index) {
-                console.log("index: ", index);
-                console.log("value: ", value);
                 if (value === "otherPage") {
-                  return value.replaceWith($("input#otherPageInput").val());
-                }  
-
+                  return quote.pages.splice(index, 1, "other: " + $("input#otherPageInput").val());
+                }
               });
               console.log("quote pages: ", quote.pages);
             }).blur(function() {
