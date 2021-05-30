@@ -188,7 +188,7 @@ $(function() {
  
         const pageTypes = [   
           "About page", "Blog page", "Contact page", "FAQ page", "Homepage", "Landing page", "Page not found page", "Press page", "Privacy policy page", "Products page",
-          "Reviews page", "Search result page", "Services page", "Sitemap page", "Terms and conditions page", "Testimonials page", "Other"    
+          "Reviews page", "Search result page", "Services page", "Sitemap page", "Terms and conditions page", "Testimonials page"    
         ];
         const pageContentGroup = $("<div>").addClass("control-group border-bottom");
         $(quoteForm).append(pageContentGroup);
@@ -202,11 +202,11 @@ $(function() {
             type: "checkbox",
             id: pageTypes[pageIndex],
             value: pageTypes[pageIndex],
-            name: "pages",
+            name: "pages[]",
             class: "form-check-input",
             required: "required"
           }).on("click", function() {
-            const pages = $("input:checkbox:checked").map(function() {
+            const pages = $("input[name='pages[]']:checked").map(function() {
               return this.value;
             }).toArray();
             quote.pages = pages;
@@ -222,23 +222,96 @@ $(function() {
           $(pageDiv).append(pageLabel);
         }
 
-        $("input#Other[name=pages]").one("click", function() {
+        const addFieldButton = $("<input>").attr({
+          id: "addField",
+          type: "button",
+          value: "Add field"
+        }).on("click", function() {
+          console.log("add clicked");
           const otherPageInput = $("<input>").attr({
             class: "form-control text-secondary",
-            name: "pages",
+            name: "pages[]",
             id: "otherPageInput",
             type: "text",
             placeholder: "Add page",
             value: ""
           }).on("change", function() {
-            quote.pages.map(function(value, index) {
-              if (value === "Other") {
-                return quote.pages.splice(index, 1, "Other: " + $("input#otherPageInput").val());
-              }
-            });
+            quote.pages.push($("input#otherPageInput[name='pages[]']").val());
+            console.log("pages: ", quote);
           });
           $(pageDiv).append(otherPageInput);
         });
+        $(pageContentGroup).append(addFieldButton);
+
+        // $("input#Other[name=pages]").one("click", function() {
+        //   const otherPageInput = $("<input>").attr({
+        //     class: "form-control text-secondary",
+        //     name: "pages",
+        //     id: "otherPageInput",
+        //     type: "text",
+        //     placeholder: "Add page",
+        //     value: ""
+        //   }).on("change", function() {
+        //     quote.pages.map(function(value, index) {
+        //       if (value === "Other") {
+        //         return quote.pages.splice(index, 1, "Other: " + $("input#otherPageInput").val());
+        //       }
+        //     });
+        //   });
+        //   $(pageDiv).append(otherPageInput);
+        // });
+
+        const functions = [
+          "Book appointments", "Contact form", "Display image gallery", "Subscription offer", "Take payments", "Take surveys", "Other"
+        ];
+        const functionsGroup = $("<div>").addClass("control-group border-bottom");
+        $(quoteForm).append(functionsGroup);
+        const functionsContentQuestion = $("<p>").text("What functions do you want your website to perform? Select all that apply:");
+        $(functionsGroup).append(functionsContentQuestion);
+        for (let functionsIndex = 0; functionsIndex < functions.length; functionsIndex++) {
+          var functionsDiv = $("<div>").addClass("form-check form-check-inine");
+          $(functionsGroup).append(functionsDiv);
+
+          const functionsInput = $("<input>").attr({
+            type: "checkbox",
+            id: functions[functionsIndex],
+            value: functions[functionsIndex],
+            name: "functions",
+            class: "form-check-input",
+          }).on("click", function() {
+            const functionality = $("input[name=functions]:checked").map(function() {
+              return this.value;
+            }).toArray();
+            quote.functionality = functionality;
+          });
+          $(functionsDiv).append(functionsInput);
+
+          const functionsLabel = $("<label>").attr({
+            class: "form-check-label",
+            style: "opacity: 1",
+            for: functions[functionsIndex],
+            id: functions[functionsIndex]
+          }).text(functions[functionsIndex]);
+          $(functionsDiv).append(functionsLabel);
+        }
+
+        $("input#Other[name=functions]").one("click", function() {
+          const otherFunctionsInput = $("<input>").attr({
+            class: "form-control text-secondary",
+            name: "functions",
+            id: "otherFunctionInput",
+            type: "text",
+            placeholder: "Add functionality",
+            value: ""
+          }).on("change", function() {
+            quote.functionality.map(function(value, index) {
+              if (value === "Other") {
+                return quote.functionality.splice(index, 1, "Other: " + $("input#otherFunctionInput").val());
+              }
+            });
+          });
+          $(functionsDiv).append(otherFunctionsInput);
+        });  
 
         const messageGroup = $("<div>").addClass("control-group");
         $(quoteForm).append(messageGroup);
