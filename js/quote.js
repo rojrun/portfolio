@@ -1,23 +1,25 @@
 $(function() {
   var quote = {};
-  var service = [
-    {type: "build", price: 10000},
-    {type: "redesign", problems: [], price: 500},
-    {type: "repair", problems: [], price: 500}
-  ];
-  var app = [
-    {type: "authority", price: 3000},
-    {type: "leadGeneration", price: 3000},
-    {type: "sales", price: 15000},
-    {type: "utility", price: 20000}
-  ];
-  var technique = [
-    {type: "customSite", price: 10000},
-    {type: "templatedSite", price: 1500}
-  ];
-  var pages = {type: [], price: 1500};
-  var functions = {type: [], price: 3000};
-  var estimateTotal = 0;
+
+
+  // var service = [
+  //   {type: "build", price: 10000},
+  //   {type: "redesign", problems: [], price: 500},
+  //   {type: "repair", problems: [], price: 500}
+  // ];
+  // var app = [
+  //   {type: "authority", price: 3000},
+  //   {type: "leadGeneration", price: 3000},
+  //   {type: "sales", price: 15000},
+  //   {type: "utility", price: 20000}
+  // ];
+  // var technique = [
+  //   {type: "customSite", price: 10000},
+  //   {type: "templatedSite", price: 1500}
+  // ];
+  // var pages = {type: [], price: 1500};
+  // var functions = {type: [], price: 3000};
+  // var estimateTotal = 0;
   
 
 
@@ -97,7 +99,6 @@ $(function() {
     }
 
     $("input[name=serviceType]").on("click", function() {
-      // const serviceType = $("input[name=serviceType]:checked").val();
       const serviceType = $(this).val();
       quote.serviceType = serviceType;
       
@@ -190,6 +191,7 @@ $(function() {
           "About page", "Blog page", "Contact page", "FAQ page", "Homepage", "Landing page", "Page not found page", "Press page", "Privacy policy page", "Products page",
           "Reviews page", "Search result page", "Services page", "Sitemap page", "Terms and conditions page", "Testimonials page"    
         ];
+        quote.pages = [];
         const pageContentGroup = $("<div>").addClass("control-group border-bottom");
         $(quoteForm).append(pageContentGroup);
         const pageContentQuestion = $("<p>").text("What pages do you want to display in your website? Select all that apply:");
@@ -202,14 +204,15 @@ $(function() {
             type: "checkbox",
             id: pageTypes[pageIndex],
             value: pageTypes[pageIndex],
-            name: "pages[]",
+            name: "pages",
             class: "form-check-input",
             required: "required"
-          }).on("click", function() {
-            const pages = $("input[name='pages[]']:checked").map(function() {
-              return this.value;
-            }).toArray();
-            quote.pages = pages;
+          }).on("change", function() {
+            if ($(this).is(":checked")) {
+              quote.pages.push($(this).val());
+            } else {
+              quote.pages.splice( quote.pages.indexOf( $(this).val() ), 1);
+            }
           });
           $(pageDiv).append(pageInput);
 
@@ -222,48 +225,54 @@ $(function() {
           $(pageDiv).append(pageLabel);
         }
 
+        const inputField = $("<div>").addClass("form-check").attr("id", "otherInputField");
+        $(pageContentGroup).append(inputField);
+
         const addFieldButton = $("<input>").attr({
-          id: "addField",
+          id: "addFieldButton",
+          class: "btn btn-outline-secondary btn-lg ml-2",
           type: "button",
-          value: "Add field"
+          value: "Add new field"
         }).on("click", function() {
-          console.log("add clicked");
+          $("#addFieldButton").attr("disabled", true);
+
+          const clearableInput = $("<div>").attr("id", "newInputRow").css({"display": "block", "position": "relative"});
+          $(inputField).append(clearableInput);
+
           const otherPageInput = $("<input>").attr({
             class: "form-control text-secondary",
-            name: "pages[]",
+            name: "pages",
             id: "otherPageInput",
             type: "text",
             placeholder: "Add page",
             value: ""
           }).on("change", function() {
-            quote.pages.push($("input#otherPageInput[name='pages[]']").val());
-            console.log("pages: ", quote);
+            quote.pages.push($(this).val());
+            $("#addFieldButton").attr("disabled", false);
+            
+            const deleteInputButton = $("<span>").attr({
+              id: "deleteInputButton",
+              type: "button"
+            }).html("&times;").css({
+              "position": "absolute",
+              "top": 0,
+              "right": 0,
+              "padding-right": "1rem",
+              "cursor": "pointer"
+            }).on("click", function() {
+              quote.pages.splice( quote.pages.indexOf( $(this).siblings("input").val() ), 1);
+              $(this).parent().get(0).remove();
+            });
+            $(clearableInput).append(deleteInputButton);
           });
-          $(pageDiv).append(otherPageInput);
+          $(clearableInput).append(otherPageInput);
         });
         $(pageContentGroup).append(addFieldButton);
 
-        // $("input#Other[name=pages]").one("click", function() {
-        //   const otherPageInput = $("<input>").attr({
-        //     class: "form-control text-secondary",
-        //     name: "pages",
-        //     id: "otherPageInput",
-        //     type: "text",
-        //     placeholder: "Add page",
-        //     value: ""
-        //   }).on("change", function() {
-        //     quote.pages.map(function(value, index) {
-        //       if (value === "Other") {
-        //         return quote.pages.splice(index, 1, "Other: " + $("input#otherPageInput").val());
-        //       }
-        //     });
-        //   });
-        //   $(pageDiv).append(otherPageInput);
-        // });
-
         const functions = [
-          "Book appointments", "Contact form", "Display image gallery", "Subscription offer", "Take payments", "Take surveys", "Other"
+          "Book appointments", "Contact form", "Display image gallery", "Subscription offer", "Take payments", "Take surveys"
         ];
+        quote.functionality = [];
         const functionsGroup = $("<div>").addClass("control-group border-bottom");
         $(quoteForm).append(functionsGroup);
         const functionsContentQuestion = $("<p>").text("What functions do you want your website to perform? Select all that apply:");
@@ -278,11 +287,13 @@ $(function() {
             value: functions[functionsIndex],
             name: "functions",
             class: "form-check-input",
-          }).on("click", function() {
-            const functionality = $("input[name=functions]:checked").map(function() {
-              return this.value;
-            }).toArray();
-            quote.functionality = functionality;
+            required: "required"
+          }).on("change", function() {
+            if ($(this).is(":checked")) {
+              quote.functionality.push($(this).val());
+            } else {
+              quote.functionality.splice( quote.functionality.indexOf( $(this).val() ), 1);
+            }
           });
           $(functionsDiv).append(functionsInput);
 
@@ -295,23 +306,49 @@ $(function() {
           $(functionsDiv).append(functionsLabel);
         }
 
-        $("input#Other[name=functions]").one("click", function() {
-          const otherFunctionsInput = $("<input>").attr({
+        const functionInputField = $("<div>").addClass("form-check").attr("id", "otherInputField");
+        $(functionsGroup).append(functionInputField);
+
+        const addFunctionFieldButton = $("<input>").attr({
+          id: "addFunctionFieldButton",
+          class: "btn btn-outline-secondary btn-lg ml-2",
+          type: "button",
+          value: "Add new field"
+        }).on("click", function() {
+          $("#addFunctionFieldButton").attr("disabled", true);
+
+          const clearableInput = $("<div>").attr("id", "newInputRow").css({"display": "block", "position": "relative"});
+          $(functionInputField).append(clearableInput);
+
+          const otherFunctionInput = $("<input>").attr({
             class: "form-control text-secondary",
-            name: "functions",
+            name: "functionality",
             id: "otherFunctionInput",
             type: "text",
             placeholder: "Add functionality",
             value: ""
           }).on("change", function() {
-            quote.functionality.map(function(value, index) {
-              if (value === "Other") {
-                return quote.functionality.splice(index, 1, "Other: " + $("input#otherFunctionInput").val());
-              }
+            quote.functionality.push($(this).val());
+            $("#addFunctionFieldButton").attr("disabled", false);
+            
+            const deleteInputButton = $("<span>").attr({
+              id: "deleteInputButton",
+              type: "button"
+            }).html("&times;").css({
+              "position": "absolute",
+              "top": 0,
+              "right": 0,
+              "padding-right": "1rem",
+              "cursor": "pointer"
+            }).on("click", function() {
+              quote.functionality.splice( quote.functionality.indexOf( $(this).siblings("input").val() ), 1);
+              $(this).parent().get(0).remove();
             });
+            $(clearableInput).append(deleteInputButton);
           });
-          $(functionsDiv).append(otherFunctionsInput);
-        });  
+          $(clearableInput).append(otherFunctionInput);
+        });
+        $(functionsGroup).append(addFunctionFieldButton);
 
         const messageGroup = $("<div>").addClass("control-group");
         $(quoteForm).append(messageGroup);
@@ -326,7 +363,6 @@ $(function() {
           value: ""
         }).on("change", function() {
           quote.message = $("textarea#message").val();
-          console.log("quote: ", quote);
         });
         $(messageFormGroup).append(message);
 
@@ -345,7 +381,6 @@ $(function() {
           "data-validation-required-message": "Please enter your full name."
         }).on("change", function() {
           quote.fullName = $("input#name").val();
-          console.log("quote: ", quote);
         });
         $(fullNameFormGroup).append(fullName);
 
@@ -364,7 +399,6 @@ $(function() {
           "data-validation-required-message": "Please enter your email address."
         }).on("change", function() {
           quote.email = $("input#email").val();
-          console.log("quote: ", quote);
         });
         $(emailFormGroup).append(email);
 
@@ -383,7 +417,6 @@ $(function() {
           // onkeyup: "javascript:backspacerUP(this,event);"
         }).on("change", function() {
           quote.phone = $("input#phone").val();
-          console.log("quote: ", quote);
         });
         $(phoneFormGroup).append(phone);
         
