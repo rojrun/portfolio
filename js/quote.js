@@ -1,28 +1,183 @@
 $(function() {
-  var quote = {};
+  const quote = {};
 
+  const service = [
+    {
+      type: "build",
+      text: "Build a website for your project"
+    },
+    {
+      type: "redesign",
+      text: "Redesign your current website"
+    },
+    {
+      type: "repair",
+      text: "Repair your current website"
+    }
+  ];
 
-  // var service = [
-  //   {type: "build", price: 10000},
-  //   {type: "redesign", problems: [], price: 500},
-  //   {type: "repair", problems: [], price: 500}
-  // ];
-  // var app = [
-  //   {type: "authority", price: 3000},
-  //   {type: "leadGeneration", price: 3000},
-  //   {type: "sales", price: 15000},
-  //   {type: "utility", price: 20000}
-  // ];
-  // var technique = [
-  //   {type: "customSite", price: 10000},
-  //   {type: "templatedSite", price: 1500}
-  // ];
-  // var pages = {type: [], price: 1500};
-  // var functions = {type: [], price: 3000};
-  // var estimateTotal = 0;
+  const technique = [
+    {
+      type: "customized",
+      text: "100% customized from scratch website"
+    },
+    {
+      type: "templated",
+      text: "Website using templates like Shopify or WordPress"
+    }
+  ];
+
+  const website = [
+    {
+      type: "authority",
+      text: "Authority website: this is the place potential customers can go to see what work your company has done and how to get in contact with someone about your services",
+      customized: 3000,
+      templated: 1000
+    },
+    {
+      type: "leadGeneration",
+      text: "Lead-generation website: this site is focused on generating leads through its online presence",
+      customized: 3000,
+      templated: 1000
+    },
+    {
+      type: "sales",
+      text: "Sales website: sites that sell products or services through e-commerce",
+      customized: 10000,
+      templated: 5000
+    },
+    {
+      type: "utility",
+      text: "Utility website: companies whose business and website are one and the same",
+      customized: 15000,
+      templated: 10000
+    }
+  ];
   
+  const pages = {
+    type: [   
+      "About page", "Blog page", "Contact page", "FAQ page", "Homepage", "Landing page", "Page not found page", "Press page", "Privacy policy page", "Products page",
+      "Reviews page", "Search result page", "Services page", "Sitemap page", "Terms and conditions page", "Testimonials page"    
+    ],
+    customized: 1000,
+    templated: 400
+  };
 
+  const functions = {
+    type: [
+      "Book appointments", "Contact form", "Display image gallery", "Subscription offer", "Take payments", "Take surveys"
+    ],
+    customized: 4000,
+    templated: 800
+  };
 
+  const design = {
+    customized: 5000,
+    templated: 700
+  };
+
+  function customerInfo(serviceTypeSelectionDiv) {
+    // message section
+    const messageGroup = $("<div>").addClass("control-group");
+    $(serviceTypeSelectionDiv).append(messageGroup);
+    const messageFormGroup = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
+    $(messageGroup).append(messageFormGroup);
+    const message = $("<textarea>").attr({
+      id: "message",
+      name: "message",
+      rows: "3",
+      class: "form-control",
+      placeholder: "Message",
+      value: ""
+    }).on("change", function() {
+      quote.message = $("textarea#message").val();
+    });
+    $(messageFormGroup).append(message);
+
+    // fullName section
+    const fullNameGroup = $("<div>").addClass("control-group");
+    $(serviceTypeSelectionDiv).append(fullNameGroup);
+    const fullNameFormGroup = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
+    $(fullNameGroup).append(fullNameFormGroup);
+    const fullName = $("<input>").attr({
+      class: "form-control text-primary",
+      name: "name",
+      id: "name",
+      type: "text",
+      placeholder: "Full Name",
+      required: "required",
+      value: "",
+      "data-validation-required-message": "Please enter your full name."
+    }).on("change", function() {
+      quote.fullName = $("input#name").val();
+    });
+    $(fullNameFormGroup).append(fullName);
+
+    // email section
+    const emailGroup = $("<div>").addClass("control-group");
+    $(serviceTypeSelectionDiv).append(emailGroup);
+    const emailFormGroup = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
+    $(emailGroup).append(emailFormGroup);
+    const email = $("<input>").attr({
+      class: "form-control text-primary",
+      name: "email",
+      id: "email",
+      type: "text",
+      placeholder: "Email Address",
+      required: "required",
+      value: "",
+      "data-validation-required-message": "Please enter your email address."
+    }).on("change", function() {
+      quote.email = $("input#email").val();
+    });
+    $(emailFormGroup).append(email);
+
+    // phone section
+    const phoneGroup = $("<div>").addClass("control-group");
+    $(serviceTypeSelectionDiv).append(phoneGroup);
+    const phoneFormGroup = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
+    $(phoneGroup).append(phoneFormGroup);
+    const phone = $("<input>").attr({
+      class: "form-control text-primary",
+      name: "phone",
+      id: "phone",
+      type: "tel",
+      placeholder: "Phone Number",
+      value: "",
+      // onkeydown: "javascript:backspacerDOWN(this,event);",
+      // onkeyup: "javascript:backspacerUP(this,event);"
+    }).on("change", function() {
+      quote.phone = $("input#phone").val();
+      console.log("quote: ", quote);
+    });
+    $(phoneFormGroup).append(phone);
+    
+    const success = $("<div>").attr("id", "success");
+    $(serviceTypeSelectionDiv).append(success);
+    
+    // send and reset buttons
+    const buttonsGroup = $("<div>").addClass("form-group row px-3");
+    $(serviceTypeSelectionDiv).append(buttonsGroup);
+    const submit = $("<button>").attr({
+      type: "submit",
+      name: "submit",
+      class: "btn btn-primary btn-x1",
+      id: "submitButton"
+    }).text("Send");
+    $(buttonsGroup).append(submit);
+    const reset = $("<button>").attr({
+      type: "reset",
+      name: "reset",
+      class: "btn btn-outline-secondary btn-lg ml-2",
+      id: "resetButton",
+      value: "reset"
+    }).text("Reset");
+    $(buttonsGroup).append(reset);
+
+    return quote;
+  }
+
+  // ********** beginning of dom render **********
   const divRow = $("<div>").addClass("row");
   $("#quote .container").append(divRow);
   const divCol = $("<div>").addClass("col-lg-12 col-xl-12 mx-auto");
@@ -37,6 +192,7 @@ $(function() {
   });
   $(divCol).append(quoteForm);
 
+  // projectName section
   const divControlGroup = $("<div>").addClass("control-group");
   $(quoteForm).append(divControlGroup);
   var divFormGroup = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
@@ -53,37 +209,23 @@ $(function() {
   $(divFormGroup).append(inputProjectName);
 
   $("input#projectName").on("change", function() {
-    const serviceTypes = [
-      {
-        id: "build",
-        text: "Build a website for your project"
-      },
-      {
-        id: "redesign",
-        text: "Redesign your current website"
-      },
-      {
-        id: "repair",
-        text: "Repair your current website"
-      }
-    ];
-
     quote.projectName = $("input#projectName").val();
 
+    // service type section
     const serviceTypeControlGroup = $("<div>").addClass("control-group border-bottom");
     $(quoteForm).append(serviceTypeControlGroup);
     // var divFormGroup2 = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
     const serviceTypeQuestion = $("<p>").text("What type of service do you need?");
     $(serviceTypeControlGroup).append(serviceTypeQuestion);
     
-    for (let serviceIndex = 0; serviceIndex < serviceTypes.length; serviceIndex++) {
+    for (let index = 0; index < service.length; index++) {
       const serviceDiv = $("<div>").addClass("custom-control custom-radio");
       $(serviceTypeControlGroup).append(serviceDiv);
 
       const serviceInput = $("<input>").attr({
         type: "radio",
-        id: serviceTypes[serviceIndex].id,
-        value: serviceTypes[serviceIndex].id,
+        id: service[index].type,
+        value: service[index].type,
         name: "serviceType",
         class: "custom-control-input",
         required: "required"
@@ -93,135 +235,123 @@ $(function() {
       const serviceLabel = $("<label>").attr({
         class: "custom-control-label",
         style: "opacity: 1",
-        for: serviceTypes[serviceIndex].id
-      }).text(serviceTypes[serviceIndex].text);
+        for: service[index].type
+      }).text(service[index].text);
       $(serviceDiv).append(serviceLabel);
     }
 
-    $("input[name=serviceType]").on("click", function() {
+    // placeholder div when service type selected
+    const serviceTypeSelectionDiv = $("<div>");
+    $(quoteForm).append(serviceTypeSelectionDiv);
+    
+    $("input[name=serviceType]").on("change", function() {
       const serviceType = $(this).val();
       quote.serviceType = serviceType;
-      
+      console.log("quote: ", quote.serviceType);
       if (serviceType === "build") {
-        const techniqueType = [
-          {
-            id: "customized",
-            text: "100% customized from scratch website"
-          },
-          {
-            id: "templated",
-            text: "Website using templates like Shopify or WordPress"
-          }
-        ];
+        // technique type section
         const techniqueTypeGroup = $("<div>").addClass("control-group border-bottom");
-        $(quoteForm).append(techniqueTypeGroup);
+        $(serviceTypeSelectionDiv).empty();
+        $(serviceTypeSelectionDiv).append(techniqueTypeGroup);
         const techniqueTypeQuestion = $("<p>").text("How do you want your website to be built?");
         $(techniqueTypeGroup).append(techniqueTypeQuestion);
-        for (let techniqueIndex = 0; techniqueIndex < techniqueType.length; techniqueIndex++) {
+
+        for (let index = 0; index < technique.length; index++) {
           const techniqueDiv = $("<div>").addClass("custom-control custom-radio");
           $(techniqueTypeGroup).append(techniqueDiv);
 
           const techniqueInput = $("<input>").attr({
             type: "radio",
-            id: techniqueType[techniqueIndex].id,
-            value: techniqueType[techniqueIndex].id,
+            id: technique[index].type,
+            value: technique[index].type,
             name: "techniqueType",
             class: "custom-control-input",
             required: "required"
           }).on("click", function() {
-            quote.techniqueType = $("input[name=techniqueType]:checked").val();
+            // quote.techniqueType = $("input[name=techniqueType]:checked").val();
+            quote.techniqueType = $(this).val();
+            quote.design = design[quote.techniqueType];
+            console.log("quote: ", quote);
           });
           $(techniqueDiv).append(techniqueInput);
 
           const techniqueLabel = $("<label>").attr({
             class: "custom-control-label",
             style: "opacity: 1",
-            for:  techniqueType[techniqueIndex].id
-          }).text(techniqueType[techniqueIndex].text);
+            for:  technique[index].type
+          }).text(technique[index].text);
           $(techniqueDiv).append(techniqueLabel);
         }
 
-        const websiteTypes = [
-          {
-            id: "authority",
-            text: "Authority website: this is the place potential customers can go to see what work your company has done and how to get in contact with someone about your services"
-          },
-          {
-            id: "leadGeneration",
-            text: "Lead-generation website: this site is focused on generating leads through its online presence"
-          },
-          {
-            id: "sales",
-            text: "Sales website: sites that sell products or services through e-commerce"
-          },
-          {
-            id: "utility",
-            text: "Utility website: companies whose business and website are one and the same"
-          }
-        ];
+        // website type section
+        quote.website = {};
         const websiteTypeGroup = $("<div>").addClass("control-group border-bottom");
-        $(quoteForm).append(websiteTypeGroup);
+        $(serviceTypeSelectionDiv).append(websiteTypeGroup);
         const websiteTypeQuestion = $("<p>").text("What type of website is your project?");
         $(websiteTypeGroup).append(websiteTypeQuestion);
-        for (let websiteIndex = 0; websiteIndex < websiteTypes.length; websiteIndex++) {
+
+        for (let index = 0; index < website.length; index++) {
           const websiteDiv = $("<div>").addClass("custom-control custom-radio");
           $(websiteTypeGroup).append(websiteDiv);
 
           const websiteInput = $("<input>").attr({
             type: "radio",
-            id: websiteTypes[websiteIndex].id,
-            value: websiteTypes[websiteIndex].id,
+            id: website[index].type,
+            value: website[index].type,
             name: "websiteType",
             class: "custom-control-input",
             required: "required"
           }).on("click", function() {
-            quote.websiteType = $("input[name=websiteType]:checked").val();
+            // quote.website.type = $("input[name=websiteType]:checked").val();
+            quote.website.type = $(this).val();
+            quote.website.basePrice = website[index][quote.techniqueType];
+            console.log("website quote: ", quote);
           });
           $(websiteDiv).append(websiteInput);
 
           const websiteLabel = $("<label>").attr({
             class: "custom-control-label",
             style: "opacity: 1",
-            for:  websiteTypes[websiteIndex].id
-          }).text(websiteTypes[websiteIndex].text);
+            for:  website[index].type
+          }).text(website[index].text);
           $(websiteDiv).append(websiteLabel);
         }
  
-        const pageTypes = [   
-          "About page", "Blog page", "Contact page", "FAQ page", "Homepage", "Landing page", "Page not found page", "Press page", "Privacy policy page", "Products page",
-          "Reviews page", "Search result page", "Services page", "Sitemap page", "Terms and conditions page", "Testimonials page"    
-        ];
-        quote.pages = [];
+        // page types section
+        quote.pages = {type: []};
         const pageContentGroup = $("<div>").addClass("control-group border-bottom");
-        $(quoteForm).append(pageContentGroup);
+        $(serviceTypeSelectionDiv).append(pageContentGroup);
         const pageContentQuestion = $("<p>").text("What pages do you want to display in your website? Select all that apply:");
         $(pageContentGroup).append(pageContentQuestion);
-        for (let pageIndex = 0; pageIndex < pageTypes.length; pageIndex++) {
+
+        for (let index = 0; index < pages.type.length; index++) {
           var pageDiv = $("<div>").addClass("form-check form-check-inine");
           $(pageContentGroup).append(pageDiv);
 
           const pageInput = $("<input>").attr({
             type: "checkbox",
-            id: pageTypes[pageIndex],
-            value: pageTypes[pageIndex],
+            id: pages.type[index],
+            value: pages.type[index],
             name: "pages",
             class: "form-check-input",
             required: "required"
           }).on("change", function() {
             if ($(this).is(":checked")) {
-              quote.pages.push($(this).val());
+              quote.pages.type.push($(this).val());
             } else {
-              quote.pages.splice( quote.pages.indexOf( $(this).val() ), 1);
+              quote.pages.type.splice( quote.pages.type.indexOf( $(this).val() ), 1);
             }
+            quote.pages.pricePerPage = pages[quote.techniqueType];
+            console.log("quote: ", quote);
           });
           $(pageDiv).append(pageInput);
 
           const pageLabel = $("<label>").attr({
             class: "form-check-label",
             style: "opacity: 1",
-            for: pageTypes[pageIndex],
-            id: pageTypes[pageIndex]
-          }).text(pageTypes[pageIndex]);
+            for: pages.type[index],
+            id: pages.type[index]
+          }).text(pages.type[index]);
           $(pageDiv).append(pageLabel);
         }
 
@@ -247,7 +377,7 @@ $(function() {
             placeholder: "Add page",
             value: ""
           }).on("change", function() {
-            quote.pages.push($(this).val());
+            quote.pages.type.push($(this).val());
             $("#addFieldButton").attr("disabled", false);
             
             const deleteInputButton = $("<span>").attr({
@@ -269,40 +399,41 @@ $(function() {
         });
         $(pageContentGroup).append(addFieldButton);
 
-        const functions = [
-          "Book appointments", "Contact form", "Display image gallery", "Subscription offer", "Take payments", "Take surveys"
-        ];
-        quote.functionality = [];
+        // functions section
+        quote.functions = {type: []};
         const functionsGroup = $("<div>").addClass("control-group border-bottom");
-        $(quoteForm).append(functionsGroup);
+        $(serviceTypeSelectionDiv).append(functionsGroup);
         const functionsContentQuestion = $("<p>").text("What functions do you want your website to perform? Select all that apply:");
         $(functionsGroup).append(functionsContentQuestion);
-        for (let functionsIndex = 0; functionsIndex < functions.length; functionsIndex++) {
+
+        for (let index = 0; index < functions.type.length; index++) {
           var functionsDiv = $("<div>").addClass("form-check form-check-inine");
           $(functionsGroup).append(functionsDiv);
 
           const functionsInput = $("<input>").attr({
             type: "checkbox",
-            id: functions[functionsIndex],
-            value: functions[functionsIndex],
+            id: functions.type[index],
+            value: functions.type[index],
             name: "functions",
             class: "form-check-input",
             required: "required"
           }).on("change", function() {
             if ($(this).is(":checked")) {
-              quote.functionality.push($(this).val());
+              quote.functions.type.push($(this).val());
             } else {
-              quote.functionality.splice( quote.functionality.indexOf( $(this).val() ), 1);
+              quote.functions.type.splice( quote.functions.type.indexOf( $(this).val() ), 1);
             }
+            quote.functions.pricePerFunction = functions[quote.techniqueType];
+            console.log("quote: ", quote);
           });
           $(functionsDiv).append(functionsInput);
 
           const functionsLabel = $("<label>").attr({
             class: "form-check-label",
             style: "opacity: 1",
-            for: functions[functionsIndex],
-            id: functions[functionsIndex]
-          }).text(functions[functionsIndex]);
+            for: functions.type[index],
+            id: functions.type[index]
+          }).text(functions.type[index]);
           $(functionsDiv).append(functionsLabel);
         }
 
@@ -328,7 +459,7 @@ $(function() {
             placeholder: "Add functionality",
             value: ""
           }).on("change", function() {
-            quote.functionality.push($(this).val());
+            quote.functions.type.push($(this).val());
             $("#addFunctionFieldButton").attr("disabled", false);
             
             const deleteInputButton = $("<span>").attr({
@@ -341,7 +472,7 @@ $(function() {
               "padding-right": "1rem",
               "cursor": "pointer"
             }).on("click", function() {
-              quote.functionality.splice( quote.functionality.indexOf( $(this).siblings("input").val() ), 1);
+              quote.functions.type.splice( quote.functions.type.indexOf( $(this).siblings("input").val() ), 1);
               $(this).parent().get(0).remove();
             });
             $(clearableInput).append(deleteInputButton);
@@ -350,105 +481,31 @@ $(function() {
         });
         $(functionsGroup).append(addFunctionFieldButton);
 
-        const messageGroup = $("<div>").addClass("control-group");
-        $(quoteForm).append(messageGroup);
-        const messageFormGroup = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
-        $(messageGroup).append(messageFormGroup);
-        const message = $("<textarea>").attr({
-          id: "message",
-          name: "message",
-          rows: "3",
-          class: "form-control",
-          placeholder: "Message",
-          value: ""
-        }).on("change", function() {
-          quote.message = $("textarea#message").val();
-        });
-        $(messageFormGroup).append(message);
+        customerInfo(serviceTypeSelectionDiv);
 
-        const fullNameGroup = $("<div>").addClass("control-group");
-        $(quoteForm).append(fullNameGroup);
-        const fullNameFormGroup = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
-        $(fullNameGroup).append(fullNameFormGroup);
-        const fullName = $("<input>").attr({
-          class: "form-control text-primary",
-          name: "name",
-          id: "name",
-          type: "text",
-          placeholder: "Full Name",
-          required: "required",
-          value: "",
-          "data-validation-required-message": "Please enter your full name."
-        }).on("change", function() {
-          quote.fullName = $("input#name").val();
-        });
-        $(fullNameFormGroup).append(fullName);
-
-        const emailGroup = $("<div>").addClass("control-group");
-        $(quoteForm).append(emailGroup);
-        const emailFormGroup = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
-        $(emailGroup).append(emailFormGroup);
-        const email = $("<input>").attr({
-          class: "form-control text-primary",
-          name: "email",
-          id: "email",
-          type: "text",
-          placeholder: "Email Address",
-          required: "required",
-          value: "",
-          "data-validation-required-message": "Please enter your email address."
-        }).on("change", function() {
-          quote.email = $("input#email").val();
-        });
-        $(emailFormGroup).append(email);
-
-        const phoneGroup = $("<div>").addClass("control-group");
-        $(quoteForm).append(phoneGroup);
-        const phoneFormGroup = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
-        $(phoneGroup).append(phoneFormGroup);
-        const phone = $("<input>").attr({
-          class: "form-control text-primary",
-          name: "phone",
-          id: "phone",
-          type: "tel",
-          placeholder: "Phone Number",
-          value: "",
-          // onkeydown: "javascript:backspacerDOWN(this,event);",
-          // onkeyup: "javascript:backspacerUP(this,event);"
-        }).on("change", function() {
-          quote.phone = $("input#phone").val();
-        });
-        $(phoneFormGroup).append(phone);
-        
-        const success = $("<div>").attr("id", "success");
-        $(quoteForm).append(success);
-
-        const buttonsGroup = $("<div>").addClass("form-group row px-3");
-        $(quoteForm).append(buttonsGroup);
-        const submit = $("<button>").attr({
-          type: "submit",
-          name: "submit",
-          class: "btn btn-primary btn-x1",
-          id: "submitButton"
-        }).text("Send");
-        $(buttonsGroup).append(submit);
-        const reset = $("<button>").attr({
-          type: "reset",
-          name: "reset",
-          class: "btn btn-outline-secondary btn-lg ml-2",
-          id: "resetButton",
-          value: "reset"
-        }).text("Reset");
-        $(buttonsGroup).append(reset);
       } else if (serviceType === "redesign") {
-        console.log("quote: ", quote);
         const redesignGroup = $("<div>").addClass("control-group border-bottom");
-        $(quoteForm).append(redesignGroup);
+        $(serviceTypeSelectionDiv).empty();
+        $(serviceTypeSelectionDiv).append(redesignGroup);
         const redesignQuestion = $("<p>").text("Do you want your whole website ");
         $(redesignGroup).append(redesignQuestion);
-      } else {
+
+        customerInfo(serviceTypeSelectionDiv);
+        console.log("quote: ", quote);
+        
+      } else if (serviceType === "repair") {
+        const repairGroup = $("<div>").addClass("control-group border-bottom");
+        $(serviceTypeSelectionDiv).empty();
+        $(serviceTypeSelectionDiv).append(repairGroup);
+        const repairQuestion = $("<p>").text("Repair");
+        $(repairGroup).append(repairQuestion);
+
+        customerInfo(serviceTypeSelectionDiv);
         console.log("repair quote: ", quote);
+
       }
     });
   });
+
+  
 });
