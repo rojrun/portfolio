@@ -16,6 +16,14 @@ $(function() {
     }
   ];
 
+  const redesign = {
+    
+  };
+
+  const repair = {
+
+  };
+
   const technique = [
     {
       type: "customized",
@@ -148,7 +156,6 @@ $(function() {
       // onkeyup: "javascript:backspacerUP(this,event);"
     }).on("change", function() {
       quote.phone = $("input#phone").val();
-      console.log("quote: ", quote);
     });
     $(phoneFormGroup).append(phone);
     
@@ -175,6 +182,15 @@ $(function() {
     $(buttonsGroup).append(reset);
 
     return quote;
+  }
+
+  function deleteProps(object) {
+    $.each(object, function(key) {
+      if ((key !== "projectName") && (key !== "serviceType")) {
+        delete object[key];
+      }
+    });
+    return object;
   }
 
   // ********** beginning of dom render **********
@@ -247,8 +263,9 @@ $(function() {
     $("input[name=serviceType]").on("change", function() {
       const serviceType = $(this).val();
       quote.serviceType = serviceType;
-      console.log("quote: ", quote.serviceType);
       if (serviceType === "build") {
+        deleteProps(quote);
+      
         // technique type section
         const techniqueTypeGroup = $("<div>").addClass("control-group border-bottom");
         $(serviceTypeSelectionDiv).empty();
@@ -267,11 +284,25 @@ $(function() {
             name: "techniqueType",
             class: "custom-control-input",
             required: "required"
-          }).on("click", function() {
-            // quote.techniqueType = $("input[name=techniqueType]:checked").val();
+          }).on("change", function() {
             quote.techniqueType = $(this).val();
             quote.design = design[quote.techniqueType];
-            console.log("quote: ", quote);
+            
+            if (!$.isEmptyObject(quote.website)) {
+              for (let index = 0; index < website.length; index++) {
+                if (website[index].type === quote.website.type) {
+                  quote.website.basePrice = website[index][quote.techniqueType];
+                }
+              }
+            }
+
+            function pricPerWhenTechniqueTypeChange(prop) {
+              if (quote[prop].type.length) {
+                return quote[prop].pricePer = pages[quote.techniqueType];
+              }
+            }
+            pricPerWhenTechniqueTypeChange("pages");
+            pricPerWhenTechniqueTypeChange("functions");  
           });
           $(techniqueDiv).append(techniqueInput);
 
@@ -301,11 +332,9 @@ $(function() {
             name: "websiteType",
             class: "custom-control-input",
             required: "required"
-          }).on("click", function() {
-            // quote.website.type = $("input[name=websiteType]:checked").val();
+          }).on("change", function() {
             quote.website.type = $(this).val();
             quote.website.basePrice = website[index][quote.techniqueType];
-            console.log("website quote: ", quote);
           });
           $(websiteDiv).append(websiteInput);
 
@@ -325,7 +354,7 @@ $(function() {
         $(pageContentGroup).append(pageContentQuestion);
 
         for (let index = 0; index < pages.type.length; index++) {
-          var pageDiv = $("<div>").addClass("form-check form-check-inine");
+          const pageDiv = $("<div>").addClass("form-check form-check-inine");
           $(pageContentGroup).append(pageDiv);
 
           const pageInput = $("<input>").attr({
@@ -341,8 +370,7 @@ $(function() {
             } else {
               quote.pages.type.splice( quote.pages.type.indexOf( $(this).val() ), 1);
             }
-            quote.pages.pricePerPage = pages[quote.techniqueType];
-            console.log("quote: ", quote);
+            quote.pages.pricePer = pages[quote.techniqueType];
           });
           $(pageDiv).append(pageInput);
 
@@ -390,7 +418,7 @@ $(function() {
               "padding-right": "1rem",
               "cursor": "pointer"
             }).on("click", function() {
-              quote.pages.splice( quote.pages.indexOf( $(this).siblings("input").val() ), 1);
+              quote.pages.type.splice( quote.pages.type.indexOf( $(this).siblings("input").val() ), 1);
               $(this).parent().get(0).remove();
             });
             $(clearableInput).append(deleteInputButton);
@@ -423,8 +451,7 @@ $(function() {
             } else {
               quote.functions.type.splice( quote.functions.type.indexOf( $(this).val() ), 1);
             }
-            quote.functions.pricePerFunction = functions[quote.techniqueType];
-            console.log("quote: ", quote);
+            quote.functions.pricePer = functions[quote.techniqueType];
           });
           $(functionsDiv).append(functionsInput);
 
@@ -484,6 +511,8 @@ $(function() {
         customerInfo(serviceTypeSelectionDiv);
 
       } else if (serviceType === "redesign") {
+        deleteProps(quote);
+        
         const redesignGroup = $("<div>").addClass("control-group border-bottom");
         $(serviceTypeSelectionDiv).empty();
         $(serviceTypeSelectionDiv).append(redesignGroup);
@@ -494,6 +523,8 @@ $(function() {
         console.log("quote: ", quote);
         
       } else if (serviceType === "repair") {
+        deleteProps(quote);
+
         const repairGroup = $("<div>").addClass("control-group border-bottom");
         $(serviceTypeSelectionDiv).empty();
         $(serviceTypeSelectionDiv).append(repairGroup);
@@ -506,6 +537,4 @@ $(function() {
       }
     });
   });
-
-  
 });
