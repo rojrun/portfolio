@@ -8,7 +8,7 @@ $(function() {
     },
     {
       type: "redesign",
-      text: "Redesign your current website"
+      text: "Redesign and/or add functionality to your current website"
     },
     {
       type: "repair",
@@ -85,22 +85,22 @@ $(function() {
   };
 
   function customerInfo(serviceTypeSelectionDiv) {
-    // message section
-    const messageGroup = $("<div>").addClass("control-group");
-    $(serviceTypeSelectionDiv).append(messageGroup);
-    const messageFormGroup = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
-    $(messageGroup).append(messageFormGroup);
-    const message = $("<textarea>").attr({
-      id: "message",
-      name: "message",
+    // comment section
+    const commentGroup = $("<div>").addClass("control-group");
+    $(serviceTypeSelectionDiv).append(commentGroup);
+    const commentFormGroup = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
+    $(commentGroup).append(commentFormGroup);
+    const comment = $("<textarea>").attr({
+      id: "comment",
+      name: "comment",
       rows: "3",
       class: "form-control",
-      placeholder: "Message",
+      placeholder: "Comment",
       value: ""
     }).on("change", function() {
-      quote.message = $("textarea#message").val();
+      quote.comment = $("textarea#comment").val();
     });
-    $(messageFormGroup).append(message);
+    $(commentFormGroup).append(comment);
 
     // fullName section
     const fullNameGroup = $("<div>").addClass("control-group");
@@ -193,7 +193,7 @@ $(function() {
     return object;
   }
 
-  // ********** beginning of dom render **********
+  // ******************** beginning of dom render ********************
   const divRow = $("<div>").addClass("row");
   $("#quote .container").append(divRow);
   const divCol = $("<div>").addClass("col-lg-12 col-xl-12 mx-auto");
@@ -513,12 +513,147 @@ $(function() {
       } else if (serviceType === "redesign") {
         deleteProps(quote);
         
+        // website sections for redesign
         const redesignGroup = $("<div>").addClass("control-group border-bottom");
         $(serviceTypeSelectionDiv).empty();
         $(serviceTypeSelectionDiv).append(redesignGroup);
-        const redesignQuestion = $("<p>").text("Do you want your whole website ");
+        const redesignQuestion = $("<p>").addClass("lead text-secondary mt-4").text("What parts of your website do you want redesigned?");
         $(redesignGroup).append(redesignQuestion);
 
+        const redesignAll = $("<div>").addClass("form-check col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6");
+        $(redesignGroup).append(redesignAll);
+
+        const inputAll = $("<input>").attr({
+          type: "checkbox",
+          id: "inputAll",
+          value: "inputAll",
+          name: "inputAll",
+          class: "form-check-input"
+        }).on("change", function() {
+          if ($(this).is(":checked")) {
+            $("#redesignOther").attr("disabled", true);
+            quote.sections = "entire website";
+          } else {
+            $("#redesignOther").attr("disabled", false);
+            delete quote.sections;
+          }
+        });
+        $(redesignAll).append(inputAll);
+
+        const inputAllLabel = $("<label>").attr({
+          class: "form-check-label",
+          style: "opacity: 1",
+          for: "inputAll",
+          id: "inputAll"
+        }).text("Entire website");
+        $(redesignAll).append(inputAllLabel);
+
+        const redesignOr = $("<p>").addClass("lead text-secondary mt-4").text("Or, input parts per field");
+        $(redesignGroup).append(redesignOr);
+
+        const additionalRedesignFields = $("<div>").attr("id", "additionalRedesignFields");
+        $(redesignGroup).append(additionalRedesignFields);
+
+        const clearableInput = $("<div>").attr("id", "redesignInputRow").css({"display": "block", "position": "relative"});
+        $(additionalRedesignFields).append(clearableInput);
+
+        const redesignOtherField = $("<input>").attr({
+          class: "form-control text-secondary",
+          name: "redesignOther",
+          id: "redesignOther",
+          type: "text",
+          placeholder: "Add part of the website that you want to redesign",
+          value: ""
+        }).on("change", function() {
+          const deleteInputButton = $("<span>").attr({
+            id: "deleteInputButton",
+            type: "button"
+          }).html("&times;").css({
+            "position": "absolute",
+            "top": 0,
+            "right": 0,
+            "padding-right": "1rem",
+            "cursor": "pointer"
+          }).on("click", function() {
+            quote.sections.type.splice( quote.sections.type.indexOf( $("#redesignOther").val() ), 1);
+            $(this).parent().get(0).remove();
+          });
+
+          quote.sections = {type: []};
+          
+          if (!$(this).val()) {
+            $("#inputAll").attr("disabled", false);
+            $("#addRedesignFieldButton").attr("disabled", true);
+            $("#deleteInputButton").remove();
+          } else {
+            $("#inputAll").attr("disabled", true);
+            $("#addRedesignFieldButton").attr("disabled", false);
+            $(clearableInput).append(deleteInputButton);
+            quote.sections.type.push($(this).val());
+          }
+        });
+        $(clearableInput).append(redesignOtherField);
+
+        const addRedesignFieldButton = $("<input>").attr({
+          id: "addRedesignFieldButton",
+          class: "btn btn-outline-secondary btn-lg ml-2",
+          type: "button",
+          value: "Add new field",
+          disabled: true
+        }).on("click", function() {
+          $("#addRedesignFieldButton").attr("disabled", true);
+
+          const newSectionField = $("<div>").attr("id", "newSectionInputRow").css({"display": "block", "position": "relative"});
+          $(additionalRedesignFields).append(newSectionField);
+
+          const newSectionInput = $("<input>").attr({
+            class: "form-control text-secondary",
+            name: "redesignOther",
+            id: "redesignOther",
+            type: "text",
+            placeholder: "Add section",
+            value: ""
+          }).on("change", function() {
+            const deleteInputButton = $("<span>").attr({
+              id: "deleteInputButton",
+              type: "button"
+            }).html("&times;").css({
+              "position": "absolute",
+              "top": 0,
+              "right": 0,
+              "padding-right": "1rem",
+              "cursor": "pointer"
+            }).on("click", function() {
+              quote.sections.type.splice( quote.sections.type.indexOf( $(this).siblings("input").val() ), 1);
+              $(this).parent().get(0).remove();
+            });
+  
+            if (!$(this).val()) {  
+              $("#addRedesignFieldButton").attr("disabled", true);
+              $("#deleteInputButton").remove();
+            } else {
+              $("#addRedesignFieldButton").attr("disabled", false);
+              $(newSectionField).append(deleteInputButton);
+              quote.sections.type.push($(this).val());
+            }
+          });
+          $(newSectionField).append(newSectionInput);
+        });
+        $(redesignGroup).append(addRedesignFieldButton);
+
+        // add functionality section
+        const addFunctionalityGroup = $("<div>").addClass("control-group border-bottom");
+        $(redesignGroup).append(addFunctionalityGroup);
+        const addFunctionalityQuestion = $("<p>").addClass("lead text-secondary mt-4").text("What functionalities do you want to add to your website?");
+        $(redesignGroup).append(addFunctionalityQuestion);
+
+        const addFunctionalityFields = $("<div>").attr("id", "addFunctionalityFields");
+        $(redesignGroup).append(addFunctionalityFields);
+
+
+
+        
+        
         customerInfo(serviceTypeSelectionDiv);
         console.log("quote: ", quote);
         
