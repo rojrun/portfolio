@@ -54,7 +54,7 @@ $(function() {
     }
   ];
   
-  const pages = {
+  const page = {
     type: [   
       "About page", "Blog page", "Contact page", "FAQ page", "Homepage", "Landing page", "Page not found page", "Press page", "Privacy policy page", "Products page",
       "Reviews page", "Search result page", "Services page", "Sitemap page", "Terms and conditions page", "Testimonials page"    
@@ -63,7 +63,7 @@ $(function() {
     templated: 400
   };
 
-  const functions = {
+  const functionality = {
     type: [
       "Book appointments", "Contact form", "Display image gallery", "Subscription offer", "Take payments", "Take surveys"
     ],
@@ -141,7 +141,7 @@ $(function() {
     return;
   }
 
-  function createInputButton(appendDiv) {
+  function createInputButton(appendDiv, appendInputField, prop) {
     const button = $("<input>").attr({
       id: "addFieldButton",
       class: "btn btn-outline-secondary btn-lg ml-2",
@@ -149,16 +149,53 @@ $(function() {
       value: "Add new field"
     }).on("click", function() {
       $("#addFieldButton").attr("disabled", true);
+      const inputContainer = $("<div>").attr("id", "newInputRow").css({"display": "block", "position": "relative"});
+      $(appendInputField).append(inputContainer);
 
+      createInputFieldWithDelete(inputContainer, prop, "#addFieldButton");
     });
     $(appendDiv).append(button);
+
+    return quote;
+  }
+
+  function createInputFieldWithDelete(appendDiv, prop, button) {
+    const input = $("<input>").attr({
+      class: "form-control text-secondary",
+      name: prop,
+      id: "otherPageInput",
+      type: "text",
+      placeholder: "Add other " + prop,
+      value: ""
+    }).on("change", function() {
+      quote[prop].type.push($(this).val());
+      $(button).attr("disabled", false);
+      
+      const deleteInputButton = $("<span>").attr({
+        id: "deleteInputButton",
+        type: "button"
+      }).html("&times;").css({
+        "position": "absolute",
+        "top": 0,
+        "right": 0,
+        "padding-right": "1rem",
+        "cursor": "pointer"
+      }).on("click", function() {
+        quote[prop].type.splice( quote[prop].type.indexOf( $(this).siblings("input").val() ), 1);
+        $(this).parent().get(0).remove();
+      });
+      $(appendDiv).append(deleteInputButton);
+    });
+    $(appendDiv).append(input);
+    
+    return quote;
   }
 
   function customerInfo(serviceTypeSelectionDiv) {
-    createFormField(serviceTypeSelectionDiv, "comment", "<textarea>", "text", false);
-    createFormField(serviceTypeSelectionDiv, "full name", "<input>", "text", true);
-    createFormField(serviceTypeSelectionDiv, "email address", "<input>", "text", true);
-    createFormField(serviceTypeSelectionDiv, "phone number", "<input>", "tel", false);
+    createInputField(serviceTypeSelectionDiv, "comment", "<textarea>", "text", false);
+    createInputField(serviceTypeSelectionDiv, "full name", "<input>", "text", true);
+    createInputField(serviceTypeSelectionDiv, "email address", "<input>", "text", true);
+    createInputField(serviceTypeSelectionDiv, "phone number", "<input>", "tel", false);
     
     const success = $("<div>").attr("id", "success");
     $(serviceTypeSelectionDiv).append(success);
@@ -172,7 +209,7 @@ $(function() {
     return quote;
   }
 
-  function createFormField(appendDiv, string, element, type, isRequired) {
+  function createInputField(appendDiv, string, element, type, isRequired) {
     const fieldContainer = $("<div>").addClass("control-group");
     $(appendDiv).append(fieldContainer);
     const form = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
@@ -227,14 +264,13 @@ $(function() {
   });
   $(divCol).append(quoteForm);
 
-  createFormField(quoteForm, "project name", "<input>", "text", true);
+  createInputField(quoteForm, "project name", "<input>", "text", true);
 
   $("#quoteForm input").blur(function() {
     if (!$.isEmptyObject(quote["project name"])) {
       // service type section
       const serviceTypeControlGroup = $("<div>").addClass("control-group border-bottom");
       $(quoteForm).append(serviceTypeControlGroup);
-      // var divFormGroup2 = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
       const serviceTypeQuestion = $("<p>").text("What type of service do you need?");
       $(serviceTypeControlGroup).append(serviceTypeQuestion);
       
@@ -271,8 +307,8 @@ $(function() {
               }
             }
 
-            pricePerWhenTechniqueTypeChange("pages");
-            pricePerWhenTechniqueTypeChange("functions");  
+            pricePerWhenTechniqueTypeChange("page");
+            pricePerWhenTechniqueTypeChange("functionality");  
           });
 
           // website type section
@@ -291,119 +327,41 @@ $(function() {
             })][quote.techniqueType];
           });
   
-          // page types section
-          quote.pages = {type: []};
+          // page type section
+          quote.page = {type: []};
           const pageContentGroup = $("<div>").addClass("control-group border-bottom");
           $(serviceTypeSelectionDiv).append(pageContentGroup);
           const pageContentQuestion = $("<p>").text("What pages do you want to display in your website? Select all that apply:");
           $(pageContentGroup).append(pageContentQuestion);
 
-          createCheckboxInput(pageContentGroup, pages, "pages");
+          createCheckboxInput(pageContentGroup, page, "page");
 
           const inputField = $("<div>").addClass("form-check").attr("id", "otherInputField");
           $(pageContentGroup).append(inputField);
 
-          createInputButton(pageContentGroup);
+          createInputButton(pageContentGroup, inputField, "page");
 
-          const addFieldButton = $("<input>").attr({
-            id: "addFieldButton",
-            class: "btn btn-outline-secondary btn-lg ml-2",
-            type: "button",
-            value: "Add new field"
-          }).on("click", function() {
-            $("#addFieldButton").attr("disabled", true);
-
-            const clearableInput = $("<div>").attr("id", "newInputRow").css({"display": "block", "position": "relative"});
-            $(inputField).append(clearableInput);
-
-            const otherPageInput = $("<input>").attr({
-              class: "form-control text-secondary",
-              name: "pages",
-              id: "otherPageInput",
-              type: "text",
-              placeholder: "Add page",
-              value: ""
-            }).on("change", function() {
-              quote.pages.type.push($(this).val());
-              $("#addFieldButton").attr("disabled", false);
-              
-              const deleteInputButton = $("<span>").attr({
-                id: "deleteInputButton",
-                type: "button"
-              }).html("&times;").css({
-                "position": "absolute",
-                "top": 0,
-                "right": 0,
-                "padding-right": "1rem",
-                "cursor": "pointer"
-              }).on("click", function() {
-                quote.pages.type.splice( quote.pages.type.indexOf( $(this).siblings("input").val() ), 1);
-                $(this).parent().get(0).remove();
-              });
-              $(clearableInput).append(deleteInputButton);
-            });
-            $(clearableInput).append(otherPageInput);
-          });
-          $(pageContentGroup).append(addFieldButton);
-
-          // functions section
-          quote.functions = {type: []};
-          const functionsGroup = $("<div>").addClass("control-group border-bottom");
-          $(serviceTypeSelectionDiv).append(functionsGroup);
+          // functionality type section
+          quote.functionality = {type: []};
+          const functionalityContentGroup = $("<div>").addClass("control-group border-bottom");
+          $(serviceTypeSelectionDiv).append(functionalityContentGroup);
           const functionsContentQuestion = $("<p>").text("What functions do you want your website to perform? Select all that apply:");
-          $(functionsGroup).append(functionsContentQuestion);
+          $(functionalityContentGroup).append(functionsContentQuestion);
 
-          createCheckboxInput(functionsGroup, functions, "functions");  
+          createCheckboxInput(functionalityContentGroup, functionality, "functionality");  
           
-          const functionInputField = $("<div>").addClass("form-check").attr("id", "otherInputField");
-          $(functionsGroup).append(functionInputField);
+          const functionalityInputField = $("<div>").addClass("form-check").attr("id", "otherInputField");
+          $(functionalityContentGroup).append(functionalityInputField);
 
-          const addFunctionFieldButton = $("<input>").attr({
-            id: "addFunctionFieldButton",
-            class: "btn btn-outline-secondary btn-lg ml-2",
-            type: "button",
-            value: "Add new field"
-          }).on("click", function() {
-            $("#addFunctionFieldButton").attr("disabled", true);
+          createInputButton(functionalityContentGroup, functionalityInputField, "functionality");
 
-            const clearableInput = $("<div>").attr("id", "newInputRow").css({"display": "block", "position": "relative"});
-            $(functionInputField).append(clearableInput);
-
-            const otherFunctionInput = $("<input>").attr({
-              class: "form-control text-secondary",
-              name: "functionality",
-              id: "otherFunctionInput",
-              type: "text",
-              placeholder: "Add functionality",
-              value: ""
-            }).on("change", function() {
-              quote.functions.type.push($(this).val());
-              $("#addFunctionFieldButton").attr("disabled", false);
-              
-              const deleteInputButton = $("<span>").attr({
-                id: "deleteInputButton",
-                type: "button"
-              }).html("&times;").css({
-                "position": "absolute",
-                "top": 0,
-                "right": 0,
-                "padding-right": "1rem",
-                "cursor": "pointer"
-              }).on("click", function() {
-                quote.functions.type.splice( quote.functions.type.indexOf( $(this).siblings("input").val() ), 1);
-                $(this).parent().get(0).remove();
-              });
-              $(clearableInput).append(deleteInputButton);
-            });
-            $(clearableInput).append(otherFunctionInput);
-          });
-          $(functionsGroup).append(addFunctionFieldButton);
-
+          // customer input fields
           customerInfo(serviceTypeSelectionDiv);
 
         } else if (serviceType === "redesign") {
           deleteProps(quote);
-          
+          quote.sections = {type: []};
+            
           // website sections for redesign
           const redesignGroup = $("<div>").addClass("control-group border-bottom");
           $(serviceTypeSelectionDiv).empty();
@@ -411,7 +369,7 @@ $(function() {
           const redesignQuestion = $("<p>").addClass("lead text-secondary mt-4").text("What parts of your website do you want redesigned?");
           $(redesignGroup).append(redesignQuestion);
 
-          const redesignAll = $("<div>").addClass("form-check col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6");
+          const redesignAll = $("<div>").addClass("form-check form-check-inine");
           $(redesignGroup).append(redesignAll);
 
           const inputAll = $("<input>").attr({
@@ -430,7 +388,6 @@ $(function() {
             }
           });
           $(redesignAll).append(inputAll);
-
           const inputAllLabel = $("<label>").attr({
             class: "form-check-label",
             style: "opacity: 1",
@@ -470,8 +427,6 @@ $(function() {
               $(this).parent().get(0).remove();
             });
 
-            quote.sections = {type: []};
-            
             if (!$(this).val()) {
               $("#inputAll").attr("disabled", false);
               $("#addRedesignFieldButton").attr("disabled", true);
