@@ -115,13 +115,6 @@ $(function() {
         name: name,
         class: "form-check-input",
         required: true
-      }).on("change", function() {
-        if ($(this).is(":checked")) {
-          quote[name].type.push($(this).val());
-        } else {
-          quote[name].type.splice( quote[name].type.indexOf( $(this).val() ), 1);
-        }
-        quote[name].pricePer = array[quote.techniqueType];
       });
       $(container).append(input);
 
@@ -136,6 +129,18 @@ $(function() {
     return quote;
   }
 
+  function addCheckboxInputToQuote(prop, array) {
+    $(`input[name=${prop}]`).on("change", function() {
+      if ($(this).is(":checked")) {
+        quote[prop].type.push($(this).val());
+      } else {
+        quote[prop].type.splice( quote[prop].type.indexOf( $(this).val() ), 1);
+      }
+      quote[prop].pricePer = array[quote.techniqueType];
+      return quote;
+    });
+  }
+
   function pricePerWhenTechniqueTypeChange(prop) {
     if (quote[prop].type.length) {
       return quote[prop].pricePer = pages[quote.techniqueType];
@@ -143,61 +148,117 @@ $(function() {
     return;
   }
 
-  function createInputButton(appendDiv, appendInputField, prop) {
+  function createInputButton(appendDiv, prop) {
     const button = $("<input>").attr({
-      id: "addFieldButton",
+      id: "addFieldButtonFor" + prop,
       class: "btn btn-outline-secondary btn-lg ml-2",
       type: "button",
       value: "Add new field"
-    }).on("click", function() {
-      $("#addFieldButton").attr("disabled", true);
-      const inputContainer = $("<div>").attr("id", "newInputRow").css({"display": "block", "position": "relative"});
-      $(appendInputField).append(inputContainer);
-
-      createInputFieldWithDelete(inputContainer, prop, "#addFieldButton");
     });
     $(appendDiv).append(button);
-
-    return quote;
+    return;
   }
 
-  function createInputFieldWithDelete(appendDiv, prop, button) {
+  function inputButtonClickHandler(appendInputField, prop) {
+    const button = "#addFieldButtonFor" + (prop.charAt(0).toUpperCase() + prop.slice(1));
+    $(button).on("click", function() {
+      $(button).attr("disabled", true);
+      const inputContainer = $("<div>").attr("id", "newInputRow" + prop).css({"display": "block", "position": "relative"});
+      $(appendInputField).append(inputContainer);
+      
+      createInputField(inputContainer, prop);
+    }); 
+    return; 
+  }
+
+  // function createInputFieldWithDelete(appendDiv, prop, button) {
+  //   const input = $("<input>").attr({
+  //     class: "form-control text-secondary",
+  //     name: prop,
+  //     id: "otherPageInput",
+  //     type: "text",
+  //     placeholder: "Add other " + prop,
+  //     value: ""
+  //   }).on("change", function() {
+  //     quote[prop].type.push($(this).val());
+  //     $(button).attr("disabled", false);
+      
+  //     const deleteInputButton = $("<span>").attr({
+  //       id: "deleteInputButton",
+  //       type: "button"
+  //     }).html("&times;").css({
+  //       "position": "absolute",
+  //       "top": 0,
+  //       "right": 0,
+  //       "padding-right": "1rem",
+  //       "cursor": "pointer"
+  //     }).on("click", function() {
+  //       quote[prop].type.splice( quote[prop].type.indexOf( $(this).siblings("input").val() ), 1);
+  //       $(this).parent().get(0).remove();
+  //     });
+  //     $(appendDiv).append(deleteInputButton);
+  //   });
+  //   $(appendDiv).append(input);
+    
+  //   return quote;
+  // }
+
+  function createInputField(appendDiv, prop) {
     const input = $("<input>").attr({
       class: "form-control text-secondary",
       name: prop,
-      id: "otherPageInput",
+      id: "other" + (prop.charAt(0).toUpperCase() + prop.slice(1)) + "Input",
       type: "text",
       placeholder: "Add other " + prop,
       value: ""
-    }).on("change", function() {
-      quote[prop].type.push($(this).val());
-      $(button).attr("disabled", false);
-      
-      const deleteInputButton = $("<span>").attr({
-        id: "deleteInputButton",
-        type: "button"
-      }).html("&times;").css({
-        "position": "absolute",
-        "top": 0,
-        "right": 0,
-        "padding-right": "1rem",
-        "cursor": "pointer"
-      }).on("click", function() {
-        quote[prop].type.splice( quote[prop].type.indexOf( $(this).siblings("input").val() ), 1);
-        $(this).parent().get(0).remove();
-      });
-      $(appendDiv).append(deleteInputButton);
     });
     $(appendDiv).append(input);
-    
-    return quote;
+    return input;
   }
 
+  function createDeleteButtonForField(appendDiv) {
+    const deleteInputButton = $("<span>").attr({
+      id: "deleteInputButton",
+      type: "button"
+    }).html("&times;").css({
+      "position": "absolute",
+      "top": 0,
+      "right": 0,
+      "padding-right": "1rem",
+      "cursor": "pointer"
+    });
+    $(appendDiv).append(deleteInputButton);
+    return;
+  }
+
+// }).on("change", function() {
+//   quote[prop].type.push($(this).val());
+//   $(button).attr("disabled", false);
+  
+//   const deleteInputButton = $("<span>").attr({
+//     id: "deleteInputButton",
+//     type: "button"
+//   }).html("&times;").css({
+//     "position": "absolute",
+//     "top": 0,
+//     "right": 0,
+//     "padding-right": "1rem",
+//     "cursor": "pointer"
+//   }).on("click", function() {
+//     quote[prop].type.splice( quote[prop].type.indexOf( $(this).siblings("input").val() ), 1);
+//     $(this).parent().get(0).remove();
+//   });
+//   $(appendDiv).append(deleteInputButton);
+
+
+
+
+
   function customerInfo(serviceTypeSelectionDiv) {
-    createInputField(serviceTypeSelectionDiv, "comment", "<textarea>", "text", false);
-    createInputField(serviceTypeSelectionDiv, "full name", "<input>", "text", true);
-    createInputField(serviceTypeSelectionDiv, "email address", "<input>", "text", true);
-    createInputField(serviceTypeSelectionDiv, "phone number", "<input>", "tel", false);
+    createCustomerInputField(serviceTypeSelectionDiv, "comment", "<textarea>", "text", false);
+    createCustomerInputField(serviceTypeSelectionDiv, "full name", "<input>", "text", true);
+    createCustomerInputField(serviceTypeSelectionDiv, "email address", "<input>", "text", true);
+    createCustomerInputField(serviceTypeSelectionDiv, "phone number", "<input>", "tel", false);
     
     const success = $("<div>").attr("id", "success");
     $(serviceTypeSelectionDiv).append(success);
@@ -211,7 +272,7 @@ $(function() {
     return quote;
   }
 
-  function createInputField(appendDiv, string, element, type, isRequired) {
+  function createCustomerInputField(appendDiv, string, element, type, isRequired) {
     const fieldContainer = $("<div>").addClass("control-group");
     $(appendDiv).append(fieldContainer);
     const form = $("<div>").addClass("form-group floating-label-form-group controls mb-0 pb-2");
@@ -266,7 +327,7 @@ $(function() {
   });
   $(divCol).append(quoteForm);
 
-  createInputField(quoteForm, "project name", "<input>", "text", true);
+  createCustomerInputField(quoteForm, "project name", "<input>", "text", true);
 
   $("#quoteForm input").blur(function() {
     if (!$.isEmptyObject(quote["project name"])) {
@@ -337,11 +398,21 @@ $(function() {
           $(pageContentGroup).append(pageContentQuestion);
 
           createCheckboxInput(pageContentGroup, page, "page");
+          addCheckboxInputToQuote("page", page);
 
-          const inputField = $("<div>").addClass("form-check").attr("id", "otherInputField");
-          $(pageContentGroup).append(inputField);
+          const pageInputFieldContainer = $("<div>").addClass("form-check").attr("id", "pageInputFieldContainer");
+          $(pageContentGroup).append(pageInputFieldContainer);
 
-          createInputButton(pageContentGroup, inputField, "page");
+          createInputButton(pageContentGroup, "Page");
+          inputButtonClickHandler(pageInputFieldContainer, "page");
+          $("#pageInputFieldContainer").on("change", "input#otherPageInput", function() {
+            for (let index = 0; index < $("#pageInputFieldContainer").length; index++) {
+              quote.page.type.push($(this).val());
+              console.log("quote: ", quote);
+              $("#addFieldButtonForPage").attr("disabled", false);
+              createDeleteButtonForField("#newInputRowpage");
+            }
+          });
 
           // functionality type section
           quote.functionality = {type: []};
@@ -350,12 +421,14 @@ $(function() {
           const functionsContentQuestion = $("<p>").text("What functions do you want your website to perform? Select all that apply:");
           $(functionalityContentGroup).append(functionsContentQuestion);
 
-          createCheckboxInput(functionalityContentGroup, functionality, "functionality");  
-          
+          createCheckboxInput(functionalityContentGroup, functionality, "functionality");
+          addCheckboxInputToQuote("functionality", functionality);
+           
           const functionalityInputField = $("<div>").addClass("form-check").attr("id", "otherInputField");
           $(functionalityContentGroup).append(functionalityInputField);
 
-          createInputButton(functionalityContentGroup, functionalityInputField, "functionality");
+          createInputButton(functionalityContentGroup, "Functionality");
+          inputButtonClickHandler(functionalityInputField, "functionality");
 
           // customer input fields
           customerInfo(serviceTypeSelectionDiv);
