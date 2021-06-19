@@ -60,7 +60,6 @@
   
   // Modal popup function
   if ($('body#page-top').length > 0) {
-    console.log("body: ", $('body#page-top').length);
     $('.portfolio-item').magnificPopup({
       type: 'inline',
       preloader: false,
