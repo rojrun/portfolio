@@ -84,7 +84,7 @@ $(function() {
 
   function createRadioInputForArray(appendDiv, array, name) {
     for (let index = 0; index < array.length; index++) {
-      const container = $("<div>").addClass("custom-control custom-radio");
+      const container = $("<div class='custom-control custom-radio'></div>");
       $(appendDiv).append(container);
 
       const input = $("<input>").attr({
@@ -109,7 +109,7 @@ $(function() {
 
   function createCheckboxInput(appendDiv, array, name, isRequired) {
     for (let index = 0; index < array.type.length; index++) {
-      const container = $("<div>").addClass("form-check form-check-inine");
+      const container = $("<div class='form-check form-check-inine'></div>");
       $(appendDiv).append(container);
 
       const combinedWords = array.type[index].split(" ").join('_');
@@ -162,49 +162,37 @@ $(function() {
     return;
   }
 
-  function inputButtonClickHandler(appendInputField, prop) {
-    const button = "#addFieldButtonFor" + (prop.charAt(0).toUpperCase() + prop.slice(1));
-    $(button).on("click", function() {
-      $(button).attr("disabled", true);
-      const inputContainer = $("<div>").attr("id", "newInputRow" + (prop.charAt(0).toUpperCase() + prop.slice(1))).css({"display": "block", "position": "relative"});
-      $(appendInputField).append(inputContainer);
-      
-      createInputField(inputContainer, prop);
-    }); 
-    return; 
-  }
-
   function createInputField(appendDiv, prop) {
     const input = $("<input>").attr({
       class: "form-control text-secondary",
       name: prop,
       id: "other" + (prop.charAt(0).toUpperCase() + prop.slice(1)) + "Input",
       type: "text",
-      placeholder: "Add other " + prop,
+      placeholder: "Add a " + prop,
       value: ""
     });
     $(appendDiv).append(input);
     return;
   }
 
-  function inputTextFieldChangeHandler(parent, child, button, buttonContainer) {
+  function inputTextFieldChangeHandler(parent, child, button) {
     $(parent).on("change", child, function() {
+      console.log("this: ", $(this));
       if (!$(this).val()) {
         $(button).prop("disabled", true);
         $(this).siblings("#deleteInputButton").remove();
       } else {
         if ( $(this).siblings("#deleteInputButton").length === 0) {
-          createDeleteButtonForField(buttonContainer, $(this));
+          createDeleteButtonForField(parent, $(this));
         }
         $(button).prop("disabled", false);
-        console.log("on change: ", $(this).val());
       }
       return;
     });
   }
 
   function createDeleteButtonForField(appendDiv, element) {
-    const deleteInputButton = $("<span>").attr({
+    const deleteInputButton = $("<span></span>").attr({
       id: "deleteInputButton",
       type: "button"
     }).html("&times;").css({
@@ -216,7 +204,7 @@ $(function() {
     }).on("click", function() {
       element.parent().get(0).remove();
     });
-    $(appendDiv).last().append(deleteInputButton);
+    $(appendDiv).append(deleteInputButton);
     return;
   }
 
@@ -225,14 +213,14 @@ $(function() {
     $(appendDiv).append(fieldContainer);
     const form = $("<div class='form-group floating-label-form-group controls mb-0 pb-2'></div>");
     $(fieldContainer).append(form);
-    const combineWords = string.split(" ").join('_');
+    const combineWords = string.split(" ").join("_");
     const field = $(element).attr({
       class: "form-control text-primary",
       name: combineWords,
       id: combineWords,
       type: type,
       required: isRequired,
-      placeholder: string.split(' ').map(word => word[0].toUpperCase() + word.substr(1).toLowerCase()).join(' '),
+      placeholder: string.split(" ").map(word => word[0].toUpperCase() + word.substr(1).toLowerCase()).join(" "),
       value: ""
     });
     $(form).append(field);
@@ -240,7 +228,7 @@ $(function() {
   }
 
   function createButton(container, string, bttnClass) {
-    const button = $("<button>").attr({
+    const button = $("<button></button>").attr({
       type: string,
       name: string,
       class: bttnClass,
@@ -250,12 +238,50 @@ $(function() {
     return;
   }
 
+  function createRestOfForm(parentDiv) {
+    createCustomerInputField(parentDiv, "comment", "<textarea>", "text", false);
+    // $("textarea#comment").on("change", function() {
+    //   const comment = $(this).val();
+    //   return comment;
+    //   // console.log("comment: ", comment);
+    // });
+
+    createCustomerInputField(parentDiv, "full name", "<input>", "text", true);
+    // $("input#full_name").on("change", function() {
+    //   const fullName = $(this).val();
+    //   // console.log("fullName: ", fullName);
+    // });
+
+    createCustomerInputField(parentDiv, "email address", "<input>", "text", true);
+    // $("input#email_address").on("change", function() {
+    //   const emailAddress = $(this).val();
+    //   // console.log("emailAddress: ", emailAddress);
+    // });
+
+    createCustomerInputField(parentDiv, "phone number", "<input>", "tel", false);
+    // $("input#phone_number").on("change", function() {
+    //   const phoneNumber = $(this).val();
+    //   // console.log("phoneNumber: ", phoneNumber);
+    // });
+
+    const success = $("<div id='success'></div>");
+    $(parentDiv).append(success);
+    
+    // send and reset buttons container
+    const buttonsContainer = $("<div class='form-group row px-3'></div>");
+    $(parentDiv).append(buttonsContainer);
+    createButton(buttonsContainer, "submit", "btn btn-primary btn-x1");
+    createButton(buttonsContainer, "reset", "btn btn-outline-secondary btn-lg ml-2");
+    
+    return;
+  }
+
   // ******************** beginning of dom render ********************
   const divRow = $("<div class='row'></div>");
   $("#quote .container").append(divRow);
   const divCol = $("<div class='col-lg-12 col-xl-12 mx-auto'></div>");
   $(divRow).append(divCol);
-  const quoteForm = $("<form>").attr({
+  const quoteForm = $("<form></form>").attr({
     action: "js/quote.js", 
     name: "quoteForm",
     id: "quoteForm",
@@ -327,8 +353,13 @@ $(function() {
           const pageInputFieldContainer = $("<div class='form-check' id='pageInputFieldContainer'></div>");
           $(pageContentGroup).append(pageInputFieldContainer);
           createInputButton(pageContentGroup, "page");
-          inputButtonClickHandler(pageInputFieldContainer, "page");
-          inputTextFieldChangeHandler("#pageInputFieldContainer", "input#otherPageInput", "#addFieldButtonForPage", "#pageInputFieldContainer #newInputRowPage");
+          $("#addFieldButtonForPage").on("click", function() {
+            const clearableInputAddition = $("<div id='pageInputRow'></div>").css({"display": "block", "position": "relative"});
+            $(pageInputFieldContainer).append(clearableInputAddition);
+            createInputField(clearableInputAddition, "page");
+            $("#addFieldButtonForPage").prop("disabled", true);
+            inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForPage");
+          });
           
           //  functionality type section
           const functionalityContentGroup = $("<div class='control-group border-bottom'></div>");
@@ -345,9 +376,28 @@ $(function() {
           const functionalityInputFieldContainer = $("<div class='form-check' id='functionalityInputFieldContainer'></div>");
           $(functionalityContentGroup).append(functionalityInputFieldContainer);
           createInputButton(functionalityContentGroup, "functionality");
-          inputButtonClickHandler(functionalityInputFieldContainer, "functionality");
-          inputTextFieldChangeHandler("#functionalityInputFieldContainer", "input#otherFunctionalityInput", "#addFieldButtonForFunctionality", "#functionalityInputFieldContainer #newInputRowFunctionality");
+          $("#addFieldButtonForFunctionality").on("click", function() {
+            const clearableInputAddition = $("<div id='functionalityInputRow'></div>").css({"display": "block", "position": "relative"});
+            $(functionalityInputFieldContainer).append(clearableInputAddition);
+            createInputField(clearableInputAddition, "functionality");
+            $("#addFieldButtonForFunctionality").prop("disabled", true);
+            inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForFunctionality");
+          });
 
+          // Customer info inputs
+          createRestOfForm(serviceTypeSelectionDiv);
+          // const comment = createCustomerInputField(serviceTypeSelectionDiv, "comment", "<textarea>", "text", false);
+          // const fullName = createCustomerInputField(serviceTypeSelectionDiv, "full name", "<input>", "text", true);
+          // const emailAddress = createCustomerInputField(serviceTypeSelectionDiv, "email address", "<input>", "text", true);
+          // const phoneNumber = createCustomerInputField(serviceTypeSelectionDiv, "phone number", "<input>", "tel", false);
+          const comment = $("textarea#comment").on("change", function() {
+            return $(this).val();
+          });
+          console.log("outside function: ", comment);
+          // console.log("outside function: ", fullName);
+          // console.log("outside function: ", emailAddress);
+          // console.log("outside function: ", phoneNumber);
+          
         } else if (serviceType === "redesign") {
           $(serviceTypeSelectionDiv).empty();
 
@@ -379,18 +429,17 @@ $(function() {
           const clearableInput = $("<div id='redesignInputRow'></div>").css({"display": "block", "position": "relative"});
           $(additionalRedesignFields).append(clearableInput);
           createInputField(clearableInput, "section");
-          $("input#otherSectionInput").on("change", function() {
+          $(clearableInput).on("change", "input", function() {
             if (!$(this).val()) {
               $("#Entire_website").prop("disabled", false);
               $("#addFieldButtonForSection").prop("disabled", true);
               $(this).siblings("#deleteInputButton").remove();
             } else {
               if ( $(this).siblings("#deleteInputButton").length === 0 ) {
-                createDeleteButtonForField("#additionalRedesignFields #redesignInputRow", $(this));
+                createDeleteButtonForField(clearableInput, $(this));
               }
               $("#Entire_website").prop("disabled", true);
               const sectionTextInput = $(this).val();
-              console.log("sectionTextInput: ", sectionTextInput);
               $("#addFieldButtonForSection").prop("disabled", false);
             }
           });
@@ -402,7 +451,7 @@ $(function() {
             $(additionalRedesignFields).append(clearableInputAddition);
             createInputField(clearableInputAddition, "section");
             $("#addFieldButtonForSection").prop("disabled", true);
-            inputTextFieldChangeHandler("#additionalRedesignFields", "input#otherSectionInput", "#addFieldButtonForSection", "#additionalRedesignFields #redesignInputRow");
+            inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForSection");
           });
 
           // add functionality section
@@ -417,33 +466,21 @@ $(function() {
 
           const functionalityInput = $("<div id='functionalityInputRow'></div>").css({"display": "block", "position": "relative"});
           $(addFunctionalityFields).append(functionalityInput);
-          createInputField("#functionalityInputRow", "functionality");
-          inputTextFieldChangeHandler("#addFunctionalityFields", "input#otherFunctionalityInput", "#addFieldButtonForFunctionality", "#addFunctionalityFields #functionalityInputRow");
+          createInputField(functionalityInput, "functionality");
+          inputTextFieldChangeHandler(functionalityInput, "input", "#addFieldButtonForFunctionality");
          
           createInputButton(addFunctionalityGroup, "functionality");
           $("#addFieldButtonForFunctionality").prop("disabled", true);
           $("#addFieldButtonForFunctionality").on("click", function() {
             const clearableInputAddition = $("<div id='newFunctionalityInputRow'></div>").css({"display": "block", "position": "relative"});
             $(addFunctionalityFields).append(clearableInputAddition);
-
-            createInputField("#newFunctionalityInputRow", "functionality");
+            createInputField(clearableInputAddition, "functionality");
             $("#addFieldButtonForFunctionality").prop("disabled", true);
-            inputTextFieldChangeHandler("#addFunctionalityFields", "input#otherFunctionalityInput", "#addFieldButtonForFunctionality", "#addFunctionalityFields #functionalityInputRow");
-            // $("input#otherFunctionalityInput").on("change", function() {
-            //   if (!$(this).val()) {
-            //     $("#addFieldButtonForNewFunctionality").prop("disabled", true);
-            //     $(this).siblings("#deleteInputButton").remove();
-            //   } else {
-            //     const functionalityTextInput = $(this).val();
-            //     console.log("functionalityTextInput: ", functionalityTextInput);
-            //     $("#addFieldButtonForNewFunctionality").prop("disabled", false);
-  
-            //     if ( $(this).siblings("#deleteInputButton").length === 0 ) {
-            //       createDeleteButtonForField(clearableInputAddition, $(this));
-            //     }
-            //   }
-            // });
-          });  
+            inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForFunctionality");
+          }); 
+
+          // Customer info inputs
+          createRestOfForm(serviceTypeSelectionDiv);
 
         } else if (serviceType === "repair") {
           $(serviceTypeSelectionDiv).empty();
@@ -458,79 +495,55 @@ $(function() {
 
           const repairInput = $("<div id='repairInputRow'></div>").css({"display": "block", "position": "relative"});
           $(repairFields).append(repairInput);
-          createInputField(repairInput, "repair");
-          $("input#otherRepairInput").on("change", function() {
-            if (!$(this).val()) {
-              $("#addFieldButtonForRepair").prop("disabled", true);
-              $(this).siblings("#deleteInputButton").remove();
-            } else {
-              const repairTextInput = $(this).val();
-              console.log("repairTextInput: ", repairTextInput);
-              $("#addFieldButtonForRepair").prop("disabled", false);
-
-              if ( $(this).siblings("#deleteInputButton").length === 0 ) {
-                createDeleteButtonForField("#repairFields #repairInputRow", $(this));
-              }
-            }
-          });
-
-          createInputButton(repairGroup, "repair");
-          $("#addFieldButtonForRepair").prop("disabled", true);
-          $("#addFieldButtonForRepair").on("click", function() {
-            const clearableInputAddition = $("<div>").attr("id", "repairInputRow").css({"display": "block", "position": "relative"});
+          createInputField(repairInput, "problem");
+          inputTextFieldChangeHandler(repairInput, "input", "#addFieldButtonForProblem");
+         
+          createInputButton(repairGroup, "problem");
+          $("#addFieldButtonForProblem").prop("disabled", true);
+          $("#addFieldButtonForProblem").on("click", function() {
+            const clearableInputAddition = $("<div id='repairInputRow'></div>").css({"display": "block", "position": "relative"});
             $(repairFields).append(clearableInputAddition);
-
-            createInputField(clearableInputAddition, "repair");
-            $("#addFieldButtonForRepair").prop("disabled", true);
-            $("input#otherRepairInput").on("change", function() {
-              if (!$(this).val()) {
-                $("#addFieldButtonForRepair").prop("disabled", true);
-                $(this).siblings("#deleteInputButton").remove();
-              } else {
-                const repairTextInput = $(this).val();
-                console.log("repairTextInput: ", repairTextInput);
-                $("#addFieldButtonForRepair").prop("disabled", false);
-  
-                if ( $(this).siblings("#deleteInputButton").length === 0 ) {
-                  createDeleteButtonForField(clearableInputAddition, $(this));
-                }
-              }
-            });
+            createInputField(clearableInputAddition, "problem");
+            $("#addFieldButtonForProblem").prop("disabled", true);
+            inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForProblem");
           });
+          
+          // Customer info inputs
+          createRestOfForm(serviceTypeSelectionDiv);
         }
 
-        createCustomerInputField(serviceTypeSelectionDiv, "comment", "<textarea>", "text", false);
-        $("textarea#comment").on("change", function() {
-          const comment = $(this).val();
-          console.log("comment: ", comment);
-        });
+        // createCustomerInputField(serviceTypeSelectionDiv, "comment", "<textarea>", "text", false);
+        // $("textarea#comment").on("change", function() {
+        //   const comment = $(this).val();
+        //   console.log("comment: ", comment);
+        // });
 
-        createCustomerInputField(serviceTypeSelectionDiv, "full name", "<input>", "text", true);
-        $("input#full_name").on("change", function() {
-          const fullName = $(this).val();
-          console.log("fullName: ", fullName);
-        });
+        // createCustomerInputField(serviceTypeSelectionDiv, "full name", "<input>", "text", true);
+        // $("input#full_name").on("change", function() {
+        //   const fullName = $(this).val();
+        //   console.log("fullName: ", fullName);
+        // });
 
-        createCustomerInputField(serviceTypeSelectionDiv, "email address", "<input>", "text", true);
-        $("input#email_address").on("change", function() {
-          const emailAddress = $(this).val();
-          console.log("emailAddress: ", emailAddress);
-        });
+        // createCustomerInputField(serviceTypeSelectionDiv, "email address", "<input>", "text", true);
+        // $("input#email_address").on("change", function() {
+        //   const emailAddress = $(this).val();
+        //   console.log("emailAddress: ", emailAddress);
+        // });
 
-        createCustomerInputField(serviceTypeSelectionDiv, "phone number", "<input>", "tel", false);
-        $("input#phone_number").on("change", function() {
-          const phoneNumber = $(this).val();
-          console.log("phoneNumber: ", phoneNumber);
-        });
+        // createCustomerInputField(serviceTypeSelectionDiv, "phone number", "<input>", "tel", false);
+        // $("input#phone_number").on("change", function() {
+        //   const phoneNumber = $(this).val();
+        //   console.log("phoneNumber: ", phoneNumber);
+        // });
 
-        const success = $("<div id='success'></div>");
-        $(serviceTypeSelectionDiv).append(success);
+        // const success = $("<div id='success'></div>");
+        // $(serviceTypeSelectionDiv).append(success);
         
-        // send and reset buttons container
-        const buttonsContainer = $("<div class='form-group row px-3'></div>");
-        $(serviceTypeSelectionDiv).append(buttonsContainer);
-        createButton(buttonsContainer, "submit", "btn btn-primary btn-x1");
-        createButton(buttonsContainer, "reset", "btn btn-outline-secondary btn-lg ml-2");
+        // // send and reset buttons container
+        // const buttonsContainer = $("<div class='form-group row px-3'></div>");
+        // $(serviceTypeSelectionDiv).append(buttonsContainer);
+        // createButton(buttonsContainer, "submit", "btn btn-primary btn-x1");
+        // createButton(buttonsContainer, "reset", "btn btn-outline-secondary btn-lg ml-2");
       });
     } 
   });  
