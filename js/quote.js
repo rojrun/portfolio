@@ -82,6 +82,7 @@ $(function() {
 
   const problem = 600;
 
+  /***************************************** functions ******************************************/
   function createRadioInputForArray(appendDiv, array, name) {
     for (let index = 0; index < array.length; index++) {
       const container = $("<div class='custom-control custom-radio'></div>");
@@ -214,6 +215,8 @@ $(function() {
     const form = $("<div class='form-group floating-label-form-group controls mb-0 pb-2'></div>");
     $(fieldContainer).append(form);
     const combineWords = string.split(" ").join("_");
+    const label = $("<label></label>").attr("for", combineWords).text(string.split(" ").map(word => word[0].toUpperCase() + word.substr(1).toLowerCase()).join(" "));
+    $(form).append(label);
     const field = $(element).attr({
       class: "form-control text-primary",
       name: combineWords,
@@ -221,9 +224,18 @@ $(function() {
       type: type,
       required: isRequired,
       placeholder: string.split(" ").map(word => word[0].toUpperCase() + word.substr(1).toLowerCase()).join(" "),
+      "data-validation-required-message": isRequired ? "Please enter your " + string + "." : null,
       value: ""
     });
+    // if (type === "tel") {
+    //   field.attr({
+    //     onkeydown: backspacerDOWN($(this),event),
+    //     onkeyup: backspacerUP($(this),event)
+    //   });
+    // }
     $(form).append(field);
+    const warning = $("<p class='help-block text-danger'></p>");
+    $(form).append(warning);
     return;
   }
 
@@ -240,30 +252,10 @@ $(function() {
 
   function createRestOfForm(parentDiv) {
     createCustomerInputField(parentDiv, "comment", "<textarea>", "text", false);
-    // $("textarea#comment").on("change", function() {
-    //   const comment = $(this).val();
-    //   return comment;
-    //   // console.log("comment: ", comment);
-    // });
-
     createCustomerInputField(parentDiv, "full name", "<input>", "text", true);
-    // $("input#full_name").on("change", function() {
-    //   const fullName = $(this).val();
-    //   // console.log("fullName: ", fullName);
-    // });
-
     createCustomerInputField(parentDiv, "email address", "<input>", "text", true);
-    // $("input#email_address").on("change", function() {
-    //   const emailAddress = $(this).val();
-    //   // console.log("emailAddress: ", emailAddress);
-    // });
-
     createCustomerInputField(parentDiv, "phone number", "<input>", "tel", false);
-    // $("input#phone_number").on("change", function() {
-    //   const phoneNumber = $(this).val();
-    //   // console.log("phoneNumber: ", phoneNumber);
-    // });
-
+    
     const success = $("<div id='success'></div>");
     $(parentDiv).append(success);
     
@@ -272,11 +264,190 @@ $(function() {
     $(parentDiv).append(buttonsContainer);
     createButton(buttonsContainer, "submit", "btn btn-primary btn-x1");
     createButton(buttonsContainer, "reset", "btn btn-outline-secondary btn-lg ml-2");
-    
+    $("#submit").prop("disabled", true);
+
     return;
   }
 
-  // ******************** beginning of dom render ********************
+  function checkFullName(event) {
+    const fullName = event.split(" ");
+    console.log('fullName: ', fullName);
+    if ((fullName.length >= 2) && (!fullName.some(name => name === ""))) {
+      // if ($("input#name ~ p.help-block.text-danger:last-child > ul").children().length > 0) {
+      //   $("input#name ~ p.help-block.text-danger:last-child > ul").remove(); 
+      // } 
+      $("#submit").prop("disabled", false);
+    } else {
+      // $("input#name ~ p.help-block.text-danger:last-child").html("<ul role=\"alert\"><li>" + $("input#name").attr("data-validation-required-message") + "</li></ul>");
+      // $("input#name ~ p.help-block.text-danger:last-child > ul").append("<li>Names cannot have empty spaces.</li>");
+      $("#submit").prop("disabled", true);
+    }
+    return;
+  }
+
+  function formReset() {
+    $("input#project_name").val("");
+    $("#serviceTypeControlGroup").remove();
+    $("#serviceType").remove();
+    return;
+  }
+
+  /* This script is for AUTO FORMATING PHONE NUMBER WHILE TYPING, based on the javascript code of Roman Feldblum (web.developer@programmer.net)
+  Original script : http://javascript.internet.com/forms/format-phone-number.html
+  Original script is revised by Eralper Yilmaz (http://www.eralper.com)
+  Revised script : http://www.kodyaz.com */
+  var zChar = new Array(' ', '(', ')', '-', '.');
+  var maxphonelength = 13;
+  var phonevalue1;
+  var phonevalue2;
+  var cursorposition;
+
+  function ParseForNumber1(object) {
+    phonevalue1 = ParseChar(object.value, zChar);
+  }
+
+  function ParseForNumber2(object) {
+    phonevalue2 = ParseChar(object.value, zChar);
+  }
+
+  function backspacerUP(object, e) {
+    if (e) {
+      e = e;
+    } else {
+      e = window.event;
+    }
+    if (e.which) {
+      var keycode = e.which;
+    } else {
+      var keycode = e.keyCode;
+    }
+    ParseForNumber1(object);
+    if (keycode >= 48) {
+      ValidatePhone(object);
+    }
+  }
+
+  function backspacerDOWN(object, e) {
+    if (e) {
+      e = e;
+    } else {
+      e = window.event;
+    }
+    if (e.which) {
+      var keycode = e.which;
+    } else {
+      var keycode = e.keyCode;
+    }
+    ParseForNumber2(object);
+  }
+
+  function GetCursorPosition() {
+    var t1 = phonevalue1;
+    var t2 = phonevalue2;
+    var bool = false;
+    for (i = 0; i < t1.length; i++) {
+      if (t1.substring(i, 1) != t2.substring(i, 1)) {
+        if (!bool) {
+          cursorposition = i;
+          bool = true;
+        }
+      }
+    }
+  }
+
+  function ValidatePhone(object) {
+    var p = phonevalue1;
+    p = p.replace(/[^\d]*/gi, "");
+    if (p.length < 3) {
+      object.value = p;
+    } else if (p.length == 3) {
+      pp = p;
+      d4 = p.indexOf('(');
+      d5 = p.indexOf(')');
+      if (d4 == -1) {
+          pp = "(" + pp;
+      }
+      if (d5 == -1) {
+          pp = pp + ")";
+      }
+      object.value = pp;
+    } else if (p.length > 3 && p.length < 7) {
+      p = "(" + p;
+      l30 = p.length;
+      p30 = p.substring(0, 4);
+      p30 = p30 + ")";
+      p31 = p.substring(4, l30);
+      pp = p30 + p31;
+      object.value = pp;
+    } else if (p.length >= 7) {
+      p = "(" + p;
+      l30 = p.length;
+      p30 = p.substring(0, 4);
+      p30 = p30 + ")"
+      p31 = p.substring(4, l30);
+      pp = p30 + p31;
+      l40 = pp.length;
+      p40 = pp.substring(0, 8);
+      p40 = p40 + "-"
+      p41 = pp.substring(8, l40);
+      ppp = p40 + p41;
+      object.value = ppp.substring(0, maxphonelength);
+    }
+    GetCursorPosition();
+    if (cursorposition >= 0) {
+      if (cursorposition == 0) {
+        cursorposition = 2;
+      } else if (cursorposition <= 2) {
+        cursorposition = cursorposition + 1;
+      } else if (cursorposition <= 5) {
+        cursorposition = cursorposition + 2;
+      } else if (cursorposition == 6) {
+        cursorposition = cursorposition + 2;
+      } else if (cursorposition == 7) {
+        cursorposition = cursorposition + 4;
+        e1 = object.value.indexOf(')');
+        e2 = object.value.indexOf('-');
+        if (e1 > -1 && e2 > -1) {
+          if (e2 - e1 == 4) {
+            cursorposition = cursorposition - 1;
+          }
+        }
+      } else if (cursorposition < 11) {
+        cursorposition = cursorposition + 3;
+      } else if (cursorposition == 11) {
+        cursorposition = cursorposition + 1;
+      } else if (cursorposition >= 12) {
+        cursorposition = cursorposition;
+      }   
+      var phoneNumberInput = document.getElementById("phone");
+      if (cursorposition === 12 && phoneNumberInput.value.length === 13) {
+        phoneNumberInput.blur();
+        phoneNumberInput.setSelectionRange(0, 13);
+        phone = phoneNumberInput.value;
+      }
+    }
+  }
+
+  function ParseChar(sStr, sChar) {
+    if (sChar.length == null) {
+      zChar = new Array(sChar);
+    } else zChar = sChar;
+    for (i = 0; i < zChar.length; i++) {
+      sNewStr = "";
+      var iStart = 0;
+      var iEnd = sStr.indexOf(sChar[i]);
+      while (iEnd != -1) {
+          sNewStr += sStr.substring(iStart, iEnd);
+          iStart = iEnd + 1;
+          iEnd = sStr.indexOf(sChar[i], iStart);
+      }
+      sNewStr += sStr.substring(sStr.lastIndexOf(sChar[i]) + 1, sStr.length);
+      sStr = sNewStr;
+    }
+    return sNewStr;
+  }
+
+  /***************************************** beginning of dom render ******************************************/
   const divRow = $("<div class='row'></div>");
   $("#quote .container").append(divRow);
   const divCol = $("<div class='col-lg-12 col-xl-12 mx-auto'></div>");
@@ -305,7 +476,7 @@ $(function() {
       createRadioInputForArray(serviceTypeControlGroup, service, "serviceType");
 
       // placeholder div when service type selected
-      const serviceTypeSelectionDiv = $("<div></div>");
+      const serviceTypeSelectionDiv = $("<div id='serviceType'></div>");
       $(quoteForm).append(serviceTypeSelectionDiv);
 
       $("input[name=serviceType]").on("change", function() {
@@ -386,17 +557,11 @@ $(function() {
 
           // Customer info inputs
           createRestOfForm(serviceTypeSelectionDiv);
-          // const comment = createCustomerInputField(serviceTypeSelectionDiv, "comment", "<textarea>", "text", false);
-          // const fullName = createCustomerInputField(serviceTypeSelectionDiv, "full name", "<input>", "text", true);
-          // const emailAddress = createCustomerInputField(serviceTypeSelectionDiv, "email address", "<input>", "text", true);
-          // const phoneNumber = createCustomerInputField(serviceTypeSelectionDiv, "phone number", "<input>", "tel", false);
-          const comment = $("textarea#comment").on("change", function() {
-            return $(this).val();
+          $("input#full_name").on("change", function() {
+            checkFullName($(this).val());
           });
-          console.log("outside function: ", comment);
-          // console.log("outside function: ", fullName);
-          // console.log("outside function: ", emailAddress);
-          // console.log("outside function: ", phoneNumber);
+
+          $("button[type='reset']").on("click", formReset);
           
         } else if (serviceType === "redesign") {
           $(serviceTypeSelectionDiv).empty();
@@ -481,6 +646,11 @@ $(function() {
 
           // Customer info inputs
           createRestOfForm(serviceTypeSelectionDiv);
+          $("input#full_name").on("change", function() {
+            checkFullName($(this).val());
+          });
+          
+          $("button[type='reset']").on("click", formReset);
 
         } else if (serviceType === "repair") {
           $(serviceTypeSelectionDiv).empty();
@@ -510,40 +680,12 @@ $(function() {
           
           // Customer info inputs
           createRestOfForm(serviceTypeSelectionDiv);
+          $("input#full_name").on("change", function() {
+            checkFullName($(this).val());
+          });
+          
+          $("button[type='reset']").on("click", formReset);
         }
-
-        // createCustomerInputField(serviceTypeSelectionDiv, "comment", "<textarea>", "text", false);
-        // $("textarea#comment").on("change", function() {
-        //   const comment = $(this).val();
-        //   console.log("comment: ", comment);
-        // });
-
-        // createCustomerInputField(serviceTypeSelectionDiv, "full name", "<input>", "text", true);
-        // $("input#full_name").on("change", function() {
-        //   const fullName = $(this).val();
-        //   console.log("fullName: ", fullName);
-        // });
-
-        // createCustomerInputField(serviceTypeSelectionDiv, "email address", "<input>", "text", true);
-        // $("input#email_address").on("change", function() {
-        //   const emailAddress = $(this).val();
-        //   console.log("emailAddress: ", emailAddress);
-        // });
-
-        // createCustomerInputField(serviceTypeSelectionDiv, "phone number", "<input>", "tel", false);
-        // $("input#phone_number").on("change", function() {
-        //   const phoneNumber = $(this).val();
-        //   console.log("phoneNumber: ", phoneNumber);
-        // });
-
-        // const success = $("<div id='success'></div>");
-        // $(serviceTypeSelectionDiv).append(success);
-        
-        // // send and reset buttons container
-        // const buttonsContainer = $("<div class='form-group row px-3'></div>");
-        // $(serviceTypeSelectionDiv).append(buttonsContainer);
-        // createButton(buttonsContainer, "submit", "btn btn-primary btn-x1");
-        // createButton(buttonsContainer, "reset", "btn btn-outline-secondary btn-lg ml-2");
       });
     } 
   });  
