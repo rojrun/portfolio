@@ -1,6 +1,4 @@
 $(function() {
-  const quote = {};
-
   const service = [
     {
       type: "build",
@@ -13,17 +11,6 @@ $(function() {
     {
       type: "repair",
       text: "Repair your current website"
-    }
-  ];
-
-  const technique = [
-    {
-      type: "customized",
-      text: "100% customized from scratch website"
-    },
-    {
-      type: "templated",
-      text: "Website using templates like Shopify or WordPress"
     }
   ];
 
@@ -53,6 +40,17 @@ $(function() {
       templated: 10000
     }
   ];
+
+  const technique = [
+    {
+      type: "customized",
+      text: "100% customized from scratch website"
+    },
+    {
+      type: "templated",
+      text: "Website using templates like Shopify or WordPress"
+    }
+  ];
   
   const page = {
     type: [   
@@ -72,15 +70,12 @@ $(function() {
   };
 
   const redesign = {
-    type: ["Entire website"]
-  };
-
-  const design = {
+    type: ["Entire website"],
     customized: 5000,
-    templated: 700
+    templated: 2000
   };
 
-  const problem = 600;
+  const repair = 700;
 
   /***************************************** functions ******************************************/
   function createRadioInputForArray(appendDiv, array, name) {
@@ -109,7 +104,7 @@ $(function() {
     return;
   }
 
-  function createCheckboxInput(appendDiv, array, name, isRequired) {
+  function createCheckboxInput(appendDiv, array, name) {
     for (let index = 0; index < array.type.length; index++) {
       const container = $("<div class='form-check form-check-inine'></div>");
       $(appendDiv).append(container);
@@ -122,11 +117,9 @@ $(function() {
         value: array.type[index],
         name: name + "[]",
         class: "form-check-input",
-        required: isRequired
+        minchecked: "1",
+        "data-validation-minchecked-message": "Choose at least one."
       });
-      if (isRequired) {
-        input.attr("data-validation-required-message", "At least one selection is required.");
-      }
       $(container).append(input);
 
       const label = $("<label>").attr({
@@ -138,22 +131,6 @@ $(function() {
       $(container).append(label);
     }
     return;
-  }
-
-  function addCheckboxInputToArray(element, array) {
-    if (element.is(":checked")) {
-      array.push(element.val());
-    } else {
-      array.splice( array.indexOf( element.val() ), 1);
-    }
-    return array;
-  }
-
-  function pricePerWhenTechniqueTypeChange(prop) {
-    if (quote[prop].type.length) {
-      return quote[prop].pricePer = page[quote.techniqueType];
-    }
-    return quote;
   }
 
   function createInputButton(appendDiv, prop) {
@@ -257,7 +234,6 @@ $(function() {
       const warning2 = $("<p class='help-block text-danger'></p>");
       $(form).append(warning2);
     }
-    
     return;
   }
 
@@ -286,14 +262,11 @@ $(function() {
     $(parentDiv).append(buttonsContainer);
     createButton(buttonsContainer, "submit", "btn btn-primary btn-x1");
     createButton(buttonsContainer, "reset", "btn btn-outline-secondary btn-lg ml-2");
-    // $("#submit").prop("disabled", true);
-
     return;
   }
 
   function checkFullName(event) {
     const fullName = event.split(" ");
-    console.log('fullName: ', fullName);
     if ((fullName.length >= 2) && (!fullName.some(name => name === ""))) {
       if ($("input#full_name ~ p.help-block.text-danger > ul").children().length > 0) {
         $("input#full_name ~ p.help-block.text-danger > ul").remove(); 
@@ -314,6 +287,20 @@ $(function() {
     return;
   }
 
+  function getTotalInputArrayCount(prop) {
+    return getInputCheckedCount(prop) + getInputTextCount(prop);
+  }
+
+  function getInputCheckedCount(prop) {
+    return $("input[name='" + prop + "[]']:checked").length;
+  }
+
+  function getInputTextCount(prop) {
+    return $("input[type='text'][name='" + prop + "[]']").filter(function() {
+      return this.value.length > 0;
+    }).length;
+  }
+
   /***************************************** beginning of dom render ******************************************/
   const divRow = $("<div class='row'></div>");
   $("#quote .container").append(divRow);
@@ -331,8 +318,6 @@ $(function() {
   
   createCustomerInputField(quoteForm, "project name", "<input>", "text", true);
   $("input#project_name").on("change", function() {
-    const projectName = $(this).val();
-    console.log("projectName: ", projectName);
     
     if ($("#serviceTypeControlGroup").length === 0) {
       const serviceTypeControlGroup = $("<div id='serviceTypeControlGroup' class='control-group border-bottom'></div>");
@@ -349,25 +334,10 @@ $(function() {
       $(quoteForm).append(serviceTypeSelectionDiv);
 
       $("input[name=serviceType]").on("change", function() {
-        const serviceType = $(this).val();
-
+        
         /***************************************** build form in conditional ******************************************/
-        if (serviceType === "build") {
+        if ($(this).val() === "build") {
           $(serviceTypeSelectionDiv).empty();
-
-          // technique type section
-          const techniqueTypeGroup = $("<div class='control-group border-bottom'></div>");
-          $(serviceTypeSelectionDiv).append(techniqueTypeGroup);
-          const techniqueTypeQuestion = $("<p>How do you want your website to be built?</p>");
-          $(techniqueTypeGroup).append(techniqueTypeQuestion);
-          const techniqueWarning = $("<p class='help-block text-danger'></p>");
-          $(techniqueTypeGroup).append(techniqueWarning);
-
-          createRadioInputForArray(techniqueTypeGroup, technique, "techniqueType");
-          $("input[name=techniqueType]").on("change", function() {
-            const techniqueType = $(this).val();
-            console.log("techniqueType: ", techniqueType);
-          });
 
           // website type section
           const websiteTypeGroup = $("<div class='control-group border-bottom'></div>");
@@ -376,12 +346,16 @@ $(function() {
           $(websiteTypeGroup).append(websiteTypeQuestion);
           const websiteWarning = $("<p class='help-block text-danger'></p>");
           $(websiteTypeGroup).append(websiteWarning);
-
           createRadioInputForArray(websiteTypeGroup, website, "websiteType");
-          $("input[name=websiteType]").on("change", function() {
-            const websiteType = $(this).val();
-            console.log('websiteType: ', websiteType);
-          });
+          
+          // technique type section
+          const techniqueTypeGroup = $("<div class='control-group border-bottom'></div>");
+          $(serviceTypeSelectionDiv).append(techniqueTypeGroup);
+          const techniqueTypeQuestion = $("<p>How do you want your website to be built?</p>");
+          $(techniqueTypeGroup).append(techniqueTypeQuestion);
+          const techniqueWarning = $("<p class='help-block text-danger'></p>");
+          $(techniqueTypeGroup).append(techniqueWarning);
+          createRadioInputForArray(techniqueTypeGroup, technique, "techniqueType");
           
           // page type section
           const pageContentGroup = $("<div class='control-group border-bottom'></div>");
@@ -390,14 +364,8 @@ $(function() {
           $(pageContentGroup).append(pageContentQuestion);
           const pageWarning = $("<p class='help-block text-danger'></p>");
           $(pageContentGroup).append(pageWarning);
-
-          let pageArray = [];
-          createCheckboxInput(pageContentGroup, page, "page", true);
-          $("input[name=page]").on("change", function() {
-            pageArray = addCheckboxInputToArray($(this), pageArray);
-            console.log("pageArray: ", pageArray);
-          }); 
-
+          createCheckboxInput(pageContentGroup, page, "page");
+          
           const pageInputFieldContainer = $("<div class='form-check' id='pageInputFieldContainer'></div>");
           $(pageContentGroup).append(pageInputFieldContainer);
           createInputButton(pageContentGroup, "page");
@@ -416,13 +384,7 @@ $(function() {
           $(functionalityContentGroup).append(functionsContentQuestion);
           const functionalityWarning = $("<p class='help-block text-danger'></p>");
           $(functionalityContentGroup).append(functionalityWarning);
-
-          let functionalityArray = [];
-          createCheckboxInput(functionalityContentGroup, functionality, "functionality", true);
-          $("input[name=functionality]").on("change", function() {
-            functionalityArray = addCheckboxInputToArray($(this), functionalityArray);
-            console.log("functionalityArray: ", functionalityArray);
-          });
+          createCheckboxInput(functionalityContentGroup, functionality, "functionality");
 
           const functionalityInputFieldContainer = $("<div class='form-check' id='functionalityInputFieldContainer'></div>");
           $(functionalityContentGroup).append(functionalityInputFieldContainer);
@@ -435,7 +397,7 @@ $(function() {
             inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForFunctionality");
           });
 
-          // Customer info inputs
+          // Customer info inputs (Comment, Full Name, Email Address, Phone Number)
           createRestOfForm(serviceTypeSelectionDiv);
           $("input#full_name").on("change", function() {
             checkFullName($(this).val());
@@ -443,7 +405,7 @@ $(function() {
 
           $("button[type='reset']").on("click", formReset);
           
-          $("#quoteForm input, #quoteForm textarea").jqBootstrapValidation({
+          $("#quoteForm input, #quoteForm textarea").not("[type=submit]").jqBootstrapValidation({
             preventSubmit: true,
             submitError: function($form, event, errors) {
               console.log('error $form: ', $form);
@@ -456,14 +418,39 @@ $(function() {
               event.preventDefault();
               const formData = new FormData(event.target);
               
+              // calculate estimate total
+              let estimateTotal = 0;
+              const websiteType = formData.get("websiteType");
+              const techniqueType = formData.get("techniqueType");
+
+              const websiteTypeBasePrice = website.find(obj => {
+                return obj.type === websiteType;
+              })[techniqueType];
+              formData.append("websiteTypeBasePrice", websiteTypeBasePrice);
+
+              const pageCount = getTotalInputArrayCount("page");
+              const pricePerPage = page[techniqueType];
+              formData.append("pricePerPage", pricePerPage);
+              const pageSubTotal = pricePerPage * pageCount;
+              formData.append("pageSubTotal", pageSubTotal);
+
+              const functionalityCount = getTotalInputArrayCount("functionality");
+              const pricePerFunctionality = functionality[techniqueType];
+              formData.append("pricePerFunctionality", pricePerFunctionality);
+              const functionalitySubTotal = pricePerFunctionality * functionalityCount;
+              formData.append("functionalitySubTotal", functionalitySubTotal);
+
+              estimateTotal = websiteTypeBasePrice + pageSubTotal + functionalitySubTotal;
+              formData.append("estimateTotal", estimateTotal);
+
+              for (var pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+              }
+
               // Check for white space in name for Success/Fail message
               let firstName = formData.get("full_name");
               if (firstName.indexOf(' ') >= 0) {
                 firstName = firstName.split(' ').slice(0, -1).join(' ');
-              }
-              
-              for (var pair of formData.entries()) {
-                console.log(pair[0] + ': ' + pair[1]);
               }
 
               // $("#submit").prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
@@ -477,7 +464,7 @@ $(function() {
           });
 
         /***************************************** redesign form in conditional ******************************************/  
-        } else if (serviceType === "redesign") {
+        } else if ($(this).val() === "redesign") {
           $(serviceTypeSelectionDiv).empty();
 
           // website sections for redesign
@@ -567,7 +554,7 @@ $(function() {
           $("button[type='reset']").on("click", formReset);
 
         /***************************************** repair form in conditional ******************************************/
-        } else if (serviceType === "repair") {
+        } else if ($(this).val() === "repair") {
           $(serviceTypeSelectionDiv).empty();
 
           const repairGroup = $("<div class='control-group border-bottom'></div>");
