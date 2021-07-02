@@ -210,11 +210,11 @@ $(function() {
     e.preventDefault();
     $(this).tab("show");
   });
-});
 
-/*When clicking on Full hide fail/success boxes */
-$('#name').on("focus", function() {
-  $('#success').html('');
+  /*When clicking on Full hide fail/success boxes */
+  $('#name').on("focus", function() {
+    $('#success').html('');
+  });
 });
 
 /* This script is for AUTO FORMATING PHONE NUMBER WHILE TYPING, based on the javascript code of Roman Feldblum (web.developer@programmer.net)
