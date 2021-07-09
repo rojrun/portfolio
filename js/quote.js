@@ -18,25 +18,25 @@ $(function() {
     {
       type: "authority",
       text: "Authority website: this is the place potential customers can go to see what work your company has done and how to get in contact with someone about your services",
-      customized: 3000,
-      templated: 1000
+      customized: 4000,
+      templated: 2000
     },
     {
       type: "leadGeneration",
       text: "Lead-generation website: this site is focused on generating leads through its online presence",
-      customized: 3000,
-      templated: 1000
+      customized: 4000,
+      templated: 2000
     },
     {
       type: "sales",
       text: "Sales website: sites that sell products or services through e-commerce",
-      customized: 10000,
-      templated: 5000
+      customized: 20000,
+      templated: 10000
     },
     {
       type: "utility",
       text: "Utility website: companies whose business and website are one and the same",
-      customized: 15000,
+      customized: 20000,
       templated: 10000
     }
   ];
@@ -58,15 +58,15 @@ $(function() {
       "Reviews page", "Search result page", "Services page", "Sitemap page", "Terms and conditions page", "Testimonials page"    
     ],
     customized: 1000,
-    templated: 400
+    templated: 500
   };
 
   const functionality = {
     type: [
-      "Book appointments", "Contact form", "Display image gallery", "Subscription offer", "Take payments", "Take surveys"
+      "Book appointments", "Contact form", "Data storage", "Display image gallery", "Search bar", "Subscription offer", "Take payments", "Take surveys", "Testimonials/reviews"
     ],
-    customized: 4000,
-    templated: 800
+    customized: 7000,
+    templated: 3000
   };
 
   const redesign = {
@@ -249,7 +249,7 @@ $(function() {
   }
 
   function createRestOfForm(parentDiv) {
-    createCustomerInputField(parentDiv, "comment", "<textarea>", "text", false);
+    createCustomerInputField(parentDiv, "message", "<textarea>", "text", false);
     createCustomerInputField(parentDiv, "full name", "<input>", "text", true);
     createCustomerInputField(parentDiv, "email address", "<input>", "email", true);
     createCustomerInputField(parentDiv, "phone number", "<input>", "tel", false);
@@ -284,6 +284,7 @@ $(function() {
     $("input#project_name").val("");
     $("#serviceTypeControlGroup").remove();
     $("#serviceType").remove();
+    $("label[for='project_name']").css("display", "none");
     return;
   }
 
@@ -397,7 +398,7 @@ $(function() {
             inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForFunctionality");
           });
 
-          // Customer info inputs (Comment, Full Name, Email Address, Phone Number)
+          // Customer info inputs (Message, Full Name, Email Address, Phone Number)
           createRestOfForm(serviceTypeSelectionDiv);
           $("input#full_name").on("change", function() {
             checkFullName($(this).val());
@@ -429,12 +430,14 @@ $(function() {
               formData.append("websiteTypeBasePrice", websiteTypeBasePrice);
 
               const pageCount = getTotalInputArrayCount("page");
+              formData.append("pageCount", pageCount);
               const pricePerPage = page[techniqueType];
               formData.append("pricePerPage", pricePerPage);
               const pageSubTotal = pricePerPage * pageCount;
               formData.append("pageSubTotal", pageSubTotal);
 
               const functionalityCount = getTotalInputArrayCount("functionality");
+              formData.append("functionalityCount", functionalityCount);
               const pricePerFunctionality = functionality[techniqueType];
               formData.append("pricePerFunctionality", pricePerFunctionality);
               const functionalitySubTotal = pricePerFunctionality * functionalityCount;
@@ -453,14 +456,40 @@ $(function() {
                 firstName = firstName.split(' ').slice(0, -1).join(' ');
               }
 
-              // $("#submit").prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
-
-
-
+              $("#submit").prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
+              $.ajax({
+                url: "././mail/build.php",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function() {
+                  $('#success').html("<div class='alert alert-success'>");
+                  $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
+                  $('#success > .alert-success').append($("<strong>").text("Thank you " + firstName + " for signing up for a quote! You'll receive an email shortly."));
+                  $('#success > .alert-success').append('</div>');
+                },
+                error: function() {
+                  $('#success').html("<div class='alert alert-danger'>");
+                  $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
+                  $('#success > .alert-danger').append($("<strong>").text("Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!"));
+                  $('#success > .alert-danger').append('</div>');
+                },
+                // complete: function() {
+                //   setTimeout(function() {
+                //     formReset();
+                //   }, 4000); 
+                // }
+              });
             },
             filter: function() {
               return $(this).is(":visible");
             }
+          });
+          /*When clicking on Full hide fail/success boxes */
+          $("#full_name").on("focus", function() {
+            $("#success").html("");
           });
 
         /***************************************** redesign form in conditional ******************************************/  
