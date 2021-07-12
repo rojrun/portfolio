@@ -422,33 +422,30 @@ $(function() {
               // calculate estimate total
               let estimateTotal = 0;
               const websiteType = formData.get("websiteType");
+              const websiteTypeText = website.find(obj => {
+                return obj.type === websiteType;
+              }).text;
+              formData.append("websiteTypeText", websiteTypeText);
               const techniqueType = formData.get("techniqueType");
 
               const websiteTypeBasePrice = website.find(obj => {
                 return obj.type === websiteType;
               })[techniqueType];
               formData.append("websiteTypeBasePrice", websiteTypeBasePrice);
-
               const pageCount = getTotalInputArrayCount("page");
               formData.append("pageCount", pageCount);
               const pricePerPage = page[techniqueType];
               formData.append("pricePerPage", pricePerPage);
               const pageSubTotal = pricePerPage * pageCount;
               formData.append("pageSubTotal", pageSubTotal);
-
               const functionalityCount = getTotalInputArrayCount("functionality");
               formData.append("functionalityCount", functionalityCount);
               const pricePerFunctionality = functionality[techniqueType];
               formData.append("pricePerFunctionality", pricePerFunctionality);
               const functionalitySubTotal = pricePerFunctionality * functionalityCount;
               formData.append("functionalitySubTotal", functionalitySubTotal);
-
               estimateTotal = websiteTypeBasePrice + pageSubTotal + functionalitySubTotal;
               formData.append("estimateTotal", estimateTotal);
-
-              for (var pair of formData.entries()) {
-                console.log(pair[0] + ': ' + pair[1]);
-              }
 
               // Check for white space in name for Success/Fail message
               let firstName = formData.get("full_name");
@@ -476,11 +473,11 @@ $(function() {
                   $('#success > .alert-danger').append($("<strong>").text("Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!"));
                   $('#success > .alert-danger').append('</div>');
                 },
-                // complete: function() {
-                //   setTimeout(function() {
-                //     formReset();
-                //   }, 4000); 
-                // }
+                complete: function() {
+                  setTimeout(function() {
+                    formReset();
+                  }, 7000); 
+                }
               });
             },
             filter: function() {
@@ -502,27 +499,22 @@ $(function() {
           $(serviceTypeSelectionDiv).append(redesignGroup);
           const redesignQuestion = $("<p class='lead text-secondary mt-4'>What parts of your website do you want redesigned?</p>");
           $(redesignGroup).append(redesignQuestion);
-          let section = [];
           createCheckboxInput(redesignGroup, redesign, "section", false);
           $("input#Entire_website").on("change", function() {
             if ($(this).is(":checked")) {
               $("#otherSectionInput").prop("disabled", true);
-              section.push($(this).val());        
             } else {
               $("#otherSectionInput").prop("disabled", false);
-              section.length = 0;
             }
-            console.log("section: ", section);
           });
 
           const redesignOr = $("<p class='lead text-secondary mt-4'>Or, enter in the sections you want changed</p>");
           $(redesignGroup).append(redesignOr);
-
-          const additionalRedesignFields = $("<div id='additionalRedesignFields'></div>");
-          $(redesignGroup).append(additionalRedesignFields);
+          const sectionInputFieldContainer = $("<div id='sectionInputFieldContainer'></div>");
+          $(redesignGroup).append(sectionInputFieldContainer);
 
           const clearableInput = $("<div id='redesignInputRow'></div>").css({"display": "block", "position": "relative"});
-          $(additionalRedesignFields).append(clearableInput);
+          $(sectionInputFieldContainer).append(clearableInput);
           createInputField(clearableInput, "section");
           $(clearableInput).on("change", "input", function() {
             if (!$(this).val()) {
@@ -534,16 +526,16 @@ $(function() {
                 createDeleteButtonForField(clearableInput, $(this));
               }
               $("#Entire_website").prop("disabled", true);
-              const sectionTextInput = $(this).val();
               $("#addFieldButtonForSection").prop("disabled", false);
             }
           });
-
+          
           createInputButton(redesignGroup, "section");
           $("#addFieldButtonForSection").prop("disabled", true);
+
           $("#addFieldButtonForSection").on("click", function() {
-            const clearableInputAddition = $("<div id='redesignInputRow'></div>").css({"display": "block", "position": "relative"});
-            $(additionalRedesignFields).append(clearableInputAddition);
+            const clearableInputAddition = $("<div id='sectionInputRow'></div>").css({"display": "block", "position": "relative"});
+            $(sectionInputFieldContainer).append(clearableInputAddition);
             createInputField(clearableInputAddition, "section");
             $("#addFieldButtonForSection").prop("disabled", true);
             inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForSection");
@@ -554,8 +546,7 @@ $(function() {
           $(serviceTypeSelectionDiv).append(addFunctionalityGroup);
           const addFunctionalityQuestion = $("<p class='lead text-secondary mt-4'>What new functionalities do you want to add to your website?</p>");
           $(addFunctionalityGroup).append(addFunctionalityQuestion);
-          let functionality = [];
-
+          
           const addFunctionalityFields = $("<div id='addFunctionalityFields'></div>");
           $(addFunctionalityGroup).append(addFunctionalityFields);
 
@@ -581,6 +572,69 @@ $(function() {
           });
           
           $("button[type='reset']").on("click", formReset);
+
+          $("#quoteForm input, #quoteForm textarea").not("[type=submit]").jqBootstrapValidation({
+            preventSubmit: true,
+            submitError: function($form, event, errors) {
+              console.log('error $form: ', $form);
+              console.log("error event: ", event);
+              console.log("errors: ", errors);
+            },
+            submitSuccess: function($form, event) {
+              console.log("success $form: ", $form);
+              console.log("success event: ", event);
+              event.preventDefault();
+              const formData = new FormData(event.target);
+
+              // calculate estimate total
+              let estimateTotal = 0;
+
+
+              for (var pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+              }
+
+              // Check for white space in name for Success/Fail message
+              let firstName = formData.get("full_name");
+              if (firstName.indexOf(' ') >= 0) {
+                firstName = firstName.split(' ').slice(0, -1).join(' ');
+              }
+
+              $("#submit").prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
+              $.ajax({
+                url: "././mail/redesign.php",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function() {
+                  $('#success').html("<div class='alert alert-success'>");
+                  $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
+                  $('#success > .alert-success').append($("<strong>").text("Thank you " + firstName + " for signing up for a quote! You'll receive an email shortly."));
+                  $('#success > .alert-success').append('</div>');
+                },
+                error: function() {
+                  $('#success').html("<div class='alert alert-danger'>");
+                  $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
+                  $('#success > .alert-danger').append($("<strong>").text("Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!"));
+                  $('#success > .alert-danger').append('</div>');
+                },
+                complete: function() {
+                  setTimeout(function() {
+                    formReset();
+                  }, 7000); 
+                }
+              });
+            },
+            filter: function() {
+              return $(this).is(":visible");
+            }
+          });
+          /*When clicking on Full hide fail/success boxes */
+          $("#full_name").on("focus", function() {
+            $("#success").html("");
+          });
 
         /***************************************** repair form in conditional ******************************************/
         } else if ($(this).val() === "repair") {
