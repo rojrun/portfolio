@@ -34,9 +34,9 @@
     $estimate_total = strip_tags(htmlspecialchars($_POST['estimateTotal']));
     
     // Create the email and send the message
-    $subject = "A Quote for $project";
+    $subject = "A build quote for $project";
     $body = "
-      <h1>$first_name, here is the quote you requested for your project.</h1><br>
+      <h1>$first_name, here is the build quote you requested for your project.</h1><br>
       <p style='margin: 0'>$full_name</p>
       <p style='margin: 0'>$email</p>
       <p style='margin: 0'>$phone</p>

@@ -18,26 +18,30 @@ $(function() {
     {
       type: "authority",
       text: "Authority website: this is the place potential customers can go to see what work your company has done and how to get in contact with someone about your services",
-      customized: 4000,
-      templated: 2000
+      customized: 8000,
+      templated: 4000,
+      redesign: 6000
     },
     {
       type: "leadGeneration",
       text: "Lead-generation website: this site is focused on generating leads through its online presence",
-      customized: 4000,
-      templated: 2000
+      customized: 8000,
+      templated: 4000,
+      redesign: 6000
     },
     {
       type: "sales",
       text: "Sales website: sites that sell products or services through e-commerce",
-      customized: 20000,
-      templated: 10000
+      customized: 40000,
+      templated: 20000,
+      redesign: 35000
     },
     {
       type: "utility",
       text: "Utility website: companies whose business and website are one and the same",
-      customized: 20000,
-      templated: 10000
+      customized: 70000,
+      templated: 35000,
+      redesign: 60000
     }
   ];
 
@@ -63,16 +67,15 @@ $(function() {
 
   const functionality = {
     type: [
-      "Book appointments", "Contact form", "Data storage", "Display image gallery", "Search bar", "Subscription offer", "Take payments", "Take surveys", "Testimonials/reviews"
+      "Book appointments", "Contact form", "Database integration", "Display image gallery", "Search bar", "Subscription offer", "Take payments", "Take surveys", "Testimonials/reviews"
     ],
     customized: 7000,
-    templated: 3000
+    templated: 3000,
+    redesign: 3000
   };
 
-  const redesign = {
-    type: ["Entire website"],
-    customized: 5000,
-    templated: 2000
+  const redesignEntireWebsite = {
+    type: ["Entire website"]
   };
 
   const repair = 700;
@@ -104,7 +107,7 @@ $(function() {
     return;
   }
 
-  function createCheckboxInput(appendDiv, array, name) {
+  function createCheckboxInput(appendDiv, array, name, minchecked, validation) {
     for (let index = 0; index < array.type.length; index++) {
       const container = $("<div class='form-check form-check-inine'></div>");
       $(appendDiv).append(container);
@@ -117,8 +120,8 @@ $(function() {
         value: array.type[index],
         name: name + "[]",
         class: "form-check-input",
-        minchecked: "1",
-        "data-validation-minchecked-message": "Choose at least one."
+        minchecked: minchecked,
+        "data-validation-minchecked-message": validation
       });
       $(container).append(input);
 
@@ -365,7 +368,7 @@ $(function() {
           $(pageContentGroup).append(pageContentQuestion);
           const pageWarning = $("<p class='help-block text-danger'></p>");
           $(pageContentGroup).append(pageWarning);
-          createCheckboxInput(pageContentGroup, page, "page");
+          createCheckboxInput(pageContentGroup, page, "page", 1, "Choose at least one.");
           
           const pageInputFieldContainer = $("<div class='form-check' id='pageInputFieldContainer'></div>");
           $(pageContentGroup).append(pageInputFieldContainer);
@@ -385,7 +388,7 @@ $(function() {
           $(functionalityContentGroup).append(functionsContentQuestion);
           const functionalityWarning = $("<p class='help-block text-danger'></p>");
           $(functionalityContentGroup).append(functionalityWarning);
-          createCheckboxInput(functionalityContentGroup, functionality, "functionality");
+          createCheckboxInput(functionalityContentGroup, functionality, "functionality", 1, "Choose at least one.");
 
           const functionalityInputFieldContainer = $("<div class='form-check' id='functionalityInputFieldContainer'></div>");
           $(functionalityContentGroup).append(functionalityInputFieldContainer);
@@ -409,13 +412,9 @@ $(function() {
           $("#quoteForm input, #quoteForm textarea").not("[type=submit]").jqBootstrapValidation({
             preventSubmit: true,
             submitError: function($form, event, errors) {
-              console.log('error $form: ', $form);
-              console.log("error event: ", event);
-              console.log("errors: ", errors);
+              // errors
             },
             submitSuccess: function($form, event) {
-              console.log("success $form: ", $form);
-              console.log("success event: ", event);
               event.preventDefault();
               const formData = new FormData(event.target);
               
@@ -436,15 +435,15 @@ $(function() {
               formData.append("pageCount", pageCount);
               const pricePerPage = page[techniqueType];
               formData.append("pricePerPage", pricePerPage);
-              const pageSubTotal = pricePerPage * pageCount;
-              formData.append("pageSubTotal", pageSubTotal);
+              const pageSubtotal = pricePerPage * pageCount;
+              formData.append("pageSubtotal", pageSubtotal);
               const functionalityCount = getTotalInputArrayCount("functionality");
               formData.append("functionalityCount", functionalityCount);
               const pricePerFunctionality = functionality[techniqueType];
               formData.append("pricePerFunctionality", pricePerFunctionality);
-              const functionalitySubTotal = pricePerFunctionality * functionalityCount;
-              formData.append("functionalitySubTotal", functionalitySubTotal);
-              estimateTotal = websiteTypeBasePrice + pageSubTotal + functionalitySubTotal;
+              const functionalitySubtotal = pricePerFunctionality * functionalityCount;
+              formData.append("functionalitySubtotal", functionalitySubtotal);
+              estimateTotal = websiteTypeBasePrice + pageSubtotal + functionalitySubtotal;
               formData.append("estimateTotal", estimateTotal);
 
               // Check for white space in name for Success/Fail message
@@ -493,77 +492,81 @@ $(function() {
         } else if ($(this).val() === "redesign") {
           $(serviceTypeSelectionDiv).empty();
 
+          // type of website
+          const redesignWebsiteTypeGroup = $("<div class='control-group border-bottom'></div>");
+          $(serviceTypeSelectionDiv).append(redesignWebsiteTypeGroup);
+          const redesignWebsiteTypeQuestion = $("<p>What type of website is your project?</p>");
+          $(redesignWebsiteTypeGroup).append(redesignWebsiteTypeQuestion);
+          const redesignWebsiteWarning = $("<p class='help-block text-danger'></p>");
+          $(redesignWebsiteTypeGroup).append(redesignWebsiteWarning);
+          createRadioInputForArray(redesignWebsiteTypeGroup, website, "websiteType");
+
           // website sections for redesign
           const redesignGroup = $("<div class='control-group border-bottom'></div>");
-          $(serviceTypeSelectionDiv).empty();
           $(serviceTypeSelectionDiv).append(redesignGroup);
           const redesignQuestion = $("<p class='lead text-secondary mt-4'>What parts of your website do you want redesigned?</p>");
           $(redesignGroup).append(redesignQuestion);
-          createCheckboxInput(redesignGroup, redesign, "section", false);
+          createCheckboxInput(redesignGroup, redesignEntireWebsite, "component", 0, null);
           $("input#Entire_website").on("change", function() {
             if ($(this).is(":checked")) {
-              $("#otherSectionInput").prop("disabled", true);
+              $("#otherComponentInput").prop("disabled", true);
             } else {
-              $("#otherSectionInput").prop("disabled", false);
+              $("#otherComponentInput").prop("disabled", false);
             }
           });
 
-          const redesignOr = $("<p class='lead text-secondary mt-4'>Or, enter in the sections you want changed</p>");
+          const redesignOr = $("<p class='lead text-secondary mt-4'>Or, enter in the components you want redesigned</p>");
           $(redesignGroup).append(redesignOr);
           const sectionInputFieldContainer = $("<div id='sectionInputFieldContainer'></div>");
           $(redesignGroup).append(sectionInputFieldContainer);
 
           const clearableInput = $("<div id='redesignInputRow'></div>").css({"display": "block", "position": "relative"});
           $(sectionInputFieldContainer).append(clearableInput);
-          createInputField(clearableInput, "section");
+          createInputField(clearableInput, "component");
           $(clearableInput).on("change", "input", function() {
             if (!$(this).val()) {
               $("#Entire_website").prop("disabled", false);
-              $("#addFieldButtonForSection").prop("disabled", true);
+              $("#addFieldButtonForComponent").prop("disabled", true);
               $(this).siblings("#deleteInputButton").remove();
             } else {
               if ( $(this).siblings("#deleteInputButton").length === 0 ) {
                 createDeleteButtonForField(clearableInput, $(this));
               }
               $("#Entire_website").prop("disabled", true);
-              $("#addFieldButtonForSection").prop("disabled", false);
+              $("#addFieldButtonForComponent").prop("disabled", false);
             }
           });
           
-          createInputButton(redesignGroup, "section");
-          $("#addFieldButtonForSection").prop("disabled", true);
+          createInputButton(redesignGroup, "component");
+          $("#addFieldButtonForComponent").prop("disabled", true);
 
-          $("#addFieldButtonForSection").on("click", function() {
+          $("#addFieldButtonForComponent").on("click", function() {
             const clearableInputAddition = $("<div id='sectionInputRow'></div>").css({"display": "block", "position": "relative"});
             $(sectionInputFieldContainer).append(clearableInputAddition);
-            createInputField(clearableInputAddition, "section");
-            $("#addFieldButtonForSection").prop("disabled", true);
-            inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForSection");
+            createInputField(clearableInputAddition, "component");
+            $("#addFieldButtonForComponent").prop("disabled", true);
+            inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForComponent");
           });
 
           // add functionality section
-          const addFunctionalityGroup = $("<div class='control-group border-bottom'></div>");
-          $(serviceTypeSelectionDiv).append(addFunctionalityGroup);
-          const addFunctionalityQuestion = $("<p class='lead text-secondary mt-4'>What new functionalities do you want to add to your website?</p>");
-          $(addFunctionalityGroup).append(addFunctionalityQuestion);
-          
-          const addFunctionalityFields = $("<div id='addFunctionalityFields'></div>");
-          $(addFunctionalityGroup).append(addFunctionalityFields);
+          const functionalityContentGroup = $("<div class='control-group border-bottom'></div>");
+          $(serviceTypeSelectionDiv).append(functionalityContentGroup);
+          const functionsContentQuestion = $("<p>What new functionalities do you want to add to your website? Select all that apply:</p>");
+          $(functionalityContentGroup).append(functionsContentQuestion);
+          const functionalityWarning = $("<p class='help-block text-danger'></p>");
+          $(functionalityContentGroup).append(functionalityWarning);
+          createCheckboxInput(functionalityContentGroup, functionality, "functionality", 0, null);
 
-          const functionalityInput = $("<div id='functionalityInputRow'></div>").css({"display": "block", "position": "relative"});
-          $(addFunctionalityFields).append(functionalityInput);
-          createInputField(functionalityInput, "functionality");
-          inputTextFieldChangeHandler(functionalityInput, "input", "#addFieldButtonForFunctionality");
-         
-          createInputButton(addFunctionalityGroup, "functionality");
-          $("#addFieldButtonForFunctionality").prop("disabled", true);
+          const functionalityInputFieldContainer = $("<div class='form-check' id='functionalityInputFieldContainer'></div>");
+          $(functionalityContentGroup).append(functionalityInputFieldContainer);
+          createInputButton(functionalityContentGroup, "functionality");
           $("#addFieldButtonForFunctionality").on("click", function() {
-            const clearableInputAddition = $("<div id='newFunctionalityInputRow'></div>").css({"display": "block", "position": "relative"});
-            $(addFunctionalityFields).append(clearableInputAddition);
+            const clearableInputAddition = $("<div id='functionalityInputRow'></div>").css({"display": "block", "position": "relative"});
+            $(functionalityInputFieldContainer).append(clearableInputAddition);
             createInputField(clearableInputAddition, "functionality");
             $("#addFieldButtonForFunctionality").prop("disabled", true);
             inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForFunctionality");
-          }); 
+          });
 
           // Customer info inputs
           createRestOfForm(serviceTypeSelectionDiv);
@@ -581,14 +584,35 @@ $(function() {
               console.log("errors: ", errors);
             },
             submitSuccess: function($form, event) {
-              console.log("success $form: ", $form);
-              console.log("success event: ", event);
               event.preventDefault();
               const formData = new FormData(event.target);
 
               // calculate estimate total
-              let estimateTotal = 0;
-
+              const functionalityCount = getTotalInputArrayCount("functionality");
+              formData.append("functionalityCount", functionalityCount);
+              const pricePerFunctionality = functionality.customized;
+              formData.append("pricePerFunctionality", pricePerFunctionality);
+              const functionalitySubtotal = functionalityCount * pricePerFunctionality;
+              formData.append("functionalitySubtotal", functionalitySubtotal);
+              
+              if (formData.get("component[]") === "Entire website") {
+                const websiteType = formData.get("websiteType");
+                const redesignSubtotal = website.find(obj => {
+                  return obj.type === websiteType;
+                }).redesign;
+                formData.append("redesignSubtotal", redesignSubtotal);
+                const estimateTotal = redesignSubtotal + functionalitySubtotal;
+                formData.append("estimateTotal", estimateTotal);
+              } else {
+                const componentCount = getTotalInputArrayCount("component");
+                formData.append("componentCount", componentCount);
+                const pricePerComponent = functionality.redesign;
+                formData.append("pricePerComponent", pricePerComponent);
+                const componentSubtotal = componentCount * pricePerComponent;
+                formData.append("componentSubtotal", componentSubtotal);   
+                const estimateTotal = functionalitySubtotal + componentSubtotal;
+                formData.append("estimateTotal", estimateTotal);
+              }
 
               for (var pair of formData.entries()) {
                 console.log(pair[0] + ': ' + pair[1]);
@@ -611,7 +635,7 @@ $(function() {
                 success: function() {
                   $('#success').html("<div class='alert alert-success'>");
                   $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
-                  $('#success > .alert-success').append($("<strong>").text("Thank you " + firstName + " for signing up for a quote! You'll receive an email shortly."));
+                  $('#success > .alert-success').append($("<strong>").text("Thank you " + firstName + " for signing up for a redesign quote! You'll receive an email shortly."));
                   $('#success > .alert-success').append('</div>');
                 },
                 error: function() {
@@ -620,11 +644,11 @@ $(function() {
                   $('#success > .alert-danger').append($("<strong>").text("Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!"));
                   $('#success > .alert-danger').append('</div>');
                 },
-                complete: function() {
-                  setTimeout(function() {
-                    formReset();
-                  }, 7000); 
-                }
+                // complete: function() {
+                //   setTimeout(function() {
+                //     formReset();
+                //   }, 7000); 
+                // }
               });
             },
             filter: function() {
