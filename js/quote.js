@@ -18,30 +18,50 @@ $(function() {
     {
       type: "authority",
       text: "Authority website: this is the place potential customers can go to see what work your company has done and how to get in contact with someone about your services",
-      customized: 8000,
-      templated: 4000,
-      redesign: 6000
+      build: {
+        customized: 8000, 
+        templated: 4000
+      },
+      redesign: {
+        customized: 7000, 
+        templated: 3000
+      }
     },
     {
       type: "leadGeneration",
       text: "Lead-generation website: this site is focused on generating leads through its online presence",
-      customized: 8000,
-      templated: 4000,
-      redesign: 6000
+      build: {
+        customized: 8000, 
+        templated: 4000
+      },
+      redesign: {
+        customized: 7000, 
+        templated: 3000
+      }
     },
     {
       type: "sales",
       text: "Sales website: sites that sell products or services through e-commerce",
-      customized: 40000,
-      templated: 20000,
-      redesign: 35000
+      build: {
+        customized: 8000, 
+        templated: 4000
+      },
+      redesign: {
+        customized: 7000,
+        templated: 3000
+      }
     },
     {
       type: "utility",
       text: "Utility website: companies whose business and website are one and the same",
-      customized: 70000,
-      templated: 35000,
-      redesign: 60000
+      build: {
+        customized: 8000, 
+        templated: 4000
+      },
+      redesign: {
+        customized: 7000, 
+        templated: 3000
+      }
     }
   ];
 
@@ -61,8 +81,8 @@ $(function() {
       "About page", "Blog page", "Contact page", "FAQ page", "Homepage", "Landing page", "Page not found page", "Press page", "Privacy policy page", "Products page",
       "Reviews page", "Search result page", "Services page", "Sitemap page", "Terms and conditions page", "Testimonials page"    
     ],
-    customized: 1000,
-    templated: 500
+    customized: 1800,
+    templated: 1000
   };
 
   const functionality = {
@@ -70,15 +90,16 @@ $(function() {
       "Book appointments", "Contact form", "Database integration", "Display image gallery", "Search bar", "Subscription offer", "Take payments", "Take surveys", "Testimonials/reviews"
     ],
     customized: 7000,
-    templated: 3000,
-    redesign: 3000
+    templated: 3000
   };
 
   const redesignEntireWebsite = {
     type: ["Entire website"]
   };
 
-  const repair = 700;
+  const redesignPerComponent = [ {customized: 4000}, {templated: 2000} ];
+
+  const repairPerComponent = 700;
 
   /***************************************** functions ******************************************/
   function createRadioInputForArray(appendDiv, array, name) {
@@ -426,10 +447,9 @@ $(function() {
               }).text;
               formData.append("websiteTypeText", websiteTypeText);
               const techniqueType = formData.get("techniqueType");
-
               const websiteTypeBasePrice = website.find(obj => {
                 return obj.type === websiteType;
-              })[techniqueType];
+              }).build[techniqueType];
               formData.append("websiteTypeBasePrice", websiteTypeBasePrice);
               const pageCount = getTotalInputArrayCount("page");
               formData.append("pageCount", pageCount);
@@ -445,6 +465,10 @@ $(function() {
               formData.append("functionalitySubtotal", functionalitySubtotal);
               estimateTotal = websiteTypeBasePrice + pageSubtotal + functionalitySubtotal;
               formData.append("estimateTotal", estimateTotal);
+
+              for (var pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+              }
 
               // Check for white space in name for Success/Fail message
               let firstName = formData.get("full_name");
@@ -500,6 +524,15 @@ $(function() {
           const redesignWebsiteWarning = $("<p class='help-block text-danger'></p>");
           $(redesignWebsiteTypeGroup).append(redesignWebsiteWarning);
           createRadioInputForArray(redesignWebsiteTypeGroup, website, "websiteType");
+
+          // technique type section
+          const techniqueTypeGroup = $("<div class='control-group border-bottom'></div>");
+          $(serviceTypeSelectionDiv).append(techniqueTypeGroup);
+          const techniqueTypeQuestion = $("<p>How is your website built?</p>");
+          $(techniqueTypeGroup).append(techniqueTypeQuestion);
+          const techniqueWarning = $("<p class='help-block text-danger'></p>");
+          $(techniqueTypeGroup).append(techniqueWarning);
+          createRadioInputForArray(techniqueTypeGroup, technique, "techniqueType");
 
           // website sections for redesign
           const redesignGroup = $("<div class='control-group border-bottom'></div>");

@@ -5,7 +5,7 @@
   require '../vendor/autoload.php';
   include '../config/email.php';
   
-  $mail = new PHPMailer();
+  $mail = new PHPMailer(true);
   try {
     if (empty($_POST['full_name']) || empty($_POST['email_address']) || !filter_var($_POST['email_address'], FILTER_VALIDATE_EMAIL)) {
       http_response_code(500);
@@ -26,12 +26,12 @@
     $first_name = explode(' ', trim($full_name))[0];
     $email = strip_tags(htmlspecialchars($_POST['email_address']));
     $phone = strip_tags(htmlspecialchars($_POST['phone_number']));
-    $website_type_base_price = strip_tags(htmlspecialchars($_POST['websiteTypeBasePrice']));
-    $price_per_page = strip_tags(htmlspecialchars($_POST['pricePerPage']));
-    $page_subtotal = strip_tags(htmlspecialchars($_POST['pageSubTotal']));
-    $price_per_functionality = strip_tags(htmlspecialchars($_POST['pricePerFunctionality']));
-    $functionality_subtotal = strip_tags(htmlspecialchars($_POST['functionalitySubTotal']));
-    $estimate_total = strip_tags(htmlspecialchars($_POST['estimateTotal']));
+    $website_type_base_price = number_format(strip_tags(htmlspecialchars($_POST['websiteTypeBasePrice'])));
+    $price_per_page = number_format(strip_tags(htmlspecialchars($_POST['pricePerPage'])));
+    $page_subtotal = number_format(strip_tags(htmlspecialchars($_POST['pageSubtotal'])));
+    $price_per_functionality = number_format(strip_tags(htmlspecialchars($_POST['pricePerFunctionality'])));
+    $functionality_subtotal = number_format(strip_tags(htmlspecialchars($_POST['functionalitySubtotal'])));
+    $estimate_total = number_format(strip_tags(htmlspecialchars($_POST['estimateTotal'])));
     
     // Create the email and send the message
     $subject = "A build quote for $project";
@@ -102,8 +102,7 @@
       <h4 style='margin: 0'><a href='mailto:runroj@gmail.com'>runroj@gmail.com</a></h4>
       <h4 style='margin: 0'><a href='tel:17147137511'>714.713.7511</a></h4>
     ";
-
-    header("Set-Cookie: cross-site-cookie=whatever; SameSite=None; Secure");
+    
     $mail->IsSMTP();
     $mail->SMTPSecure = 'ssl';
     $mail->SMTPDebug = SMTP::DEBUG_SERVER;
@@ -114,13 +113,15 @@
     $mail->Username = $secret_email;
     $mail->Password = $secret_password;
     $mail->CharSet = PHPMailer::CHARSET_UTF8;
-    $mail->SetFrom($email, $full_name);
-    $mail->AddAddress($secret_email, $email_to);
+    $mail->setFrom($email, $full_name);
+    $mail->addAddress($email, $full_name);
+    $mail->addAddress($secret_email, "Roj Rungsisullatanont");
+    $mail->addReplyTo($secret_email, "Roj Rungsisullatanont");
     $mail->From = $email;
     $mail->FromName = $full_name;
     $mail->Subject = $subject;
-    $mail->AddReplyTo($email, $full_name);
     $mail->Body = $body;
+    header("Set-Cookie: cross-site-cookie=whatever; SameSite=None; Secure");
     
     if($mail->Send()) {
       echo 'message sent';
@@ -132,7 +133,8 @@
     
   } catch(RuntimeException $e) {
     echo $e->getMessage();
-  } catch(\Exception $e) {
-    echo $e->errorMessage();  
+  } catch(Exception $e) {
+    // echo $e->errorMessage();  
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
   }
 ?>

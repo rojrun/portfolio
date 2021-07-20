@@ -1,5 +1,4 @@
 <?php
-  <?php
   use PHPMailer\PHPMailer\PHPMailer;
   use PHPMailer\PHPMailer\SMTP;
   use PHPMailer\PHPMailer\Exception;
@@ -136,6 +135,4 @@
   } catch(\Exception $e) {
     echo $e->errorMessage();  
   }
-?>
-
 ?>
