@@ -14,7 +14,6 @@
 
     $project = strip_tags(htmlspecialchars($_POST['project_name']));
     $service_type = strip_tags(htmlspecialchars($_POST['serviceType']));
-    $website_type = strip_tags(htmlspecialchars($_POST['websiteType']));
     $website_type_text = strip_tags(htmlspecialchars($_POST['websiteTypeText']));
     $technique_type = strip_tags(htmlspecialchars($_POST['techniqueType']));
     $page = implode(', ', $_POST['page']);
@@ -113,10 +112,10 @@
     $mail->Username = $secret_email;
     $mail->Password = $secret_password;
     $mail->CharSet = PHPMailer::CHARSET_UTF8;
-    $mail->setFrom($email, $full_name);
+    $mail->setFrom($secret_email, "Roj Rungsisullatanont");
     $mail->addAddress($email, $full_name);
-    $mail->addAddress($secret_email, "Roj Rungsisullatanont");
-    $mail->addReplyTo($secret_email, "Roj Rungsisullatanont");
+    $mail->addAddress($secret_email, "RojRunDev.com");
+    $mail->addReplyTo($secret_email, "RojRunDev.com");
     $mail->From = $email;
     $mail->FromName = $full_name;
     $mail->Subject = $subject;
@@ -134,7 +133,6 @@
   } catch(RuntimeException $e) {
     echo $e->getMessage();
   } catch(Exception $e) {
-    // echo $e->errorMessage();  
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
   }
 ?>

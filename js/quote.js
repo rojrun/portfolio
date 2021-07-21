@@ -97,7 +97,10 @@ $(function() {
     type: ["Entire website"]
   };
 
-  const redesignPerComponent = [ {customized: 4000}, {templated: 2000} ];
+  const redesignPerComponent = {
+    customized: 4000, 
+    templated: 2000
+  };
 
   const repairPerComponent = 700;
 
@@ -466,10 +469,6 @@ $(function() {
               estimateTotal = websiteTypeBasePrice + pageSubtotal + functionalitySubtotal;
               formData.append("estimateTotal", estimateTotal);
 
-              for (var pair of formData.entries()) {
-                console.log(pair[0] + ': ' + pair[1]);
-              }
-
               // Check for white space in name for Success/Fail message
               let firstName = formData.get("full_name");
               if (firstName.indexOf(' ') >= 0) {
@@ -612,40 +611,48 @@ $(function() {
           $("#quoteForm input, #quoteForm textarea").not("[type=submit]").jqBootstrapValidation({
             preventSubmit: true,
             submitError: function($form, event, errors) {
-              console.log('error $form: ', $form);
-              console.log("error event: ", event);
-              console.log("errors: ", errors);
+              // error messages
             },
             submitSuccess: function($form, event) {
               event.preventDefault();
               const formData = new FormData(event.target);
 
               // calculate estimate total
-              const functionalityCount = getTotalInputArrayCount("functionality");
-              formData.append("functionalityCount", functionalityCount);
-              const pricePerFunctionality = functionality.customized;
-              formData.append("pricePerFunctionality", pricePerFunctionality);
-              const functionalitySubtotal = functionalityCount * pricePerFunctionality;
-              formData.append("functionalitySubtotal", functionalitySubtotal);
+              let estimateTotal = 0;
+              const websiteType = formData.get("websiteType");
+              const websiteTypeText = website.find(obj => {
+                return obj.type === websiteType;
+              }).text;
+              formData.append("websiteTypeText", websiteTypeText);
+              const techniqueType = formData.get("techniqueType");
               
               if (formData.get("component[]") === "Entire website") {
-                const websiteType = formData.get("websiteType");
                 const redesignSubtotal = website.find(obj => {
                   return obj.type === websiteType;
-                }).redesign;
+                }).redesign[techniqueType];
                 formData.append("redesignSubtotal", redesignSubtotal);
-                const estimateTotal = redesignSubtotal + functionalitySubtotal;
-                formData.append("estimateTotal", estimateTotal);
+                estimateTotal += redesignSubtotal;
               } else {
                 const componentCount = getTotalInputArrayCount("component");
                 formData.append("componentCount", componentCount);
-                const pricePerComponent = functionality.redesign;
+                const pricePerComponent = redesignPerComponent[techniqueType];
                 formData.append("pricePerComponent", pricePerComponent);
                 const componentSubtotal = componentCount * pricePerComponent;
                 formData.append("componentSubtotal", componentSubtotal);   
-                const estimateTotal = functionalitySubtotal + componentSubtotal;
-                formData.append("estimateTotal", estimateTotal);
+                estimateTotal += componentSubtotal;
               }
+              
+              if (formData.has("functionality[]")) {
+                const functionalityCount = getTotalInputArrayCount("functionality");
+                formData.append("functionalityCount", functionalityCount);
+                const pricePerFunctionality = functionality[techniqueType];
+                formData.append("pricePerFunctionality", pricePerFunctionality);
+                const functionalitySubtotal = functionalityCount * pricePerFunctionality;
+                formData.append("functionalitySubtotal", functionalitySubtotal);
+                estimateTotal += functionalitySubtotal;
+              }
+
+              formData.append("estimateTotal", estimateTotal);
 
               for (var pair of formData.entries()) {
                 console.log(pair[0] + ': ' + pair[1]);
@@ -677,11 +684,11 @@ $(function() {
                   $('#success > .alert-danger').append($("<strong>").text("Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!"));
                   $('#success > .alert-danger').append('</div>');
                 },
-                // complete: function() {
-                //   setTimeout(function() {
-                //     formReset();
-                //   }, 7000); 
-                // }
+                complete: function() {
+                  setTimeout(function() {
+                    formReset();
+                  }, 7000); 
+                }
               });
             },
             filter: function() {
