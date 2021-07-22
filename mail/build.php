@@ -114,8 +114,8 @@
     $mail->CharSet = PHPMailer::CHARSET_UTF8;
     $mail->setFrom($secret_email, "Roj Rungsisullatanont");
     $mail->addAddress($email, $full_name);
-    $mail->addAddress($secret_email, "RojRunDev.com");
     $mail->addReplyTo($secret_email, "RojRunDev.com");
+    $mail->addBCC($secret_email);
     $mail->From = $email;
     $mail->FromName = $full_name;
     $mail->Subject = $subject;
@@ -130,8 +130,6 @@
       exit();
     }
     
-  } catch(RuntimeException $e) {
-    echo $e->getMessage();
   } catch(Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
   }

@@ -18,91 +18,40 @@
     $phone = strip_tags(htmlspecialchars($_POST['phone_number']));    
     $message = strip_tags(htmlspecialchars($_POST['message']));
     $project = strip_tags(htmlspecialchars($_POST['project_name']));
-    $website_type_text = strip_tags(htmlspecialchars($_POST['websiteTypeText']));
-    $technique_type = strip_tags(htmlspecialchars($_POST['techniqueType']));
-    $component = implode(', ', $_POST['component']);
-    if ($component == 'Entire website') {
-      $component_subtotal = number_format(strip_tags(htmlspecialchars($_POST['redesignSubtotal'])));
-      $component_body = "
-        <tr>
-          <td>Redesign entire website</td>
-          <td>$$component_subtotal</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-      ";
-    } else {
-      $component_count = strip_tags(htmlspecialchars($_POST['componentCount']));
-      $price_per_component = number_format(strip_tags(htmlspecialchars($_POST['pricePerComponent'])));
-      $component_subtotal = number_format(strip_tags(htmlspecialchars($_POST['componentSubtotal'])));
-      $component_body = "
-        <tr>
-          <td>Components you selected to be redesigned:</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>$component</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>$component_count x $$price_per_component per component</td>
-          <td>$$component_subtotal</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-      ";
-    }
-
-    if ($_POST['functionality']) {
-      $functionality = implode(', ', $_POST['functionality']);
-      $functionality_count = strip_tags(htmlspecialchars($_POST['functionalityCount']));
-      $price_per_functionality = number_format(strip_tags(htmlspecialchars($_POST['pricePerFunctionality'])));
-      $functionality_subtotal = number_format(strip_tags(htmlspecialchars($_POST['functionalitySubtotal'])));
-      $functionality_body = "
-        <tr>
-          <td>New functionalities to be added to your website:</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>$functionality</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>$functionality_count x $$price_per_functionality per function</td>
-          <td>$$functionality_subtotal</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>     
-      ";
-    }
-
+    $problem = implode(', ', $_POST['problem']);
+    $problem_count = strip_tags(htmlspecialchars($_POST['problemCount']));
+    $price_per_problem = number_format(strip_tags(htmlspecialchars($_POST['pricePerProblem'])));
     $estimate_total = number_format(strip_tags(htmlspecialchars($_POST['estimateTotal'])));
-    
+
     // Create the email and send the message
-    $subject = "A redesign quote for $project";
+    $subject = "A repair quote for $project";
     $body = "
-      <h1>$first_name, here is the redesign quote you requested for your project.</h1><br>
+      <h1>$first_name, here is the repair quote you requested for your project.</h1><br>
       <p style='margin: 0'>$full_name</p>
       <p style='margin: 0'>$email</p>
       <p style='margin: 0'>$phone</p>
       <p style='margin: 0'>$message</p>
-      <p>Technique type: $technique_type</p>
+      <br>
       <table width='100%'>
         <colgroup>
           <col style='width: 75%'>
         </colgroup>
         <tr>
-          <td>$website_type_text</td>
+          <td>Problems you stated for your website:</td>
           <td></td>
         </tr>
-        $component_body
-        $functionality_body
+        <tr>
+          <td>$problem</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>$problem_count x $$price_per_problem per problem</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>    
         <tr>
           <td>Estimate total</td>
           <td>$$estimate_total</td>

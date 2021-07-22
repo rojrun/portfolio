@@ -102,7 +102,7 @@ $(function() {
     templated: 2000
   };
 
-  const repairPerComponent = 700;
+  const repairPerComponent = 1000;
 
   /***************************************** functions ******************************************/
   function createRadioInputForArray(appendDiv, array, name) {
@@ -362,9 +362,9 @@ $(function() {
       $(quoteForm).append(serviceTypeSelectionDiv);
 
       $("input[name=serviceType]").on("change", function() {
-        
+        const serviceType = $(this).val();
         /***************************************** build form in conditional ******************************************/
-        if ($(this).val() === "build") {
+        if (serviceType === "build") {
           $(serviceTypeSelectionDiv).empty();
 
           // website type section
@@ -512,7 +512,7 @@ $(function() {
           });
 
         /***************************************** redesign form in conditional ******************************************/  
-        } else if ($(this).val() === "redesign") {
+        } else if (serviceType === "redesign") {
           $(serviceTypeSelectionDiv).empty();
 
           // type of website
@@ -701,12 +701,12 @@ $(function() {
           });
 
         /***************************************** repair form in conditional ******************************************/
-        } else if ($(this).val() === "repair") {
+        } else if (serviceType === "repair") {
           $(serviceTypeSelectionDiv).empty();
 
           const repairGroup = $("<div class='control-group border-bottom'></div>");
           $(serviceTypeSelectionDiv).append(repairGroup);
-          const repairQuestion = $("<p>What problems occur on your website? Separate each problem.</p>");
+          const repairQuestion = $("<p>What problems occur on your website? Enter problem per line.</p>");
           $(repairGroup).append(repairQuestion);
 
           const repairFields = $("<div id='repairFields'></div>");
@@ -734,6 +734,69 @@ $(function() {
           });
           
           $("button[type='reset']").on("click", formReset);
+
+          $("#quoteForm input, #quoteForm textarea").not("[type=submit]").jqBootstrapValidation({
+            preventSubmit: true,
+            submitError: function($form, event, errors) {
+              // errors
+            },
+            submitSuccess: function($form, event) {
+              event.preventDefault();
+              const formData = new FormData(event.target);
+
+              // calculate estimate total
+              const problemCount = getTotalInputArrayCount("problem");
+              formData.append("problemCount", problemCount);
+              const pricePerProblem = repairPerComponent;
+              formData.append("pricePerProblem", pricePerProblem);
+              const estimateTotal = problemCount * pricePerProblem;
+              formData.append("estimateTotal", estimateTotal);
+
+              for (var pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+              }
+
+              // Check for white space in name for Success/Fail message
+              let firstName = formData.get("full_name");
+              if (firstName.indexOf(' ') >= 0) {
+                firstName = firstName.split(' ').slice(0, -1).join(' ');
+              }
+
+              $("#submit").prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
+              $.ajax({
+                url: "././mail/repair.php",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function() {
+                  $('#success').html("<div class='alert alert-success'>");
+                  $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
+                  $('#success > .alert-success').append($("<strong>").text("Thank you " + firstName + " for signing up for a repair quote! You'll receive an email shortly."));
+                  $('#success > .alert-success').append('</div>');
+                },
+                error: function() {
+                  $('#success').html("<div class='alert alert-danger'>");
+                  $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
+                  $('#success > .alert-danger').append($("<strong>").text("Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!"));
+                  $('#success > .alert-danger').append('</div>');
+                },
+                complete: function() {
+                  setTimeout(function() {
+                    formReset();
+                  }, 7000); 
+                }
+              });  
+            },
+            filter: function() {
+              return $(this).is(":visible");
+            }
+          });
+          /*When clicking on Full hide fail/success boxes */
+          $("#full_name").on("focus", function() {
+            $("#success").html("");
+          });
         }
       });
     } 
