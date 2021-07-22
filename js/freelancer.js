@@ -59,14 +59,16 @@
   }(0));
   
   // Modal popup function
-  $('.portfolio-item').magnificPopup({
-    type: 'inline',
-    preloader: false,
-    focus: '#username',
-    modal: true,
-    removalDelay: 500,
-    midClick: true
-  });
+  if ($('body#page-top').length > 0) {
+    $('.portfolio-item').magnificPopup({
+      type: 'inline',
+      preloader: false,
+      focus: '#username',
+      modal: true,
+      removalDelay: 500,
+      midClick: true
+    });
+  }
 
   $(document).on('click', '.portfolio-modal-dismiss', function(e) {
     e.preventDefault();
@@ -88,28 +90,28 @@
   });
 
   // Updates modal popup
-  $.fn.isInViewport = function() {
-    var elementTop = $(this).offset().top;
-    var elementBottom = elementTop + $(this).outerHeight();
-    var viewportTop = $(window).scrollTop();
-    var viewportBottom = viewportTop + $(window).height();
-    return elementBottom > viewportTop && elementTop < viewportBottom;
-  }
-  $(window).on("scroll", function() {
-    if ($("#portfolio .container .row > div:last-child").isInViewport() && $(".updatesModalPopupButton").is(":hidden")) {
-      setTimeout(function() {
-        $.magnificPopup.open({
-          items: {
-            src: "#updates-modal",
-            type: "inline"
-          },
-          preloader: false,
-          modal: true,
-          mainClass: "mfp-fade"
-        });
-      }, 1000);      
-    }   
-  });
+  // $.fn.isInViewport = function() {
+  //   var elementTop = $(this).offset().top;
+  //   var elementBottom = elementTop + $(this).outerHeight();
+  //   var viewportTop = $(window).scrollTop();
+  //   var viewportBottom = viewportTop + $(window).height();
+  //   return elementBottom > viewportTop && elementTop < viewportBottom;
+  // }
+  // $(window).on("scroll", function() {
+  //   if ($("#portfolio .container .row > div:last-child").isInViewport() && $(".updatesModalPopupButton").is(":hidden")) {
+  //     setTimeout(function() {
+  //       $.magnificPopup.open({
+  //         items: {
+  //           src: "#updates-modal",
+  //           type: "inline"
+  //         },
+  //         preloader: false,
+  //         modal: true,
+  //         mainClass: "mfp-fade"
+  //       });
+  //     }, 1000);      
+  //   }   
+  // });
 
   // Updates modal icon appears when No Thanks link and close-button is clicked
   $(".showModalIcon").on("click", function() {

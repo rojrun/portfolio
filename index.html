@@ -17,7 +17,7 @@
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" as="style" type="text/css">
   <meta name="author" content="Roj Rungsisullatanont">
   <meta name="description" content="Using creative UI/UX design techniques, to develop artistic webpages, and to drive traffic to your website with SEO, in Southern California.">
-  <meta name="keywords" content="website development, custom website design, mobile responsive, search engine optimization, content management system, ecommerce, landing page, ui ux design, shopify developer, wordpress developer">
+  <meta name="keywords" content="website development, custom website design, mobile responsive, search engine optimization, content management system, ecommerce, landing page, ui ux design, shopify developer, wordpress developer, quote">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://rojrundev.com">
 
@@ -152,19 +152,22 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="#about" rel="noopener">About</a>
+            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#about" data-target="#about" rel="noopener noreferrer">About</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-tirgger" href="#services" rel="noopener">Services</a>
+            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-tirgger" href="index.html#services" data-target="#services" rel="noopener noreferrer">Services</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="#skills" rel="noopener">Skills</a>
+            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#skills" data-target="#skills" rel="noopener noreferrer">Skills</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio" rel="noopener">Portfolio</a>
+            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#portfolio" data-target="#portfolio" rel="noopener noreferrer">Portfolio</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact" rel="noopener">Contact</a>
+            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#contact" data-target="#contact" rel="noopener noreferrer">Contact</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="quote.html" data-target="#quote" rel="noopener noreferrer">Quote</a>
           </li>
         </ul>
       </div>
@@ -434,7 +437,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label for="message">Message</label>
-                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
+                <textarea class="form-control" id="message" name="message" rows="3" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
                 <p class="help-block text-danger"></p>
               </div>
             </div>
@@ -483,8 +486,8 @@
     </div>
   </div>
 
-   <!-- Updates Button when updates modal is closed -->
-   <div class="updatesModalPopupButton position-fixed">
+  <!-- Updates Button when updates modal is closed -->
+  <div class="updatesModalPopupButton position-fixed">
     <a class="d-block text-center text-white rounded" href="#updates-modal">
       <i class="fa fa-newspaper fa-lg align-middle"></i>
     </a>
@@ -687,7 +690,7 @@
   </div>
 
   <!-- Updates Modal -->
-  <div class="portfolio-modal mfp-hide" id="updates-modal">
+  <!-- <div class="portfolio-modal mfp-hide" id="updates-modal">
     <div class="portfolio-modal-dialog">
       <div class="container">
         <h2 class="text-secondary text-center text-uppercase mb-0">Updates</h2>
@@ -710,7 +713,7 @@
               <p class="help-block text-danger"></p>
             </div>
           </div>
-          <p class="lead text-secondary mt-4">Check all interests that apply:</p>
+          <p class="lead text-secondary mt-4">Select all interests that apply:</p>
           <div class="ml-5 ml-sm-0">
             <div class="row">
               <div class="form-check col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
@@ -771,7 +774,7 @@
         </form>  
       </div>        
     </div>
-  </div>
+  </div> -->
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -783,11 +786,14 @@
 
   <!-- Contact Form JavaScript -->
   <script src="js/jqBootstrapValidation.min.js"></script>
-  <script src="js/contact_me.min.js"></script>
+  <!-- <script src="js/contact_me.min.js"></script> -->
+  <script src="js/contact_me.js"></script>
+
   <!-- Updates pop-up form JavaScript -->
-  <script src="js/updates.min.js"></script>
+  <!-- <script src="js/updates.min.js"></script> -->
 
   <!-- Custom scripts for this template -->
-  <script src="js/freelancer.min.js"></script>
+  <!-- <script src="js/freelancer.min.js"></script> -->
+  <script src="js/freelancer.js"></script>
 </body>
 </html>
