@@ -144,7 +144,7 @@ $(function() {
     return;
   }
 
-  $("#contactForm input,#contactForm textarea").not("[type=submit]").jqBootstrapValidation({
+  $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
     preventSubmit: true,
     submitError: function($form, event, errors) {
       // additional error messages or events

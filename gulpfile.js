@@ -42,7 +42,7 @@ function browserSync(done) {
 // BrowserSync reload
 function browserSyncReload(done) {
   browsersync.reload();
-  // browsersync.stream({once: true});
+  browsersync.stream({once: true});
   done();
 }
 
@@ -97,7 +97,7 @@ function css() {
     }))
     .pipe(cleanCSS())
     .pipe(gulp.dest("./css"))
-    .pipe(browsersync.stream());
+    .pipe(browsersync.stream({once: true}));
 }
 
 // JS task
