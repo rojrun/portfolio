@@ -1,6 +1,6 @@
 /*!
  * Start Bootstrap - Freelancer v5.0.3 (https://startbootstrap.com/template-overviews/freelancer)
- * Copyright 2013-2020 Start Bootstrap
+ * Copyright 2013-2021 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-freelancer/blob/master/LICENSE)
  */
 
@@ -976,20 +976,22 @@ header.masthead h2:last-child {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-.floating-label-form-group input::-webkit-input-placeholder,
-.floating-label-form-group textarea::-webkit-input-placeholder {
+.floating-label-form-group input::-webkit-input-placeholder, .floating-label-form-group textarea::-webkit-input-placeholder {
   color: #000000;
   font-weight: bold;
 }
 
-.floating-label-form-group input:-ms-input-placeholder,
-.floating-label-form-group textarea:-ms-input-placeholder {
+.floating-label-form-group input::-moz-placeholder, .floating-label-form-group textarea::-moz-placeholder {
   color: #000000;
   font-weight: bold;
 }
 
-.floating-label-form-group input::-ms-input-placeholder,
-.floating-label-form-group textarea::-ms-input-placeholder {
+.floating-label-form-group input:-ms-input-placeholder, .floating-label-form-group textarea:-ms-input-placeholder {
+  color: #000000;
+  font-weight: bold;
+}
+
+.floating-label-form-group input::-ms-input-placeholder, .floating-label-form-group textarea::-ms-input-placeholder {
   color: #000000;
   font-weight: bold;
 }
