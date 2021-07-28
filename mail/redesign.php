@@ -126,15 +126,15 @@
     $mail->Username = $secret_email;
     $mail->Password = $secret_password;
     $mail->CharSet = PHPMailer::CHARSET_UTF8;
-    $mail->setFrom($secret_email, "Roj Rungsisullatanont");
+    $mail->setFrom($secret_email, $email_to);
     $mail->addAddress($email, $full_name);
-    $mail->addReplyTo($secret_email, "RojRunDev.com");
+    $mail->addReplyTo($secret_email, $email_to);
     $mail->addBCC($secret_email);
     $mail->From = $email;
     $mail->FromName = $full_name;
     $mail->Subject = $subject;
     $mail->Body = $body;
-    header("Set-Cookie: cross-site-cookie=whatever; SameSite=None; Secure");
+    // header("Set-Cookie: cross-site-cookie=whatever; SameSite=None; Secure");
     
     if($mail->Send()) {
       echo 'message sent';

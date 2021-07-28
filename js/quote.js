@@ -433,10 +433,12 @@ $(function() {
 
           $("button[type='reset']").on("click", formReset);
           
-          $("#quoteForm input, #quoteForm textarea").not("[type=submit]").jqBootstrapValidation({
+          $("#quoteForm input, #quoteForm textarea").jqBootstrapValidation({
             preventSubmit: true,
             submitError: function($form, event, errors) {
               // errors
+              console.log("event: ", event);
+              console.log("errors: ", errors);
             },
             submitSuccess: function($form, event) {
               event.preventDefault();
@@ -468,6 +470,10 @@ $(function() {
               formData.append("functionalitySubtotal", functionalitySubtotal);
               estimateTotal = websiteTypeBasePrice + pageSubtotal + functionalitySubtotal;
               formData.append("estimateTotal", estimateTotal);
+
+              for (var pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+              }
 
               // Check for white space in name for Success/Fail message
               let firstName = formData.get("full_name");
@@ -608,10 +614,12 @@ $(function() {
           
           $("button[type='reset']").on("click", formReset);
 
-          $("#quoteForm input, #quoteForm textarea").not("[type=submit]").jqBootstrapValidation({
+          $("#quoteForm input, #quoteForm textarea").jqBootstrapValidation({
             preventSubmit: true,
             submitError: function($form, event, errors) {
               // error messages
+              console.log("event: ", event);
+              console.log('errors: ', errors);
             },
             submitSuccess: function($form, event) {
               event.preventDefault();
@@ -735,7 +743,7 @@ $(function() {
           
           $("button[type='reset']").on("click", formReset);
 
-          $("#quoteForm input, #quoteForm textarea").not("[type=submit]").jqBootstrapValidation({
+          $("#quoteForm input, #quoteForm textarea").jqBootstrapValidation({
             preventSubmit: true,
             submitError: function($form, event, errors) {
               // errors
