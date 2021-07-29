@@ -486,9 +486,15 @@ $(function() {
                 url: "././mail/build.php",
                 type: "POST",
                 data: formData,
+                dataType: "html",
                 processData: false,
                 contentType: false,
                 cache: false,
+                crossDomain: true,
+                xhrFields: {
+                  withCredentials: true
+                },
+                
                 success: function() {
                   $('#success').html("<div class='alert alert-success'>");
                   $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
