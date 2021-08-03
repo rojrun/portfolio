@@ -13,9 +13,8 @@
     }
 
     $project = strip_tags(htmlspecialchars($_POST['project_name']));
-    $service_type = strip_tags(htmlspecialchars($_POST['serviceType']));
-    $website_type_text = strip_tags(htmlspecialchars($_POST['websiteTypeText']));
     $technique_type = strip_tags(htmlspecialchars($_POST['techniqueType']));
+    $website_type_text = strip_tags(htmlspecialchars($_POST['websiteTypeText']));
     $page = implode(', ', $_POST['page']);
     $page_count = strip_tags(htmlspecialchars($_POST['pageCount']));
     $functionality = implode(', ', $_POST['functionality']);
@@ -120,7 +119,6 @@
     $mail->FromName = $full_name;
     $mail->Subject = $subject;
     $mail->Body = $body;
-    // header("Set-Cookie: cross-site-cookie=whatever; SameSite=None; Secure");
     
     if($mail->Send()) {
       echo 'message sent';
