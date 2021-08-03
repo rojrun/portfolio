@@ -83,7 +83,6 @@
     $mail->FromName = $full_name;
     $mail->Subject = $subject;
     $mail->Body = $body;
-    // header("Set-Cookie: cross-site-cookie=whatever; SameSite=None; Secure");
     
     if($mail->Send()) {
       echo 'message sent';
