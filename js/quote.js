@@ -105,14 +105,6 @@ $(function() {
   const repairPerComponent = 1000;
 
   /***************************************** functions ******************************************/
-  function createServiceType(appendDiv) {
-    const serviceTypeControlGroup = $("<div id='serviceTypeControlGroup' class='control-group border-bottom'></div>");
-    $(appendDiv).append(serviceTypeControlGroup);
-    const serviceTypeQuestion = $("<p>What type of service do you need?</p>");
-    $(serviceTypeControlGroup).append(serviceTypeQuestion);
-    return;
-  }
-  
   function createRadioInputForArray(appendDiv, array, name) {
     for (let index = 0; index < array.length; index++) {
       const container = $("<div class='custom-control custom-radio'></div>");
@@ -330,14 +322,8 @@ $(function() {
   }
 
   function formReset() {
-    // $("input#project_name").val("");
-    // $("#serviceTypeControlGroup").remove();
-    $("#serviceType").remove();
-    // $("label[for='project_name']").css("display", "none");
-    // $("input[name=serviceType]").prop("checked", false);
-    // createServiceType(divCol);
-    // createRadioInputForArray(serviceTypeControlGroup, service, "serviceType");
-    $("input[name=serviceType]").trigger("change");
+    $("#serviceType").empty();
+    $("input[name=serviceType]").prop("checked", false);
     return;
   }
 
@@ -399,11 +385,10 @@ $(function() {
   $(divRow).append(divCol);
   
   // service type section
-  // const serviceTypeControlGroup = $("<div id='serviceTypeControlGroup' class='control-group border-bottom'></div>");
-  // $(divCol).append(serviceTypeControlGroup);
-  // const serviceTypeQuestion = $("<p>What type of service do you need?</p>");
-  // $(serviceTypeControlGroup).append(serviceTypeQuestion);
-  createServiceType(divCol);
+  const serviceTypeControlGroup = $("<div id='serviceTypeControlGroup' class='control-group border-bottom'></div>");
+  $(divCol).append(serviceTypeControlGroup);
+  const serviceTypeQuestion = $("<p>What type of service do you need?</p>");
+  $(serviceTypeControlGroup).append(serviceTypeQuestion);
   createRadioInputForArray(serviceTypeControlGroup, service, "serviceType");
 
   // placeholder div when service type selected
