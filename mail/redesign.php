@@ -20,13 +20,14 @@
     $project = strip_tags(htmlspecialchars($_POST['project_name']));
     $website_type_text = strip_tags(htmlspecialchars($_POST['websiteTypeText']));
     $technique_type = strip_tags(htmlspecialchars($_POST['techniqueType']));
-    $component = implode(', ', $_POST['component']);
-    if ($component == 'Entire website') {
-      $component_subtotal = number_format(strip_tags(htmlspecialchars($_POST['redesignSubtotal'])));
-      $component_body = "
+    $redesign = strip_tags(htmlspecialchars($_POST['redesign']));
+    
+    if ($redesign == 'Entire website') {
+      $redesign_subtotal = number_format(strip_tags(htmlspecialchars($_POST['redesignSubtotal'])));
+      $redesign_body = "
         <tr>
           <td>Redesign entire website</td>
-          <td>$$component_subtotal</td>
+          <td>$$redesign_subtotal</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -34,10 +35,11 @@
         </tr>
       ";
     } else {
+      $component = implode(', ', $_POST['component']);
       $component_count = strip_tags(htmlspecialchars($_POST['componentCount']));
       $price_per_component = number_format(strip_tags(htmlspecialchars($_POST['pricePerComponent'])));
       $component_subtotal = number_format(strip_tags(htmlspecialchars($_POST['componentSubtotal'])));
-      $component_body = "
+      $redesign_body = "
         <tr>
           <td>Components you selected to be redesigned:</td>
           <td></td>
@@ -101,7 +103,7 @@
           <td>$website_type_text</td>
           <td></td>
         </tr>
-        $component_body
+        $redesign_body
         $functionality_body
         <tr>
           <td>Estimate total</td>
