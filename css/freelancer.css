@@ -1568,6 +1568,10 @@ form .row:first-child .floating-label-form-group {
   border-color: #fff;
 }
 
+section#quote {
+  padding-top: calc(6rem + 56px);
+}
+
 a {
   color: #000000;
   font-style: italic;

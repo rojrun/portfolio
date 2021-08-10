@@ -163,7 +163,7 @@ $(function() {
       });
       container.append(input);
 
-      const label = $("<label>").attr({
+      const label = $("<label></label>").attr({
         class: "form-check-label",
         style: "opacity: 1",
         for: combinedWords,
@@ -325,6 +325,7 @@ $(function() {
 
   function formReset() {
     $("#serviceType").empty();
+    $("#quote > .container > .row > div:first-child > div:first-child").removeClass("border-top border-bottom");
     $("input[name=serviceType]").prop("checked", false);
     return;
   }
@@ -379,15 +380,15 @@ $(function() {
   }
 
   /***************************************** beginning of dom render ******************************************/
-  const divRow = $("<div class='row'></div>");
-  $("#quote .container").append(divRow);
-  const divCol = $("<div class='col-lg-12 col-xl-12 mx-auto'></div>");
-  divRow.append(divCol);
+  // const divRow = $("<div class='row'></div>");
+  // $("#quote .container").append(divRow);
+  const divCol = $("<div class='col-lg-12 col-xl-12 mx-auto text-primary'></div>");
+  $("#quote .container").append(divCol);
   
   // service type section
-  const serviceTypeControlGroup = $("<div class='control-group border-bottom'></div>");
+  const serviceTypeControlGroup = $("<div class='control-group py-5'></div>");
   divCol.append(serviceTypeControlGroup);
-  const serviceTypeQuestion = $("<p>What type of service do you need?</p>");
+  const serviceTypeQuestion = $("<p class='lead text-secondary'>What type of service do you need?</p>");
   serviceTypeControlGroup.append(serviceTypeQuestion);
   createRadioInputForArray(serviceTypeControlGroup, service, "serviceType");
 
@@ -401,30 +402,31 @@ $(function() {
     /***************************************** build form in conditional ******************************************/
     if (serviceType === "build") {
       serviceTypeSelectionDiv.empty();
+      serviceTypeControlGroup.addClass("border-top border-bottom");
       createForm("build", serviceTypeSelectionDiv);
 
       // website type section
-      const websiteTypeGroup = $("<div class='control-group border-bottom'></div>");
+      const websiteTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#buildForm").append(websiteTypeGroup);
-      const websiteTypeQuestion = $("<p>What type of website do you want for your project?</p>");
+      const websiteTypeQuestion = $("<p class='lead text-secondary'>What type of website do you want for your project?</p>");
       websiteTypeGroup.append(websiteTypeQuestion);
       const websiteWarning = $("<p class='help-block text-danger'></p>");
       websiteTypeGroup.append(websiteWarning);
       createRadioInputForArray(websiteTypeGroup, website, "websiteType");
 
       // technique type section
-      const techniqueTypeGroup = $("<div class='control-group border-bottom'></div>");
+      const techniqueTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#buildForm").append(techniqueTypeGroup);
-      const techniqueTypeQuestion = $("<p>How do you want your website to be built?</p>");
+      const techniqueTypeQuestion = $("<p class='lead text-secondary'>How do you want your website to be built?</p>");
       techniqueTypeGroup.append(techniqueTypeQuestion);
       const techniqueWarning = $("<p class='help-block text-danger'></p>");
       techniqueTypeGroup.append(techniqueWarning);
       createRadioInputForArray(techniqueTypeGroup, technique, "techniqueType");
 
       // page type section
-      const pageContentGroup = $("<div class='control-group border-bottom'></div>");
+      const pageContentGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#buildForm").append(pageContentGroup);
-      const pageContentQuestion = $("<p>What pages do you want to display in your website? Select all that apply:</p>");
+      const pageContentQuestion = $("<p class='lead text-secondary'>What pages do you want to display in your website? Select all that apply:</p>");
       pageContentGroup.append(pageContentQuestion);
       const pageWarning = $("<p class='help-block text-danger'></p>");
       pageContentGroup.append(pageWarning);
@@ -443,9 +445,9 @@ $(function() {
       });
           
       //  functionality type section
-      const functionalityContentGroup = $("<div class='control-group border-bottom'></div>");
+      const functionalityContentGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#buildForm").append(functionalityContentGroup);
-      const functionsContentQuestion = $("<p>What functions do you want your website to perform? Select all that apply:</p>");
+      const functionsContentQuestion = $("<p class='lead text-secondary'>What functions do you want your website to perform? Select all that apply:</p>");
       functionalityContentGroup.append(functionsContentQuestion);
       const functionalityWarning = $("<p class='help-block text-danger'></p>");
       functionalityContentGroup.append(functionalityWarning);
@@ -521,30 +523,31 @@ $(function() {
     /***************************************** redesign form in conditional ******************************************/  
     } else if (serviceType === "redesign") {
       serviceTypeSelectionDiv.empty();
+      serviceTypeControlGroup.addClass("border-top border-bottom");
       createForm("redesign", serviceTypeSelectionDiv);
 
       // type of website
-      const redesignWebsiteTypeGroup = $("<div class='control-group border-bottom'></div>");
+      const redesignWebsiteTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#redesignForm").append(redesignWebsiteTypeGroup);
-      const redesignWebsiteTypeQuestion = $("<p>What type of website is your project?</p>");
+      const redesignWebsiteTypeQuestion = $("<p class='lead text-secondary'>What type of website is your project?</p>");
       redesignWebsiteTypeGroup.append(redesignWebsiteTypeQuestion);
       const redesignWebsiteWarning = $("<p class='help-block text-danger'></p>");
       redesignWebsiteTypeGroup.append(redesignWebsiteWarning);
       createRadioInputForArray(redesignWebsiteTypeGroup, website, "websiteType");
 
       // technique type section
-      const techniqueTypeGroup = $("<div class='control-group border-bottom'></div>");
+      const techniqueTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#redesignForm").append(techniqueTypeGroup);
-      const techniqueTypeQuestion = $("<p>How is your website built?</p>");
+      const techniqueTypeQuestion = $("<p class='lead text-secondary'>How is your website built?</p>");
       techniqueTypeGroup.append(techniqueTypeQuestion);
       const techniqueWarning = $("<p class='help-block text-danger'></p>");
       techniqueTypeGroup.append(techniqueWarning);
       createRadioInputForArray(techniqueTypeGroup, technique, "techniqueType");
 
       // website sections for redesign
-      const redesignGroup = $("<div class='control-group border-bottom'></div>");
+      const redesignGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#redesignForm").append(redesignGroup);
-      const redesignQuestion = $("<p class='lead text-secondary mt-4'>What parts of your website do you want redesigned?</p>");
+      const redesignQuestion = $("<p class='lead text-secondary'>What parts of your website do you want redesigned?</p>");
       redesignGroup.append(redesignQuestion);
       const redesignWarning = $("<p class='help-block text-danger'></p>");
       redesignGroup.append(redesignWarning);
@@ -611,9 +614,9 @@ $(function() {
       });
       
       // add functionality section
-      const functionalityContentGroup = $("<div class='control-group border-bottom'></div>");
+      const functionalityContentGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#redesignForm").append(functionalityContentGroup);
-      const functionsContentQuestion = $("<p>What new functionalities do you want to add to your website? Select all that apply:</p>");
+      const functionsContentQuestion = $("<p class='lead text-secondary'>What new functionalities do you want to add to your website? Select all that apply:</p>");
       functionalityContentGroup.append(functionsContentQuestion);
       const functionalityWarning = $("<p class='help-block text-danger'></p>");
       functionalityContentGroup.append(functionalityWarning);
@@ -698,11 +701,12 @@ $(function() {
     /***************************************** repair form in conditional ******************************************/  
     } else {
       serviceTypeSelectionDiv.empty();
+      serviceTypeControlGroup.addClass("border-top border-bottom");
       createForm("repair", serviceTypeSelectionDiv);
 
-      const repairGroup = $("<div class='control-group border-bottom'></div>");
+      const repairGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#repairForm").append(repairGroup);
-      const repairQuestion = $("<p>What problems occur on your website? Enter a problem per line.</p>");
+      const repairQuestion = $("<p class='lead text-secondary'>What problems occur on your website? Enter a problem per line.</p>");
       repairGroup.append(repairQuestion);
       const warning = $("<p class='help-block text-danger'></p>");
       repairGroup.append(warning);
