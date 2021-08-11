@@ -123,7 +123,7 @@ $(function() {
       container.append(input);
 
       const label = $("<label></label>").attr({
-        class: "custom-control-label",
+        class: "custom-control-label lead",
         style: "opacity: 1",
         for: array[index].type
       }).text(array[index].text);
@@ -164,7 +164,7 @@ $(function() {
       container.append(input);
 
       const label = $("<label></label>").attr({
-        class: "form-check-label",
+        class: "form-check-label lead",
         style: "opacity: 1",
         for: combinedWords,
         id: combinedWords
@@ -299,7 +299,7 @@ $(function() {
     
     const success = $("<div id='success'></div>");
     $(parentDiv).append(success);
-    
+    $(parentDiv).append("<br>");
     // send and reset buttons container
     const buttonsContainer = $("<div class='form-group row px-3'></div>");
     $(parentDiv).append(buttonsContainer);
@@ -325,7 +325,7 @@ $(function() {
 
   function formReset() {
     $("#serviceType").empty();
-    $("#quote > .container > .row > div:first-child > div:first-child").removeClass("border-top border-bottom");
+    $("#quote > .container > .row > div:first-child > div:first-child").removeClass("border-bottom");
     $("input[name=serviceType]").prop("checked", false);
     return;
   }
@@ -380,15 +380,13 @@ $(function() {
   }
 
   /***************************************** beginning of dom render ******************************************/
-  // const divRow = $("<div class='row'></div>");
-  // $("#quote .container").append(divRow);
-  const divCol = $("<div class='col-lg-12 col-xl-12 mx-auto text-primary'></div>");
+  const divCol = $("<div class='col-12 col-sm-12 col-md-10 col-lg-7 col-xl-6 mx-auto text-primary'></div>");
   $("#quote .container").append(divCol);
   
   // service type section
-  const serviceTypeControlGroup = $("<div class='control-group py-5'></div>");
+  const serviceTypeControlGroup = $("<div class='control-group border-top py-5'></div>");
   divCol.append(serviceTypeControlGroup);
-  const serviceTypeQuestion = $("<p class='lead text-secondary'>What type of service do you need?</p>");
+  const serviceTypeQuestion = $("<p class='lead text-secondary text-center'>What type of service do you need? Select one option:</p>");
   serviceTypeControlGroup.append(serviceTypeQuestion);
   createRadioInputForArray(serviceTypeControlGroup, service, "serviceType");
 
@@ -402,13 +400,13 @@ $(function() {
     /***************************************** build form in conditional ******************************************/
     if (serviceType === "build") {
       serviceTypeSelectionDiv.empty();
-      serviceTypeControlGroup.addClass("border-top border-bottom");
+      serviceTypeControlGroup.addClass("border-bottom");
       createForm("build", serviceTypeSelectionDiv);
 
       // website type section
       const websiteTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#buildForm").append(websiteTypeGroup);
-      const websiteTypeQuestion = $("<p class='lead text-secondary'>What type of website do you want for your project?</p>");
+      const websiteTypeQuestion = $("<p class='lead text-secondary text-center'>What type of website do you want for your project? Select one option:</p>");
       websiteTypeGroup.append(websiteTypeQuestion);
       const websiteWarning = $("<p class='help-block text-danger'></p>");
       websiteTypeGroup.append(websiteWarning);
@@ -417,7 +415,7 @@ $(function() {
       // technique type section
       const techniqueTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#buildForm").append(techniqueTypeGroup);
-      const techniqueTypeQuestion = $("<p class='lead text-secondary'>How do you want your website to be built?</p>");
+      const techniqueTypeQuestion = $("<p class='lead text-secondary text-center'>How do you want your website to be built? Select one option:</p>");
       techniqueTypeGroup.append(techniqueTypeQuestion);
       const techniqueWarning = $("<p class='help-block text-danger'></p>");
       techniqueTypeGroup.append(techniqueWarning);
@@ -426,7 +424,7 @@ $(function() {
       // page type section
       const pageContentGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#buildForm").append(pageContentGroup);
-      const pageContentQuestion = $("<p class='lead text-secondary'>What pages do you want to display in your website? Select all that apply:</p>");
+      const pageContentQuestion = $("<p class='lead text-secondary text-center'>What pages do you want to display in your website? Select all that apply:</p>");
       pageContentGroup.append(pageContentQuestion);
       const pageWarning = $("<p class='help-block text-danger'></p>");
       pageContentGroup.append(pageWarning);
@@ -447,7 +445,7 @@ $(function() {
       //  functionality type section
       const functionalityContentGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#buildForm").append(functionalityContentGroup);
-      const functionsContentQuestion = $("<p class='lead text-secondary'>What functions do you want your website to perform? Select all that apply:</p>");
+      const functionsContentQuestion = $("<p class='lead text-secondary text-center'>What functions do you want your website to perform? Select all that apply:</p>");
       functionalityContentGroup.append(functionsContentQuestion);
       const functionalityWarning = $("<p class='help-block text-danger'></p>");
       functionalityContentGroup.append(functionalityWarning);
@@ -523,13 +521,13 @@ $(function() {
     /***************************************** redesign form in conditional ******************************************/  
     } else if (serviceType === "redesign") {
       serviceTypeSelectionDiv.empty();
-      serviceTypeControlGroup.addClass("border-top border-bottom");
+      serviceTypeControlGroup.addClass("border-bottom");
       createForm("redesign", serviceTypeSelectionDiv);
 
       // type of website
       const redesignWebsiteTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#redesignForm").append(redesignWebsiteTypeGroup);
-      const redesignWebsiteTypeQuestion = $("<p class='lead text-secondary'>What type of website is your project?</p>");
+      const redesignWebsiteTypeQuestion = $("<p class='lead text-secondary text-center'>What type of website is your project? Select one option:</p>");
       redesignWebsiteTypeGroup.append(redesignWebsiteTypeQuestion);
       const redesignWebsiteWarning = $("<p class='help-block text-danger'></p>");
       redesignWebsiteTypeGroup.append(redesignWebsiteWarning);
@@ -538,7 +536,7 @@ $(function() {
       // technique type section
       const techniqueTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#redesignForm").append(techniqueTypeGroup);
-      const techniqueTypeQuestion = $("<p class='lead text-secondary'>How is your website built?</p>");
+      const techniqueTypeQuestion = $("<p class='lead text-secondary text-center'>How is your website built? Select one option:</p>");
       techniqueTypeGroup.append(techniqueTypeQuestion);
       const techniqueWarning = $("<p class='help-block text-danger'></p>");
       techniqueTypeGroup.append(techniqueWarning);
@@ -547,7 +545,7 @@ $(function() {
       // website sections for redesign
       const redesignGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#redesignForm").append(redesignGroup);
-      const redesignQuestion = $("<p class='lead text-secondary'>What parts of your website do you want redesigned?</p>");
+      const redesignQuestion = $("<p class='lead text-secondary text-center'>What parts of your website do you want redesigned? Select one option:</p>");
       redesignGroup.append(redesignQuestion);
       const redesignWarning = $("<p class='help-block text-danger'></p>");
       redesignGroup.append(redesignWarning);
@@ -567,7 +565,7 @@ $(function() {
         redesignRadioContainer.append(input);
 
         const label = $("<label></label>").attr({
-          class: "custom-control-label",
+          class: "custom-control-label lead",
           style: "opacity: 1",
           for: combinedWords
         }).text(value);
@@ -616,7 +614,7 @@ $(function() {
       // add functionality section
       const functionalityContentGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#redesignForm").append(functionalityContentGroup);
-      const functionsContentQuestion = $("<p class='lead text-secondary'>What new functionalities do you want to add to your website? Select all that apply:</p>");
+      const functionsContentQuestion = $("<p class='lead text-secondary text-center'>What new functionalities do you want to add to your website? Select all that apply:</p>");
       functionalityContentGroup.append(functionsContentQuestion);
       const functionalityWarning = $("<p class='help-block text-danger'></p>");
       functionalityContentGroup.append(functionalityWarning);
@@ -701,12 +699,12 @@ $(function() {
     /***************************************** repair form in conditional ******************************************/  
     } else {
       serviceTypeSelectionDiv.empty();
-      serviceTypeControlGroup.addClass("border-top border-bottom");
+      serviceTypeControlGroup.addClass("border-bottom");
       createForm("repair", serviceTypeSelectionDiv);
 
       const repairGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#repairForm").append(repairGroup);
-      const repairQuestion = $("<p class='lead text-secondary'>What problems occur on your website? Enter a problem per line.</p>");
+      const repairQuestion = $("<p class='lead text-secondary text-center'>What problems occur on your website? Enter a problem per line:</p>");
       repairGroup.append(repairQuestion);
       const warning = $("<p class='help-block text-danger'></p>");
       repairGroup.append(warning);

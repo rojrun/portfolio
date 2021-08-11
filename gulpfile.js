@@ -30,8 +30,9 @@ const banner = ['/*!\n',
 function browserSync(done) {
   browsersync.init({
     server: {
-      baseDir: "./"
-    },
+      baseDir: "./",
+      index: "./index.html",
+      },
     port: 3000,
     ghostMode: false,
     notify: false
@@ -42,7 +43,7 @@ function browserSync(done) {
 // BrowserSync reload
 function browserSyncReload(done) {
   browsersync.reload();
-  browsersync.stream({once: true});
+  // browsersync.stream();
   done();
 }
 
@@ -97,7 +98,7 @@ function css() {
     }))
     .pipe(cleanCSS())
     .pipe(gulp.dest("./css"))
-    .pipe(browsersync.stream({once: true}));
+    .pipe(browsersync.stream());
 }
 
 // JS task
@@ -115,7 +116,7 @@ function js() {
       suffix: '.min'
     }))
     .pipe(gulp.dest('./js'))
-    .pipe(browsersync.stream({once: true}));
+    .pipe(browsersync.stream());
 }
 
 // Watch files
