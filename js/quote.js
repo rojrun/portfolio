@@ -177,9 +177,9 @@ $(function() {
   function createInputButton(appendDiv, prop) {
     const button = $("<input>").attr({
       id: "addFieldButtonFor" + (prop.charAt(0).toUpperCase() + prop.slice(1)),
-      class: "btn btn-outline-secondary btn-lg ml-2",
+      class: "btn btn-outline-secondary btn-lg m-2",
       type: "button",
-      value: "Add new " + prop
+      value: "Add other " + prop,
     });
     appendDiv.append(button);
     return;
@@ -249,6 +249,13 @@ $(function() {
       placeholder: string.split(" ").map(word => word[0].toUpperCase() + word.substr(1).toLowerCase()).join(" "),
       value: ""
     });
+    // .on("change", function() {
+    //   if ($(this).val() !== "") {
+    //     $(this).parent().addClass("floating-label-form-group-with-value");
+    //   } else {
+    //     $(this).parent().removeClass("floating-label-form-group-with-value");
+    //   }
+    // });
     if (type === "tel") {
       field.on({
         keydown: function(event) {
