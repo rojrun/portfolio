@@ -885,7 +885,6 @@ header.masthead h2:last-child {
 
 .floating-label-form-group {
   position: relative;
-  border-bottom: 1px solid #fff;
 }
 
 .floating-label-form-group input,
@@ -1372,6 +1371,85 @@ section#quote {
   padding-top: calc(6rem + 56px);
 }
 
+section#quote input[type="checkbox"], section#quote input[type="radio"] {
+  display: none;
+}
+
+section#quote input[type="checkbox"] + label, section#quote input[type="radio"] + label {
+  position: relative;
+  text-indent: 2em;
+}
+
+section#quote input[type="checkbox"] + label:before, section#quote input[type="radio"] + label:before {
+  content: "";
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  border: 0.1em solid #fff;
+  border-radius: 100%;
+  top: .8em;
+  left: 0;
+  background: none;
+  -webkit-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
+  -webkit-transition: all ease-out 400ms;
+  transition: all ease-out 400ms;
+}
+
+section#quote input[type="checkbox"] + label:after, section#quote input[type="radio"] + label:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: .5em;
+  border-bottom: 0.2em solid #000000;
+  border-left: 0.2em solid #000000;
+  top: .6em;
+  left: .5em;
+  -webkit-transform-origin: bottom left;
+  transform-origin: bottom left;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  opacity: 0;
+  -webkit-transition: all ease-out 400ms;
+  transition: all ease-out 400ms;
+}
+
+section#quote input[type="checkbox"]:checked + label:before, section#quote input[type="radio"]:checked + label:before {
+  border: 0.1em solid #000000;
+  opacity: 1;
+}
+
+section#quote input[type="checkbox"]:checked + label:after, section#quote input[type="radio"]:checked + label:after {
+  opacity: 1;
+  width: 1.3em;
+}
+
+section#quote input[type="text"] {
+  background: none;
+  border: none;
+}
+
+section#quote input::-webkit-input-placeholder, section#quote textarea::-webkit-input-placeholder {
+  color: #000000;
+}
+
+section#quote input::-moz-placeholder, section#quote textarea::-moz-placeholder {
+  color: #000000;
+}
+
+section#quote input:-ms-input-placeholder, section#quote textarea:-ms-input-placeholder {
+  color: #000000;
+}
+
+section#quote input::-ms-input-placeholder, section#quote textarea::-ms-input-placeholder {
+  color: #000000;
+}
+
+section#quote input::placeholder,
+section#quote textarea::placeholder {
+  color: #000000;
+}
+
 a {
   color: #000000;
   font-style: italic;
@@ -1428,4 +1506,12 @@ a:focus, a:hover, a:active {
 .btn-outline-secondary:hover {
   background-color: #868e96;
   border-color: #868e96;
+}
+
+.border-top {
+  border-top-color: #fff !important;
+}
+
+.border-bottom {
+  border-bottom-color: #fff !important;
 }

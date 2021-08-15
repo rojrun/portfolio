@@ -403,7 +403,7 @@
         <div class="col-lg-12 col-xl-12 mx-auto">
           <form action="js/contact_me.min.js" name="sentMessage" id="contactForm" novalidate="novalidate" method="post" enctype="multipart/form-data">
             <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2 border-top border-bottom">
                 <label for="name">Full Name</label>
                 <input class="form-control text-primary" name="name" id="name" type="text" placeholder="Full Name" required="required" data-validation-required-message="Please enter your full name."/>
                 <p class="help-block text-danger"></p>
@@ -411,21 +411,21 @@
               </div>
             </div>
             <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2 border-bottom">
                 <label for="email">Email Address</label>
                 <input class="form-control" id="email" name="email" type="email" placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address."/>
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2 border-bottom">
                 <label for="phone">Phone Number</label>
                 <input class="form-control" id="phone" name="phone" type="tel" placeholder="Phone Number" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);"/>
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2 border-bottom">
                 <input type="button" id="get_file" class="text-secondary" value="Choose File(s)"/>
                 <input type="file" name="uploaded_file[]" id="uploaded_file" multiple="multiple"/>
                 <p class="help-block text-danger mb-0"></p>
@@ -435,7 +435,7 @@
               </div>
             </div>
             <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2 border-bottom">
                 <label for="message">Message</label>
                 <textarea class="form-control" id="message" name="message" rows="3" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
                 <p class="help-block text-danger"></p>

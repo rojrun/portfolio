@@ -235,7 +235,7 @@ $(function() {
   function createCustomerInputField(appendDiv, string, element, type, isRequired) {
     const fieldContainer = $("<div class='control-group'></div>");
     $(appendDiv).append(fieldContainer);
-    const form = $("<div class='form-group floating-label-form-group controls mb-0 pb-2'></div>");
+    const form = $("<div class='form-group floating-label-form-group controls mb-0 pb-2 border-bottom'></div>");
     fieldContainer.append(form);
     const combineWords = string.split(" ").join("_");
     const label = $("<label></label>").attr("for", combineWords).text(string.split(" ").map(word => word[0].toUpperCase() + word.substr(1).toLowerCase()).join(" "));
@@ -249,13 +249,6 @@ $(function() {
       placeholder: string.split(" ").map(word => word[0].toUpperCase() + word.substr(1).toLowerCase()).join(" "),
       value: ""
     });
-    // .on("change", function() {
-    //   if ($(this).val() !== "") {
-    //     $(this).parent().addClass("floating-label-form-group-with-value");
-    //   } else {
-    //     $(this).parent().removeClass("floating-label-form-group-with-value");
-    //   }
-    // });
     if (type === "tel") {
       field.on({
         keydown: function(event) {
@@ -721,7 +714,9 @@ $(function() {
       repairGroup.append(repairFields);
 
       // first input text
-      const repairInput = $("<div></div>").css({"display": "block", "position": "relative"});
+      const repairControlGroup = $("<div class='control-group'></div>");
+      repairFields.append(repairControlGroup);
+      const repairInput = $("<div class='form-group controls mb-0 border-top border-bottom' style='display:block; position: relative;'></div>");
       repairFields.append(repairInput);
       createInputField(repairInput, "problem", true);
       inputTextFieldChangeHandler(repairInput, "input", "#addFieldButtonForProblem");
@@ -730,7 +725,9 @@ $(function() {
       createInputButton(repairGroup, "problem");
       $("#addFieldButtonForProblem").prop("disabled", true);
       $("#addFieldButtonForProblem").on("click", function() {
-        const clearableInputAddition = $("<div></div>").css({"display": "block", "position": "relative"});
+        const additionalControlGroup = $("<div class='control-group></div>");
+        repairFields.append(additionalControlGroup);
+        const clearableInputAddition = $("<div class='form-group controls mb-0 border-top border-bottom' style='display:block; position: relative;'></div>");
         repairFields.append(clearableInputAddition);
         createInputField(clearableInputAddition, "problem");
         $("#addFieldButtonForProblem").prop("disabled", true);

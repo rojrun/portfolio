@@ -1,8 +1,64 @@
-$transitionSpeed: 200ms;
+// Styling for quote section
+$transitionSpeed: 400ms;
 
 section#quote {
   padding-top: calc(6rem + 56px);
-  
+
+  // .custom-control {
+  //   padding-left: 2rem;
+  // }
+
+  input[type="checkbox"], input[type="radio"] {
+    display: none;
+
+    + label {
+      position: relative;
+			text-indent: 2em;
+
+      &:before {
+        content: "";
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        border: .1em solid $white;
+        border-radius: 100%;
+        top: .8em;
+        left: 0;
+        background: none;
+        transform: translate(0%, -50%);
+        transition: all ease-out $transitionSpeed;
+      }	
+      &:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: .5em;
+        border-bottom: .2em solid $secondary;
+        border-left: .2em solid $secondary;
+        top: .6em;
+        left: .5em;
+        transform-origin: bottom left;
+        transform: rotate(-45deg);
+        opacity: 0;
+        transition: all ease-out $transitionSpeed;
+      }
+    }
+  }
+
+  input[type="checkbox"]:checked, input[type="radio"]:checked {
+    + label {
+      &:before {
+        border: .1em solid $secondary;
+        opacity: 1;
+      }
+      &:after {		
+        opacity: 1;
+        width: 1.3em;
+      }
+    }
+  }
+
+ 
   // input[type="checkbox"],
   // input[type="radio"] {
   //   display: none;
@@ -42,17 +98,13 @@ section#quote {
   //   }
   // }
 
-  // input[type="checkbox"]:checked,
-  // input[type="radio"]:checked {
-  //   + label {
-  //     &:before {
-  //       border: .1em solid $secondary;
-  //       opacity: 1;
-  //     }
-  //     &:after {		
-  //       opacity: 1;
-  //       width: 1.3em;
-  //     }
-  //   }
-  // }
+  input[type="text"] {
+    background: none;
+    border: none
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: $secondary;
+  }
 }
