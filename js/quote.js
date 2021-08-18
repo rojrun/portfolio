@@ -175,13 +175,15 @@ $(function() {
   }
 
   function createInputButton(appendDiv, prop) {
+    const container = $("<div class='row justify-content-center'></div>");
+    appendDiv.append(container);
     const button = $("<input>").attr({
       id: "addFieldButtonFor" + (prop.charAt(0).toUpperCase() + prop.slice(1)),
-      class: "btn btn-outline-secondary btn-lg m-2",
+      class: "btn btn-outline-secondary btn-lg",
       type: "button",
       value: "Add other " + prop,
     });
-    appendDiv.append(button);
+    container.append(button);
     return;
   }
 
@@ -211,21 +213,15 @@ $(function() {
         }
         $(button).prop("disabled", false);
       }
-      return;
     });
+    return;
   }
 
   function createDeleteButtonForField(appendDiv, element) {
     const deleteInputButton = $("<span></span>").attr({
       id: "deleteInputButton",
-      type: "button"
-    }).html("&times;").css({
-      "position": "absolute",
-      "top": 0,
-      "right": 0,
-      "padding-right": "1rem",
-      "cursor": "pointer"
-    }).on("click", function() {
+      type: "button", 
+    }).html("&times;").on("click", function() {
       element.parent().get(0).remove();
     });
     appendDiv.append(deleteInputButton);
@@ -706,29 +702,29 @@ $(function() {
       $("#repairForm").append(repairGroup);
       const repairQuestion = $("<p class='lead text-secondary text-center'>What problems occur on your website? Enter a problem per line:</p>");
       repairGroup.append(repairQuestion);
-      const warning = $("<p class='help-block text-danger'></p>");
-      repairGroup.append(warning);
-
+      
       // input text field container
-      const repairFields = $("<div></div>");
+      const repairFields = $("<div class='justify-content-center'></div>");
       repairGroup.append(repairFields);
 
       // first input text
-      const repairControlGroup = $("<div class='control-group'></div>");
+      const repairControlGroup = $("<div class='control-group mb-2'></div>");
       repairFields.append(repairControlGroup);
-      const repairInput = $("<div class='form-group controls mb-0 border-top border-bottom' style='display:block; position: relative;'></div>");
-      repairFields.append(repairInput);
+      const repairInput = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
+      repairControlGroup.append(repairInput);
       createInputField(repairInput, "problem", true);
+      const warning = $("<p class='help-block text-danger mb-0'></p>");
+      repairControlGroup.append(warning);
       inputTextFieldChangeHandler(repairInput, "input", "#addFieldButtonForProblem");
       
       // input type=button
       createInputButton(repairGroup, "problem");
       $("#addFieldButtonForProblem").prop("disabled", true);
       $("#addFieldButtonForProblem").on("click", function() {
-        const additionalControlGroup = $("<div class='control-group></div>");
+        const additionalControlGroup = $("<div class='control-group mb-2'></div>");
         repairFields.append(additionalControlGroup);
-        const clearableInputAddition = $("<div class='form-group controls mb-0 border-top border-bottom' style='display:block; position: relative;'></div>");
-        repairFields.append(clearableInputAddition);
+        const clearableInputAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
+        additionalControlGroup.append(clearableInputAddition);
         createInputField(clearableInputAddition, "problem");
         $("#addFieldButtonForProblem").prop("disabled", true);
         inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForProblem");
