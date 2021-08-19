@@ -1371,6 +1371,11 @@ section#quote {
   padding-top: calc(6rem + 56px);
 }
 
+section#quote .justify-content-center {
+  margin: auto;
+  width: 90%;
+}
+
 section#quote input[type="checkbox"], section#quote input[type="radio"] {
   display: none;
 }
@@ -1425,8 +1430,86 @@ section#quote input[type="checkbox"]:checked + label:after, section#quote input[
 }
 
 section#quote input[type="text"] {
-  background: none;
+  font-size: 16px;
+  padding-right: 0;
+  resize: none;
   border: none;
+  border-radius: 0;
+  background: none;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  color: #fff;
+}
+
+@media (min-width: 320px) {
+  section#quote input[type="text"] {
+    font-size: calc(1.24224vw + 12.02484px);
+  }
+}
+
+@media (min-width: 481px) {
+  section#quote input[type="text"] {
+    font-size: calc(1.04167vw + 12.98958px);
+  }
+}
+
+@media (min-width: 769px) {
+  section#quote input[type="text"] {
+    font-size: calc(1.5625vw + 8.98438px);
+  }
+}
+
+@media (min-width: 1025px) {
+  section#quote input[type="text"] {
+    font-size: calc(2.84091vw - 4.11932px);
+  }
+}
+
+@media (min-width: 1201px) {
+  section#quote input[type="text"] {
+    font-size: 30px;
+  }
+}
+
+section#quote input[type="text"]:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+section#quote #deleteInputButton {
+  font-size: 16px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+@media (min-width: 320px) {
+  section#quote #deleteInputButton {
+    font-size: calc(1.24224vw + 12.02484px);
+  }
+}
+
+@media (min-width: 481px) {
+  section#quote #deleteInputButton {
+    font-size: calc(1.04167vw + 12.98958px);
+  }
+}
+
+@media (min-width: 769px) {
+  section#quote #deleteInputButton {
+    font-size: calc(1.5625vw + 8.98438px);
+  }
+}
+
+@media (min-width: 1025px) {
+  section#quote #deleteInputButton {
+    font-size: calc(2.84091vw - 4.11932px);
+  }
+}
+
+@media (min-width: 1201px) {
+  section#quote #deleteInputButton {
+    font-size: 30px;
+  }
 }
 
 section#quote input::-webkit-input-placeholder, section#quote textarea::-webkit-input-placeholder {
@@ -1458,7 +1541,7 @@ section#quote input:focus {
 section#quote input:-webkit-autofill,
 section#quote input:-webkit-autofill:hover,
 section#quote input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #fff;
+  -webkit-text-fill-color: #000000;
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
 }
@@ -1476,6 +1559,14 @@ section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputBut
   -webkit-box-flex: 1;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
+}
+
+section#quote .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+  background-image: none;
+}
+
+section#quote .text-danger {
+  color: #ffc107 !important;
 }
 
 a {

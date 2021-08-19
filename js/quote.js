@@ -376,7 +376,7 @@ $(function() {
   }
 
   /***************************************** beginning of dom render ******************************************/
-  const divCol = $("<div class='col-12 col-sm-12 col-md-10 col-lg-7 col-xl-6 mx-auto text-primary'></div>");
+  const divCol = $("<div class='col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6 mx-auto text-primary'></div>");
   $("#quote .container").append(divCol);
   
   // service type section
@@ -427,12 +427,14 @@ $(function() {
       createCheckboxInput(pageContentGroup, page, "page", 1, "Choose at least one.");
       
       //          creates input text field for other pages
-      const pageInputFieldContainer = $("<div class='form-check'></div>");
+      const pageInputFieldContainer = $("<div class='justify-content-center mt-3'></div>");
       pageContentGroup.append(pageInputFieldContainer);
       createInputButton(pageContentGroup, "page");
       $("#addFieldButtonForPage").on("click", function() {
-        const clearableInputAddition = $("<div></div>").css({"display": "block", "position": "relative"});
-        pageInputFieldContainer.append(clearableInputAddition);
+        const addPageControlGroup = $("<div class='control-group mb-2'></div>");
+        pageInputFieldContainer.append(addPageControlGroup);
+        const clearableInputAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
+        addPageControlGroup.append(clearableInputAddition);
         createInputField(clearableInputAddition, "page");
         $("#addFieldButtonForPage").prop("disabled", true);
         inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForPage");
@@ -448,12 +450,14 @@ $(function() {
       createCheckboxInput(functionalityContentGroup, functionality, "functionality", 1, "Choose at least one.");
 
       //          creates input text field for other functionalities
-      const functionalityInputFieldContainer = $("<div class='form-check'></div>");
+      const functionalityInputFieldContainer = $("<div class='justify-content-center mt-3'></div>");
       functionalityContentGroup.append(functionalityInputFieldContainer);
       createInputButton(functionalityContentGroup, "functionality");
       $("#addFieldButtonForFunctionality").on("click", function() {
-        const clearableInputAddition = $("<div></div>").css({"display": "block", "position": "relative"});
-        functionalityInputFieldContainer.append(clearableInputAddition);
+        const addFunctionalityControlGroup = $("<div class='control-group mb-2'></div>");
+        functionalityInputFieldContainer.append(addFunctionalityControlGroup);
+        const clearableInputAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
+        addFunctionalityControlGroup.append(clearableInputAddition);
         createInputField(clearableInputAddition, "functionality");
         $("#addFieldButtonForFunctionality").prop("disabled", true);
         inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForFunctionality");
@@ -568,39 +572,31 @@ $(function() {
         redesignRadioContainer.append(label);
       });
 
-      const componentGroup = $("<div class='control-group'></div>");
-      $("#redesignForm").append(componentGroup);
-      const componentInputFieldContainer = $("<div></div>");
-      componentGroup.append(componentInputFieldContainer);
-
+      const componentGroup = $("<div class='justify-content-center'></div>");
+      redesignGroup.append(componentGroup);
+      
       $("input#Entire_website").on("change", function() {
-        componentInputFieldContainer.empty();
+        componentGroup.empty();
+        componentGroup.removeClass("mt-3");
         $("#addFieldButtonForComponent").remove();
-        componentGroup.removeClass("border-bottom");
       });
 
       $("input#Some_components").on("change", function() {
-        componentGroup.addClass("border-bottom");
-        const clearableInput = $("<div style='display:block; position:relative;'></div>");
-        componentInputFieldContainer.append(clearableInput);
+        componentGroup.addClass("mt-3");
+        const componentControlGroup = $("<div class='control-group mb-2'></div>");
+        componentGroup.append(componentControlGroup);
+        const clearableInput = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
+        componentControlGroup.append(clearableInput);
         createInputField(clearableInput, "component");
-        clearableInput.on("change", "input", function() {
-          if (!$(this).val()) {
-            $("#addFieldButtonForComponent").prop("disabled", true);
-            $(this).siblings("#deleteInputButton").remove();
-          } else {
-            if ( $(this).siblings("#deleteInputButton").length === 0 ) {
-              createDeleteButtonForField(clearableInput, $(this));
-            }
-            $("#addFieldButtonForComponent").prop("disabled", false);
-          }
-        });
-        createInputButton(componentGroup, "component");
+        createInputButton(redesignGroup, "component");
         $("#addFieldButtonForComponent").prop("disabled", true);
+        inputTextFieldChangeHandler(clearableInput, "input", "#addFieldButtonForComponent");
 
         $("#addFieldButtonForComponent").on("click", function() {
-          const clearableInputAddition = $("<div style='display:block; position:relative;'></div>");
-          componentInputFieldContainer.append(clearableInputAddition);
+          const addComponentControlGroup = $("<div class='control-group mb-2'></div>");
+          componentGroup.append(addComponentControlGroup);
+          const clearableInputAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
+          addComponentControlGroup.append(clearableInputAddition);
           createInputField(clearableInputAddition, "component");
           $("#addFieldButtonForComponent").prop("disabled", true);
           inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForComponent");
@@ -616,12 +612,15 @@ $(function() {
       functionalityContentGroup.append(functionalityWarning);
       createCheckboxInput(functionalityContentGroup, functionality, "functionality", 0, null);
 
-      const functionalityInputFieldContainer = $("<div class='form-check'></div>");
+      //      creates input text field for other functionality
+      const functionalityInputFieldContainer = $("<div class='justify-content-center mt-3'></div>");
       functionalityContentGroup.append(functionalityInputFieldContainer);
       createInputButton(functionalityContentGroup, "functionality");
       $("#addFieldButtonForFunctionality").on("click", function() {
-        const clearableInputAddition = $("<div style='display:block; position:relative;'></div>");
-        functionalityInputFieldContainer.append(clearableInputAddition);
+        const addFunctionalityControlGroup = $("<div class='control-group mb-2'></div>");
+        functionalityInputFieldContainer.append(addFunctionalityControlGroup);
+        const clearableInputAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
+        addFunctionalityControlGroup.append(clearableInputAddition);
         createInputField(clearableInputAddition, "functionality");
         $("#addFieldButtonForFunctionality").prop("disabled", true);
         inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForFunctionality");

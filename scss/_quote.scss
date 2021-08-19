@@ -4,6 +4,11 @@ $transitionSpeed: 400ms;
 section#quote {
   padding-top: calc(6rem + 56px);
 
+  .justify-content-center {
+    margin: auto;
+    width: 90%;
+  }
+
   input[type="checkbox"], input[type="radio"] {
     display: none;
 
@@ -55,8 +60,26 @@ section#quote {
   }
 
   input[type="text"] {
+    $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+    @include poly-fluid-sizing("font-size", $map);
+    padding-right: 0;
+    resize: none;
+    border: none;
+    border-radius: 0;
     background: none;
-    border: none
+    box-shadow: none !important;
+    color: $white; 
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: $white;
+    }  
+  }
+
+  #deleteInputButton {
+    $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+    @include poly-fluid-sizing("font-size", $map);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
 
   input::placeholder,
@@ -72,7 +95,7 @@ section#quote {
   input:-webkit-autofill,
   input:-webkit-autofill:hover, 
   input:-webkit-autofill:focus {
-    -webkit-text-fill-color: $white;
+    -webkit-text-fill-color: $secondary;
     transition: background-color 5000s ease-in-out 0s;
   }
 
@@ -83,5 +106,13 @@ section#quote {
     #deleteInputButton {
       flex: 1 0 auto;
     }
+  }
+
+  .custom-radio .custom-control-input:checked~.custom-control-label::after {
+    background-image: none;
+  }
+
+  .text-danger {
+    color: #ffc107 !important;
   }
 }
