@@ -137,13 +137,13 @@
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3D2GNC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3D2GNC" height="0" width="0" style="display:none;visibility:hidden;"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="../index.html">Roj run dev</a>
+        <a class="navbar-brand js-scroll-trigger" href="index.html#page-top">Roj run dev</a>
         <button class="navbar-toggler navbar-toggler-right text-uppercase btn-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -151,19 +151,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="../index.html#about" data-target="#about" rel="noopener noreferrer">About</a>
+              <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#about" data-target="#about" rel="noopener noreferrer">About</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-tirgger" href="../index.html#services" data-target="#services" rel="noopener noreferrer">Services</a>
+              <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-tirgger" href="index.html#services" data-target="#services" rel="noopener noreferrer">Services</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="../index.html#skills" data-target="#skills" rel="noopener noreferrer">Skills</a>
+              <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#skills" data-target="#skills" rel="noopener noreferrer">Skills</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="../index.html#portfolio" data-target="#portfolio" rel="noopener noreferrer">Portfolio</a>
+              <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#portfolio" data-target="#portfolio" rel="noopener noreferrer">Portfolio</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="../index.html#contact" data-target="#contact" rel="noopener noreferrer">Contact</a>
+              <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#contact" data-target="#contact" rel="noopener noreferrer">Contact</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="quote.html" data-target="#quote" rel="noopener noreferrer">Quote</a>
@@ -186,7 +186,11 @@
 
     <footer class="copyright py-4 text-center">
       <div class="container">
-        <small>Copyright &copy; Roj Run Dev 2021</small>
+        <small>Copyright &copy; Roj Run Dev 
+          <span id="copyright">
+            <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+          </span>
+        </small>
       </div>
     </footer>
 
@@ -195,8 +199,8 @@
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Quote Form JavaScript -->
-    <script src="../js/jqBootstrapValidation.min.js"></script>
     <script src="../js/quote.js"></script>
+    <script src="../js/jqBootstrapValidation.min.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="../js/freelancer.min.js"></script>  

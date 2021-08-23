@@ -339,36 +339,143 @@ section#skills h3:last-child {
 #mainNav .navbar-brand {
   color: #fff;
   font-style: normal;
-  font-size: 16px;
+  height: 72px;
+  width: 72px;
+  border: 0.1em solid #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
 }
 
 @media (min-width: 320px) {
   #mainNav .navbar-brand {
-    font-size: calc(1.24224vw + 12.02484px);
+    height: calc(6.21118vw + 52.12422px);
   }
 }
 
 @media (min-width: 481px) {
   #mainNav .navbar-brand {
-    font-size: calc(1.04167vw + 12.98958px);
+    height: calc(3.47222vw + 65.29861px);
   }
 }
 
 @media (min-width: 769px) {
   #mainNav .navbar-brand {
-    font-size: calc(1.5625vw + 8.98438px);
+    height: calc(3.90625vw + 61.96094px);
   }
 }
 
 @media (min-width: 1025px) {
   #mainNav .navbar-brand {
-    font-size: calc(2.84091vw - 4.11932px);
+    height: calc(5.68182vw + 43.76136px);
   }
 }
 
 @media (min-width: 1201px) {
   #mainNav .navbar-brand {
-    font-size: 30px;
+    height: 112px;
+  }
+}
+
+@media (min-width: 320px) {
+  #mainNav .navbar-brand {
+    width: calc(6.21118vw + 52.12422px);
+  }
+}
+
+@media (min-width: 481px) {
+  #mainNav .navbar-brand {
+    width: calc(3.47222vw + 65.29861px);
+  }
+}
+
+@media (min-width: 769px) {
+  #mainNav .navbar-brand {
+    width: calc(3.90625vw + 61.96094px);
+  }
+}
+
+@media (min-width: 1025px) {
+  #mainNav .navbar-brand {
+    width: calc(5.68182vw + 43.76136px);
+  }
+}
+
+@media (min-width: 1201px) {
+  #mainNav .navbar-brand {
+    width: 112px;
+  }
+}
+
+#mainNav .navbar-brand div {
+  width: 100%;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+}
+
+#mainNav .navbar-brand div p {
+  font-size: 14px;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  margin: 0;
+  text-align: center;
+}
+
+@media (min-width: 320px) {
+  #mainNav .navbar-brand div p {
+    font-size: calc(1.24224vw + 10.02484px);
+  }
+}
+
+@media (min-width: 481px) {
+  #mainNav .navbar-brand div p {
+    font-size: calc(0.69444vw + 12.65972px);
+  }
+}
+
+@media (min-width: 769px) {
+  #mainNav .navbar-brand div p {
+    font-size: calc(0.78125vw + 11.99219px);
+  }
+}
+
+@media (min-width: 1025px) {
+  #mainNav .navbar-brand div p {
+    font-size: calc(1.13636vw + 8.35227px);
+  }
+}
+
+@media (min-width: 1201px) {
+  #mainNav .navbar-brand div p {
+    font-size: 22px;
   }
 }
 
@@ -460,15 +567,29 @@ section#skills h3:last-child {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 420px) {
   #mainNav {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
     transition: padding-top 0.3s, padding-bottom 0.3s;
   }
-  #mainNav .navbar-nav {
+  #mainNav .navbar-collapse {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    width: 0;
+  }
+  #mainNav .navbar-collapse .navbar-nav {
     margin-top: 0;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+  }
+  #mainNav .navbar-collapse .navbar-nav li.nav-item {
+    margin: auto;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
     color: #fff;
@@ -1541,7 +1662,7 @@ section#quote input:focus {
 section#quote input:-webkit-autofill,
 section#quote input:-webkit-autofill:hover,
 section#quote input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #000000;
+  -webkit-text-fill-color: #fff;
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
 }

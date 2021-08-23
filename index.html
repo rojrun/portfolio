@@ -138,36 +138,52 @@
 
 <body id="page-top">
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3D2GNC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3D2GNC" height="0" width="0" style="display:none;visibility:hidden;"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+  <nav class="navbar navbar-expand-sm bg-secondary fixed-top text-uppercase" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Roj run dev</a>
+      <a class="navbar-brand js-scroll-trigger p-0" href="#page-top">
+        <div>
+          <p>R</p>
+          <p>O</p>
+          <p>J</p>
+        </div>
+        <div>
+          <p>R</p>
+          <p>U</p>
+          <p>N</p>
+        </div>
+        <div>
+          <p>D</p>
+          <p>E</p>
+          <p>V</p>
+        </div>
+      </a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase btn-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-0">
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#about" data-target="#about" rel="noopener noreferrer">About</a>
+            <a class="nav-link py-2 px-auto rounded js-scroll-trigger" href="index.html#about" data-target="#about" rel="noopener noreferrer">About</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-tirgger" href="index.html#services" data-target="#services" rel="noopener noreferrer">Services</a>
+            <a class="nav-link py-2 px-auto rounded js-scroll-tirgger" href="index.html#services" data-target="#services" rel="noopener noreferrer">Services</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#skills" data-target="#skills" rel="noopener noreferrer">Skills</a>
+            <a class="nav-link py-2 px-auto rounded js-scroll-trigger" href="index.html#skills" data-target="#skills" rel="noopener noreferrer">Skills</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#portfolio" data-target="#portfolio" rel="noopener noreferrer">Portfolio</a>
+            <a class="nav-link py-2 px-auto rounded js-scroll-trigger" href="index.html#portfolio" data-target="#portfolio" rel="noopener noreferrer">Portfolio</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#contact" data-target="#contact" rel="noopener noreferrer">Contact</a>
+            <a class="nav-link py-2 px-auto rounded js-scroll-trigger" href="index.html#contact" data-target="#contact" rel="noopener noreferrer">Contact</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger" href="./page/quote.html" data-target="#quote" rel="noopener noreferrer">Quote</a>
+            <a class="nav-link py-2 px-auto rounded js-scroll-trigger" href="quote.html" data-target="#quote" rel="noopener noreferrer">Quote</a>
           </li>
         </ul>
       </div>
@@ -199,7 +215,7 @@
                         I attended <a href="https://learningfuze.com/" target="_blank" rel="noreferrer">LearningFuze</a>, a coding bootcamp, which has helped me with team development and confidence in my coding abilities.</p>
         <p class="lead">To sum everything about me: I’m a scholar, weightlifter, snowboarder, portrait artist, entrepreneur, foodie, event promoter and producer, reveller, and a web developer.</p>
         <p class="lead">So, I'm moving onto freelance web development as a new career, which led you to me.</p>
-        <p class="lead"><a href="#contact" rel="noopener">How can I help you?</a></p>
+        <p class="lead"><a href="quote.html" rel="noopener">How can I help you?</a></p>
       </div>      
     </div>
   </section>
@@ -436,7 +452,7 @@
           <div class="control-group">
             <div class="form-group floating-label-form-group controls mb-0 pb-2 border-bottom">
               <label for="message">Message</label>
-              <textarea class="form-control" id="message" name="message" rows="3" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
+              <textarea class="form-control" id="message" name="message" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
               <p class="help-block text-danger"></p>
             </div>
           </div>
@@ -480,7 +496,11 @@
 
   <div class="copyright py-4 text-center">
     <div class="container">
-      <small>Copyright &copy; Roj Run Dev 2021</small>
+      <small>Copyright &copy; Roj Run Dev 
+        <span id="copyright">
+          <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+        </span>
+      </small>
     </div>
   </div>
 

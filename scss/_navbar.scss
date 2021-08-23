@@ -6,8 +6,33 @@
   .navbar-brand {
     color: $white;
     font-style: normal;
-    $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
-    @include poly-fluid-sizing("font-size", $map);
+    $map: (320px: 72px, 481px: 82px, 769px: 92px, 1025px: 102px, 1201px: 112px);
+    @include poly-fluid-sizing("height", $map);
+    @include poly-fluid-sizing("width", $map);
+    border: 0.1em solid $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+
+    div {
+      width: 100%;
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+
+      p {
+        $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
+        @include poly-fluid-sizing("font-size", $map);
+        flex: 1 0 auto;
+        margin: 0;
+        text-align: center;
+      }
+    }
   }
   .navbar-nav {
     margin-top: 1rem;
@@ -38,16 +63,29 @@
   }
 }
 
-@media(min-width:992px) {
+@media(min-width:420px) {
   #mainNav {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
     -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
     transition: padding-top 0.3s, padding-bottom 0.3s;
-    .navbar-nav {
-      margin-top: 0;
+    
+    .navbar-collapse {
+      justify-content: flex-end;
+      width: 0;
+
+      .navbar-nav {
+        margin-top: 0;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+
+        li.nav-item {
+          margin: auto;
+        }
+      }
     }
+    
     .navbar-nav > li.nav-item > a.nav-link.active {
       color: $white;
       background: $primary;
