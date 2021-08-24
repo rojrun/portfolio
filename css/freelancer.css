@@ -567,29 +567,50 @@ section#skills h3:last-child {
   }
 }
 
-@media (min-width: 420px) {
+@media (min-width: 481px) {
   #mainNav {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
     transition: padding-top 0.3s, padding-bottom 0.3s;
   }
-  #mainNav .navbar-collapse {
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
-    width: 0;
+  #mainNav .container {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
   }
-  #mainNav .navbar-collapse .navbar-nav {
+  #mainNav .container button {
+    display: none;
+  }
+  #mainNav .container .navbar-collapse {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  #mainNav .container .navbar-collapse .navbar-nav {
     margin-top: 0;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     -webkit-box-pack: end;
     -ms-flex-pack: end;
     justify-content: flex-end;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    text-align: center;
   }
-  #mainNav .navbar-collapse .navbar-nav li.nav-item {
-    margin: auto;
+  #mainNav .container .navbar-collapse .navbar-nav li.nav-item {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 30%;
+    flex: 1 0 30%;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
     color: #fff;
