@@ -11,8 +11,8 @@ const merge = require("merge-stream");
 const plumber = require("gulp-plumber");
 const rename = require("gulp-rename");
 const sass = require("gulp-sass");
-// const uglify = require("gulp-uglify");
-const uglify = require("gulp-uglify-es").default;
+const uglify = require("gulp-uglify");
+// const uglify = require("gulp-uglify-es").default;
 
 // Load package.json for banner
 const pkg = require('./package.json');
@@ -31,10 +31,7 @@ function browserSync(done) {
   browsersync.init({
     server: {
       baseDir: "./"
-    },
-    port: 3000,
-    ghostMode: false,
-    notify: false
+    }
   });
   done();
 }
@@ -42,7 +39,7 @@ function browserSync(done) {
 // BrowserSync reload
 function browserSyncReload(done) {
   browsersync.reload();
-  browsersync.stream({once: true});
+  browsersync.stream();
   done();
 }
 
@@ -97,7 +94,7 @@ function css() {
     }))
     .pipe(cleanCSS())
     .pipe(gulp.dest("./css"))
-    .pipe(browsersync.stream({once: true}));
+    .pipe(browsersync.stream());
 }
 
 // JS task
@@ -114,27 +111,28 @@ function js() {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('./js'))
-    .pipe(browsersync.stream({once: true}));
+    .pipe(gulp.dest('./js/'))
+    .pipe(browsersync.stream());
 }
 
 // Watch files
 function watchFiles() {
   gulp.watch("./scss/**/*", css);
-  gulp.watch("./js/**/*", js);
+  gulp.watch(["./js/*.js", "!./js/*.min.js"], js);
   gulp.watch("./**/*.html", browserSyncReload);
 }
 
 // Define complex tasks
-const vendor = gulp.series(clean, modules);
-const build = gulp.series(vendor, gulp.parallel(css, js));
+// const vendor = gulp.series(clean, modules);
+// const build = gulp.series(vendor, gulp.parallel(css, js));
+const build = gulp.parallel(css, js);
 const watch = gulp.series(build, gulp.parallel(watchFiles, browserSync));
 
 // Export tasks
 exports.css = css;
 exports.js = js;
-exports.clean = clean;
-exports.vendor = vendor;
+// exports.clean = clean;
+// exports.vendor = vendor;
 exports.build = build;
 exports.watch = watch;
 exports.default = build;
