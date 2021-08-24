@@ -3,6 +3,7 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   @include heading-font;
+
   .navbar-brand {
     color: $white;
     font-style: normal;
@@ -34,9 +35,11 @@
       }
     }
   }
+
   .navbar-nav {
     margin-top: 1rem;
     letter-spacing: 0.0625rem;
+
     li.nav-item {
       a.nav-link {
         color: $white;
@@ -56,6 +59,7 @@
       }
     }
   }
+  
   .navbar-toggler {
     $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
     @include poly-fluid-sizing("font-size", $map);
@@ -112,5 +116,29 @@
   #mainNav.navbar-shrink {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+  }
+}
+
+@media(min-width:768px) and (max-width:991px) {
+  #mainNav {
+    .container {
+      width: 70%;
+    }
+  }
+}
+
+@media(min-width:992px) and (max-width:1199px) {
+  #mainNav {
+    .container {
+      width: 65%;
+    }
+  }
+}
+
+@media(min-width:1200px) {
+  #mainNav {
+    .container {
+      width: 60%;
+    }
   }
 }

@@ -626,6 +626,24 @@ section#skills h3:last-child {
   }
 }
 
+@media (min-width: 768px) and (max-width: 991px) {
+  #mainNav .container {
+    width: 70%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  #mainNav .container {
+    width: 65%;
+  }
+}
+
+@media (min-width: 1200px) {
+  #mainNav .container {
+    width: 60%;
+  }
+}
+
 header.masthead {
   padding-top: calc(6rem + 56px);
   padding-bottom: 6rem;
