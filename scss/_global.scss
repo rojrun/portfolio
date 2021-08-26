@@ -60,13 +60,13 @@ hr.star-light:after {
 section {
   padding: 6rem 0;
   h2 {
-    $map: (320px: 40px, 481px: 50px, 769px: 60px, 1025px: 70px, 1201px: 80px);
+    $map: (320px: 35px, 481px: 45px, 769px: 55px, 1025px: 65px, 1201px: 75px);
     @include poly-fluid-sizing("font-size", $map);
   }
   h3,
   .lead {
     @include body-font;
-    $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+    $map: (320px: 16px, 481px: 18px, 769px: 20px, 1025px: 21px, 1201px: 22px);
     @include poly-fluid-sizing("font-size", $map);
     font-weight: 400;
   }
@@ -79,18 +79,18 @@ section#services {
     @include body-font;
   }
   h4 {
-    $map: (320px: 20px, 481px: 25px, 769px: 30px, 1025px: 35px, 1201px: 40px);
+    $map: (320px: 18px, 481px: 23px, 769px: 28px, 1025px: 33px, 1201px: 38px);
     @include poly-fluid-sizing("font-size", $map);
   }
   h5 {
-    $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
+    $map: (320px: 16px, 481px: 18px, 769px: 20px, 1025px: 21px, 1201px: 22px);
     @include poly-fluid-sizing("font-size", $map);
     font-weight: 400;
   }
   ul {
     color: $secondary;
     display: inline-block;
-    $map: (320px: 22px, 481px: 24px, 769px: 26px, 1025px: 32px, 1201px: 38px);
+    $map: (320px: 18px, 481px: 23px, 769px: 28px, 1025px: 33px, 1201px: 38px);
     @include poly-fluid-sizing("font-size", $map);
   }
   li {
