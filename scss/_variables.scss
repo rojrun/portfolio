@@ -12,11 +12,12 @@ $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 $black: #000 !default;
 
-$primary: #5b0202 !default;
+$primary: #740303 !default;
 $secondary: #000000 !default;
+$third: #a60404 !default;
 
 $bgEdge: $black !default;
-$bgSecond: #5b0202 !default;
-$bgMiddle: #a80404 !default;
+$bgSecond: $primary !default;
+$bgMiddle: $third !default;
 
-$button: #a80404 !default;
+$button: $third !default;
