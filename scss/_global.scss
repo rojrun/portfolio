@@ -4,23 +4,8 @@ body {
   height: 100%;
   @include body-font;
 }
-@media (min-width: 1325px) {
-  body {
-    background: linear-gradient(90deg, $bgEdge 0, $bgSecond 10%, $bgMiddle 50%, $bgSecond 90%, $bgEdge 100%);
-  }
-}
-@media (min-width: 1600px) {
-  body {
-    background: linear-gradient(90deg, $bgEdge 0, $bgSecond 20%, $bgMiddle 50%, $bgSecond 80%, $bgEdge 100%);
-  }
-}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   @include heading-font;
 }
 
@@ -58,7 +43,7 @@ hr.star-light:after {
 
 // Section Padding Settings
 section {
-  padding: 6rem 0;
+  padding: 5rem 0;
   h2 {
     $map: (320px: 35px, 481px: 45px, 769px: 55px, 1025px: 65px, 1201px: 75px);
     @include poly-fluid-sizing("font-size", $map);

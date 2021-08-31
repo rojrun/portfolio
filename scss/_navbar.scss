@@ -77,25 +77,31 @@
 
     .container {
       flex-wrap: nowrap;
+      $map: (481px: 427px, 576px: 523px, 768px: 551px, 991px: 601px, 1200px: 681px, 1500px: 760px);
+      @include poly-fluid-sizing("width", $map);
       
       button {
         display: none;
       }
-      
+
+      .navbar-brand {
+        flex: 1 0 auto;
+      }
+
       .navbar-collapse {
+        flex: 1 1 auto;
         display: flex;
-        flex-basis: 0;
-        justify-content: center;
-  
+
         .navbar-nav {
+          flex: 1 0 100%;
           margin-top: 0;
           flex-wrap: wrap;
-          justify-content: flex-end;
+          justify-content: center;
           flex-direction: row;
           text-align: center;
   
           li.nav-item {
-            flex: 1 0 30%;
+            flex: 1 0 31%;
           }
         }
       }
@@ -115,37 +121,5 @@
   #mainNav.navbar-shrink {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-  }
-}
-
-@media(min-width:768px) and (max-width:991px) {
-  #mainNav {
-    .container {
-      width: 70%;
-    }
-  }
-}
-
-@media(min-width:992px) and (max-width:1199px) {
-  #mainNav {
-    .container {
-      width: 65%;
-    }
-  }
-}
-
-@media(min-width:1200px) and (max-width:1499px) {
-  #mainNav {
-    .container {
-      width: 60%;
-    }
-  }
-}
-
-@media(min-width:1500px) {
-  #mainNav {
-    .container {
-      width: 50%;
-    }
   }
 }

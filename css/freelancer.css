@@ -5,33 +5,14 @@
  */
 
 body {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #5b0202), color-stop(50%, #a80404), color-stop(95%, #5b0202), to(#000));
-  background: linear-gradient(90deg, #000 0, #5b0202 5%, #a80404 50%, #5b0202 95%, #000 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #740303), color-stop(50%, #a60404), color-stop(95%, #740303), to(#000));
+  background: linear-gradient(90deg, #000 0, #740303 5%, #a60404 50%, #740303 95%, #000 100%);
   height: 100%;
   font-family: 'Lato';
   font-display: swap;
 }
 
-@media (min-width: 1325px) {
-  body {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #5b0202), color-stop(50%, #a80404), color-stop(90%, #5b0202), to(#000));
-    background: linear-gradient(90deg, #000 0, #5b0202 10%, #a80404 50%, #5b0202 90%, #000 100%);
-  }
-}
-
-@media (min-width: 1600px) {
-  body {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #5b0202), color-stop(50%, #a80404), color-stop(80%, #5b0202), to(#000));
-    background: linear-gradient(90deg, #000 0, #5b0202 20%, #a80404 50%, #5b0202 80%, #000 100%);
-  }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   font-family: 'Montserrat';
   font-display: swap;
@@ -66,11 +47,11 @@ hr.star-light {
 
 hr.star-light:after {
   color: #fff;
-  background-color: #5b0202;
+  background-color: #740303;
 }
 
 section {
-  padding: 6rem 0;
+  padding: 5rem 0;
 }
 
 section h2 {
@@ -521,7 +502,7 @@ section#skills h3:last-child {
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link:hover {
-  color: #5b0202;
+  color: #740303;
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
@@ -529,7 +510,7 @@ section#skills h3:last-child {
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link.active {
-  color: #5b0202;
+  color: #740303;
 }
 
 #mainNav .navbar-toggler {
@@ -577,27 +558,73 @@ section#skills h3:last-child {
   #mainNav .container {
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
+    width: 427px;
   }
+}
+
+@media (min-width: 481px) and (min-width: 481px) {
+  #mainNav .container {
+    width: calc(101.05263vw - 59.06316px);
+  }
+}
+
+@media (min-width: 481px) and (min-width: 576px) {
+  #mainNav .container {
+    width: calc(14.58333vw + 439px);
+  }
+}
+
+@media (min-width: 481px) and (min-width: 768px) {
+  #mainNav .container {
+    width: calc(22.42152vw + 378.80269px);
+  }
+}
+
+@media (min-width: 481px) and (min-width: 991px) {
+  #mainNav .container {
+    width: calc(38.27751vw + 221.66986px);
+  }
+}
+
+@media (min-width: 481px) and (min-width: 1200px) {
+  #mainNav .container {
+    width: calc(26.33333vw + 365px);
+  }
+}
+
+@media (min-width: 481px) and (min-width: 1500px) {
+  #mainNav .container {
+    width: 760px;
+  }
+}
+
+@media (min-width: 481px) {
   #mainNav .container button {
     display: none;
   }
+  #mainNav .container .navbar-brand {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+  }
   #mainNav .container .navbar-collapse {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-preferred-size: 0;
-    flex-basis: 0;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
   }
   #mainNav .container .navbar-collapse .navbar-nav {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 100%;
+    flex: 1 0 100%;
     margin-top: 0;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
@@ -606,44 +633,20 @@ section#skills h3:last-child {
   }
   #mainNav .container .navbar-collapse .navbar-nav li.nav-item {
     -webkit-box-flex: 1;
-    -ms-flex: 1 0 30%;
-    flex: 1 0 30%;
+    -ms-flex: 1 0 31%;
+    flex: 1 0 31%;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
     color: #fff;
-    background: #5b0202;
+    background: #740303;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
     color: #fff;
-    background: #5b0202;
+    background: #740303;
   }
   #mainNav.navbar-shrink {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  #mainNav .container {
-    width: 70%;
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  #mainNav .container {
-    width: 65%;
-  }
-}
-
-@media (min-width: 1200px) and (max-width: 1499px) {
-  #mainNav .container {
-    width: 60%;
-  }
-}
-
-@media (min-width: 1500px) {
-  #mainNav .container {
-    width: 50%;
   }
 }
 
@@ -786,7 +789,7 @@ header.masthead h2:last-child {
   -webkit-transition: all ease 0.5s;
   transition: all ease 0.5s;
   opacity: 0;
-  background-color: rgba(91, 2, 2, 0.9);
+  background-color: rgba(116, 3, 3, 0.9);
 }
 
 .portfolio .portfolio-item .portfolio-item-caption:hover {
@@ -856,8 +859,8 @@ header.masthead h2:last-child {
 }
 
 .portfolio-modal {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #5b0202), color-stop(50%, #a80404), color-stop(95%, #5b0202), to(#000));
-  background: linear-gradient(90deg, #000 0, #5b0202 5%, #a80404 50%, #5b0202 95%, #000 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(5%, #740303), color-stop(50%, #a60404), color-stop(95%, #740303), to(#000));
+  background: linear-gradient(90deg, #000 0, #740303 5%, #a60404 50%, #740303 95%, #000 100%);
 }
 
 .portfolio-modal .portfolio-modal-dialog {
@@ -955,7 +958,7 @@ header.masthead h2:last-child {
 }
 
 .portfolio-modal .portfolio-modal-dialog p a:focus, .portfolio-modal .portfolio-modal-dialog p a:hover, .portfolio-modal .portfolio-modal-dialog p a:active {
-  color: #290101;
+  color: #420202;
   -webkit-text-decoration-color: #fff;
   text-decoration-color: #fff;
 }
@@ -1040,15 +1043,15 @@ header.masthead h2:last-child {
 
 @media (min-width: 1325px) {
   .portfolio-modal {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #5b0202), color-stop(50%, #a80404), color-stop(90%, #5b0202), to(#000));
-    background: linear-gradient(90deg, #000 0, #5b0202 10%, #a80404 50%, #5b0202 90%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(10%, #740303), color-stop(50%, #a60404), color-stop(90%, #740303), to(#000));
+    background: linear-gradient(90deg, #000 0, #740303 10%, #a60404 50%, #740303 90%, #000 100%);
   }
 }
 
 @media (min-width: 1600px) {
   .portfolio-modal {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #5b0202), color-stop(50%, #a80404), color-stop(80%, #5b0202), to(#000));
-    background: linear-gradient(90deg, #000 0, #5b0202 20%, #a80404 50%, #5b0202 80%, #000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(20%, #740303), color-stop(50%, #a60404), color-stop(80%, #740303), to(#000));
+    background: linear-gradient(90deg, #000 0, #740303 20%, #a60404 50%, #740303 80%, #000 100%);
   }
 }
 
@@ -1537,7 +1540,50 @@ form .row:first-child .floating-label-form-group {
 }
 
 section#quote {
-  padding-top: calc(6rem + 56px);
+  min-height: calc(100vh - 4.5rem);
+  padding-top: 184px;
+}
+
+@media (min-width: 320px) {
+  section#quote {
+    padding-top: calc(16.14907vw + 132.32298px);
+  }
+}
+
+@media (min-width: 481px) {
+  section#quote {
+    padding-top: calc(4.21053vw + 189.74737px);
+  }
+}
+
+@media (min-width: 576px) {
+  section#quote {
+    padding-top: calc(3.125vw + 196px);
+  }
+}
+
+@media (min-width: 768px) {
+  section#quote {
+    padding-top: calc(4.03587vw + 189.00448px);
+  }
+}
+
+@media (min-width: 991px) {
+  section#quote {
+    padding-top: calc(5.26316vw + 176.84211px);
+  }
+}
+
+@media (min-width: 1200px) {
+  section#quote {
+    padding-top: calc(0vw + 240px);
+  }
+}
+
+@media (min-width: 1500px) {
+  section#quote {
+    padding-top: 240px;
+  }
 }
 
 section#quote .justify-content-center {
@@ -1560,7 +1606,6 @@ section#quote input[type="checkbox"] + label:before, section#quote input[type="r
   width: 1em;
   height: 1em;
   border: 0.1em solid #fff;
-  border-radius: 100%;
   top: .8em;
   left: 0;
   background: none;
@@ -1598,6 +1643,14 @@ section#quote input[type="checkbox"]:checked + label:after, section#quote input[
   width: 1.3em;
 }
 
+section#quote input[type="radio"] + label:before {
+  border-radius: 100%;
+}
+
+section#quote input[type="checkbox"] + label:before {
+  border-radius: 0.3rem;
+}
+
 section#quote input[type="text"] {
   font-size: 16px;
   padding-right: 0;
@@ -1618,25 +1671,25 @@ section#quote input[type="text"] {
 
 @media (min-width: 481px) {
   section#quote input[type="text"] {
-    font-size: calc(1.04167vw + 12.98958px);
+    font-size: calc(0.69444vw + 14.65972px);
   }
 }
 
 @media (min-width: 769px) {
   section#quote input[type="text"] {
-    font-size: calc(1.5625vw + 8.98438px);
+    font-size: calc(0.39063vw + 16.99609px);
   }
 }
 
 @media (min-width: 1025px) {
   section#quote input[type="text"] {
-    font-size: calc(2.84091vw - 4.11932px);
+    font-size: calc(0.56818vw + 15.17614px);
   }
 }
 
 @media (min-width: 1201px) {
   section#quote input[type="text"] {
-    font-size: 30px;
+    font-size: 22px;
   }
 }
 
@@ -1745,7 +1798,7 @@ a {
 }
 
 a:focus, a:hover, a:active {
-  color: #290101;
+  color: #420202;
   -webkit-text-decoration-color: #fff;
   text-decoration-color: #fff;
 }
@@ -1767,13 +1820,13 @@ a:focus, a:hover, a:active {
 }
 
 .btn-primary {
-  background-color: #a80404;
-  border-color: #a80404;
+  background-color: #a60404;
+  border-color: #a60404;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background-color: #290101 !important;
-  border-color: #290101 !important;
+  background-color: #420202 !important;
+  border-color: #420202 !important;
 }
 
 .btn-secondary {

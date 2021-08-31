@@ -108,7 +108,8 @@ $(function() {
   /***************************************** functions ******************************************/
   function createRadioInputForArray(appendDiv, array, name) {
     for (let index = 0; index < array.length; index++) {
-      const container = $("<div class='custom-control custom-radio'></div>");
+      // const container = $("<div class='custom-control custom-radio'></div>");
+      const container = $("<div class='form-check form-check-inine'></div>");
       appendDiv.append(container);
 
       const input = $("<input>").attr({
@@ -116,14 +117,16 @@ $(function() {
         id: array[index].type,
         value: array[index].type,
         name: name,
-        class: "custom-control-input",
+        // class: "custom-control-input",
+        class: "form-check-input",
         required: true,
         "data-validation-required-message": "Please select an option."
       }); 
       container.append(input);
 
       const label = $("<label></label>").attr({
-        class: "custom-control-label lead",
+        // class: "custom-control-label lead",
+        class: "form-check-label lead",
         style: "opacity: 1",
         for: array[index].type
       }).text(array[index].text);
@@ -299,7 +302,7 @@ $(function() {
     // send and reset buttons container
     const buttonsContainer = $("<div class='form-group row px-3'></div>");
     $(parentDiv).append(buttonsContainer);
-    createButton(buttonsContainer, "submit", "btn btn-primary btn-x1");
+    createButton(buttonsContainer, "submit", "btn btn-primary btn-outline-secondary btn-x1");
     createButton(buttonsContainer, "reset", "btn btn-outline-secondary btn-lg ml-2");
     return;
   }
