@@ -11,6 +11,10 @@ section#quote {
     width: 90%;
   }
 
+  div.control-group p.lead {
+    font-weight: 700;
+  }
+
   input[type="checkbox"], input[type="radio"] {
     display: none;
 

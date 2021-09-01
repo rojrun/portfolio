@@ -108,7 +108,6 @@ $(function() {
   /***************************************** functions ******************************************/
   function createRadioInputForArray(appendDiv, array, name) {
     for (let index = 0; index < array.length; index++) {
-      // const container = $("<div class='custom-control custom-radio'></div>");
       const container = $("<div class='form-check form-check-inine'></div>");
       appendDiv.append(container);
 
@@ -117,7 +116,6 @@ $(function() {
         id: array[index].type,
         value: array[index].type,
         name: name,
-        // class: "custom-control-input",
         class: "form-check-input",
         required: true,
         "data-validation-required-message": "Please select an option."
@@ -125,7 +123,6 @@ $(function() {
       container.append(input);
 
       const label = $("<label></label>").attr({
-        // class: "custom-control-label lead",
         class: "form-check-label lead",
         style: "opacity: 1",
         for: array[index].type
@@ -302,7 +299,7 @@ $(function() {
     // send and reset buttons container
     const buttonsContainer = $("<div class='form-group row px-3'></div>");
     $(parentDiv).append(buttonsContainer);
-    createButton(buttonsContainer, "submit", "btn btn-primary btn-outline-secondary btn-x1");
+    createButton(buttonsContainer, "submit", "btn btn-primary btn-outline-secondary btn-lg");
     createButton(buttonsContainer, "reset", "btn btn-outline-secondary btn-lg ml-2");
     return;
   }
@@ -609,7 +606,7 @@ $(function() {
       // add functionality section
       const functionalityContentGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#redesignForm").append(functionalityContentGroup);
-      const functionsContentQuestion = $("<p class='lead text-secondary text-center'>What new functionalities do you want to add to your website? Select all that apply:</p>");
+      const functionsContentQuestion = $("<p class='lead text-secondary text-center'>(Optional) What new functionalities do you want to add to your website? Select all that apply:</p>");
       functionalityContentGroup.append(functionsContentQuestion);
       const functionalityWarning = $("<p class='help-block text-danger'></p>");
       functionalityContentGroup.append(functionalityWarning);
@@ -715,7 +712,7 @@ $(function() {
       const repairInput = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
       repairControlGroup.append(repairInput);
       createInputField(repairInput, "problem", true);
-      const warning = $("<p class='help-block text-danger mb-0'></p>");
+      const warning = $("<p class='help-block text-danger'></p>");
       repairControlGroup.append(warning);
       inputTextFieldChangeHandler(repairInput, "input", "#addFieldButtonForProblem");
       
