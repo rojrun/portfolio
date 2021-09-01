@@ -303,10 +303,14 @@ section#skills h3:last-child {
 }
 
 .btn-social {
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 3rem;
+  height: 3rem;
   font-size: 1.25rem;
   line-height: 2rem;
+}
+
+.fa-fw {
+  width: 1em;
 }
 
 #mainNav {
@@ -1589,6 +1593,10 @@ section#quote {
 section#quote .justify-content-center {
   margin: auto;
   width: 90%;
+}
+
+section#quote div.control-group p.lead {
+  font-weight: 700;
 }
 
 section#quote input[type="checkbox"], section#quote input[type="radio"] {

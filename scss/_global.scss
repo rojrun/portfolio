@@ -106,8 +106,11 @@ section#skills {
 
 // Custom Rounded Social Button
 .btn-social {
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 3rem;
+  height: 3rem;
   font-size: 1.25rem;
   line-height: 2rem;
+}
+.fa-fw {
+  width: 1em;
 }

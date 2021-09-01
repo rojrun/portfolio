@@ -34,7 +34,7 @@
         var settings = $.extend(true, {}, defaults);
 
         settings.options = $.extend(true, settings.options, options);
-
+        
         var $siblingElements = this;
 
         var uniqueForms = $.unique(
@@ -42,16 +42,18 @@
             return $(this).parents("form")[0];
           }).toArray()
         );
-
+        
         $(uniqueForms).bind("submit", function (e) {
           var $form = $(this);
           var warningsFound = 0;
-          var $inputs = $form.find("input,textarea,select").not("[type=submit],[type=image]").filter(settings.options.filter);
+          // var $inputs = $form.find("input,textarea,select").not("[type=submit],[type=image]").filter(settings.options.filter);
+          var $inputs = $form.find("input,textarea,select").not("[type=submit],[type=image]");
           $inputs.trigger("submit.validation").trigger("validationLostFocus.validation");
-
+          
           $inputs.each(function (i, el) {
             var $this = $(el),
               $controlGroup = $this.parents(".control-group").first();
+            
             if (
               $controlGroup.hasClass("warning")
             ) {
