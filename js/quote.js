@@ -108,8 +108,11 @@ $(function() {
   /***************************************** functions ******************************************/
   function createRadioInputForArray(appendDiv, array, name) {
     for (let index = 0; index < array.length; index++) {
-      const container = $("<div class='form-check form-check-inine'></div>");
+      const container = $("<div class='form-check ml-4 py-3'></div>");
       appendDiv.append(container);
+      if (index !== array.length-1) {
+        container.addClass("border-bottom");
+      }
 
       const input = $("<input>").attr({
         type: "radio",
@@ -122,8 +125,11 @@ $(function() {
       }); 
       container.append(input);
 
+      const radio = $("<span></span>");
+      container.append(radio);
+
       const label = $("<label></label>").attr({
-        class: "form-check-label lead",
+        class: "form-check-label lead pl-3",
         style: "opacity: 1",
         for: array[index].type
       }).text(array[index].text);
@@ -258,7 +264,7 @@ $(function() {
     if (type === "email") {
       field.attr({
         "data-validation-email-message": "Not a valid email address.",
-        "data-validation-required-message": "Please eneter your email address."
+        "data-validation-required-message": "Please enter your email address."
       });
     } else {
       field.attr(
@@ -321,8 +327,8 @@ $(function() {
 
   function formReset() {
     $("#serviceType").empty();
-    $("#quote > .container > .row > div:first-child > div:first-child").removeClass("border-bottom");
     $("input[name=serviceType]").prop("checked", false);
+    $("#quote .control-group:first-child").removeClass("border-bottom");
     return;
   }
 

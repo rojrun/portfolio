@@ -15,39 +15,127 @@ section#quote {
     font-weight: 700;
   }
 
-  input[type="checkbox"], input[type="radio"] {
+  // input[type="checkbox"], input[type="radio"] {
+  //   display: none;
+
+  //   + label {
+  //     position: relative;
+	// 		text-indent: 2em;
+
+  //     &:before {
+  //       content: "";
+  //       position: absolute;
+  //       width: 1em;
+  //       height: 1em;
+  //       border: .1em solid $white;
+  //       top: .8em;
+  //       left: 0;
+  //       background: none;
+  //       transform: translate(0%, -50%);
+  //       transition: all ease-out $transitionSpeed;
+  //     }	
+  //     &:after {
+  //       content: "";
+  //       position: absolute;
+  //       width: 0;
+  //       height: .5em;
+  //       border-bottom: .2em solid $secondary;
+  //       border-left: .2em solid $secondary;
+  //       top: .6em;
+  //       left: .5em;
+  //       transform-origin: bottom left;
+  //       transform: rotate(-45deg);
+  //       opacity: 0;
+  //       transition: all ease-out $transitionSpeed;
+  //     }
+  //   }
+  // }
+
+  // input[type="checkbox"]:checked, input[type="radio"]:checked {
+  //   + label {
+  //     &:before {
+  //       border: .1em solid $secondary;
+  //       opacity: 1;
+  //     }
+  //     &:after {		
+  //       opacity: 1;
+  //       width: 1.3em;
+  //     }
+  //   }
+  // }
+
+  // input[type="radio"]+label:before {
+  //   border-radius: 100%;
+  // }
+
+  // input[type="checkbox"]+label:before {
+  //   border-radius: 0.3rem;
+  // }
+
+  .form-check-inline {
+    display: flex;
+    width: 90%;
+  }
+
+  .form-check {
+    width: 90%;
+  }
+
+  input[type="radio"] {
     display: none;
 
-    + label {
-      position: relative;
-			text-indent: 2em;
+    + span {
+      border-radius: 100%;
+      content: "";
+      width: 1em;
+      height: 1em;
+      border: .1em solid $white;
+      background: none;
+      transition: all ease-out $transitionSpeed;
+    }
+    + span:after {
+      content: "";
+      width: 0;
+      height: .5em;
+      border-bottom: .2em solid $secondary;
+      border-left: .2em solid $secondary;
+      transform-origin: bottom left;
+      transform: rotate(-45deg);
+      opacity: 0;
+      transition: all ease-out $transitionSpeed;
+    }
 
-      &:before {
-        content: "";
-        position: absolute;
-        width: 1em;
-        height: 1em;
-        border: .1em solid $white;
-        top: .8em;
-        left: 0;
-        background: none;
-        transform: translate(0%, -50%);
-        transition: all ease-out $transitionSpeed;
-      }	
-      &:after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: .5em;
-        border-bottom: .2em solid $secondary;
-        border-left: .2em solid $secondary;
-        top: .6em;
-        left: .5em;
-        transform-origin: bottom left;
-        transform: rotate(-45deg);
-        opacity: 0;
-        transition: all ease-out $transitionSpeed;
-      }
+    + label {
+      // flex: 1 1;
+      // position: relative;
+			// text-indent: 2em;
+
+      // &:before {
+      //   content: "";
+      //   position: absolute;
+      //   width: 1em;
+      //   height: 1em;
+      //   border: .1em solid $white;
+      //   top: .8em;
+      //   left: 0;
+      //   background: none;
+      //   transform: translate(0%, -50%);
+      //   transition: all ease-out $transitionSpeed;
+      // }	
+      // &:after {
+      //   content: "";
+      //   position: absolute;
+      //   width: 0;
+      //   height: .5em;
+      //   border-bottom: .2em solid $secondary;
+      //   border-left: .2em solid $secondary;
+      //   top: .6em;
+      //   left: .5em;
+      //   transform-origin: bottom left;
+      //   transform: rotate(-45deg);
+      //   opacity: 0;
+      //   transition: all ease-out $transitionSpeed;
+      // }
     }
   }
 
@@ -79,13 +167,13 @@ section#quote {
     resize: none;
     border: none;
     border-radius: 0;
-    background: none;
+    background-color: $inputBG;
     box-shadow: none !important;
-    color: $white; 
-    &:focus {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: $white;
-    }  
+    color: $primary; 
+    // &:focus {
+    //   background-color: rgba(255, 255, 255, 0.1);
+    //   color: $white;
+    // }  
   }
 
   #deleteInputButton {
@@ -97,11 +185,12 @@ section#quote {
 
   input::placeholder,
   textarea::placeholder {
-    color: $secondary;
+    color: $primary;
   }
 
   input:focus {
-    background-color: rgba(255, 255, 255, 0.1);
+    // background-color: rgba(255, 255, 255, 0.1);
+    background: none;
     color: $white;
   }
 
