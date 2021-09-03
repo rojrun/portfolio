@@ -1599,38 +1599,53 @@ section#quote div.control-group p.lead {
   font-weight: 700;
 }
 
-section#quote .form-check-inline {
+section#quote .radio {
+  display: grid;
+  grid-template-columns: -webkit-min-content auto;
+  grid-template-columns: min-content auto;
+  grid-gap: 1em;
+  opacity: 1;
+}
+
+section#quote .radio__label {
+  line-height: 1.2;
+  opacity: 1;
+}
+
+section#quote .radio__input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 90%;
 }
 
-section#quote .form-check {
-  width: 90%;
+section#quote .radio__input input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-section#quote input[type="radio"] {
-  display: none;
-}
-
-section#quote input[type="radio"] + span {
-  border-radius: 100%;
-  content: "";
+section#quote .radio__input input + .radio__control {
+  display: block;
   width: 1em;
   height: 1em;
+  border-radius: 50%;
   border: 0.1em solid #fff;
-  background: none;
+  -webkit-transform: translateY(10%);
+  transform: translateY(10%);
+  content: "";
   -webkit-transition: all ease-out 400ms;
   transition: all ease-out 400ms;
 }
 
-section#quote input[type="radio"] + span:after {
+section#quote .radio__input input + .radio__control:after {
   content: "";
+  position: absolute;
   width: 0;
-  height: .5em;
+  height: 0.5em;
   border-bottom: 0.2em solid #000000;
   border-left: 0.2em solid #000000;
+  top: 0.3em;
+  left: 0.4em;
   -webkit-transform-origin: bottom left;
   transform-origin: bottom left;
   -webkit-transform: rotate(-45deg);
@@ -1640,22 +1655,14 @@ section#quote input[type="radio"] + span:after {
   transition: all ease-out 400ms;
 }
 
-section#quote input[type="checkbox"]:checked + label:before, section#quote input[type="radio"]:checked + label:before {
+section#quote .radio__input input:checked + .radio__control {
   border: 0.1em solid #000000;
   opacity: 1;
 }
 
-section#quote input[type="checkbox"]:checked + label:after, section#quote input[type="radio"]:checked + label:after {
+section#quote .radio__input input:checked + .radio__control:after {
   opacity: 1;
   width: 1.3em;
-}
-
-section#quote input[type="radio"] + label:before {
-  border-radius: 100%;
-}
-
-section#quote input[type="checkbox"] + label:before {
-  border-radius: 0.3rem;
 }
 
 section#quote input[type="text"] {
@@ -1783,10 +1790,6 @@ section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputBut
   -webkit-box-flex: 1;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
-}
-
-section#quote .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
-  background-image: none;
 }
 
 section#quote .text-danger {

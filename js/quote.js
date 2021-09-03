@@ -106,34 +106,58 @@ $(function() {
   const repairPerComponent = 700;
 
   /***************************************** functions ******************************************/
-  function createRadioInputForArray(appendDiv, array, name) {
+  // function createRadioInputForArray(appendDiv, array, name) {
+  function createSelectionInput(appendDiv, array, name, type, minchecked=null) {   
     for (let index = 0; index < array.length; index++) {
-      const container = $("<div class='form-check ml-4 py-3'></div>");
+      const container = $("<div class='mx-4 py-3'></div>");
       appendDiv.append(container);
-      if (index !== array.length-1) {
+      if ((index !== array.length-1) && (type === "radio")) {
         container.addClass("border-bottom");
       }
 
-      const input = $("<input>").attr({
-        type: "radio",
-        id: array[index].type,
-        value: array[index].type,
-        name: name,
-        class: "form-check-input",
-        required: true,
-        "data-validation-required-message": "Please select an option."
-      }); 
-      container.append(input);
-
-      const radio = $("<span></span>");
-      container.append(radio);
-
-      const label = $("<label></label>").attr({
-        class: "form-check-label lead pl-3",
-        style: "opacity: 1",
-        for: array[index].type
-      }).text(array[index].text);
+      const label = $("<label class='lead mb-0 radio'></label>").attr({
+        // for: array[index].type
+        for: (type === "radio") ? array[index].type : array.type[index]
+      });
       container.append(label);
+
+      // first child of label
+      const spanInput = $("<span class='radio__input'></span>");
+      label.append(spanInput);
+
+      // const input = $("<input>").attr({
+      //   type: "radio",
+      //   id: array[index].type,
+      //   value: array[index].type,
+      //   name: name,
+      //   required: true,
+      //   "data-validation-required-message": "Please select an option."
+      // }); 
+      if (type === "radio") {
+        const input = $("<input type='radio' required 'data-validation-required-message'='Please select an option.'>").attr({
+          id: array[index].type,
+          value: array[index].type,
+          name: name
+        });
+        spanInput.append(input);
+      } else {
+        const combinedWords = array.type[index].split(" ").join("_");
+        const input = $("<input type='checkbox' 'data-validation-minchecked-message'='Choose at least one.'>").attr({
+          id: combinedWords,
+          value: array.type[index],
+          name: name + "[]",
+          minchecked: minchecked,   
+        });
+        spanInput.append(input);
+      }
+      
+
+      const spanControl = $("<span class='radio__control'></span>");
+      spanInput.append(spanControl);
+
+      // second child of label
+      const spanLabel = $("<span class='radio__label'></span>").text(array[index].text);
+      label.append(spanLabel);
     }
     return;
   }
