@@ -178,7 +178,7 @@ $(function() {
       }); 
       spanInput.append(input);
 
-      const spanControl = $("<span class='radio__control'></span>");
+      const spanControl = $("<span class='radio__control checkbox__border'></span>");
       spanInput.append(spanControl);
 
       // second child of label
