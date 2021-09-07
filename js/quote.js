@@ -441,7 +441,7 @@ $(function() {
       createCheckboxInput(pageContentGroup, page, "page", 1, "Choose at least one.");
       
       //          creates input text field for other pages
-      const pageInputFieldContainer = $("<div class='justify-content-center mt-3'></div>");
+      const pageInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
       pageContentGroup.append(pageInputFieldContainer);
       createInputButton(pageContentGroup, "page");
       $("#addFieldButtonForPage").on("click", function() {
@@ -464,7 +464,7 @@ $(function() {
       createCheckboxInput(functionalityContentGroup, functionality, "functionality", 1, "Choose at least one.");
 
       //          creates input text field for other functionalities
-      const functionalityInputFieldContainer = $("<div class='justify-content-center mt-3'></div>");
+      const functionalityInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
       functionalityContentGroup.append(functionalityInputFieldContainer);
       createInputButton(functionalityContentGroup, "functionality");
       $("#addFieldButtonForFunctionality").on("click", function() {
@@ -594,7 +594,7 @@ $(function() {
         label.append(spanLabel);
       }
 
-      const componentGroup = $("<div class='justify-content-center'></div>");
+      const componentGroup = $("<div class='mt-3 mx-5'></div>");
       redesignGroup.append(componentGroup);
       
       $("input#Entire_website").on("change", function() {
@@ -635,7 +635,7 @@ $(function() {
       createCheckboxInput(functionalityContentGroup, functionality, "functionality", 0, null);
 
       //      creates input text field for other functionality
-      const functionalityInputFieldContainer = $("<div class='justify-content-center mt-3'></div>");
+      const functionalityInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
       functionalityContentGroup.append(functionalityInputFieldContainer);
       createInputButton(functionalityContentGroup, "functionality");
       $("#addFieldButtonForFunctionality").on("click", function() {
@@ -725,7 +725,7 @@ $(function() {
       repairGroup.append(repairQuestion);
       
       // input text field container
-      const repairFields = $("<div class='justify-content-center'></div>");
+      const repairFields = $("<div class='mt-3 mx-5'></div>");
       repairGroup.append(repairFields);
 
       // first input text

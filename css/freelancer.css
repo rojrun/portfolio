@@ -1594,11 +1594,6 @@ section#quote {
   }
 }
 
-section#quote .justify-content-center {
-  margin: auto;
-  width: 90%;
-}
-
 section#quote div.control-group p.lead {
   font-weight: 700;
 }
@@ -1673,7 +1668,7 @@ section#quote .radio__input input:checked + .radio__control:after {
   width: 1.3em;
 }
 
-section#quote input[type="text"] {
+section#quote .mt-3.mx-5 input[type="text"] {
   font-size: 16px;
   padding-right: 0;
   resize: none;
@@ -1682,104 +1677,65 @@ section#quote input[type="text"] {
   background-color: #faebd7;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  color: #740303;
+  color: #000000;
 }
 
 @media (min-width: 320px) {
-  section#quote input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"] {
     font-size: calc(1.24224vw + 12.02484px);
   }
 }
 
 @media (min-width: 481px) {
-  section#quote input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"] {
     font-size: calc(0.69444vw + 14.65972px);
   }
 }
 
 @media (min-width: 769px) {
-  section#quote input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"] {
     font-size: calc(0.39063vw + 16.99609px);
   }
 }
 
 @media (min-width: 1025px) {
-  section#quote input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"] {
     font-size: calc(0.56818vw + 15.17614px);
   }
 }
 
 @media (min-width: 1201px) {
-  section#quote input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"] {
     font-size: 22px;
   }
 }
 
-section#quote #deleteInputButton {
-  font-size: 16px;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+section#quote .mt-3.mx-5 input[type="text"]::-webkit-input-placeholder {
+  color: #000000;
 }
 
-@media (min-width: 320px) {
-  section#quote #deleteInputButton {
-    font-size: calc(1.24224vw + 12.02484px);
-  }
+section#quote .mt-3.mx-5 input[type="text"]::-moz-placeholder {
+  color: #000000;
 }
 
-@media (min-width: 481px) {
-  section#quote #deleteInputButton {
-    font-size: calc(1.04167vw + 12.98958px);
-  }
+section#quote .mt-3.mx-5 input[type="text"]:-ms-input-placeholder {
+  color: #000000;
 }
 
-@media (min-width: 769px) {
-  section#quote #deleteInputButton {
-    font-size: calc(1.5625vw + 8.98438px);
-  }
+section#quote .mt-3.mx-5 input[type="text"]::-ms-input-placeholder {
+  color: #000000;
 }
 
-@media (min-width: 1025px) {
-  section#quote #deleteInputButton {
-    font-size: calc(2.84091vw - 4.11932px);
-  }
+section#quote .mt-3.mx-5 input[type="text"]::placeholder {
+  color: #000000;
 }
 
-@media (min-width: 1201px) {
-  section#quote #deleteInputButton {
-    font-size: 30px;
-  }
-}
-
-section#quote input::-webkit-input-placeholder, section#quote textarea::-webkit-input-placeholder {
-  color: #740303;
-}
-
-section#quote input::-moz-placeholder, section#quote textarea::-moz-placeholder {
-  color: #740303;
-}
-
-section#quote input:-ms-input-placeholder, section#quote textarea:-ms-input-placeholder {
-  color: #740303;
-}
-
-section#quote input::-ms-input-placeholder, section#quote textarea::-ms-input-placeholder {
-  color: #740303;
-}
-
-section#quote input::placeholder,
-section#quote textarea::placeholder {
-  color: #740303;
-}
-
-section#quote input:focus {
-  background: none;
+section#quote .mt-3.mx-5 input[type="text"]:focus {
+  background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
 
-section#quote input:-webkit-autofill,
-section#quote input:-webkit-autofill:hover,
-section#quote input:-webkit-autofill:focus {
+section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill, section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill:hover, section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill:focus {
   -webkit-text-fill-color: #fff;
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
@@ -1798,6 +1754,39 @@ section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputBut
   -webkit-box-flex: 1;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
+  font-size: 16px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+@media (min-width: 320px) {
+  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+    font-size: calc(1.24224vw + 12.02484px);
+  }
+}
+
+@media (min-width: 481px) {
+  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+    font-size: calc(1.04167vw + 12.98958px);
+  }
+}
+
+@media (min-width: 769px) {
+  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+    font-size: calc(1.5625vw + 8.98438px);
+  }
+}
+
+@media (min-width: 1025px) {
+  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+    font-size: calc(2.84091vw - 4.11932px);
+  }
+}
+
+@media (min-width: 1201px) {
+  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+    font-size: 30px;
+  }
 }
 
 section#quote .text-danger {
