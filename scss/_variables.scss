@@ -1,5 +1,4 @@
 // Variables
-
 $white: #fff !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
@@ -15,9 +14,11 @@ $black: #000 !default;
 $primary: #740303 !default;
 $secondary: #000000 !default;
 $third: #a60404 !default;
+$danger: #ffc107 !default;
 
 $bgEdge: $black !default;
 $bgSecond: $primary !default;
 $bgMiddle: $third !default;
 
 $button: $third !default;
+$inputBG: #faebd7 !default; // antique white

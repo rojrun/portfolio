@@ -106,28 +106,37 @@ $(function() {
   const repairPerComponent = 700;
 
   /***************************************** functions ******************************************/
-  function createRadioInputForArray(appendDiv, array, name) {
+  function createRadioInputs(appendDiv, array, name) {
     for (let index = 0; index < array.length; index++) {
-      const container = $("<div class='form-check form-check-inine'></div>");
+      const container = $("<div class='mx-4 py-3'></div>");
       appendDiv.append(container);
+      if ((index !== array.length-1)) {
+        container.addClass("border-bottom");
+      }
 
-      const input = $("<input>").attr({
-        type: "radio",
+      const label = $("<label class='lead mb-0 radio'></label>").attr({
+        for: array[index].type
+      });
+      container.append(label);
+
+      // first child of label
+      const spanInput = $("<span class='radio__input'></span>");
+      label.append(spanInput);
+
+      const input = $("<input type='radio' required='required'>").attr({
         id: array[index].type,
         value: array[index].type,
         name: name,
-        class: "form-check-input",
-        required: true,
         "data-validation-required-message": "Please select an option."
       }); 
-      container.append(input);
+      spanInput.append(input);
 
-      const label = $("<label></label>").attr({
-        class: "form-check-label lead",
-        style: "opacity: 1",
-        for: array[index].type
-      }).text(array[index].text);
-      container.append(label);
+      const spanControl = $("<span class='radio__control'></span>");
+      spanInput.append(spanControl);
+
+      // second child of label
+      const spanLabel = $("<span class='radio__label'></span>").text(array[index].text);
+      label.append(spanLabel);
     }
     return;
   }
@@ -147,29 +156,35 @@ $(function() {
 
   function createCheckboxInput(appendDiv, array, name, minchecked, validation) {
     for (let index = 0; index < array.type.length; index++) {
-      const container = $("<div class='form-check form-check-inine'></div>");
+      const container = $("<div class='mx-5 py-1'></div>");
       appendDiv.append(container);
-
-      const combinedWords = array.type[index].split(" ").join("_");
       
-      const input = $("<input>").attr({
-        type: "checkbox",
-        id: combinedWords,
+      const combineWords = array.type[index].split(" ").join("_");
+
+      const label = $("<label class='lead mb-0 radio'></label>").attr({
+        for: combineWords
+      });
+      container.append(label);
+
+      // first child of label
+      const spanInput = $("<span class='radio__input'></span>");
+      label.append(spanInput);
+
+      const input = $("<input type='checkbox'>").attr({
+        id: combineWords,
         value: array.type[index],
         name: name + "[]",
-        class: "form-check-input",
         minchecked: minchecked,
         "data-validation-minchecked-message": validation
-      });
-      container.append(input);
+      }); 
+      spanInput.append(input);
 
-      const label = $("<label></label>").attr({
-        class: "form-check-label lead",
-        style: "opacity: 1",
-        for: combinedWords,
-        id: combinedWords
-      }).text(array.type[index]);
-      container.append(label);
+      const spanControl = $("<span class='radio__control checkbox__border'></span>");
+      spanInput.append(spanControl);
+
+      // second child of label
+      const spanLabel = $("<span class='radio__label'></span>").text(array.type[index]);
+      label.append(spanLabel);
     }
     return;
   }
@@ -258,7 +273,7 @@ $(function() {
     if (type === "email") {
       field.attr({
         "data-validation-email-message": "Not a valid email address.",
-        "data-validation-required-message": "Please eneter your email address."
+        "data-validation-required-message": "Please enter your email address."
       });
     } else {
       field.attr(
@@ -321,8 +336,8 @@ $(function() {
 
   function formReset() {
     $("#serviceType").empty();
-    $("#quote > .container > .row > div:first-child > div:first-child").removeClass("border-bottom");
     $("input[name=serviceType]").prop("checked", false);
+    $("#quote .control-group:first-child").removeClass("border-bottom");
     return;
   }
 
@@ -384,7 +399,7 @@ $(function() {
   divCol.append(serviceTypeControlGroup);
   const serviceTypeQuestion = $("<p class='lead text-secondary text-center'>What type of service do you need? Select one option:</p>");
   serviceTypeControlGroup.append(serviceTypeQuestion);
-  createRadioInputForArray(serviceTypeControlGroup, service, "serviceType");
+  createRadioInputs(serviceTypeControlGroup, service, "serviceType");
 
   // placeholder div when service type selected
   const serviceTypeSelectionDiv = $("<div id='serviceType'></div>");
@@ -406,7 +421,7 @@ $(function() {
       websiteTypeGroup.append(websiteTypeQuestion);
       const websiteWarning = $("<p class='help-block text-danger'></p>");
       websiteTypeGroup.append(websiteWarning);
-      createRadioInputForArray(websiteTypeGroup, website, "websiteType");
+      createRadioInputs(websiteTypeGroup, website, "websiteType");
 
       // technique type section
       const techniqueTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
@@ -415,7 +430,7 @@ $(function() {
       techniqueTypeGroup.append(techniqueTypeQuestion);
       const techniqueWarning = $("<p class='help-block text-danger'></p>");
       techniqueTypeGroup.append(techniqueWarning);
-      createRadioInputForArray(techniqueTypeGroup, technique, "techniqueType");
+      createRadioInputs(techniqueTypeGroup, technique, "techniqueType");
 
       // page type section
       const pageContentGroup = $("<div class='control-group border-bottom py-5'></div>");
@@ -427,7 +442,7 @@ $(function() {
       createCheckboxInput(pageContentGroup, page, "page", 1, "Choose at least one.");
       
       //          creates input text field for other pages
-      const pageInputFieldContainer = $("<div class='justify-content-center mt-3'></div>");
+      const pageInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
       pageContentGroup.append(pageInputFieldContainer);
       createInputButton(pageContentGroup, "page");
       $("#addFieldButtonForPage").on("click", function() {
@@ -450,7 +465,7 @@ $(function() {
       createCheckboxInput(functionalityContentGroup, functionality, "functionality", 1, "Choose at least one.");
 
       //          creates input text field for other functionalities
-      const functionalityInputFieldContainer = $("<div class='justify-content-center mt-3'></div>");
+      const functionalityInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
       functionalityContentGroup.append(functionalityInputFieldContainer);
       createInputButton(functionalityContentGroup, "functionality");
       $("#addFieldButtonForFunctionality").on("click", function() {
@@ -531,7 +546,7 @@ $(function() {
       redesignWebsiteTypeGroup.append(redesignWebsiteTypeQuestion);
       const redesignWebsiteWarning = $("<p class='help-block text-danger'></p>");
       redesignWebsiteTypeGroup.append(redesignWebsiteWarning);
-      createRadioInputForArray(redesignWebsiteTypeGroup, website, "websiteType");
+      createRadioInputs(redesignWebsiteTypeGroup, website, "websiteType");
 
       // technique type section
       const techniqueTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
@@ -540,7 +555,7 @@ $(function() {
       techniqueTypeGroup.append(techniqueTypeQuestion);
       const techniqueWarning = $("<p class='help-block text-danger'></p>");
       techniqueTypeGroup.append(techniqueWarning);
-      createRadioInputForArray(techniqueTypeGroup, technique, "techniqueType");
+      createRadioInputs(techniqueTypeGroup, technique, "techniqueType");
 
       // website sections for redesign
       const redesignGroup = $("<div class='control-group border-bottom py-5'></div>");
@@ -549,30 +564,39 @@ $(function() {
       redesignGroup.append(redesignQuestion);
       const redesignWarning = $("<p class='help-block text-danger'></p>");
       redesignGroup.append(redesignWarning);
-      redesign.type.map((value) => {
-        const combinedWords = value.split(" ").join("_");
-        const redesignRadioContainer = $("<div class='custom-control custom-radio'></div>");
-        redesignGroup.append(redesignRadioContainer);
-        const input = $("<input>").attr({
-          type: "radio",
-          id: combinedWords,
-          value: value,
-          name: "redesign",
-          class: "custom-control-input",
-          required: true,
-          "data-validation-required-message": "Please select an option."
+      
+      for (let index = 0; index < redesign.type.length; index++) {
+        const container = $("<div class='mx-4 py-3'></div>");
+        redesignGroup.append(container);
+        if ((index !== redesign.type.length-1)) {
+          container.addClass("border-bottom");
+        }
+  
+        const label = $("<label class='lead mb-0 radio'></label>").attr({
+          for: redesign.type[index].split(" ").join("_")
         });
-        redesignRadioContainer.append(input);
+        container.append(label);
+  
+        // first child of label
+        const spanInput = $("<span class='radio__input'></span>");
+        label.append(spanInput);
+  
+        const input = $("<input type='radio' name='redesign' required='required'>").attr({
+          id: redesign.type[index].split(" ").join("_"),
+          value: redesign.type[index],
+          "data-validation-required-message": "Please select an option."
+        }); 
+        spanInput.append(input);
+  
+        const spanControl = $("<span class='radio__control'></span>");
+        spanInput.append(spanControl);
+  
+        // second child of label
+        const spanLabel = $("<span class='radio__label'></span>").text(redesign.type[index]);
+        label.append(spanLabel);
+      }
 
-        const label = $("<label></label>").attr({
-          class: "custom-control-label lead",
-          style: "opacity: 1",
-          for: combinedWords
-        }).text(value);
-        redesignRadioContainer.append(label);
-      });
-
-      const componentGroup = $("<div class='justify-content-center'></div>");
+      const componentGroup = $("<div class='mt-3 mx-5'></div>");
       redesignGroup.append(componentGroup);
       
       $("input#Entire_website").on("change", function() {
@@ -613,7 +637,7 @@ $(function() {
       createCheckboxInput(functionalityContentGroup, functionality, "functionality", 0, null);
 
       //      creates input text field for other functionality
-      const functionalityInputFieldContainer = $("<div class='justify-content-center mt-3'></div>");
+      const functionalityInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
       functionalityContentGroup.append(functionalityInputFieldContainer);
       createInputButton(functionalityContentGroup, "functionality");
       $("#addFieldButtonForFunctionality").on("click", function() {
@@ -703,7 +727,7 @@ $(function() {
       repairGroup.append(repairQuestion);
       
       // input text field container
-      const repairFields = $("<div class='justify-content-center'></div>");
+      const repairFields = $("<div class='mt-3 mx-5'></div>");
       repairGroup.append(repairFields);
 
       // first input text

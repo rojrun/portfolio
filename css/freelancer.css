@@ -324,8 +324,8 @@ section#skills h3:last-child {
 #mainNav .navbar-brand {
   color: #fff;
   font-style: normal;
-  height: 72px;
-  width: 72px;
+  height: 70px;
+  width: 70px;
   border: 0.1em solid #fff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -345,61 +345,61 @@ section#skills h3:last-child {
 
 @media (min-width: 320px) {
   #mainNav .navbar-brand {
-    height: calc(6.21118vw + 52.12422px);
+    height: calc(6.21118vw + 50.12422px);
   }
 }
 
 @media (min-width: 481px) {
   #mainNav .navbar-brand {
-    height: calc(3.47222vw + 65.29861px);
+    height: calc(3.47222vw + 63.29861px);
   }
 }
 
 @media (min-width: 769px) {
   #mainNav .navbar-brand {
-    height: calc(3.90625vw + 61.96094px);
+    height: calc(3.90625vw + 59.96094px);
   }
 }
 
 @media (min-width: 1025px) {
   #mainNav .navbar-brand {
-    height: calc(5.68182vw + 43.76136px);
+    height: calc(5.68182vw + 41.76136px);
   }
 }
 
 @media (min-width: 1201px) {
   #mainNav .navbar-brand {
-    height: 112px;
+    height: 110px;
   }
 }
 
 @media (min-width: 320px) {
   #mainNav .navbar-brand {
-    width: calc(6.21118vw + 52.12422px);
+    width: calc(6.21118vw + 50.12422px);
   }
 }
 
 @media (min-width: 481px) {
   #mainNav .navbar-brand {
-    width: calc(3.47222vw + 65.29861px);
+    width: calc(3.47222vw + 63.29861px);
   }
 }
 
 @media (min-width: 769px) {
   #mainNav .navbar-brand {
-    width: calc(3.90625vw + 61.96094px);
+    width: calc(3.90625vw + 59.96094px);
   }
 }
 
 @media (min-width: 1025px) {
   #mainNav .navbar-brand {
-    width: calc(5.68182vw + 43.76136px);
+    width: calc(5.68182vw + 41.76136px);
   }
 }
 
 @media (min-width: 1201px) {
   #mainNav .navbar-brand {
-    width: 112px;
+    width: 110px;
   }
 }
 
@@ -426,7 +426,7 @@ section#skills h3:last-child {
 }
 
 #mainNav .navbar-brand div p {
-  font-size: 14px;
+  font-size: 12px;
   -webkit-box-flex: 1;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
@@ -436,31 +436,31 @@ section#skills h3:last-child {
 
 @media (min-width: 320px) {
   #mainNav .navbar-brand div p {
-    font-size: calc(1.24224vw + 10.02484px);
+    font-size: calc(1.24224vw + 8.02484px);
   }
 }
 
 @media (min-width: 481px) {
   #mainNav .navbar-brand div p {
-    font-size: calc(0.69444vw + 12.65972px);
+    font-size: calc(0.69444vw + 10.65972px);
   }
 }
 
 @media (min-width: 769px) {
   #mainNav .navbar-brand div p {
-    font-size: calc(0.78125vw + 11.99219px);
+    font-size: calc(0.78125vw + 9.99219px);
   }
 }
 
 @media (min-width: 1025px) {
   #mainNav .navbar-brand div p {
-    font-size: calc(1.13636vw + 8.35227px);
+    font-size: calc(1.13636vw + 6.35227px);
   }
 }
 
 @media (min-width: 1201px) {
   #mainNav .navbar-brand div p {
-    font-size: 22px;
+    font-size: 20px;
   }
 }
 
@@ -655,8 +655,8 @@ section#skills h3:last-child {
 }
 
 header.masthead {
-  padding-top: calc(6rem + 56px);
-  padding-bottom: 6rem;
+  padding-top: calc(5rem + 56px);
+  padding-bottom: 5rem;
 }
 
 header.masthead h1:nth-child(2) {
@@ -765,6 +765,10 @@ header.masthead h2:last-child {
   }
 }
 
+header.masthead h2:last-child span {
+  color: #fff;
+}
+
 @media (min-width: 599px) {
   header.masthead .img-fluid {
     max-width: 50%;
@@ -773,8 +777,8 @@ header.masthead h2:last-child {
 
 @media (min-width: 992px) {
   header.masthead {
-    padding-top: calc(6rem + 106px);
-    padding-bottom: 6rem;
+    padding-top: calc(5rem + 106px);
+    padding-bottom: 5rem;
   }
 }
 
@@ -1590,48 +1594,57 @@ section#quote {
   }
 }
 
-section#quote .justify-content-center {
-  margin: auto;
-  width: 90%;
-}
-
 section#quote div.control-group p.lead {
   font-weight: 700;
 }
 
-section#quote input[type="checkbox"], section#quote input[type="radio"] {
-  display: none;
+section#quote .radio {
+  display: grid;
+  grid-template-columns: -webkit-min-content auto;
+  grid-template-columns: min-content auto;
+  grid-gap: 1em;
+  opacity: 1;
 }
 
-section#quote input[type="checkbox"] + label, section#quote input[type="radio"] + label {
-  position: relative;
-  text-indent: 2em;
+section#quote .radio__label {
+  line-height: 1.2;
+  opacity: 1;
 }
 
-section#quote input[type="checkbox"] + label:before, section#quote input[type="radio"] + label:before {
-  content: "";
-  position: absolute;
+section#quote .radio__input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+section#quote .radio__input input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+section#quote .radio__input input + .radio__control {
+  display: block;
   width: 1em;
   height: 1em;
+  border-radius: 50%;
   border: 0.1em solid #fff;
-  top: .8em;
-  left: 0;
-  background: none;
-  -webkit-transform: translate(0%, -50%);
-  transform: translate(0%, -50%);
+  -webkit-transform: translateY(10%);
+  transform: translateY(10%);
+  content: "";
   -webkit-transition: all ease-out 400ms;
   transition: all ease-out 400ms;
 }
 
-section#quote input[type="checkbox"] + label:after, section#quote input[type="radio"] + label:after {
+section#quote .radio__input input + .radio__control:after {
   content: "";
   position: absolute;
   width: 0;
-  height: .5em;
+  height: 0.5em;
   border-bottom: 0.2em solid #000000;
   border-left: 0.2em solid #000000;
-  top: .6em;
-  left: .5em;
+  top: 0.3em;
+  left: 0.4em;
   -webkit-transform-origin: bottom left;
   transform-origin: bottom left;
   -webkit-transform: rotate(-45deg);
@@ -1641,137 +1654,88 @@ section#quote input[type="checkbox"] + label:after, section#quote input[type="ra
   transition: all ease-out 400ms;
 }
 
-section#quote input[type="checkbox"]:checked + label:before, section#quote input[type="radio"]:checked + label:before {
+section#quote .radio__input input + .checkbox__border {
+  border-radius: 0.3rem;
+}
+
+section#quote .radio__input input:checked + .radio__control {
   border: 0.1em solid #000000;
   opacity: 1;
 }
 
-section#quote input[type="checkbox"]:checked + label:after, section#quote input[type="radio"]:checked + label:after {
+section#quote .radio__input input:checked + .radio__control:after {
   opacity: 1;
   width: 1.3em;
 }
 
-section#quote input[type="radio"] + label:before {
-  border-radius: 100%;
-}
-
-section#quote input[type="checkbox"] + label:before {
-  border-radius: 0.3rem;
-}
-
-section#quote input[type="text"] {
+section#quote .mt-3.mx-5 input[type="text"] {
   font-size: 16px;
   padding-right: 0;
   resize: none;
   border: none;
   border-radius: 0;
-  background: none;
+  background-color: rgba(255, 255, 255, 0.2);
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  color: #fff;
+  color: #000000;
 }
 
 @media (min-width: 320px) {
-  section#quote input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"] {
     font-size: calc(1.24224vw + 12.02484px);
   }
 }
 
 @media (min-width: 481px) {
-  section#quote input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"] {
     font-size: calc(0.69444vw + 14.65972px);
   }
 }
 
 @media (min-width: 769px) {
-  section#quote input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"] {
     font-size: calc(0.39063vw + 16.99609px);
   }
 }
 
 @media (min-width: 1025px) {
-  section#quote input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"] {
     font-size: calc(0.56818vw + 15.17614px);
   }
 }
 
 @media (min-width: 1201px) {
-  section#quote input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"] {
     font-size: 22px;
   }
 }
 
-section#quote input[type="text"]:focus {
-  background-color: rgba(255, 255, 255, 0.1);
+section#quote .mt-3.mx-5 input[type="text"]::-webkit-input-placeholder {
   color: #fff;
 }
 
-section#quote #deleteInputButton {
-  font-size: 16px;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
-@media (min-width: 320px) {
-  section#quote #deleteInputButton {
-    font-size: calc(1.24224vw + 12.02484px);
-  }
-}
-
-@media (min-width: 481px) {
-  section#quote #deleteInputButton {
-    font-size: calc(1.04167vw + 12.98958px);
-  }
-}
-
-@media (min-width: 769px) {
-  section#quote #deleteInputButton {
-    font-size: calc(1.5625vw + 8.98438px);
-  }
-}
-
-@media (min-width: 1025px) {
-  section#quote #deleteInputButton {
-    font-size: calc(2.84091vw - 4.11932px);
-  }
-}
-
-@media (min-width: 1201px) {
-  section#quote #deleteInputButton {
-    font-size: 30px;
-  }
-}
-
-section#quote input::-webkit-input-placeholder, section#quote textarea::-webkit-input-placeholder {
-  color: #000000;
-}
-
-section#quote input::-moz-placeholder, section#quote textarea::-moz-placeholder {
-  color: #000000;
-}
-
-section#quote input:-ms-input-placeholder, section#quote textarea:-ms-input-placeholder {
-  color: #000000;
-}
-
-section#quote input::-ms-input-placeholder, section#quote textarea::-ms-input-placeholder {
-  color: #000000;
-}
-
-section#quote input::placeholder,
-section#quote textarea::placeholder {
-  color: #000000;
-}
-
-section#quote input:focus {
-  background-color: rgba(255, 255, 255, 0.1);
+section#quote .mt-3.mx-5 input[type="text"]::-moz-placeholder {
   color: #fff;
 }
 
-section#quote input:-webkit-autofill,
-section#quote input:-webkit-autofill:hover,
-section#quote input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #fff;
+section#quote .mt-3.mx-5 input[type="text"]:-ms-input-placeholder {
+  color: #fff;
+}
+
+section#quote .mt-3.mx-5 input[type="text"]::-ms-input-placeholder {
+  color: #fff;
+}
+
+section#quote .mt-3.mx-5 input[type="text"]::placeholder {
+  color: #fff;
+}
+
+section#quote .mt-3.mx-5 input[type="text"]:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill, section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill:hover, section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000000;
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
 }
@@ -1789,10 +1753,39 @@ section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputBut
   -webkit-box-flex: 1;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
+  font-size: 16px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
-section#quote .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
-  background-image: none;
+@media (min-width: 320px) {
+  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+    font-size: calc(1.24224vw + 12.02484px);
+  }
+}
+
+@media (min-width: 481px) {
+  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+    font-size: calc(1.04167vw + 12.98958px);
+  }
+}
+
+@media (min-width: 769px) {
+  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+    font-size: calc(1.5625vw + 8.98438px);
+  }
+}
+
+@media (min-width: 1025px) {
+  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+    font-size: calc(2.84091vw - 4.11932px);
+  }
+}
+
+@media (min-width: 1201px) {
+  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+    font-size: 30px;
+  }
 }
 
 section#quote .text-danger {

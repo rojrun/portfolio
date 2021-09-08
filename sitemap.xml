@@ -8,23 +8,33 @@
 
 
 <url>
-  <loc>https://www.rojrundev.com/</loc>
-  <lastmod>2020-09-24T14:58:58+00:00</lastmod>
+  <loc>https://rojrundev.com/</loc>
+  <lastmod>2021-09-01T01:59:45+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://www.rojrundev.com/morty/</loc>
+  <loc>https://rojrundev.com/index.html</loc>
+  <lastmod>2021-09-01T01:59:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://rojrundev.com/quote.html</loc>
+  <lastmod>2021-09-01T01:59:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://rojrundev.com/morty/</loc>
   <lastmod>2020-09-10T17:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.rojrundev.com/happyhour/</loc>
+  <loc>https://rojrundev.com/happyhour/</loc>
   <lastmod>2020-09-10T17:39:17+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.rojrundev.com/Roj_Rungsisullatanont_Resume.pdf</loc>
-  <lastmod>2020-10-03T00:55:45+00:00</lastmod>
+  <loc>https://rojrundev.com/Roj_Rungsisullatanont_Resume.pdf</loc>
+  <lastmod>2020-09-22T01:27:56+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
