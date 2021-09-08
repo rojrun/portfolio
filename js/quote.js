@@ -123,10 +123,11 @@ $(function() {
       const spanInput = $("<span class='radio__input'></span>");
       label.append(spanInput);
 
-      const input = $("<input type='radio' 'data-validation-required-message'='Please select an option.' required>").attr({
+      const input = $("<input type='radio' required='required'>").attr({
         id: array[index].type,
         value: array[index].type,
         name: name,
+        "data-validation-required-message": "Please select an option."
       }); 
       spanInput.append(input);
 
@@ -580,9 +581,10 @@ $(function() {
         const spanInput = $("<span class='radio__input'></span>");
         label.append(spanInput);
   
-        const input = $("<input type='radio' name='redesign' 'data-validation-required-message'='Please select an option.' required>").attr({
+        const input = $("<input type='radio' name='redesign' required='required'>").attr({
           id: redesign.type[index].split(" ").join("_"),
-          value: redesign.type[index]
+          value: redesign.type[index],
+          "data-validation-required-message": "Please select an option."
         }); 
         spanInput.append(input);
   

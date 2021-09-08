@@ -79,23 +79,22 @@ section#quote {
     resize: none;
     border: none;
     border-radius: 0;
-    background-color: $inputBG;
+    background-color: rgba(255, 255, 255, 0.2);
     box-shadow: none !important;
     color: $secondary; 
 
     &::placeholder {
-      color: $secondary;
+      color: $white;
     }
 
     &:focus {
       background-color: rgba(255, 255, 255, 0.1);
-      color: $white;
     } 
 
     &:-webkit-autofill,
     &:-webkit-autofill:hover, 
     &:-webkit-autofill:focus {
-      -webkit-text-fill-color: $white;
+      -webkit-text-fill-color: $secondary;
       transition: background-color 5000s ease-in-out 0s;
     }
   }
