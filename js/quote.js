@@ -87,7 +87,8 @@ $(function() {
 
   const functionality = {
     type: [
-      "Book appointments", "Contact form", "Database integration", "Display image gallery", "Search bar", "Subscription offer", "Take payments", "Take surveys", "Testimonials/reviews"
+      "Blog/news", "Book appointments", "Contact form", "Drop ship", "Email newsletter", "Event calendar", "Location map", "Photo gallery", "Products/services database", "Search bar", 
+      "Search engine optimization", "Shopping cart", "Social sharing tool", "Subscription service", "Take sales payments", "Take surveys", "Testimonials/reviews", "User interface/user experience design"
     ],
     customized: 5000,
     templated: 2000
@@ -194,9 +195,10 @@ $(function() {
     appendDiv.append(container);
     const button = $("<input>").attr({
       id: "addFieldButtonFor" + (prop.charAt(0).toUpperCase() + prop.slice(1)),
-      class: "btn btn-outline-secondary btn-lg",
+      class: "btn btn-outline-secondary",
       type: "button",
-      value: "Add other " + prop,
+      value: "Add another " + prop,
+      disabled: true
     });
     container.append(button);
     return;
@@ -208,7 +210,7 @@ $(function() {
       name: prop + "[]",
       id: "other" + (prop.charAt(0).toUpperCase() + prop.slice(1)) + "Input",
       type: "text",
-      placeholder: "Add a " + prop,
+      placeholder: "Add a different " + prop,
       required: isRequired,
       value: "",
       "data-validation-required-message": isRequired ? "Please enter at least one " + prop + "." : null
@@ -237,16 +239,16 @@ $(function() {
       id: "deleteInputButton",
       type: "button", 
     }).html("&times;").on("click", function() {
-      element.parent().get(0).remove();
+      element.parents()[1].remove();
     });
     appendDiv.append(deleteInputButton);
     return;
   }
 
   function createCustomerInputField(appendDiv, string, element, type, isRequired) {
-    const fieldContainer = $("<div class='control-group'></div>");
+    const fieldContainer = $("<div class='control-group border-bottom'></div>");
     $(appendDiv).append(fieldContainer);
-    const form = $("<div class='form-group floating-label-form-group controls mb-0 pb-2 border-bottom'></div>");
+    const form = $("<div class='form-group floating-label-form-group controls mb-0 pb-2'></div>");
     fieldContainer.append(form);
     const combineWords = string.split(" ").join("_");
     const label = $("<label></label>").attr("for", combineWords).text(string.split(" ").map(word => word[0].toUpperCase() + word.substr(1).toLowerCase()).join(" "));
@@ -302,8 +304,6 @@ $(function() {
   }
 
   function createRestOfForm(parentDiv) {
-    createCustomerInputField(parentDiv, "project name", "<input>", "text", true);
-    createCustomerInputField(parentDiv, "message", "<textarea>", "text", false);
     createCustomerInputField(parentDiv, "full name", "<input>", "text", true);
     createCustomerInputField(parentDiv, "email address", "<input>", "email", true);
     createCustomerInputField(parentDiv, "phone number", "<input>", "tel", false);
@@ -414,14 +414,9 @@ $(function() {
       serviceTypeControlGroup.addClass("border-bottom");
       createForm("build", serviceTypeSelectionDiv);
 
-      // website type section
-      const websiteTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
-      $("#buildForm").append(websiteTypeGroup);
-      const websiteTypeQuestion = $("<p class='lead text-secondary text-center'>What type of website do you want for your project? Select one option:</p>");
-      websiteTypeGroup.append(websiteTypeQuestion);
-      const websiteWarning = $("<p class='help-block text-danger'></p>");
-      websiteTypeGroup.append(websiteWarning);
-      createRadioInputs(websiteTypeGroup, website, "websiteType");
+      // project name and details
+      createCustomerInputField("#buildForm", "project name", "<input>", "text", true);
+      createCustomerInputField("#buildForm", "project details", "<textarea>", "text", true);
 
       // technique type section
       const techniqueTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
@@ -444,7 +439,14 @@ $(function() {
       //          creates input text field for other pages
       const pageInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
       pageContentGroup.append(pageInputFieldContainer);
+      const pageInputControlGroup = $("<div class='control-group mb-2'></div>");
+      pageInputFieldContainer.append(pageInputControlGroup);
+      const firstPageInputClearableAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
+      pageInputControlGroup.append(firstPageInputClearableAddition);
+      createInputField(firstPageInputClearableAddition, "page", false);
+      inputTextFieldChangeHandler(firstPageInputClearableAddition, "input", "#addFieldButtonForPage");
       createInputButton(pageContentGroup, "page");
+
       $("#addFieldButtonForPage").on("click", function() {
         const addPageControlGroup = $("<div class='control-group mb-2'></div>");
         pageInputFieldContainer.append(addPageControlGroup);
@@ -467,7 +469,14 @@ $(function() {
       //          creates input text field for other functionalities
       const functionalityInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
       functionalityContentGroup.append(functionalityInputFieldContainer);
+      const functionalityInputControlGroup = $("<div class='control-group mb-2'></div>");
+      functionalityInputFieldContainer.append(functionalityInputControlGroup);
+      const firstFunctionalityInputClearableAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
+      functionalityInputControlGroup.append(firstFunctionalityInputClearableAddition);
+      createInputField(firstFunctionalityInputClearableAddition, "functionality", false);
+      inputTextFieldChangeHandler(firstFunctionalityInputClearableAddition, "input", "#addFieldButtonForFunctionality");
       createInputButton(functionalityContentGroup, "functionality");
+
       $("#addFieldButtonForFunctionality").on("click", function() {
         const addFunctionalityControlGroup = $("<div class='control-group mb-2'></div>");
         functionalityInputFieldContainer.append(addFunctionalityControlGroup);
@@ -539,14 +548,9 @@ $(function() {
       serviceTypeControlGroup.addClass("border-bottom");
       createForm("redesign", serviceTypeSelectionDiv);
 
-      // type of website
-      const redesignWebsiteTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
-      $("#redesignForm").append(redesignWebsiteTypeGroup);
-      const redesignWebsiteTypeQuestion = $("<p class='lead text-secondary text-center'>What type of website is your project? Select one option:</p>");
-      redesignWebsiteTypeGroup.append(redesignWebsiteTypeQuestion);
-      const redesignWebsiteWarning = $("<p class='help-block text-danger'></p>");
-      redesignWebsiteTypeGroup.append(redesignWebsiteWarning);
-      createRadioInputs(redesignWebsiteTypeGroup, website, "websiteType");
+      // project name and details
+      createCustomerInputField("#redesignForm", "project name", "<input>", "text", true);
+      createCustomerInputField("#redesignForm", "project details", "<textarea>", "text", true);
 
       // technique type section
       const techniqueTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
@@ -639,7 +643,14 @@ $(function() {
       //      creates input text field for other functionality
       const functionalityInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
       functionalityContentGroup.append(functionalityInputFieldContainer);
+      const functionalityInputControlGroup = $("<div class='control-group mb-2'></div>");
+      functionalityInputFieldContainer.append(functionalityInputControlGroup);
+      const firstFunctionalityInputClearableAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
+      functionalityInputControlGroup.append(firstFunctionalityInputClearableAddition);
+      createInputField(firstFunctionalityInputClearableAddition, "functionality", false);
+      inputTextFieldChangeHandler(firstFunctionalityInputClearableAddition, "input", "#addFieldButtonForFunctionality");
       createInputButton(functionalityContentGroup, "functionality");
+
       $("#addFieldButtonForFunctionality").on("click", function() {
         const addFunctionalityControlGroup = $("<div class='control-group mb-2'></div>");
         functionalityInputFieldContainer.append(addFunctionalityControlGroup);
@@ -720,6 +731,10 @@ $(function() {
       serviceTypeSelectionDiv.empty();
       serviceTypeControlGroup.addClass("border-bottom");
       createForm("repair", serviceTypeSelectionDiv);
+
+      // project name and details
+      createCustomerInputField("#repairForm", "project name", "<input>", "text", true);
+      createCustomerInputField("#repairForm", "project details", "<textarea>", "text", true);
 
       const repairGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#repairForm").append(repairGroup);
