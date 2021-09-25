@@ -1,69 +1,43 @@
 $(function() {
-  const service = [
-    {
-      type: "build",
-      text: "Build a website for your project"
+  const service = {
+    build: {
+      text: "Build a website for your project",
+      page: {
+        type: [   
+          "About", "Blog", "Contact", "FAQ", "Homepage", "Landing page", "Page not found", "Press", "Privacy policy", 
+          "Products", "Reviews", "Search result", "Services", "Shopping cart", "Sitemap", "Terms and conditions", "Testimonials"    
+        ],
+        customized: 1000,
+        templated: 500
+      },
+      functionality: {
+        type: [
+          "Blog/news", "Book appointments", "Contact form", "Database integration", "Drop ship", "E-commerce", "Email newsletter", "Event calendar", "Location map",  
+          "Photo gallery", "Search bar", "Search engine optimization", "Social sharing tool", "Subscription service", 
+          "Take surveys", "Testimonials/reviews", "User interface/user experience design"
+        ],
+        customized: 3000,
+        templated: 1000,
+        include: [
+          "Database integration", "Search engine optimization", "User interface/user experience design"
+        ]
+      }
     },
-    {
-      type: "redesign",
-      text: "Redesign and/or add functionality to your current website"
-    },
-    {
-      type: "repair",
-      text: "Repair your current website"
+    redesign: {
+      text: "Redesign and/or add functionality to your current website",
+      type: [
+        "Entire website", "Some components"
+      ],
+      perComponent: {
+        customized: 2500,
+        templated: 1000
+      }
+    },  
+    repair: {
+      text: "Repair your current website",
+      perComponent: 700
     }
-  ];
-
-  const website = [
-    {
-      type: "authority",
-      text: "Authority website: this is the place potential customers can go to see what work your company has done and how to get in contact with someone about your services",
-      build: {
-        customized: 4000, 
-        templated: 2000
-      },
-      redesign: {
-        customized: 2500, 
-        templated: 1200
-      }
-    },
-    {
-      type: "leadGeneration",
-      text: "Lead-generation website: this site is focused on generating leads through its online presence",
-      build: {
-        customized: 5000, 
-        templated: 2500
-      },
-      redesign: {
-        customized: 2500, 
-        templated: 1200
-      }
-    },
-    {
-      type: "sales",
-      text: "Sales website: sites that sell products or services through e-commerce",
-      build: {
-        customized: 75000, 
-        templated: 35000
-      },
-      redesign: {
-        customized: 10000,
-        templated: 5000
-      }
-    },
-    {
-      type: "utility",
-      text: "Utility website: companies whose business and website are one and the same",
-      build: {
-        customized: 100000, 
-        templated: 50000
-      },
-      redesign: {
-        customized: 10000, 
-        templated: 5000
-      }
-    }
-  ];
+  };
 
   const technique = [
     {
@@ -76,42 +50,110 @@ $(function() {
     }
   ];
   
-  const page = {
-    type: [   
-      "About page", "Blog page", "Contact page", "FAQ page", "Homepage", "Landing page", "Page not found page", "Press page", "Privacy policy page", "Products page",
-      "Reviews page", "Search result page", "Services page", "Sitemap page", "Terms and conditions page", "Testimonials page"    
-    ],
-    customized: 900,
-    templated: 500
-  };
+  // const service = [
+  //   {
+  //     type: "build",
+  //     text: "Build a website for your project"
+  //   },
+  //   {
+  //     type: "redesign",
+  //     text: "Redesign and/or add functionality to your current website"
+  //   },
+  //   {
+  //     type: "repair",
+  //     text: "Repair your current website"
+  //   }
+  // ];
 
-  const functionality = {
-    type: [
-      "Blog/news", "Book appointments", "Contact form", "Drop ship", "Email newsletter", "Event calendar", "Location map", "Photo gallery", "Products/services database", "Search bar", 
-      "Search engine optimization", "Shopping cart", "Social sharing tool", "Subscription service", "Take sales payments", "Take surveys", "Testimonials/reviews", "User interface/user experience design"
-    ],
-    customized: 5000,
-    templated: 2000
-  };
+  // const website = [
+  //   {
+  //     type: "authority",
+  //     text: "Authority website: this is the place potential customers can go to see what work your company has done and how to get in contact with someone about your services",
+  //     build: {
+  //       customized: 4000, 
+  //       templated: 2000
+  //     },
+  //     redesign: {
+  //       customized: 2500, 
+  //       templated: 1200
+  //     }
+  //   },
+  //   {
+  //     type: "leadGeneration",
+  //     text: "Lead-generation website: this site is focused on generating leads through its online presence",
+  //     build: {
+  //       customized: 5000, 
+  //       templated: 2500
+  //     },
+  //     redesign: {
+  //       customized: 2500, 
+  //       templated: 1200
+  //     }
+  //   },
+  //   {
+  //     type: "sales",
+  //     text: "Sales website: sites that sell products or services through e-commerce",
+  //     build: {
+  //       customized: 75000, 
+  //       templated: 35000
+  //     },
+  //     redesign: {
+  //       customized: 10000,
+  //       templated: 5000
+  //     }
+  //   },
+  //   {
+  //     type: "utility",
+  //     text: "Utility website: companies whose business and website are one and the same",
+  //     build: {
+  //       customized: 100000, 
+  //       templated: 50000
+  //     },
+  //     redesign: {
+  //       customized: 10000, 
+  //       templated: 5000
+  //     }
+  //   }
+  // ];
 
-  const redesign = {
-    type: [
-      "Entire website", "Some components"
-    ],
-    perComponent: {
-      customized: 2500,
-      templated: 1000
-    }
-  };
   
-  const repairPerComponent = 700;
+  
+  // const page = {
+  //   type: [   
+  //     "About page", "Blog page", "Contact page", "FAQ page", "Homepage", "Landing page", "Page not found page", "Press page", "Privacy policy page", "Products page",
+  //     "Reviews page", "Search result page", "Services page", "Sitemap page", "Terms and conditions page", "Testimonials page"    
+  //   ],
+  //   customized: 900,
+  //   templated: 500
+  // };
+
+  // const functionality = {
+  //   type: [
+  //     "Blog/news", "Book appointments", "Contact form", "Database integration", "Drop ship", "Email newsletter", "Event calendar", "Location map", "Photo gallery", "Products/services database", "Search bar", 
+  //     "Search engine optimization", "Shopping cart", "Social sharing tool", "Subscription service", "Take sales payments", "Take surveys", "Testimonials/reviews", "User interface/user experience design"
+  //   ],
+  //   customized: 5000,
+  //   templated: 2000
+  // };
+
+  // const redesign = {
+  //   type: [
+  //     "Entire website", "Some components"
+  //   ],
+  //   perComponent: {
+  //     customized: 2500,
+  //     templated: 1000
+  //   }
+  // };
+  
+  // const repairPerComponent = 700;
 
   /***************************************** functions ******************************************/
   function createRadioInputs(appendDiv, array, name) {
     for (let index = 0; index < array.length; index++) {
       const container = $("<div class='mx-4 py-3'></div>");
       appendDiv.append(container);
-      if ((index !== array.length-1)) {
+      if (index !== array.length-1) {
         container.addClass("border-bottom");
       }
 
@@ -142,25 +184,21 @@ $(function() {
     return;
   }
 
-  function createForm(service, appendDiv) {
-    const form = $("<form></form>").attr({
-      action: "js/quote.js", 
-      name: service + "Form",
-      id: service + "Form",
-      novalidate: "novalidate",
-      method: "post",
-      enctype: "text/plain"
+  function createForm(type, appendDiv) {
+    const form = $("<form action='js/quote.js' method='post' enctype='text/plain' novalidate></form>").attr({
+      name: type + "Form",
+      id: type + "Form",
     });
     appendDiv.append(form);
     return;
   }
 
   function createCheckboxInput(appendDiv, array, name, minchecked, validation) {
-    for (let index = 0; index < array.type.length; index++) {
+    for (let index = 0; index < array.length; index++) {
       const container = $("<div class='mx-5 py-1'></div>");
       appendDiv.append(container);
       
-      const combineWords = array.type[index].split(" ").join("_");
+      const combineWords = array[index].split(" ").join("_");
 
       const label = $("<label class='lead mb-0 radio'></label>").attr({
         for: combineWords
@@ -173,7 +211,7 @@ $(function() {
 
       const input = $("<input type='checkbox'>").attr({
         id: combineWords,
-        value: array.type[index],
+        value: array[index],
         name: name + "[]",
         minchecked: minchecked,
         "data-validation-minchecked-message": validation
@@ -184,7 +222,7 @@ $(function() {
       spanInput.append(spanControl);
 
       // second child of label
-      const spanLabel = $("<span class='radio__label'></span>").text(array.type[index]);
+      const spanLabel = $("<span class='radio__label'></span>").text(array[index]);
       label.append(spanLabel);
     }
     return;
@@ -193,26 +231,20 @@ $(function() {
   function createInputButton(appendDiv, prop) {
     const container = $("<div class='row justify-content-center'></div>");
     appendDiv.append(container);
-    const button = $("<input>").attr({
+    const button = $("<input type='button' class='btn btn-outline-secondary' disabled>").attr({
       id: "addFieldButtonFor" + (prop.charAt(0).toUpperCase() + prop.slice(1)),
-      class: "btn btn-outline-secondary",
-      type: "button",
       value: "Add another " + prop,
-      disabled: true
     });
     container.append(button);
     return;
   }
 
-  function createInputField(appendDiv, prop, isRequired=false) {
-    const input = $("<input>").attr({
-      class: "form-control text-secondary",
+  function createInputField(appendDiv, prop, placeholder, isRequired=false) {
+    const input = $("<input type='text' class='form-control text-secondary' value=''>").attr({
       name: prop + "[]",
       id: "other" + (prop.charAt(0).toUpperCase() + prop.slice(1)) + "Input",
-      type: "text",
-      placeholder: "Add a different " + prop,
+      placeholder: placeholder,
       required: isRequired,
-      value: "",
       "data-validation-required-message": isRequired ? "Please enter at least one " + prop + "." : null
     });
     appendDiv.append(input);
@@ -235,10 +267,7 @@ $(function() {
   }
 
   function createDeleteButtonForField(appendDiv, element) {
-    const deleteInputButton = $("<span></span>").attr({
-      id: "deleteInputButton",
-      type: "button", 
-    }).html("&times;").on("click", function() {
+    const deleteInputButton = $("<span type='button' id='deleteInputButton'></span>").html("&times;").on("click", function() {
       element.parents()[1].remove();
     });
     appendDiv.append(deleteInputButton);
@@ -384,7 +413,7 @@ $(function() {
         $('#success > .alert-danger').append('</div>');
       },
       complete: function() {
-        setTimeout(formReset, 7000); 
+        // setTimeout(formReset, 7000); 
       }
     });
     return;
@@ -399,7 +428,43 @@ $(function() {
   divCol.append(serviceTypeControlGroup);
   const serviceTypeQuestion = $("<p class='lead text-secondary text-center'>What type of service do you need? Select one option:</p>");
   serviceTypeControlGroup.append(serviceTypeQuestion);
-  createRadioInputs(serviceTypeControlGroup, service, "serviceType");
+  // createRadioInputs(serviceTypeControlGroup, service, "serviceType");
+  let index = 0;
+  for (const prop in service) {
+    if (!service.hasOwnProperty(prop)) continue;
+    
+    const container = $("<div class='mx-4 py-3'></div>");
+    serviceTypeControlGroup.append(container);
+    if (index !== Object.keys(service).length-1) {
+      container.addClass("border-bottom");
+    }
+
+    const label = $("<label class='lead mb-0 radio'></label>").attr({
+      for: prop
+    });
+    container.append(label);
+
+    // first child of label
+    const spanInput = $("<span class='radio__input'></span>");
+    label.append(spanInput);
+
+    const input = $("<input type='radio' required='required'>").attr({
+      id: prop,
+      value: prop,
+      name: "serviceType",
+      "data-validation-required-message": "Please select an option."
+    }); 
+    spanInput.append(input);
+
+    const spanControl = $("<span class='radio__control'></span>");
+    spanInput.append(spanControl);
+
+    // second child of label
+    const spanLabel = $("<span class='radio__label'></span>").text(service[prop].text);
+    label.append(spanLabel);
+
+    index++;
+  }
 
   // placeholder div when service type selected
   const serviceTypeSelectionDiv = $("<div id='serviceType'></div>");
@@ -434,7 +499,7 @@ $(function() {
       pageContentGroup.append(pageContentQuestion);
       const pageWarning = $("<p class='help-block text-danger'></p>");
       pageContentGroup.append(pageWarning);
-      createCheckboxInput(pageContentGroup, page, "page", 1, "Choose at least one.");
+      createCheckboxInput(pageContentGroup, service.build.page.type, "page", 1, "Choose at least one.");
       
       //          creates input text field for other pages
       const pageInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
@@ -443,7 +508,7 @@ $(function() {
       pageInputFieldContainer.append(pageInputControlGroup);
       const firstPageInputClearableAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
       pageInputControlGroup.append(firstPageInputClearableAddition);
-      createInputField(firstPageInputClearableAddition, "page", false);
+      createInputField(firstPageInputClearableAddition, "page", "Add a different page", false);
       inputTextFieldChangeHandler(firstPageInputClearableAddition, "input", "#addFieldButtonForPage");
       createInputButton(pageContentGroup, "page");
 
@@ -452,7 +517,7 @@ $(function() {
         pageInputFieldContainer.append(addPageControlGroup);
         const clearableInputAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
         addPageControlGroup.append(clearableInputAddition);
-        createInputField(clearableInputAddition, "page");
+        createInputField(clearableInputAddition, "page", "Add a different page", false);
         $("#addFieldButtonForPage").prop("disabled", true);
         inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForPage");
       });
@@ -464,7 +529,15 @@ $(function() {
       functionalityContentGroup.append(functionsContentQuestion);
       const functionalityWarning = $("<p class='help-block text-danger'></p>");
       functionalityContentGroup.append(functionalityWarning);
-      createCheckboxInput(functionalityContentGroup, functionality, "functionality", 1, "Choose at least one.");
+      createCheckboxInput(functionalityContentGroup, service.build.functionality.type, "functionality", 1, "Choose at least one.");
+      for (let i = 0; i < service.build.functionality.include.length; i++) {
+        if (service.build.functionality.type.indexOf(service.build.functionality.include[i]) > -1) {
+          $("input[type=checkbox][value='" + service.build.functionality.include[i] + "']").attr({
+            "checked": true,
+            "disabled": true
+          });
+        }
+      }
 
       //          creates input text field for other functionalities
       const functionalityInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
@@ -473,7 +546,7 @@ $(function() {
       functionalityInputFieldContainer.append(functionalityInputControlGroup);
       const firstFunctionalityInputClearableAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
       functionalityInputControlGroup.append(firstFunctionalityInputClearableAddition);
-      createInputField(firstFunctionalityInputClearableAddition, "functionality", false);
+      createInputField(firstFunctionalityInputClearableAddition, "functionality", "Add a different fuctionality", false);
       inputTextFieldChangeHandler(firstFunctionalityInputClearableAddition, "input", "#addFieldButtonForFunctionality");
       createInputButton(functionalityContentGroup, "functionality");
 
@@ -482,7 +555,7 @@ $(function() {
         functionalityInputFieldContainer.append(addFunctionalityControlGroup);
         const clearableInputAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
         addFunctionalityControlGroup.append(clearableInputAddition);
-        createInputField(clearableInputAddition, "functionality");
+        createInputField(clearableInputAddition, "functionality", "Add a different fuctionality", false);
         $("#addFieldButtonForFunctionality").prop("disabled", true);
         inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForFunctionality");
       });
@@ -506,30 +579,32 @@ $(function() {
           
           // calculate estimate total
           let estimateTotal = 0;
-          const websiteType = formData.get("websiteType");
-          const websiteTypeText = website.find(obj => {
-            return obj.type === websiteType;
-          }).text;
-          formData.append("websiteTypeText", websiteTypeText);
           const techniqueType = formData.get("techniqueType");
-          const websiteTypeBasePrice = website.find(obj => {
-            return obj.type === websiteType;
-          }).build[techniqueType];
-          formData.append("websiteTypeBasePrice", websiteTypeBasePrice);
+
+          // let pageArray = formData.getAll("page[]");
+          // console.log("pageArray: ", pageArray);
+          // pageArray = pageArray.filter(function(item) {
+          //   return item !== "";
+          // });
+          // console.log("pageArray: ", pageArray);
           const pageCount = getTotalInputArrayCount("page");
           formData.append("pageCount", pageCount);
-          const pricePerPage = page[techniqueType];
+          const pricePerPage = service.build.page[techniqueType];
           formData.append("pricePerPage", pricePerPage);
           const pageSubtotal = pricePerPage * pageCount;
           formData.append("pageSubtotal", pageSubtotal);
           const functionalityCount = getTotalInputArrayCount("functionality");
           formData.append("functionalityCount", functionalityCount);
-          const pricePerFunctionality = functionality[techniqueType];
+          const pricePerFunctionality = service.build.functionality[techniqueType];
           formData.append("pricePerFunctionality", pricePerFunctionality);
           const functionalitySubtotal = pricePerFunctionality * functionalityCount;
           formData.append("functionalitySubtotal", functionalitySubtotal);
-          estimateTotal = websiteTypeBasePrice + pageSubtotal + functionalitySubtotal;
+          estimateTotal = pageSubtotal + functionalitySubtotal;
           formData.append("estimateTotal", estimateTotal);
+
+          for (let pair of formData.entries()) {
+            console.log(pair[0] + ": " + pair[1]);
+          } 
           
           ajaxCall("build", formData);
         },

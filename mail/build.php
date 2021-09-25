@@ -14,7 +14,6 @@
 
     $project = strip_tags(htmlspecialchars($_POST['project_name']));
     $technique_type = strip_tags(htmlspecialchars($_POST['techniqueType']));
-    $website_type_text = strip_tags(htmlspecialchars($_POST['websiteTypeText']));
     $page = implode(', ', $_POST['page']);
     $page_count = strip_tags(htmlspecialchars($_POST['pageCount']));
     $functionality = implode(', ', $_POST['functionality']);
@@ -24,7 +23,6 @@
     $first_name = explode(' ', trim($full_name))[0];
     $email = strip_tags(htmlspecialchars($_POST['email_address']));
     $phone = strip_tags(htmlspecialchars($_POST['phone_number']));
-    $website_type_base_price = number_format(strip_tags(htmlspecialchars($_POST['websiteTypeBasePrice'])));
     $price_per_page = number_format(strip_tags(htmlspecialchars($_POST['pricePerPage'])));
     $page_subtotal = number_format(strip_tags(htmlspecialchars($_POST['pageSubtotal'])));
     $price_per_functionality = number_format(strip_tags(htmlspecialchars($_POST['pricePerFunctionality'])));
