@@ -7,18 +7,18 @@ $(function() {
           "About us", "Blog", "Category", "Checkout", "Contact us", "FAQ", "Home", "Landing", "Login/create account", "Press", "Privacy policy", "Product/service details",
           "Product/service listings", "Returns", "Reviews", "Search and listing results", "Shipping", "Shopping cart", "Sitemap", "Terms and conditions", "Testimonials", "Thank you"    
         ],
-        customized: 900,
-        templated: 300,
+        customized: 800,
+        templated: 200,
         include: ["Home"]
       },
       functionality: {
         type: [
           "Blog/news", "Book appointments", "Contact form", "Database integration", "Drop ship", "Email newsletter", "Event calendar", "Image slider", "Location map",  
-          "Search bar", "Search engine optimization", "Social sharing tool", "Subscription service", 
-          "Take surveys", "Testimonials/reviews", "User interface/user experience design"
+          "Receive testimonials", "Search bar", "Search engine optimization", "Social sharing tool", "Subscription service", 
+          "Take surveys", "User interface/user experience design"
         ],
         customized: 2000,
-        templated: 800,
+        templated: 600,
         include: [
           "Database integration", "Search engine optimization", "User interface/user experience design"
         ]
@@ -31,7 +31,7 @@ $(function() {
         "What do you love and hate about your current website?",
       ],
       customized: 3000,
-      templated: 1200
+      templated: 1800
     },  
     repair: {
       text: "Repair your current website",
@@ -149,7 +149,7 @@ $(function() {
   }
 
   function createInputField(appendDiv, prop, placeholder, isRequired=false) {
-    const input = $("<input type='text' class='form-control text-secondary'>").attr({
+    const input = $("<input type='text' class='form-control text-primary'>").attr({
       name: prop + "[]",
       id: "other" + (prop.charAt(0).toUpperCase() + prop.slice(1)) + "Input",
       placeholder: placeholder,
@@ -322,7 +322,7 @@ $(function() {
         $('#success > .alert-danger').append('</div>');
       },
       complete: function() {
-        // setTimeout(formReset, 10000); 
+        setTimeout(formReset, 10000); 
       }
     });
     return;
@@ -582,33 +582,24 @@ $(function() {
       techniqueTypeGroup.append(techniqueWarning);
       createRadioInputs(techniqueTypeGroup, technique, "techniqueType");
 
-      // why redesign
-      const whyRedesignGroup = $("<div class='control-group border-bottom py-5'></div>");
-      $("#redesignForm").append(whyRedesignGroup);
-      const redesignQuestion = $("<p class='lead text-secondary text-center'>Why do you want a website redesign, or what are you trying to accomplish?</p>");
-      whyRedesignGroup.append(redesignQuestion);
-      const whyRedesignControlGroup = $("<div class='control-group mb-2'></div>");
-      whyRedesignGroup.append(whyRedesignControlGroup);
-      const redesignWarning = $("<p class='help-block text-danger'></p>");
-      whyRedesignControlGroup.append(redesignWarning);
-      const whyRedesignFormGroup = $("<div class='form-group controls mb-0 border-top border-bottom mx-5'></div>");
-      whyRedesignControlGroup.append(whyRedesignFormGroup);
-      const inputWhy = $("<textarea type='text' class='form-control text-secondary' name='whyRedesign' required='required'>").attr("data-validation-required-message", "Please enter why you need a redesign.");
-      whyRedesignFormGroup.append(inputWhy);
-      
-      // love and hate current site
-      const currentRedesignGroup = $("<div class='control-group border-bottom py-5'></div>");
-      $("#redesignForm").append(currentRedesignGroup);
-      const currentRedesignQuestion = $("<p class='lead text-secondary text-center'>What do you love and hate about your current website?</p>");
-      currentRedesignGroup.append(currentRedesignQuestion);
-      const currentRedesignControlGroup = $("<div class='control-group mb-2'></div>");
-      currentRedesignGroup.append(currentRedesignControlGroup);
-      const currentRedesignWarning = $("<p class='help-block text-danger'></p>");
-      currentRedesignControlGroup.append(currentRedesignWarning);
-      const currentRedesignFormGroup = $("<div class='form-group controls mb-0 border-top border-bottom mx-5'></div>");
-      currentRedesignControlGroup.append(currentRedesignFormGroup);
-      const inputCurrent = $("<textarea type='text' class='form-control text-secondary' name='currentSite' required='required'>").attr("data-validation-required-message", "Please enter what you love and hate about your current website.");
-      currentRedesignFormGroup.append(inputCurrent);
+      // questions loop
+      for (let index = 0; index < service.redesign.question.length; index++) {
+        const questionRedesignGroup = $("<div class='control-group border-bottom py-5'></div>");
+        $("#redesignForm").append(questionRedesignGroup);
+        const redesignQuestion = $("<p class='lead text-secondary text-center'></p>").text(service.redesign.question[index]);
+        questionRedesignGroup.append(redesignQuestion);
+        const questionRedesignControlGroup = $("<div class='control-group mb-2'></div>");
+        questionRedesignGroup.append(questionRedesignControlGroup);
+        const redesignWarning = $("<p class='help-block text-danger'></p>");
+        questionRedesignControlGroup.append(redesignWarning);
+        const questionRedesignFormGroup = $("<div class='form-group controls mb-0 border-top border-bottom mx-5'></div>");
+        questionRedesignControlGroup.append(questionRedesignFormGroup);
+        const questionInput = $("<textarea type='text' class='form-control text-primary' required='required'>").attr({
+          "data-validation-required-message": "Please answer this question.",
+          name: "redesignAnswer" + index
+        });
+        questionRedesignFormGroup.append(questionInput);
+      }
       
       // add functionality section
       const functionalityContentGroup = $("<div class='control-group border-bottom py-5'></div>");
@@ -662,6 +653,10 @@ $(function() {
 
           const formData = new FormData(event.target);
 
+          for (let index = 0; index < service.redesign.question.length; index++) {
+            formData.append("redesignQuestion" + index, service.redesign.question[index]);
+          }
+
           // calculate estimate total
           let estimateTotal = 0;
           const techniqueType = formData.get("techniqueType");
@@ -681,10 +676,6 @@ $(function() {
 
           formData.append("estimateTotal", estimateTotal);
 
-          for (let pair of formData.entries()) {
-            console.log(pair[0] + ": " + pair[1]);
-          }
-          
           ajaxCall("redesign", formData);
         },
         filter: function() {
@@ -763,10 +754,6 @@ $(function() {
           const estimateTotal = problemCount * pricePerProblem;
           formData.append("estimateTotal", estimateTotal);
 
-          for (let pair of formData.entries()) {
-            console.log(pair[0] + ": " + pair[1]);
-          }
-          
           ajaxCall("repair", formData);
         },
         filter: function() {

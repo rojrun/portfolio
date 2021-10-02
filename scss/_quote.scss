@@ -1,5 +1,5 @@
 // Styling for quote section
-$transitionSpeed: 400ms;
+$transitionSpeed: 800ms;
 
 section#quote {
   min-height: calc(100vh - 4.5rem);
@@ -72,7 +72,7 @@ section#quote {
     }
   }
 
-  .mt-3.mx-5 input[type="text"] {
+  .mt-3.mx-5 input[type="text"], textarea:not([name="project_details"]) {
     $map: (320px: 16px, 481px: 18px, 769px: 20px, 1025px: 21px, 1201px: 22px);
     @include poly-fluid-sizing("font-size", $map);
     padding-right: 0;
@@ -84,7 +84,7 @@ section#quote {
     color: $secondary; 
 
     &::placeholder {
-      color: $white;
+      color: $secondary;
     }
 
     &:focus {
@@ -94,9 +94,14 @@ section#quote {
     &:-webkit-autofill,
     &:-webkit-autofill:hover, 
     &:-webkit-autofill:focus {
-      -webkit-text-fill-color: $secondary;
+      -webkit-text-fill-color: $white;
       transition: background-color 5000s ease-in-out 0s;
     }
+  }
+
+  textarea, #redesignForm textarea {
+    resize: vertical;
+    overflow: auto;
   }
 
   .form-group.controls.mb-0.border-top.border-bottom {

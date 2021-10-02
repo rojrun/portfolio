@@ -12,53 +12,20 @@
       exit();
     }
 
+    $project_name = strip_tags(htmlspecialchars($_POST['project_name']));
+    $project_details = strip_tags(htmlspecialchars($_POST['project_details']));
+    $technique_type = strip_tags(htmlspecialchars($_POST['techniqueType']));
+    $redesign_question0 = strip_tags(htmlspecialchars($_POST['redesignQuestion0']));
+    $redesign_answer0 = strip_tags(htmlspecialchars($_POST['redesignAnswer0']));
+    $redesign_question1 = strip_tags(htmlspecialchars($_POST['redesignQuestion1']));
+    $redesign_answer1 = strip_tags(htmlspecialchars($_POST['redesignAnswer1']));
+    $redesign_cost = number_format(strip_tags(htmlspecialchars($_POST['redesign'])));
+    $estimate_total = number_format(strip_tags(htmlspecialchars($_POST['estimateTotal'])));
     $full_name = strip_tags(htmlspecialchars($_POST['full_name']));
     $first_name = explode(' ', trim($full_name))[0];
     $email = strip_tags(htmlspecialchars($_POST['email_address']));
-    $phone = strip_tags(htmlspecialchars($_POST['phone_number']));    
-    $message = strip_tags(htmlspecialchars($_POST['message']));
-    $project = strip_tags(htmlspecialchars($_POST['project_name']));
-    $website_type_text = strip_tags(htmlspecialchars($_POST['websiteTypeText']));
-    $technique_type = strip_tags(htmlspecialchars($_POST['techniqueType']));
-    $redesign = strip_tags(htmlspecialchars($_POST['redesign']));
+    $phone = strip_tags(htmlspecialchars($_POST['phone_number']));
     
-    if ($redesign == 'Entire website') {
-      $redesign_subtotal = number_format(strip_tags(htmlspecialchars($_POST['redesignSubtotal'])));
-      $redesign_body = "
-        <tr>
-          <td>Redesign entire website</td>
-          <td>$$redesign_subtotal</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-      ";
-    } else {
-      $component = implode(', ', $_POST['component']);
-      $component_count = strip_tags(htmlspecialchars($_POST['componentCount']));
-      $price_per_component = number_format(strip_tags(htmlspecialchars($_POST['pricePerComponent'])));
-      $component_subtotal = number_format(strip_tags(htmlspecialchars($_POST['componentSubtotal'])));
-      $redesign_body = "
-        <tr>
-          <td>Components you selected to be redesigned:</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>$component</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>$component_count x $$price_per_component per component</td>
-          <td>$$component_subtotal</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-      ";
-    }
-
     if ($_POST['functionality']) {
       $functionality = implode(', ', $_POST['functionality']);
       $functionality_count = strip_tags(htmlspecialchars($_POST['functionalityCount']));
@@ -84,26 +51,42 @@
       ";
     }
 
-    $estimate_total = number_format(strip_tags(htmlspecialchars($_POST['estimateTotal'])));
-    
     // Create the email and send the message
-    $subject = "A redesign quote for $project";
+    $subject = "A redesign quote for $project_name";
     $body = "
       <h1>$first_name, here is the redesign quote you requested for your project.</h1><br>
       <p style='margin: 0'>$full_name</p>
       <p style='margin: 0'>$email</p>
       <p style='margin: 0'>$phone</p>
-      <p style='margin: 0'>$message</p>
+      <p style='margin: 0'>$project_details</p>
       <p>Technique type: $technique_type</p>
+      <p style='margin: 0'>Questions answered:</p>
+      <ol>
+        <li>
+          <p style='margin: 0'>$redesign_question0</p>
+          <ul>
+            <li>
+              <p style='margin: 0'>$redesign_answer0</p>
+            </li>  
+          </ul>
+        </li>
+        <li>
+          <p style='margin: 0'>$redesign_question1</p>
+          <ul>
+            <li>
+              <p style='margin: 0'>$redesign_answer1</p>
+            </li>
+          </ul>    
+        </li>
+      </ol><br>
       <table width='100%'>
         <colgroup>
           <col style='width: 75%'>
         </colgroup>
         <tr>
-          <td>$website_type_text</td>
-          <td></td>
+          <td>Redesign cost</td>
+          <td>$$redesign_cost</td>
         </tr>
-        $redesign_body
         $functionality_body
         <tr>
           <td>Estimate total</td>

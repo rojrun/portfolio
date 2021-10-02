@@ -12,48 +12,36 @@
       exit();
     }
 
-    $project = strip_tags(htmlspecialchars($_POST['project_name']));
+    $project_name = strip_tags(htmlspecialchars($_POST['project_name']));
+    $project_details = strip_tags(htmlspecialchars($_POST['project_details']));
     $technique_type = strip_tags(htmlspecialchars($_POST['techniqueType']));
     $page = implode(', ', $_POST['page']);
     $page_count = strip_tags(htmlspecialchars($_POST['pageCount']));
+    $price_per_page = number_format(strip_tags(htmlspecialchars($_POST['pricePerPage'])));
+    $page_subtotal = number_format(strip_tags(htmlspecialchars($_POST['pageSubtotal'])));
     $functionality = implode(', ', $_POST['functionality']);
     $functionality_count = strip_tags(htmlspecialchars($_POST['functionalityCount']));
-    $message = strip_tags(htmlspecialchars($_POST['message']));
+    $price_per_functionality = number_format(strip_tags(htmlspecialchars($_POST['pricePerFunctionality'])));
+    $functionality_subtotal = number_format(strip_tags(htmlspecialchars($_POST['functionalitySubtotal'])));
+    $estimate_total = number_format(strip_tags(htmlspecialchars($_POST['estimateTotal'])));
     $full_name = strip_tags(htmlspecialchars($_POST['full_name']));
     $first_name = explode(' ', trim($full_name))[0];
     $email = strip_tags(htmlspecialchars($_POST['email_address']));
     $phone = strip_tags(htmlspecialchars($_POST['phone_number']));
-    $price_per_page = number_format(strip_tags(htmlspecialchars($_POST['pricePerPage'])));
-    $page_subtotal = number_format(strip_tags(htmlspecialchars($_POST['pageSubtotal'])));
-    $price_per_functionality = number_format(strip_tags(htmlspecialchars($_POST['pricePerFunctionality'])));
-    $functionality_subtotal = number_format(strip_tags(htmlspecialchars($_POST['functionalitySubtotal'])));
-    $estimate_total = number_format(strip_tags(htmlspecialchars($_POST['estimateTotal'])));
-    
+   
     // Create the email and send the message
-    $subject = "A build quote for $project";
+    $subject = "A build quote for $project_name";
     $body = "
       <h1>$first_name, here is the build quote you requested for your project.</h1><br>
       <p style='margin: 0'>$full_name</p>
       <p style='margin: 0'>$email</p>
       <p style='margin: 0'>$phone</p>
-      <p style='margin: 0'>$message</p>
+      <p style='margin: 0'>$project_details</p>
       <p>Technique type: $technique_type</p>
       <table width='100%'>
         <colgroup>
           <col style='width: 75%'>
         </colgroup>
-        <tr>
-          <td>$website_type_text</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Base price</td>
-          <td>$$website_type_base_price</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
         <tr>
           <td>Pages you selected to add to your project:</td>
           <td></td>
