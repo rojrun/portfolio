@@ -2,7 +2,7 @@ $(function() {
   const service = {
     build: {
       text: "Build a website for your project",
-      page: {
+      pages: {
         type: [   
           "About us", "Blog", "Category", "Checkout", "Contact us", "FAQ", "Home", "Landing", "Login/create account", "Press", "Privacy policy", "Product/service details",
           "Product/service listings", "Returns", "Reviews", "Search and listing results", "Shipping", "Shopping cart", "Sitemap", "Terms and conditions", "Testimonials", "Thank you"    
@@ -11,9 +11,9 @@ $(function() {
         templated: 200,
         include: ["Home"]
       },
-      functionality: {
+      features: {
         type: [
-          "Blog/news", "Book appointments", "Contact form", "Database integration", "Drop ship", "Email newsletter", "Event calendar", "Image slider", "Location map",  
+          "Blog/news", "Book appointments", "Contact form", "Customer login", "Database integration", "Discount codes", "Drop ship", "Email newsletter", "Event calendar", "Image slider", "Location map",  
           "Receive testimonials", "Search bar", "Search engine optimization", "Social sharing tool", "Subscription service", 
           "Take surveys", "User interface/user experience design"
         ],
@@ -25,7 +25,7 @@ $(function() {
       }
     },
     redesign: {
-      text: "Redesign and/or add functionality to your current website",
+      text: "Redesign and/or add new features to your current website",
       question: [
         "Why do you want a website redesign, or what are you trying to accomplish?",
         "What do you love and hate about your current website?",
@@ -52,9 +52,14 @@ $(function() {
 
   const ecommerce = {
     text: ["Yes, involves the selling of products or services"],
-    include: [
-      "Product/service listings", "Shopping cart", "Checkout", "Thank you"
-    ]
+    include: {
+      features: [
+        "Customer login", "Multiple payment options"
+      ],
+      pages: [
+        "Product/service listings", "Shopping cart", "Checkout", "Thank you",
+      ]  
+    }   
   };
   
   /***************************************** functions ******************************************/
@@ -435,10 +440,10 @@ $(function() {
       pageContentGroup.append(pageContentQuestion);
       const pageWarning = $("<p class='help-block text-danger'></p>");
       pageContentGroup.append(pageWarning);
-      createCheckboxInput(pageContentGroup, service.build.page.type, "page", 1, "Choose at least one.");
-      for (let i = 0; i < service.build.page.include.length; i++) {
-        if (service.build.page.type.indexOf(service.build.page.include[i]) > -1) {
-          $("input[type=checkbox][value='" + service.build.page.include[i] + "']").attr({
+      createCheckboxInput(pageContentGroup, service.build.pages.type, "page", 1, "Choose at least one.");
+      for (let i = 0; i < service.build.pages.include.length; i++) {
+        if (service.build.pages.type.indexOf(service.build.pages.include[i]) > -1) {
+          $("input[type=checkbox][value='" + service.build.pages.include[i] + "']").attr({
             "checked": true,
             "disabled": true
           });
@@ -466,42 +471,42 @@ $(function() {
         inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForPage");
       });
           
-      //  functionality type section
-      const functionalityContentGroup = $("<div class='control-group border-bottom py-5'></div>");
-      $("#buildForm").append(functionalityContentGroup);
-      const functionsContentQuestion = $("<p class='lead text-secondary text-center'>What functions do you want your website to perform? Select all that apply:</p>");
-      functionalityContentGroup.append(functionsContentQuestion);
-      const functionalityWarning = $("<p class='help-block text-danger'></p>");
-      functionalityContentGroup.append(functionalityWarning);
-      createCheckboxInput(functionalityContentGroup, service.build.functionality.type, "functionality", 1, "Choose at least one.");
-      for (let i = 0; i < service.build.functionality.include.length; i++) {
-        if (service.build.functionality.type.indexOf(service.build.functionality.include[i]) > -1) {
-          $("input[type=checkbox][value='" + service.build.functionality.include[i] + "']").attr({
+      //  feature type section
+      const featuresContentGroup = $("<div class='control-group border-bottom py-5'></div>");
+      $("#buildForm").append(featuresContentGroup);
+      const featuresContentQuestion = $("<p class='lead text-secondary text-center'>What features do you want your website to perform? Select all that apply:</p>");
+      featuresContentGroup.append(featuresContentQuestion);
+      const featuresWarning = $("<p class='help-block text-danger'></p>");
+      featuresContentGroup.append(featuresWarning);
+      createCheckboxInput(featuresContentGroup, service.build.features.type, "feature", 1, "Choose at least one.");
+      for (let i = 0; i < service.build.features.include.length; i++) {
+        if (service.build.features.type.indexOf(service.build.features.include[i]) > -1) {
+          $("input[type=checkbox][value='" + service.build.features.include[i] + "']").attr({
             "checked": true,
             "disabled": true
           });
         }
       }
 
-      //          creates input text field for other functionalities
-      const functionalityInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
-      functionalityContentGroup.append(functionalityInputFieldContainer);
-      const functionalityInputControlGroup = $("<div class='control-group mb-2'></div>");
-      functionalityInputFieldContainer.append(functionalityInputControlGroup);
-      const firstFunctionalityInputClearableAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
-      functionalityInputControlGroup.append(firstFunctionalityInputClearableAddition);
-      createInputField(firstFunctionalityInputClearableAddition, "functionality", "Add a different fuctionality", false);
-      inputTextFieldChangeHandler(firstFunctionalityInputClearableAddition, "input", "#addFieldButtonForFunctionality");
-      createInputButton(functionalityContentGroup, "functionality");
+      //          creates input text field for other features
+      const featuresInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
+      featuresContentGroup.append(featuresInputFieldContainer);
+      const featuresInputControlGroup = $("<div class='control-group mb-2'></div>");
+      featuresInputFieldContainer.append(featuresInputControlGroup);
+      const firstFeaturesInputClearableAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
+      featuresInputControlGroup.append(firstFeaturesInputClearableAddition);
+      createInputField(firstFeaturesInputClearableAddition, "feature", "Add a different feature", false);
+      inputTextFieldChangeHandler(firstFeaturesInputClearableAddition, "input", "#addFieldButtonForFeature");
+      createInputButton(featuresContentGroup, "feature");
 
-      $("#addFieldButtonForFunctionality").on("click", function() {
-        const addFunctionalityControlGroup = $("<div class='control-group mb-2'></div>");
-        functionalityInputFieldContainer.append(addFunctionalityControlGroup);
+      $("#addFieldButtonForFeature").on("click", function() {
+        const addFeaturesControlGroup = $("<div class='control-group mb-2'></div>");
+        featuresInputFieldContainer.append(addFeaturesControlGroup);
         const clearableInputAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
-        addFunctionalityControlGroup.append(clearableInputAddition);
-        createInputField(clearableInputAddition, "functionality", "Add a different fuctionality", false);
-        $("#addFieldButtonForFunctionality").prop("disabled", true);
-        inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForFunctionality");
+        addFeaturesControlGroup.append(clearableInputAddition);
+        createInputField(clearableInputAddition, "feature", "Add a different feature", false);
+        $("#addFieldButtonForFeature").prop("disabled", true);
+        inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForFeature");
       });
 
       // Customer info inputs (Message, Full Name, Email Address, Phone Number)
@@ -524,8 +529,8 @@ $(function() {
             $("input[type='text'][name='page[]']").prop("disabled", true);
           }
 
-          if ($("input[type='text'][name='functionality[]']").val() === "") {
-            $("input[type='text'][name='functionality[]']").prop("disabled", true);
+          if ($("input[type='text'][name='feature[]']").val() === "") {
+            $("input[type='text'][name='feature[]']").prop("disabled", true);
           }
 
           $.each($("input[type='checkbox']:disabled"), function() {
@@ -539,19 +544,21 @@ $(function() {
           const techniqueType = formData.get("techniqueType");
           const pageCount = getTotalInputArrayCount("page");
           formData.append("pageCount", pageCount);
-          const pricePerPage = service.build.page[techniqueType];
+          const pricePerPage = service.build.pages[techniqueType];
           formData.append("pricePerPage", pricePerPage);
           const pageSubtotal = pricePerPage * pageCount;
           formData.append("pageSubtotal", pageSubtotal);
-          const functionalityCount = getTotalInputArrayCount("functionality");
-          formData.append("functionalityCount", functionalityCount);
-          const pricePerFunctionality = service.build.functionality[techniqueType];
-          formData.append("pricePerFunctionality", pricePerFunctionality);
-          const functionalitySubtotal = pricePerFunctionality * functionalityCount;
-          formData.append("functionalitySubtotal", functionalitySubtotal);
-          estimateTotal = pageSubtotal + functionalitySubtotal;
+          const featureCount = getTotalInputArrayCount("feature");
+          formData.append("featureCount", featureCount);
+          const pricePerFeature = service.build.features[techniqueType];
+          formData.append("pricePerFeature", pricePerFeature);
+          const featureSubtotal = pricePerFeature * featureCount;
+          formData.append("featureSubtotal", featureSubtotal);
+          estimateTotal = pageSubtotal + featureSubtotal;
           formData.append("estimateTotal", estimateTotal); 
-          
+          for (let pair of formData.entries()) {
+            console.log(pair[0] +": " + pair[1]);
+          }
           ajaxCall("build", formData);
         },
         filter: function() {
@@ -601,34 +608,34 @@ $(function() {
         questionRedesignFormGroup.append(questionInput);
       }
       
-      // add functionality section
-      const functionalityContentGroup = $("<div class='control-group border-bottom py-5'></div>");
-      $("#redesignForm").append(functionalityContentGroup);
-      const functionsContentQuestion = $("<p class='lead text-secondary text-center'>(Optional) What new functionalities do you want to add to your website? Select all that apply:</p>");
-      functionalityContentGroup.append(functionsContentQuestion);
-      const functionalityWarning = $("<p class='help-block text-danger'></p>");
-      functionalityContentGroup.append(functionalityWarning);
-      createCheckboxInput(functionalityContentGroup, service.build.functionality.type, "functionality", 0, null);
+      // add feature section
+      const featureContentGroup = $("<div class='control-group border-bottom py-5'></div>");
+      $("#redesignForm").append(featureContentGroup);
+      const featureContentQuestion = $("<p class='lead text-secondary text-center'>(Optional) What new features do you want to add to your website? Select all that apply:</p>");
+      featureContentGroup.append(featureContentQuestion);
+      const featureWarning = $("<p class='help-block text-danger'></p>");
+      featureContentGroup.append(featureWarning);
+      createCheckboxInput(featureContentGroup, service.build.features.type, "feature", 0, null);
 
-      //      creates input text field for other functionality
-      const functionalityInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
-      functionalityContentGroup.append(functionalityInputFieldContainer);
-      const functionalityInputControlGroup = $("<div class='control-group mb-2'></div>");
-      functionalityInputFieldContainer.append(functionalityInputControlGroup);
-      const firstFunctionalityInputClearableAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
-      functionalityInputControlGroup.append(firstFunctionalityInputClearableAddition);
-      createInputField(firstFunctionalityInputClearableAddition, "functionality", "Add a different fuctionality", false);
-      inputTextFieldChangeHandler(firstFunctionalityInputClearableAddition, "input", "#addFieldButtonForFunctionality");
-      createInputButton(functionalityContentGroup, "functionality");
+      //      creates input text field for other features
+      const featureInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
+      featureContentGroup.append(featureInputFieldContainer);
+      const featureInputControlGroup = $("<div class='control-group mb-2'></div>");
+      featureInputFieldContainer.append(featureInputControlGroup);
+      const firstFeatureInputClearableAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
+      featureInputControlGroup.append(firstFeatureInputClearableAddition);
+      createInputField(firstFeatureInputClearableAddition, "feature", "Add a different feature", false);
+      inputTextFieldChangeHandler(firstFeatureInputClearableAddition, "input", "#addFieldButtonForFeature");
+      createInputButton(featureContentGroup, "feature");
 
-      $("#addFieldButtonForFunctionality").on("click", function() {
-        const addFunctionalityControlGroup = $("<div class='control-group mb-2'></div>");
-        functionalityInputFieldContainer.append(addFunctionalityControlGroup);
+      $("#addFieldButtonForFeature").on("click", function() {
+        const addFeatureControlGroup = $("<div class='control-group mb-2'></div>");
+        featureInputFieldContainer.append(addFeatureControlGroup);
         const clearableInputAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
-        addFunctionalityControlGroup.append(clearableInputAddition);
-        createInputField(clearableInputAddition, "functionality", "Add a different fuctionality", false);
-        $("#addFieldButtonForFunctionality").prop("disabled", true);
-        inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForFunctionality");
+        addFeatureControlGroup.append(clearableInputAddition);
+        createInputField(clearableInputAddition, "feature", "Add a different feature", false);
+        $("#addFieldButtonForFeature").prop("disabled", true);
+        inputTextFieldChangeHandler(clearableInputAddition, "input", "#addFieldButtonForFeature");
       });
 
       // Customer info inputs
@@ -647,8 +654,8 @@ $(function() {
         submitSuccess: function($form, event) {
           event.preventDefault();
 
-          if ($("input[type='text'][name='functionality[]']").val() === "") {
-            $("input[type='text'][name='functionality[]']").prop("disabled", true);
+          if ($("input[type='text'][name='feature[]']").val() === "") {
+            $("input[type='text'][name='feature[]']").prop("disabled", true);
           }
 
           const formData = new FormData(event.target);
@@ -664,18 +671,20 @@ $(function() {
           formData.append("redesign", redesign);
           estimateTotal += redesign;
           
-          if (formData.has("functionality[]")) {
-            const functionalityCount = getTotalInputArrayCount("functionality");
-            formData.append("functionalityCount", functionalityCount);
-            const pricePerFunctionality = service.build.functionality[techniqueType];
-            formData.append("pricePerFunctionality", pricePerFunctionality);
-            const functionalitySubtotal = functionalityCount * pricePerFunctionality;
-            formData.append("functionalitySubtotal", functionalitySubtotal);
-            estimateTotal += functionalitySubtotal;
+          if (formData.has("feature[]")) {
+            const featureCount = getTotalInputArrayCount("feature");
+            formData.append("featureCount", featureCount);
+            const pricePerFeature = service.build.features[techniqueType];
+            formData.append("pricePerFeature", pricePerFeature);
+            const featureSubtotal = featureCount * pricePerFeature;
+            formData.append("featureSubtotal", featureSubtotal);
+            estimateTotal += featureSubtotal;
           }
 
           formData.append("estimateTotal", estimateTotal);
-
+          for (let pair of formData.entries()) {
+            console.log(pair[0] +": " + pair[1]);
+          }
           ajaxCall("redesign", formData);
         },
         filter: function() {

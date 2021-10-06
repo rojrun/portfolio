@@ -19,10 +19,10 @@
     $page_count = strip_tags(htmlspecialchars($_POST['pageCount']));
     $price_per_page = number_format(strip_tags(htmlspecialchars($_POST['pricePerPage'])));
     $page_subtotal = number_format(strip_tags(htmlspecialchars($_POST['pageSubtotal'])));
-    $functionality = implode(', ', $_POST['functionality']);
-    $functionality_count = strip_tags(htmlspecialchars($_POST['functionalityCount']));
-    $price_per_functionality = number_format(strip_tags(htmlspecialchars($_POST['pricePerFunctionality'])));
-    $functionality_subtotal = number_format(strip_tags(htmlspecialchars($_POST['functionalitySubtotal'])));
+    $feature = implode(', ', $_POST['feature']);
+    $feature_count = strip_tags(htmlspecialchars($_POST['featureCount']));
+    $price_per_feature = number_format(strip_tags(htmlspecialchars($_POST['pricePerFeature'])));
+    $feature_subtotal = number_format(strip_tags(htmlspecialchars($_POST['featureSubtotal'])));
     $estimate_total = number_format(strip_tags(htmlspecialchars($_POST['estimateTotal'])));
     $full_name = strip_tags(htmlspecialchars($_POST['full_name']));
     $first_name = explode(' ', trim($full_name))[0];
@@ -63,12 +63,12 @@
           <td></td>
         </tr>
         <tr>
-          <td>$functionality</td>
+          <td>$feature</td>
           <td></td>
         </tr>
         <tr>
-          <td>$functionality_count x $$price_per_functionality per function</td>
-          <td>$$functionality_subtotal</td>
+          <td>$feature x $$price_per_feature per function</td>
+          <td>$$feature_subtotal</td>
         </tr>
         <tr>
           <td>&nbsp;</td>

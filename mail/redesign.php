@@ -26,23 +26,23 @@
     $email = strip_tags(htmlspecialchars($_POST['email_address']));
     $phone = strip_tags(htmlspecialchars($_POST['phone_number']));
     
-    if ($_POST['functionality']) {
-      $functionality = implode(', ', $_POST['functionality']);
-      $functionality_count = strip_tags(htmlspecialchars($_POST['functionalityCount']));
-      $price_per_functionality = number_format(strip_tags(htmlspecialchars($_POST['pricePerFunctionality'])));
-      $functionality_subtotal = number_format(strip_tags(htmlspecialchars($_POST['functionalitySubtotal'])));
-      $functionality_body = "
+    if ($_POST['feature']) {
+      $feature = implode(', ', $_POST['feature']);
+      $feature_count = strip_tags(htmlspecialchars($_POST['featureCount']));
+      $price_per_feature = number_format(strip_tags(htmlspecialchars($_POST['pricePerFeature'])));
+      $feature_subtotal = number_format(strip_tags(htmlspecialchars($_POST['featureSubtotal'])));
+      $feature_body = "
         <tr>
-          <td>New functionalities to be added to your website:</td>
+          <td>New features to be added to your website:</td>
           <td></td>
         </tr>
         <tr>
-          <td>$functionality</td>
+          <td>$feature</td>
           <td></td>
         </tr>
         <tr>
-          <td>$functionality_count x $$price_per_functionality per function</td>
-          <td>$$functionality_subtotal</td>
+          <td>$feature_count x $$price_per_feature per feature</td>
+          <td>$$feature_subtotal</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -87,7 +87,7 @@
           <td>Redesign cost</td>
           <td>$$redesign_cost</td>
         </tr>
-        $functionality_body
+        $feature_body
         <tr>
           <td>Estimate total</td>
           <td>$$estimate_total</td>
