@@ -4,8 +4,9 @@ $(function() {
       text: "Build a website for your project",
       pages: {
         type: [   
-          "About us", "Blog", "Category", "Checkout", "Contact us", "FAQ", "Home", "Landing", "Login/create account", "Press", "Privacy policy", "Product/service details",
-          "Product/service listings", "Returns", "Reviews", "Search and listing results", "Shipping", "Shopping cart", "Sitemap", "Terms and conditions", "Testimonials", "Thank you"    
+          "About us", "Blog", "Category", "Checkout", "Contact us", "FAQ", "Home", "Landing", "Login/create account", "Press", "Privacy policy", 
+          "Product/service details", "Product/service listings", "Returns", "Reviews", "Search and listing results", "Shipping", "Shopping cart", 
+          "Sitemap", "Terms and conditions", "Testimonials", "Thank you"    
         ],
         customized: 800,
         templated: 200,
@@ -13,32 +14,33 @@ $(function() {
       },
       features: {
         type: [
-          "Blog/news", "Book appointments", "Contact form", "Customer login", "Database integration", "Discount codes", "Drop ship", "Email newsletter", "Event calendar", "Image slider", "Location map",  
-          "Receive testimonials", "Search bar", "Search engine optimization", "Social sharing tool", "Subscription service", 
-          "Take surveys", "User interface/user experience design"
+          "Blog/news", "Book appointments", "Contact form", "Customer/guest login", "Database integration", "Discount codes", "Drop ship", "Email newsletter", 
+          "Easy-to-use checkout", "Event calendar", "Image slider", "Location map", "Receive testimonials", "Search bar",  
+          "Search engine optimization", "Shipping options", "Social sharing tool", "Subscription service", "Take surveys", "User-friendly navigation", 
+          "User interface/user experience design"
         ],
         customized: 2000,
         templated: 600,
         include: [
-          "Database integration", "Search engine optimization", "User interface/user experience design"
+          "Database integration", "Search engine optimization", "User-friendly navigation", "User interface/user experience design"
         ]
       }
     },
     redesign: {
-      text: "Redesign and/or add new features to your current website",
+      text: "Redesign and add new features to your current website",
       question: [
         "Why do you want a website redesign, or what are you trying to accomplish?",
         "What do you love and hate about your current website?",
       ],
       customized: 3000,
-      templated: 1800
+      templated: 1500
     },  
     repair: {
       text: "Repair your current website",
       perComponent: 400
     }
   };
-
+  
   const technique = [
     {
       type: "customized",
@@ -53,12 +55,12 @@ $(function() {
   const ecommerce = {
     text: ["Yes, involves the selling of products or services"],
     include: {
-      features: [
-        "Customer login", "Multiple payment options"
-      ],
       pages: [
         "Product/service listings", "Shopping cart", "Checkout", "Thank you",
-      ]  
+      ],
+      features: [
+        "Customer/guest login", "Easy-to-use checkout", "Multiple payment options"
+      ],  
     }   
   };
   
@@ -162,6 +164,18 @@ $(function() {
       "data-validation-required-message": isRequired ? "Please enter at least one " + prop + "." : null
     });
     appendDiv.append(input);
+    return;
+  }
+
+  function selectCheckboxes(array1, array2, boolean) {
+    for (let i = 0; i < array1.length; i++) {
+      if (array2.type.indexOf(array1[i]) > -1) {
+        $("input[type=checkbox][value='" + array1[i] + "']").attr({
+          "checked": boolean,
+          "disabled": boolean
+        });
+      }
+    }
     return;
   }
 
@@ -408,28 +422,16 @@ $(function() {
       // check whether website is e-commerce
       const ecommerceGroup = $("<div class='control-group border-bottom py-5'></div>");
       $("#buildForm").append(ecommerceGroup);
-      const ecommerceQuestion = $("<p class='lead text-secondary text-center'>Is your project an e-commerce website? (Optional)</p>");
+      const ecommerceQuestion = $("<p class='lead text-secondary text-center'>Is your project considered e-commerce? (Optional)</p>");
       ecommerceGroup.append(ecommerceQuestion);
       createCheckboxInput(ecommerceGroup, ecommerce.text, "ecomm", null, null);
       $("input[name='ecomm[]']").on("change", function() {
         if ($("input[name='ecomm[]']").is(":checked")) {
-          for (let i = 0; i < ecommerce.include.length; i++) {
-            if (service.build.page.type.indexOf(ecommerce.include[i]) > -1) {
-              $("input[type=checkbox][value='" + ecommerce.include[i] + "']").attr({
-                "checked": true,
-                "disabled": true
-              });
-            }
-          }
+          selectCheckboxes(ecommerce.include.pages, service.build.pages, true);
+          selectCheckboxes(ecommerce.include.features, service.build.features, true);
         } else {
-          for (let i = 0; i < ecommerce.include.length; i++) {
-            if (service.build.page.type.indexOf(ecommerce.include[i]) > -1) {
-              $("input[type=checkbox][value='" + ecommerce.include[i] + "']").attr({
-                "checked": false,
-                "disabled": false
-              });
-            }
-          }
+          selectCheckboxes(ecommerce.include.pages, service.build.pages, false);
+          selectCheckboxes(ecommerce.include.features, service.build.features, false);
         }
       });
 
@@ -441,14 +443,7 @@ $(function() {
       const pageWarning = $("<p class='help-block text-danger'></p>");
       pageContentGroup.append(pageWarning);
       createCheckboxInput(pageContentGroup, service.build.pages.type, "page", 1, "Choose at least one.");
-      for (let i = 0; i < service.build.pages.include.length; i++) {
-        if (service.build.pages.type.indexOf(service.build.pages.include[i]) > -1) {
-          $("input[type=checkbox][value='" + service.build.pages.include[i] + "']").attr({
-            "checked": true,
-            "disabled": true
-          });
-        }
-      }
+      selectCheckboxes(service.build.pages.include, service.build.pages, true);
       
       //          creates input text field for other pages
       const pageInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
@@ -479,14 +474,7 @@ $(function() {
       const featuresWarning = $("<p class='help-block text-danger'></p>");
       featuresContentGroup.append(featuresWarning);
       createCheckboxInput(featuresContentGroup, service.build.features.type, "feature", 1, "Choose at least one.");
-      for (let i = 0; i < service.build.features.include.length; i++) {
-        if (service.build.features.type.indexOf(service.build.features.include[i]) > -1) {
-          $("input[type=checkbox][value='" + service.build.features.include[i] + "']").attr({
-            "checked": true,
-            "disabled": true
-          });
-        }
-      }
+      selectCheckboxes(service.build.features.include, service.build.features, true);
 
       //          creates input text field for other features
       const featuresInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
@@ -556,9 +544,7 @@ $(function() {
           formData.append("featureSubtotal", featureSubtotal);
           estimateTotal = pageSubtotal + featureSubtotal;
           formData.append("estimateTotal", estimateTotal); 
-          for (let pair of formData.entries()) {
-            console.log(pair[0] +": " + pair[1]);
-          }
+          
           ajaxCall("build", formData);
         },
         filter: function() {
@@ -682,9 +668,7 @@ $(function() {
           }
 
           formData.append("estimateTotal", estimateTotal);
-          for (let pair of formData.entries()) {
-            console.log(pair[0] +": " + pair[1]);
-          }
+          
           ajaxCall("redesign", formData);
         },
         filter: function() {
@@ -762,7 +746,7 @@ $(function() {
           formData.append("pricePerProblem", pricePerProblem);
           const estimateTotal = problemCount * pricePerProblem;
           formData.append("estimateTotal", estimateTotal);
-
+          
           ajaxCall("repair", formData);
         },
         filter: function() {

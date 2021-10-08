@@ -67,7 +67,7 @@
           <td></td>
         </tr>
         <tr>
-          <td>$feature x $$price_per_feature per function</td>
+          <td>$feature_count x $$price_per_feature per feature</td>
           <td>$$feature_subtotal</td>
         </tr>
         <tr>
