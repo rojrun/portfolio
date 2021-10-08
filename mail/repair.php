@@ -12,25 +12,26 @@
       exit();
     }
 
-    $full_name = strip_tags(htmlspecialchars($_POST['full_name']));
-    $first_name = explode(' ', trim($full_name))[0];
-    $email = strip_tags(htmlspecialchars($_POST['email_address']));
-    $phone = strip_tags(htmlspecialchars($_POST['phone_number']));    
-    $message = strip_tags(htmlspecialchars($_POST['message']));
-    $project = strip_tags(htmlspecialchars($_POST['project_name']));
+    $project_name = strip_tags(htmlspecialchars($_POST['project_name']));
+    $project_details = strip_tags(htmlspecialchars($_POST['project_details']));
+    $technique_type = strip_tags(htmlspecialchars($_POST['techniqueType']));
     $problem = implode(', ', $_POST['problem']);
     $problem_count = strip_tags(htmlspecialchars($_POST['problemCount']));
     $price_per_problem = number_format(strip_tags(htmlspecialchars($_POST['pricePerProblem'])));
     $estimate_total = number_format(strip_tags(htmlspecialchars($_POST['estimateTotal'])));
+    $full_name = strip_tags(htmlspecialchars($_POST['full_name']));
+    $first_name = explode(' ', trim($full_name))[0];
+    $email = strip_tags(htmlspecialchars($_POST['email_address']));
+    $phone = strip_tags(htmlspecialchars($_POST['phone_number']));
 
     // Create the email and send the message
-    $subject = "A repair quote for $project";
+    $subject = "A repair quote for $project_name";
     $body = "
       <h1>$first_name, here is the repair quote you requested for your project.</h1><br>
       <p style='margin: 0'>$full_name</p>
       <p style='margin: 0'>$email</p>
       <p style='margin: 0'>$phone</p>
-      <p style='margin: 0'>$message</p>
+      <p style='margin: 0'>$project_details</p>
       <br>
       <table width='100%'>
         <colgroup>

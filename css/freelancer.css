@@ -1632,8 +1632,8 @@ section#quote .radio__input input + .radio__control {
   -webkit-transform: translateY(10%);
   transform: translateY(10%);
   content: "";
-  -webkit-transition: all ease-out 400ms;
-  transition: all ease-out 400ms;
+  -webkit-transition: all ease-out 800ms;
+  transition: all ease-out 800ms;
 }
 
 section#quote .radio__input input + .radio__control:after {
@@ -1650,8 +1650,8 @@ section#quote .radio__input input + .radio__control:after {
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   opacity: 0;
-  -webkit-transition: all ease-out 400ms;
-  transition: all ease-out 400ms;
+  -webkit-transition: all ease-out 800ms;
+  transition: all ease-out 800ms;
 }
 
 section#quote .radio__input input + .checkbox__border {
@@ -1668,7 +1668,7 @@ section#quote .radio__input input:checked + .radio__control:after {
   width: 1.3em;
 }
 
-section#quote .mt-3.mx-5 input[type="text"] {
+section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="project_details"]) {
   font-size: 16px;
   padding-right: 0;
   resize: none;
@@ -1681,63 +1681,68 @@ section#quote .mt-3.mx-5 input[type="text"] {
 }
 
 @media (min-width: 320px) {
-  section#quote .mt-3.mx-5 input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="project_details"]) {
     font-size: calc(1.24224vw + 12.02484px);
   }
 }
 
 @media (min-width: 481px) {
-  section#quote .mt-3.mx-5 input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="project_details"]) {
     font-size: calc(0.69444vw + 14.65972px);
   }
 }
 
 @media (min-width: 769px) {
-  section#quote .mt-3.mx-5 input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="project_details"]) {
     font-size: calc(0.39063vw + 16.99609px);
   }
 }
 
 @media (min-width: 1025px) {
-  section#quote .mt-3.mx-5 input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="project_details"]) {
     font-size: calc(0.56818vw + 15.17614px);
   }
 }
 
 @media (min-width: 1201px) {
-  section#quote .mt-3.mx-5 input[type="text"] {
+  section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="project_details"]) {
     font-size: 22px;
   }
 }
 
-section#quote .mt-3.mx-5 input[type="text"]::-webkit-input-placeholder {
-  color: #fff;
+section#quote .mt-3.mx-5 input[type="text"]::-webkit-input-placeholder, section#quote textarea:not([name="project_details"])::-webkit-input-placeholder {
+  color: #000000;
 }
 
-section#quote .mt-3.mx-5 input[type="text"]::-moz-placeholder {
-  color: #fff;
+section#quote .mt-3.mx-5 input[type="text"]::-moz-placeholder, section#quote textarea:not([name="project_details"])::-moz-placeholder {
+  color: #000000;
 }
 
-section#quote .mt-3.mx-5 input[type="text"]:-ms-input-placeholder {
-  color: #fff;
+section#quote .mt-3.mx-5 input[type="text"]:-ms-input-placeholder, section#quote textarea:not([name="project_details"]):-ms-input-placeholder {
+  color: #000000;
 }
 
-section#quote .mt-3.mx-5 input[type="text"]::-ms-input-placeholder {
-  color: #fff;
+section#quote .mt-3.mx-5 input[type="text"]::-ms-input-placeholder, section#quote textarea:not([name="project_details"])::-ms-input-placeholder {
+  color: #000000;
 }
 
-section#quote .mt-3.mx-5 input[type="text"]::placeholder {
-  color: #fff;
+section#quote .mt-3.mx-5 input[type="text"]::placeholder, section#quote textarea:not([name="project_details"])::placeholder {
+  color: #000000;
 }
 
-section#quote .mt-3.mx-5 input[type="text"]:focus {
+section#quote .mt-3.mx-5 input[type="text"]:focus, section#quote textarea:not([name="project_details"]):focus {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill, section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill:hover, section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill:focus {
-  -webkit-text-fill-color: #000000;
+section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill, section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill:hover, section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill:focus, section#quote textarea:not([name="project_details"]):-webkit-autofill, section#quote textarea:not([name="project_details"]):-webkit-autofill:hover, section#quote textarea:not([name="project_details"]):-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+section#quote textarea, section#quote #redesignForm textarea {
+  resize: vertical;
+  overflow: auto;
 }
 
 section#quote .form-group.controls.mb-0.border-top.border-bottom {
