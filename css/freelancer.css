@@ -892,36 +892,36 @@ header.masthead h2:last-child span {
 }
 
 .portfolio-modal .portfolio-modal-dialog h2 {
-  font-size: 40px;
+  font-size: 35px;
 }
 
 @media (min-width: 320px) {
   .portfolio-modal .portfolio-modal-dialog h2 {
-    font-size: calc(6.21118vw + 20.12422px);
+    font-size: calc(6.21118vw + 15.12422px);
   }
 }
 
 @media (min-width: 481px) {
   .portfolio-modal .portfolio-modal-dialog h2 {
-    font-size: calc(3.47222vw + 33.29861px);
+    font-size: calc(3.47222vw + 28.29861px);
   }
 }
 
 @media (min-width: 769px) {
   .portfolio-modal .portfolio-modal-dialog h2 {
-    font-size: calc(3.90625vw + 29.96094px);
+    font-size: calc(3.90625vw + 24.96094px);
   }
 }
 
 @media (min-width: 1025px) {
   .portfolio-modal .portfolio-modal-dialog h2 {
-    font-size: calc(5.68182vw + 11.76136px);
+    font-size: calc(5.68182vw + 6.76136px);
   }
 }
 
 @media (min-width: 1201px) {
   .portfolio-modal .portfolio-modal-dialog h2 {
-    font-size: 80px;
+    font-size: 75px;
   }
 }
 
@@ -937,25 +937,25 @@ header.masthead h2:last-child span {
 
 @media (min-width: 481px) {
   .portfolio-modal .portfolio-modal-dialog p {
-    font-size: calc(1.04167vw + 12.98958px);
+    font-size: calc(0.69444vw + 14.65972px);
   }
 }
 
 @media (min-width: 769px) {
   .portfolio-modal .portfolio-modal-dialog p {
-    font-size: calc(1.5625vw + 8.98438px);
+    font-size: calc(0.39063vw + 16.99609px);
   }
 }
 
 @media (min-width: 1025px) {
   .portfolio-modal .portfolio-modal-dialog p {
-    font-size: calc(2.84091vw - 4.11932px);
+    font-size: calc(0.56818vw + 15.17614px);
   }
 }
 
 @media (min-width: 1201px) {
   .portfolio-modal .portfolio-modal-dialog p {
-    font-size: 30px;
+    font-size: 22px;
   }
 }
 
@@ -1093,28 +1093,28 @@ header.masthead h2:last-child span {
 @media (min-width: 481px) {
   .floating-label-form-group input,
   .floating-label-form-group textarea {
-    font-size: calc(1.04167vw + 12.98958px);
+    font-size: calc(0.69444vw + 14.65972px);
   }
 }
 
 @media (min-width: 769px) {
   .floating-label-form-group input,
   .floating-label-form-group textarea {
-    font-size: calc(1.5625vw + 8.98438px);
+    font-size: calc(0.39063vw + 16.99609px);
   }
 }
 
 @media (min-width: 1025px) {
   .floating-label-form-group input,
   .floating-label-form-group textarea {
-    font-size: calc(2.84091vw - 4.11932px);
+    font-size: calc(0.56818vw + 15.17614px);
   }
 }
 
 @media (min-width: 1201px) {
   .floating-label-form-group input,
   .floating-label-form-group textarea {
-    font-size: 30px;
+    font-size: 22px;
   }
 }
 
@@ -1178,25 +1178,25 @@ header.masthead h2:last-child span {
 
 @media (min-width: 481px) {
   .floating-label-form-group #get_file {
-    font-size: calc(1.04167vw + 12.98958px);
+    font-size: calc(0.69444vw + 14.65972px);
   }
 }
 
 @media (min-width: 769px) {
   .floating-label-form-group #get_file {
-    font-size: calc(1.5625vw + 8.98438px);
+    font-size: calc(0.39063vw + 16.99609px);
   }
 }
 
 @media (min-width: 1025px) {
   .floating-label-form-group #get_file {
-    font-size: calc(2.84091vw - 4.11932px);
+    font-size: calc(0.56818vw + 15.17614px);
   }
 }
 
 @media (min-width: 1201px) {
   .floating-label-form-group #get_file {
-    font-size: 30px;
+    font-size: 22px;
   }
 }
 
@@ -1234,25 +1234,25 @@ header.masthead h2:last-child span {
 
 @media (min-width: 481px) {
   .floating-label-form-group ul#file_list li {
-    font-size: calc(1.04167vw + 12.98958px);
+    font-size: calc(0.69444vw + 14.65972px);
   }
 }
 
 @media (min-width: 769px) {
   .floating-label-form-group ul#file_list li {
-    font-size: calc(1.5625vw + 8.98438px);
+    font-size: calc(0.39063vw + 16.99609px);
   }
 }
 
 @media (min-width: 1025px) {
   .floating-label-form-group ul#file_list li {
-    font-size: calc(2.84091vw - 4.11932px);
+    font-size: calc(0.56818vw + 15.17614px);
   }
 }
 
 @media (min-width: 1201px) {
   .floating-label-form-group ul#file_list li {
-    font-size: 30px;
+    font-size: 22px;
   }
 }
 
@@ -1520,20 +1520,20 @@ form .row:first-child .floating-label-form-group {
 /* width */
 *::-webkit-scrollbar {
   background: #000000;
-  width: 20px;
+  width: 15px;
 }
 
 /* Track */
 *::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 5px grey;
   box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 /* Handle */
 *::-webkit-scrollbar-thumb {
   background: #bb0404;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 /* Handle on hover */
@@ -1771,25 +1771,25 @@ section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputBut
 
 @media (min-width: 481px) {
   section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
-    font-size: calc(1.04167vw + 12.98958px);
+    font-size: calc(0.69444vw + 14.65972px);
   }
 }
 
 @media (min-width: 769px) {
   section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
-    font-size: calc(1.5625vw + 8.98438px);
+    font-size: calc(0.39063vw + 16.99609px);
   }
 }
 
 @media (min-width: 1025px) {
   section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
-    font-size: calc(2.84091vw - 4.11932px);
+    font-size: calc(0.56818vw + 15.17614px);
   }
 }
 
 @media (min-width: 1201px) {
   section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
-    font-size: 30px;
+    font-size: 22px;
   }
 }
 

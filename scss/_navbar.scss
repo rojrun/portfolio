@@ -44,8 +44,7 @@
       a.nav-link {
         color: $white;
         font-style: normal;
-        $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
-        @include poly-fluid-sizing("font-size", $map);
+        @include poly-fluid-sizing("font-size", $buttonFont);
         &:hover {
           color: $primary;
         }
@@ -61,8 +60,7 @@
   }
   
   .navbar-toggler {
-    $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
-    @include poly-fluid-sizing("font-size", $map);
+    @include poly-fluid-sizing("font-size", $buttonFont);
     padding: 0.5rem;
   }
 }

@@ -59,7 +59,7 @@
           <td>&nbsp;</td>
         </tr>
         <tr>
-          <td>Functionalities you selected to add to your project:</td>
+          <td>Features you selected to add to your project:</td>
           <td></td>
         </tr>
         <tr>
