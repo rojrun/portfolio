@@ -73,8 +73,7 @@ section#quote {
   }
 
   .mt-3.mx-5 input[type="text"], textarea:not([name="project_details"]) {
-    $map: (320px: 16px, 481px: 18px, 769px: 20px, 1025px: 21px, 1201px: 22px);
-    @include poly-fluid-sizing("font-size", $map);
+    @include poly-fluid-sizing("font-size", $bodyFont);
     padding-right: 0;
     resize: none;
     border: none;
@@ -110,8 +109,7 @@ section#quote {
 
     #deleteInputButton {
       flex: 1 0 auto;
-      $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
-      @include poly-fluid-sizing("font-size", $map);
+      @include poly-fluid-sizing("font-size", $bodyFont);
       padding-left: 0.75rem;
       padding-right: 0.75rem;
     }

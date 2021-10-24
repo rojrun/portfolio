@@ -68,12 +68,10 @@
       }
     }
     h2 {
-      $map: (320px: 40px, 481px: 50px, 769px: 60px, 1025px: 70px, 1201px: 80px);
-      @include poly-fluid-sizing("font-size", $map);
+      @include poly-fluid-sizing("font-size", $headerFont);
     }
     p {
-      $map: (320px: 16px, 481px: 18px, 769px: 21px, 1025px: 25px, 1201px: 30px);
-      @include poly-fluid-sizing("font-size", $map);
+      @include poly-fluid-sizing("font-size", $bodyFont);
       a {
         color: $secondary;
         font-style: italic;
@@ -87,13 +85,11 @@
       }
     }
     h5 {
-      $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
-      @include poly-fluid-sizing("font-size", $map);
+      @include poly-fluid-sizing("font-size", $buttonFont);
     }
     .rounded-pill {
       border-radius: .25rem !important;
-      $map: (320px: 14px, 481px: 16px, 769px: 18px, 1025px: 20px, 1201px: 22px);
-      @include poly-fluid-sizing("font-size", $map);
+      @include poly-fluid-sizing("font-size", $buttonFont);
       font-style: normal;
     }
   }
