@@ -1547,58 +1547,58 @@ form .row:first-child .floating-label-form-group {
   scrollbar-color: #bb0404 #000000;
 }
 
-section#quote {
+#quote {
   min-height: calc(100vh - 4.5rem);
   padding-top: 184px;
 }
 
 @media (min-width: 320px) {
-  section#quote {
+  #quote {
     padding-top: calc(16.14907vw + 132.32298px);
   }
 }
 
 @media (min-width: 481px) {
-  section#quote {
+  #quote {
     padding-top: calc(4.21053vw + 189.74737px);
   }
 }
 
 @media (min-width: 576px) {
-  section#quote {
+  #quote {
     padding-top: calc(3.125vw + 196px);
   }
 }
 
 @media (min-width: 768px) {
-  section#quote {
+  #quote {
     padding-top: calc(4.03587vw + 189.00448px);
   }
 }
 
 @media (min-width: 991px) {
-  section#quote {
+  #quote {
     padding-top: calc(5.26316vw + 176.84211px);
   }
 }
 
 @media (min-width: 1200px) {
-  section#quote {
+  #quote {
     padding-top: calc(0vw + 240px);
   }
 }
 
 @media (min-width: 1500px) {
-  section#quote {
+  #quote {
     padding-top: 240px;
   }
 }
 
-section#quote div.control-group p.lead {
+#quote div.control-group p.lead {
   font-weight: 700;
 }
 
-section#quote .radio {
+#quote .radio {
   display: grid;
   grid-template-columns: -webkit-min-content auto;
   grid-template-columns: min-content auto;
@@ -1606,24 +1606,24 @@ section#quote .radio {
   opacity: 1;
 }
 
-section#quote .radio__label {
+#quote .radio__label {
   line-height: 1.2;
   opacity: 1;
 }
 
-section#quote .radio__input {
+#quote .radio__input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-section#quote .radio__input input {
+#quote .radio__input input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-section#quote .radio__input input + .radio__control {
+#quote .radio__input input + .radio__control {
   display: block;
   width: 1em;
   height: 1em;
@@ -1636,7 +1636,7 @@ section#quote .radio__input input + .radio__control {
   transition: all ease-out 800ms;
 }
 
-section#quote .radio__input input + .radio__control:after {
+#quote .radio__input input + .radio__control:after {
   content: "";
   position: absolute;
   width: 0;
@@ -1654,21 +1654,21 @@ section#quote .radio__input input + .radio__control:after {
   transition: all ease-out 800ms;
 }
 
-section#quote .radio__input input + .checkbox__border {
+#quote .radio__input input + .checkbox__border {
   border-radius: 0.3rem;
 }
 
-section#quote .radio__input input:checked + .radio__control {
+#quote .radio__input input:checked + .radio__control {
   border: 0.1em solid #000000;
   opacity: 1;
 }
 
-section#quote .radio__input input:checked + .radio__control:after {
+#quote .radio__input input:checked + .radio__control:after {
   opacity: 1;
   width: 1.3em;
 }
 
-section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="project_details"]) {
+#quote .mt-3.mx-5 input[type="text"], #quote textarea:not([name="project_details"]) {
   font-size: 16px;
   padding-right: 0;
   resize: none;
@@ -1681,71 +1681,71 @@ section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="p
 }
 
 @media (min-width: 320px) {
-  section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="project_details"]) {
+  #quote .mt-3.mx-5 input[type="text"], #quote textarea:not([name="project_details"]) {
     font-size: calc(1.24224vw + 12.02484px);
   }
 }
 
 @media (min-width: 481px) {
-  section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="project_details"]) {
+  #quote .mt-3.mx-5 input[type="text"], #quote textarea:not([name="project_details"]) {
     font-size: calc(0.69444vw + 14.65972px);
   }
 }
 
 @media (min-width: 769px) {
-  section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="project_details"]) {
+  #quote .mt-3.mx-5 input[type="text"], #quote textarea:not([name="project_details"]) {
     font-size: calc(0.39063vw + 16.99609px);
   }
 }
 
 @media (min-width: 1025px) {
-  section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="project_details"]) {
+  #quote .mt-3.mx-5 input[type="text"], #quote textarea:not([name="project_details"]) {
     font-size: calc(0.56818vw + 15.17614px);
   }
 }
 
 @media (min-width: 1201px) {
-  section#quote .mt-3.mx-5 input[type="text"], section#quote textarea:not([name="project_details"]) {
+  #quote .mt-3.mx-5 input[type="text"], #quote textarea:not([name="project_details"]) {
     font-size: 22px;
   }
 }
 
-section#quote .mt-3.mx-5 input[type="text"]::-webkit-input-placeholder, section#quote textarea:not([name="project_details"])::-webkit-input-placeholder {
+#quote .mt-3.mx-5 input[type="text"]::-webkit-input-placeholder, #quote textarea:not([name="project_details"])::-webkit-input-placeholder {
   color: #000000;
 }
 
-section#quote .mt-3.mx-5 input[type="text"]::-moz-placeholder, section#quote textarea:not([name="project_details"])::-moz-placeholder {
+#quote .mt-3.mx-5 input[type="text"]::-moz-placeholder, #quote textarea:not([name="project_details"])::-moz-placeholder {
   color: #000000;
 }
 
-section#quote .mt-3.mx-5 input[type="text"]:-ms-input-placeholder, section#quote textarea:not([name="project_details"]):-ms-input-placeholder {
+#quote .mt-3.mx-5 input[type="text"]:-ms-input-placeholder, #quote textarea:not([name="project_details"]):-ms-input-placeholder {
   color: #000000;
 }
 
-section#quote .mt-3.mx-5 input[type="text"]::-ms-input-placeholder, section#quote textarea:not([name="project_details"])::-ms-input-placeholder {
+#quote .mt-3.mx-5 input[type="text"]::-ms-input-placeholder, #quote textarea:not([name="project_details"])::-ms-input-placeholder {
   color: #000000;
 }
 
-section#quote .mt-3.mx-5 input[type="text"]::placeholder, section#quote textarea:not([name="project_details"])::placeholder {
+#quote .mt-3.mx-5 input[type="text"]::placeholder, #quote textarea:not([name="project_details"])::placeholder {
   color: #000000;
 }
 
-section#quote .mt-3.mx-5 input[type="text"]:focus, section#quote textarea:not([name="project_details"]):focus {
+#quote .mt-3.mx-5 input[type="text"]:focus, #quote textarea:not([name="project_details"]):focus {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill, section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill:hover, section#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill:focus, section#quote textarea:not([name="project_details"]):-webkit-autofill, section#quote textarea:not([name="project_details"]):-webkit-autofill:hover, section#quote textarea:not([name="project_details"]):-webkit-autofill:focus {
+#quote .mt-3.mx-5 input[type="text"]:-webkit-autofill, #quote .mt-3.mx-5 input[type="text"]:-webkit-autofill:hover, #quote .mt-3.mx-5 input[type="text"]:-webkit-autofill:focus, #quote textarea:not([name="project_details"]):-webkit-autofill, #quote textarea:not([name="project_details"]):-webkit-autofill:hover, #quote textarea:not([name="project_details"]):-webkit-autofill:focus {
   -webkit-text-fill-color: #fff;
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
 }
 
-section#quote textarea, section#quote #redesignForm textarea {
+#quote textarea, #quote #redesignForm textarea {
   resize: vertical;
   overflow: auto;
 }
 
-section#quote .form-group.controls.mb-0.border-top.border-bottom {
+#quote .form-group.controls.mb-0.border-top.border-bottom {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1754,7 +1754,7 @@ section#quote .form-group.controls.mb-0.border-top.border-bottom {
   align-items: center;
 }
 
-section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
   -webkit-box-flex: 1;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
@@ -1764,36 +1764,36 @@ section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputBut
 }
 
 @media (min-width: 320px) {
-  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+  #quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
     font-size: calc(1.24224vw + 12.02484px);
   }
 }
 
 @media (min-width: 481px) {
-  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+  #quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
     font-size: calc(0.69444vw + 14.65972px);
   }
 }
 
 @media (min-width: 769px) {
-  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+  #quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
     font-size: calc(0.39063vw + 16.99609px);
   }
 }
 
 @media (min-width: 1025px) {
-  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+  #quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
     font-size: calc(0.56818vw + 15.17614px);
   }
 }
 
 @media (min-width: 1201px) {
-  section#quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
+  #quote .form-group.controls.mb-0.border-top.border-bottom #deleteInputButton {
     font-size: 22px;
   }
 }
 
-section#quote .text-danger {
+#quote .text-danger {
   color: #ffc107 !important;
 }
 

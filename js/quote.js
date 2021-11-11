@@ -203,7 +203,7 @@ $(function() {
   }
 
   function createCustomerInputField(appendDiv, string, element, type, isRequired) {
-    const fieldContainer = $("<div class='control-group border-bottom'></div>");
+    const fieldContainer = $("<section class='control-group border-bottom py-0'></section>");
     $(appendDiv).append(fieldContainer);
     const form = $("<div class='form-group floating-label-form-group controls mb-0 pb-2'></div>");
     fieldContainer.append(form);
@@ -352,16 +352,18 @@ $(function() {
   $("#quote .container").append(divCol);
   
   // service type section
-  const serviceTypeControlGroup = $("<div class='control-group border-top py-5'></div>");
+  const serviceTypeControlGroup = $("<section class='control-group border-top py-5'></section>");
   divCol.append(serviceTypeControlGroup);
-  const serviceTypeQuestion = $("<p class='lead text-secondary text-center'>What type of service do you need? Select one option:</p>");
-  serviceTypeControlGroup.append(serviceTypeQuestion);
+  const serviceFieldset = $("<fieldset></fieldset>");
+  serviceTypeControlGroup.append(serviceFieldset);
+  const serviceTypeQuestion = $("<legend class='lead text-secondary text-center'>What type of service do you need? Select one option:</legend>");
+  serviceFieldset.append(serviceTypeQuestion);
   let index = 0;
   for (const prop in service) {
     if (!service.hasOwnProperty(prop)) continue;
     
     const container = $("<div class='mx-4 py-3'></div>");
-    serviceTypeControlGroup.append(container);
+    serviceFieldset.append(container);
     if (index !== Object.keys(service).length-1) {
       container.addClass("border-bottom");
     }
@@ -411,20 +413,24 @@ $(function() {
       createCustomerInputField("#buildForm", "project details", "<textarea>", "text", true);
 
       // technique type section
-      const techniqueTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
+      const techniqueTypeGroup = $("<section class='control-group border-bottom py-5'></section>");
       $("#buildForm").append(techniqueTypeGroup);
-      const techniqueTypeQuestion = $("<p class='lead text-secondary text-center'>How do you want your website to be built? Select one option:</p>");
-      techniqueTypeGroup.append(techniqueTypeQuestion);
+      const techniqueFieldset = $("<fieldset></fieldset>");
+      techniqueTypeGroup.append(techniqueFieldset);
+      const techniqueTypeQuestion = $("<legend class='lead text-secondary text-center'>How do you want your website to be built? Select one option:</legend>");
+      techniqueFieldset.append(techniqueTypeQuestion);
       const techniqueWarning = $("<p class='help-block text-danger'></p>");
-      techniqueTypeGroup.append(techniqueWarning);
-      createRadioInputs(techniqueTypeGroup, technique, "techniqueType");
+      techniqueFieldset.append(techniqueWarning);
+      createRadioInputs(techniqueFieldset, technique, "techniqueType");
 
       // check whether website is e-commerce
-      const ecommerceGroup = $("<div class='control-group border-bottom py-5'></div>");
+      const ecommerceGroup = $("<section class='control-group border-bottom py-5'></section>");
       $("#buildForm").append(ecommerceGroup);
-      const ecommerceQuestion = $("<p class='lead text-secondary text-center'>Is your project considered e-commerce? (Optional)</p>");
-      ecommerceGroup.append(ecommerceQuestion);
-      createCheckboxInput(ecommerceGroup, ecommerce.text, "ecomm", null, null);
+      const ecommerceFieldset = $("<fieldset></fieldset>");
+      ecommerceGroup.append(ecommerceFieldset);
+      const ecommerceQuestion = $("<legend class='lead text-secondary text-center'>Is your project considered e-commerce? (Optional)</legend>");
+      ecommerceFieldset.append(ecommerceQuestion);
+      createCheckboxInput(ecommerceFieldset, ecommerce.text, "ecomm", null, null);
       $("input[name='ecomm[]']").on("change", function() {
         if ($("input[name='ecomm[]']").is(":checked")) {
           selectCheckboxes(ecommerce.include.pages, service.build.pages, true);
@@ -436,25 +442,27 @@ $(function() {
       });
 
       // page type section
-      const pageContentGroup = $("<div class='control-group border-bottom py-5'></div>");
+      const pageContentGroup = $("<section class='control-group border-bottom py-5'></section>");
       $("#buildForm").append(pageContentGroup);
-      const pageContentQuestion = $("<p class='lead text-secondary text-center'>What pages do you want to display in your website? Select all that apply:</p>");
-      pageContentGroup.append(pageContentQuestion);
+      const pageFieldset = $("<fieldset></fieldset>");
+      pageContentGroup.append(pageFieldset);
+      const pageContentQuestion = $("<legend class='lead text-secondary text-center'>What pages do you want to display in your website? Select all that apply:</legend>");
+      pageFieldset.append(pageContentQuestion);
       const pageWarning = $("<p class='help-block text-danger'></p>");
-      pageContentGroup.append(pageWarning);
-      createCheckboxInput(pageContentGroup, service.build.pages.type, "page", 1, "Choose at least one.");
+      pageFieldset.append(pageWarning);
+      createCheckboxInput(pageFieldset, service.build.pages.type, "page", 1, "Choose at least one.");
       selectCheckboxes(service.build.pages.include, service.build.pages, true);
       
       //          creates input text field for other pages
       const pageInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
-      pageContentGroup.append(pageInputFieldContainer);
+      pageFieldset.append(pageInputFieldContainer);
       const pageInputControlGroup = $("<div class='control-group mb-2'></div>");
       pageInputFieldContainer.append(pageInputControlGroup);
       const firstPageInputClearableAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
       pageInputControlGroup.append(firstPageInputClearableAddition);
       createInputField(firstPageInputClearableAddition, "page", "Add a different page", false);
       inputTextFieldChangeHandler(firstPageInputClearableAddition, "input", "#addFieldButtonForPage");
-      createInputButton(pageContentGroup, "page");
+      createInputButton(pageFieldset, "page");
 
       $("#addFieldButtonForPage").on("click", function() {
         const addPageControlGroup = $("<div class='control-group mb-2'></div>");
@@ -467,25 +475,27 @@ $(function() {
       });
           
       //  feature type section
-      const featuresContentGroup = $("<div class='control-group border-bottom py-5'></div>");
+      const featuresContentGroup = $("<section class='control-group border-bottom py-5'></section>");
       $("#buildForm").append(featuresContentGroup);
-      const featuresContentQuestion = $("<p class='lead text-secondary text-center'>What features do you want your website to perform? Select all that apply:</p>");
-      featuresContentGroup.append(featuresContentQuestion);
+      const featuresFieldset = $("<fieldset></fieldset>");
+      featuresContentGroup.append(featuresFieldset);
+      const featuresContentQuestion = $("<legend class='lead text-secondary text-center'>What features do you want your website to perform? Select all that apply:</legend>");
+      featuresFieldset.append(featuresContentQuestion);
       const featuresWarning = $("<p class='help-block text-danger'></p>");
-      featuresContentGroup.append(featuresWarning);
-      createCheckboxInput(featuresContentGroup, service.build.features.type, "feature", 1, "Choose at least one.");
+      featuresFieldset.append(featuresWarning);
+      createCheckboxInput(featuresFieldset, service.build.features.type, "feature", 1, "Choose at least one.");
       selectCheckboxes(service.build.features.include, service.build.features, true);
 
       //          creates input text field for other features
       const featuresInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
-      featuresContentGroup.append(featuresInputFieldContainer);
+      featuresFieldset.append(featuresInputFieldContainer);
       const featuresInputControlGroup = $("<div class='control-group mb-2'></div>");
       featuresInputFieldContainer.append(featuresInputControlGroup);
       const firstFeaturesInputClearableAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
       featuresInputControlGroup.append(firstFeaturesInputClearableAddition);
       createInputField(firstFeaturesInputClearableAddition, "feature", "Add a different feature", false);
       inputTextFieldChangeHandler(firstFeaturesInputClearableAddition, "input", "#addFieldButtonForFeature");
-      createInputButton(featuresContentGroup, "feature");
+      createInputButton(featuresFieldset, "feature");
 
       $("#addFieldButtonForFeature").on("click", function() {
         const addFeaturesControlGroup = $("<div class='control-group mb-2'></div>");
@@ -567,17 +577,19 @@ $(function() {
       createCustomerInputField("#redesignForm", "project details", "<textarea>", "text", true);
 
       // technique type section
-      const techniqueTypeGroup = $("<div class='control-group border-bottom py-5'></div>");
+      const techniqueTypeGroup = $("<section class='control-group border-bottom py-5'></section>");
       $("#redesignForm").append(techniqueTypeGroup);
-      const techniqueTypeQuestion = $("<p class='lead text-secondary text-center'>How is your website built? Select one option:</p>");
-      techniqueTypeGroup.append(techniqueTypeQuestion);
+      const techniqueFieldset = $("<fieldset></fieldset>");
+      techniqueTypeGroup.append(techniqueFieldset);
+      const techniqueTypeQuestion = $("<legend class='lead text-secondary text-center'>How is your website built? Select one option:</legend>");
+      techniqueFieldset.append(techniqueTypeQuestion);
       const techniqueWarning = $("<p class='help-block text-danger'></p>");
-      techniqueTypeGroup.append(techniqueWarning);
-      createRadioInputs(techniqueTypeGroup, technique, "techniqueType");
+      techniqueFieldset.append(techniqueWarning);
+      createRadioInputs(techniqueFieldset, technique, "techniqueType");
 
       // questions loop
       for (let index = 0; index < service.redesign.question.length; index++) {
-        const questionRedesignGroup = $("<div class='control-group border-bottom py-5'></div>");
+        const questionRedesignGroup = $("<section class='control-group border-bottom py-5'></section>");
         $("#redesignForm").append(questionRedesignGroup);
         const redesignQuestion = $("<p class='lead text-secondary text-center'></p>").text(service.redesign.question[index]);
         questionRedesignGroup.append(redesignQuestion);
@@ -595,24 +607,26 @@ $(function() {
       }
       
       // add feature section
-      const featureContentGroup = $("<div class='control-group border-bottom py-5'></div>");
+      const featureContentGroup = $("<section class='control-group border-bottom py-5'></section>");
       $("#redesignForm").append(featureContentGroup);
-      const featureContentQuestion = $("<p class='lead text-secondary text-center'>(Optional) What new features do you want to add to your website? Select all that apply:</p>");
-      featureContentGroup.append(featureContentQuestion);
+      const featureFieldset = $("<fieldset></fieldset>");
+      featureContentGroup.append(featureFieldset);
+      const featureContentQuestion = $("<legend class='lead text-secondary text-center'>(Optional) What new features do you want to add to your website? Select all that apply:</legend>");
+      featureFieldset.append(featureContentQuestion);
       const featureWarning = $("<p class='help-block text-danger'></p>");
-      featureContentGroup.append(featureWarning);
-      createCheckboxInput(featureContentGroup, service.build.features.type, "feature", 0, null);
+      featureFieldset.append(featureWarning);
+      createCheckboxInput(featureFieldset, service.build.features.type, "feature", 0, null);
 
       //      creates input text field for other features
       const featureInputFieldContainer = $("<div class='mt-3 mx-5'></div>");
-      featureContentGroup.append(featureInputFieldContainer);
+      featureFieldset.append(featureInputFieldContainer);
       const featureInputControlGroup = $("<div class='control-group mb-2'></div>");
       featureInputFieldContainer.append(featureInputControlGroup);
       const firstFeatureInputClearableAddition = $("<div class='form-group controls mb-0 border-top border-bottom'></div>");
       featureInputControlGroup.append(firstFeatureInputClearableAddition);
       createInputField(firstFeatureInputClearableAddition, "feature", "Add a different feature", false);
       inputTextFieldChangeHandler(firstFeatureInputClearableAddition, "input", "#addFieldButtonForFeature");
-      createInputButton(featureContentGroup, "feature");
+      createInputButton(featureFieldset, "feature");
 
       $("#addFieldButtonForFeature").on("click", function() {
         const addFeatureControlGroup = $("<div class='control-group mb-2'></div>");
@@ -690,7 +704,8 @@ $(function() {
       createCustomerInputField("#repairForm", "project name", "<input>", "text", true);
       createCustomerInputField("#repairForm", "project details", "<textarea>", "text", true);
 
-      const repairGroup = $("<div class='control-group border-bottom py-5'></div>");
+      // problem question
+      const repairGroup = $("<section class='control-group border-bottom py-5'></section>");
       $("#repairForm").append(repairGroup);
       const repairQuestion = $("<p class='lead text-secondary text-center'>What problems occur on your website? Enter a problem per line:</p>");
       repairGroup.append(repairQuestion);
