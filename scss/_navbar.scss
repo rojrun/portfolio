@@ -7,13 +7,13 @@
   .navbar-brand {
     color: $white;
     font-style: normal;
-    $map: (320px: 70px, 481px: 80px, 769px: 90px, 1025px: 100px, 1201px: 110px);
+    $map: (320px: 50px, 481px: 60px, 769px: 70px, 1025px: 80px, 1201px: 90px);
     @include poly-fluid-sizing("height", $map);
     @include poly-fluid-sizing("width", $map);
     border: 0.1em solid $white;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     align-content: center;
 
@@ -27,7 +27,7 @@
       align-content: center;
 
       p {
-        $map: (320px: 12px, 481px: 14px, 769px: 16px, 1025px: 18px, 1201px: 20px);
+        $map: (320px: 10px, 481px: 12px, 769px: 14px, 1025px: 16px, 1201px: 18px);
         @include poly-fluid-sizing("font-size", $map);
         flex: 1 0 auto;
         margin: 0;

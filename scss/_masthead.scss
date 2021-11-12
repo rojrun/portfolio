@@ -1,4 +1,4 @@
-header.masthead {
+section.masthead {
   padding-top: calc(5rem + 56px);
   padding-bottom: 5rem;
 
@@ -7,12 +7,11 @@ header.masthead {
     line-height: 1;
   }
   h1:nth-child(3) {
-    @include poly-fluid-sizing("font-size", $ulFont);
+    @include poly-fluid-sizing("font-size", $secondHeaderFont);
   } 
-  h2:last-child {
+  h2 {
     @include heading-font;
-    $map: (320px: 20px, 481px: 25px, 769px: 30px, 1025px: 35px, 1201px: 40px);
-    @include poly-fluid-sizing("font-size", $map);
+    @include poly-fluid-sizing("font-size", $mastheadH2Font);
 
     span {
       color: $white;
@@ -21,7 +20,7 @@ header.masthead {
 }
 
 @media(min-width:599px) {
-  header.masthead {
+  section.masthead {
     .img-fluid {
       max-width: 50%;
     }
@@ -29,7 +28,7 @@ header.masthead {
 }
 
 @media (min-width: 992px) {
-  header.masthead {
+  section.masthead {
     padding-top: calc(5rem + 106px);
     padding-bottom: 5rem;
   }

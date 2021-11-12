@@ -1,7 +1,7 @@
 // Styling for quote section
 $transitionSpeed: 800ms;
 
-section#quote {
+#quote {
   min-height: calc(100vh - 4.5rem);
   $map: (320px: 184px, 481px: 210px, 576px: 214px, 768px: 220px, 991px: 229px, 1200px: 240px, 1500px: 240px);
   @include poly-fluid-sizing("padding-top", $map);
