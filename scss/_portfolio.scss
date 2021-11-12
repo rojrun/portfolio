@@ -67,8 +67,13 @@
         line-height: 38px;
       }
     }
-    h2 {
+    h1 {
       @include poly-fluid-sizing("font-size", $headerFont);
+    }
+    h2 {
+      font-weight: 700;
+      @include body-font;
+      @include poly-fluid-sizing("font-size", $bodyFont);
     }
     p {
       @include poly-fluid-sizing("font-size", $bodyFont);
@@ -83,9 +88,6 @@
           text-decoration-color: $white;
         }
       }
-    }
-    h5 {
-      @include poly-fluid-sizing("font-size", $buttonFont);
     }
     .rounded-pill {
       border-radius: .25rem !important;
