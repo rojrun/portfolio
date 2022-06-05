@@ -2,6 +2,7 @@
 .portfolio {
   margin-bottom: -15px;
   .portfolio-item {
+    background-color: $secondary;
     position: relative;
     display: block;
     max-width: 25rem;
@@ -12,12 +13,17 @@
       transition: all ease 0.5s;
       opacity: 0;
       background-color: fade-out($primary, .1);
+      top: 0;
+      left: 0;
       &:hover {
         opacity: 1;
       }
       .portfolio-item-caption-content {
         font-size: 1.5rem;
       }
+    }
+    .resume {
+      max-width: 60%;
     }
   }
   .pulse {
@@ -69,6 +75,12 @@
     }
     h1 {
       @include poly-fluid-sizing("font-size", $headerFont);
+    }
+    a.d-block {
+      background-color: $secondary;
+      .resume {
+        max-width: 60%;
+      }
     }
     h2 {
       font-weight: 700;

@@ -776,6 +776,7 @@ section.masthead h2 span {
   margin-bottom: -15px;
 }
 .portfolio .portfolio-item {
+  background-color: #000000;
   position: relative;
   display: block;
   max-width: 25rem;
@@ -786,12 +787,17 @@ section.masthead h2 span {
   transition: all ease 0.5s;
   opacity: 0;
   background-color: rgba(116, 3, 3, 0.9);
+  top: 0;
+  left: 0;
 }
 .portfolio .portfolio-item .portfolio-item-caption:hover {
   opacity: 1;
 }
 .portfolio .portfolio-item .portfolio-item-caption .portfolio-item-caption-content {
   font-size: 1.5rem;
+}
+.portfolio .portfolio-item .resume {
+  max-width: 60%;
 }
 .portfolio .pulse {
   -webkit-transform: scale(1);
@@ -896,6 +902,12 @@ section.masthead h2 span {
   .portfolio-modal .portfolio-modal-dialog h1 {
     font-size: 75px;
   }
+}
+.portfolio-modal .portfolio-modal-dialog a.d-block {
+  background-color: #000000;
+}
+.portfolio-modal .portfolio-modal-dialog a.d-block .resume {
+  max-width: 60%;
 }
 .portfolio-modal .portfolio-modal-dialog h2 {
   font-weight: 700;
